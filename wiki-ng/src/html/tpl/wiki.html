@@ -1,0 +1,14 @@
+<div class="container">
+    <div data-ng-repeat="wiki in wikis" class="panel panel-default">
+        <div class="panel-heading"><a ng-href="read/{{wiki.slug}}"><h1 ng-bind-html="wiki.title"></h1></a></div>
+        <div class="panel-body">
+            <div>
+                <div class="row">
+                    <p ng-bind-html="wiki.summary" class="paragraph-content"></p>
+                </div>
+                <p><a ng-href="read/{{wiki.slug}}">Read more...</a></p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

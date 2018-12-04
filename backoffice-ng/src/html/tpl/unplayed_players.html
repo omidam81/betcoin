@@ -1,0 +1,21 @@
+<div class="col-md-12">
+    <div class="row panel panel-default">
+        <div class="panel-heading">Unplayed {{game.toUpperCase()}}</div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Player Id</th>
+                        <th># of Unplayed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="player in players">
+                        <td><a href="player/{{player._id}}/history/unplayed">{{player._id}}</a></td>
+                        <td>{{player.count}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

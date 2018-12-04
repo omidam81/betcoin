@@ -1,0 +1,15 @@
+<a data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}" ng-click="markRead()">
+    {{message.datetime | date:'yyyy-MM-dd HH:mm:ss'}} -
+    <b>Claim your <span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> BTC bonus!</b>
+</a>
+<div bindonce="message" id="{{message.id}}" class="panel panel-default panel-collapse collapse" bo-class="{'in':!message.hasRead}">
+    <div class="panel-body">
+        <div>
+            <p>Congratulations! You have been offered a <span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> bonus!</p>
+            <p>Please sign into your account at <a href="https://www.betcoin.tm/">https://www.betcoin.tm/</a> to accept your bonus.</p>
+        </div>
+        <button class="btn btn-primary btn-block" ng-click="markRead()" data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}">
+            <%=buttons.dismiss_message %>
+        </button>
+    </div>
+</div>

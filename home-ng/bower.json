@@ -1,0 +1,34 @@
+{
+  "name": "home-ng",
+  "version": "0.1.0",
+  "authors": [
+    "Atticus Sterman <atticus.sterman@gmail.com>",
+    "Wayne Barclay <wayne@betcoin.tm>"
+  ],
+  "description": "grunt html5 client",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "build"
+  ],
+  "dependencies": {
+    "angular": "1.2.14",
+    "jquery": "^1.9.1",
+    "angular-resource": "1.2.14",
+    "angular-loader": "1.2.14",
+    "angular-sanitize": "1.2.14",
+    "angular-cookies": "1.2.14",
+    "angular-route": "1.2.14",
+    "angular-animate": "1.2.14",
+    "underscore": "~1.5.2",
+    "angular-base64": "~2.0.1",
+    "ng-clip": "latest",
+    "angular-cookie": "*",
+    "angular-bootstrap": "0.10.0"
+  }
+}

@@ -1,0 +1,32 @@
+<div class="modal fade"
+     id="ftdModal"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-body">
+			<button type="button"
+                    class="close"
+                    data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only"><%= close %></span>
+            </button>                        
+            <p> 
+                <div ng-include src="'tpl/first-deposit-bonus-<%= fileSuffix %>.html'"></div>
+            </p>
+            <form name="depositBitcoinForm" class="form-horizontal" novalidate>
+                <div class="form-group">
+                    <label class="control-label"><%= deposit.personal_deposit_address %></label>
+                    <div class="input-group">
+                        <div class="form-control">{{ user.wallets.bitcoin.depositAddress }}</div>
+                    </div>
+                    <div class="margin-top-10"><a target="_blank" ng-href="bitcoin:{{user.wallets.bitcoin.depositAddress}}">
+                        <img src="img/multibit-med.png"/>
+                    </a></div>
+                    <div class="margin-top-10"><img src="<%= apilink %>/qrcode/address/bitcoin/{{user.wallets.bitcoin.depositAddress}}"/></div>
+                </div>
+            </form>                           
+        </div>
+    </div>
+</div>

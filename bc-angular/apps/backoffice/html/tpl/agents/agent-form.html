@@ -1,0 +1,120 @@
+<form class="form-horizontal" name="agentForm" id="agentForm" ng-submit="save()">
+<fieldset>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="agentRealName">First / Last Name</label>  
+  <div class="col-md-5">
+  <input id="agentRealName" name="agentRealName" type="text" ng-model="agentData.realName" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="agentUsername">Username</label>  
+  <div class="col-md-5">
+  <input id="agentUsername" name="username" type="text" ng-model="agentData.username" class="form-control input-md" required="" ng-blur="checkAlias()" ng-minlength="1" ng-maxlength="32" bc-popover="{{usernamePopup}}" autocorrect="off" autocapitalize="off" no-timeout="true" />
+      <div class="errors hide">
+          <span class="error hide username-taken"><%= text.alias_taken %></span>
+          <span class="error" ng-show="agentForm.username.$error.required"><%= text.enter_username %></span>
+          <span class="error" ng-show="agentForm.username.$error.maxlength"><%= text.username_max_length %></span>
+      </div>
+  
+  </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label"><%= text.choose_password %></label>
+    <div class="col-md-5">
+      <input type="password" class="form-control" placeholder="" ng-model="agentData.password" ng-keyup="validatePassword()" ng-minlength="10" ng-maxlength="64" name="password" id="agentPassword" bc-popover="{{passwordPopup}}" no-timeout="true" required/>
+      <div class="errors hide">
+          <span class="error" ng-show="agentForm.password.$error.minlength"><%= text.password_min_length %></span>
+          <span class="error" ng-show="agentForm.password.$error.maxlength"><%= text.password_max_length %></span>
+          <span class="error" ng-show="agentForm.password.$error.required"><%= text.enterpassword %></span>
+      </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-4 control-label"><%= text.confirm_password %></label>
+    <div class="col-md-5">
+      <input type="password" class="form-control" placeholder="" ng-model="agentData.passwordConfirm" ng-keyup="validatePassword()" ng-minlength="10" ng-maxlength="64" id="agentPasswordConfirm" name="passwordConfirm" bc-popover="{{confirmPasswordPopup}}" no-timeout="true" required/>
+      <div class="errors hide">
+          <span class="error" ng-show="invalidPassword"><%= text.invalid_password %></span>
+          <span class="error hide password-notmatch"><%= text.password_validation %></span>
+      </div>
+    </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="agentEmail">Email Address</label>  
+  <div class="col-md-5">
+  <input id="agentEmail" name="email" type="text" ng-model="agentData.email" bc-popover="{{emailPopup}}"  no-timeout="true" class="form-control input-md" required="">
+
+        <div class="errors hide">
+            <span class="error"><%= email.enter_valid %></span>
+        </div>    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="agentCommission">Commission (ex: 0.03)</label>  
+  <div class="col-md-5">
+  <input id="agentCommission" name="agentCommission" type="text" ng-model="agentData.commission" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="agentPhone">Phone Number</label>  
+  <div class="col-md-5">
+  <input id="agentPhone" name="agentPhone" type="text" ng-model="agentData.phone" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="agentAddress">Mailing Address</label>
+  <div class="col-md-5">                     
+    <textarea class="form-control" id="agentAddress" ng-model="agentData.address" name="agentAddress"></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="agentNotes">Notes/Comments</label>
+  <div class="col-md-5">                     
+    <textarea class="form-control" id="agentNotes" ng-model="agentData.notes" name="agentNotes"></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="agentSerials">Serial Numbers</label>
+  <div class="col-md-5">                     
+    <textarea class="form-control" id="agentSerials" ng-model="agentData.serials" bc-popover="{{badSerialsPopup}}" name="agentSerials" no-timeout="true"></textarea>
+          <div class="errors hide">
+            <span class="error">At least 1 serial number is invalid</span>
+        </div>  
+  </div>
+
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="agentAddButton"></label>
+  <div class="col-md-5">
+    <button type="submit" ladda="registering" id="agentAddButton" name="agentAddButton" class="btn btn-default" bc-popover="{{error!=null}}" ng-disabled="agentForm.$invalid || errorVisible.usernameExist || errorVisible.isNotEqual || invalidPassword || errorVisible.badSerials">Add New Affiliate</button>
+        <div class="errors hide">
+            <span class="error">{{error|error}}</span>
+        </div>
+  </div>
+</div>
+
+</fieldset>
+</form>

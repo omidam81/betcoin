@@ -1,0 +1,57 @@
+{
+    "prod": "mahjong",
+    "meta": {
+        "title": "Betcoin™ Mahjong - Provably Fair - Win Bitcoin!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-mahjong.png"
+    },
+    "home": {
+        "title_image": "img/icons/mahjong280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/mahjong"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/majiang"
+        }
+    },
+    "winds": {
+        "east": "E",
+        "south": "S",
+        "west": "W",
+        "north": "N"
+    },
+    "labels": {
+        "won_the_round": "WON THE ROUND",
+        "draw_game": "DRAW GAME",
+        "base_payment": "BASE PAYMENT",
+        "winds": {
+            "east" : "E",
+            "south" : "S",
+            "west" : "W",
+            "north" : "N"
+        },
+        "fan": "TOTAL HAND FAN",
+        "betsize": "Your bet size is equal to a base payment of 1. The max bet size is 1/64 of your balance."
+    },
+    "buttons": {
+        "start": "Start New Game",
+        "resume_previous_game": "Resume Previous"
+    },
+    "options": [
+        {"type": -10, "label": "Remove"},
+        {"type": 0, "label": "Skip"},
+        {"type": 5, "label": "Skip"},
+        {"type": 7, "label": "Pair"},
+        {"type": 10, "label": "Chi"},
+        {"type": 20, "label": "Pong"},
+        {"type": 21, "label": "Pong"},
+        {"type": 30, "label": "Kong"},
+        {"type": 35, "label": "Kong"},
+        {"type": 36, "label": "Kong"},
+        {"type": 40, "label": "Win"},
+        {"type": 50, "label": "Win from the deck"}
+    ]
+}

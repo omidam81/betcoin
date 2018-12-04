@@ -1,0 +1,14 @@
+bower_components/
+node_modules
+.tern-port
+.DS_Store
+*.hiveapp
+*.log
+Gruntfile.js
+build/
+dist/
+tmp/
+.tern-port
+.DS_Store
+tm.betcoin.*
+

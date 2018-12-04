@@ -1,0 +1,96 @@
+
+    <h1>VIP Status</h1>
+    <div class="">
+        <ul class="nav nav-tabs nav-justified game-nav-tabs" role="tablist">
+            <li class="{{currency=='bitcoin'?'active':''}}"><a class="game-type" ng-click="determineVIPLevel(totals, 'bitcoin')">BitCoin</a></li>
+            <li class="{{currency=='dogecoin'?'active':''}}"><a class="game-type" ng-click="determineVIPLevel(totals, 'dogecoin')">DogeCoin</a></li>
+            <li class="{{currency=='litecoin'?'active':''}}"><a class="game-type" ng-click="determineVIPLevel(totals, 'litecoin')">LiteCoin</a></li>
+            <li class="{{currency=='ppcoin'?'active':''}}"><a class="game-type" ng-click="determineVIPLevel(totals, 'ppcoin')">PeerCoin</a></li>
+            <li class="{{currency=='namecoin'?'active':''}}"><a class="game-type" ng-click="determineVIPLevel(totals, 'namecoin')">NameCoin</a></li>
+        </ul>
+        <h1>{{ vipLevelInfo.currentAmount| cryptovalue}} <wallet-currency wallet="user.wallets[currency]"></wallet-currency></h1>
+        Current Tier:
+        <div class="btn-group">
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=1">Bronze</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=2">Silver</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=3">Gold</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=4">Platinum</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=5">Diamond</button>
+        </div>
+        <br>
+        <table class="table" ng-show="vipLevelInfo.level!=5">
+            <tbody>
+                <tr>
+                    <td>To Reach Next Level</td>
+                    <td>{{vipLevelInfo.nextLevelAmount| cryptovalue}} <wallet-currency wallet="user.wallets[currency]"></wallet-currency></td>
+                </tr>
+                <tr>
+                    <td>Amount Left</td>
+                    <td>{{(vipLevelInfo.nextLevelAmount - vipLevelInfo.currentAmount)| cryptovalue}} <wallet-currency wallet="user.wallets[currency]"></wallet-currency></td>
+                </tr>
+            </tbody>
+        </table>
+        <div ng-if="vipLevelInfo && vipLevelInfo.level!=5">
+            <percent-slider min="{{vipLevelInfo.currentMinAmount}}" max="{{vipLevelInfo.nextLevelAmount}}" step="1" percent-slider-value="vipLevelInfo.currentAmount" disabled>
+        </div>
+        <div>
+            <h3>
+                Betcoin™ Bonus system
+            </h3>
+            <p>
+                Betcoin™ offers amazing bonus promotions which offer the best value for your bitcoin.
+            </p>
+            <h5>
+                RISK-FREE NO-DEPOSIT WELCOME BONUS
+            </h5>
+            <p>
+                Our welcome bonus provides you with free Bitcoin to play with when you sign up.  After creating your account, the welcome bonus is immediately added to your account. For you to withdraw any of the winnings you get with the bonus amount, you will need to bet your deposit and bonus amount times 888x on any of our games. So if you deposit 1 <wallet-currency wallet="user.wallets[currency]"></wallet-currency> you will receive an additional 1.08 <wallet-currency wallet="user.wallets[currency]"></wallet-currency> in your account. to withdraw any winnings from this you need to bet 888x 2.08 <wallet-currency wallet="user.wallets[currency]"></wallet-currency> ( 1 from deposit and 1.08 from the bonus ) so in total you woul need to wager 1847.04 <wallet-currency wallet="user.wallets[currency]"></wallet-currency>.
+            </p>
+            <p>
+                If you do not meet the requirements you will not be able to withdraw your winnings. In total you will have 7 days to unlock the bonus. After 7 days, the remaining bonus amount is removed from your account. You may also cancel the welcome bonus to receive the first time deposit bonus instead.
+            </p>
+            <br>
+            <h5>
+                FIRST TIME DEPOSIT BONUS
+            </h5>
+            <p>
+                Our 108% first time deposit bonus is available for new accounts on the first deposit. After accepting the bonus, when you make a deposit you will receive 108% of your deposit amount in your account. For you to withdraw any of the winnings you get with the bonus amount, you will need to bet your deposit and bonus amount times 888x on any of our games. So if you deposit 1 <wallet-currency wallet="user.wallets[currency]"></wallet-currency> you will receive an additional 1.08 <wallet-currency wallet="user.wallets[currency]"></wallet-currency> in your account. to withdraw any winnings from this you need to bet 888x 2.08 <wallet-currency wallet="user.wallets[currency]"></wallet-currency> ( 1 from deposit and 1.08 from the bonus ) so in total you woul need to wager 1847.04 <wallet-currency wallet="user.wallets[currency]"></wallet-currency>.
+            </p>
+            <p>
+                If you do not meet the requirements you will not be able to withdraw your winnings, but you will always be able to withdraw your own deposit amount. In total you will have 7 days to unlock the bonus. After 7 days, the remaining bonus amount is removed from your account.
+            </p>
+            <br>
+            <h5>
+                WEEKLY CASHBACK BONUS
+            </h5>
+            <p>
+                We at Betcoin™ believe that loyalty should be rewarded. So we have come up with an industry leading cash back bonus that will give you up to 9.88% of your losses back. How does this work?
+            </p>
+            <p>
+                Simple.. play with us and every Monday morning we will give you up to 9.88% of your net losses back into your account. There is nothing you need to do for this, all is done automatically.
+            </p>
+            <p>
+                the amount of cash back received depends on your VIP  level and the higher your level the higher the percentage of your cashback will be every single Monday.
+            </p>
+            <p>
+                For instance: You have achieved our highest VIP level and in the week leading up to the Monday you have unfortunately lost 1 <wallet-currency wallet="user.wallets[currency]"></wallet-currency>. On Monday morning you will receive 0.0988 <wallet-currency wallet="user.wallets[currency]"></wallet-currency> back in your account as a thank you for playing with us during the week.
+            </p>
+            <br>
+
+            <p>
+                VIP Level Bronze: 1.88% cashback
+            </p>
+            <p>
+                VIP Level Silver: 3.88% cashback
+            </p>
+            <p>
+                VIP Level Gold: 5.88% cashback
+            </p>
+            <p>
+                VIP Level Platinum: 7.88% cashback
+            </p>
+            <p>
+                VIP Level Diamond: 9.88% cashback
+            </p>
+        </div>
+    </div>

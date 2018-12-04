@@ -1,0 +1,148 @@
+<div class="tabcontent">
+    <h1>如何游戏</h1>
+    <p class="ng-binding"><b class="ng-binding">财神宝™</b> 是其中一个最流行的抽奖游戏，允许您用比特币下注。非常简单、有趣，并能赢更多的比特币！</p>
+    <p>庄家会筛动三个骰子进行游戏。游戏的目的在于正确猜中三个骰子的最终组合。</p>
+    <br>
+	<ol style="padding-left:40px;">
+		<li class="ng-binding"><b class="ng-binding">登入或注册</b>，或者用您的比特币钱包来进行匿名游戏</li>
+		<br>
+		<li class="ng-binding"><b class="ng-binding">充值比特币</b>到游戏为您设定的专用比特币存款地址</li>
+		<br>
+		<li class="ng-binding"><b class="ng-binding">用滑块、余额百分比按钮、增量按钮或在下注框上单击并输入金额</b>，选择下注金额</li>
+		<br>
+		<li class="ng-binding">检查您的进度，用游戏屏幕下方的游戏“高手排名榜”和“近期游戏”标签，可以跟踪全球的玩家</li>
+		<br>
+		<li class="ng-binding">静止 30 分钟后或关闭浏览器后，您的余额会自动返还给您</li>
+		<br>
+	</ol>
+    <h4>赔率</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>下注类型</th>
+                <th>赔率</th>
+            </tr>
+            <tr>
+                <td>大/小</td>
+                <td>1 : 1</td>
+            </tr>
+            <tr>
+                <td>一个单骰</td>
+                <td>1 : 1</td>
+            </tr>
+            <tr>
+                <td>两个单骰</td>
+                <td>2 : 1</td>
+            </tr>
+            <tr>
+                <td>三个单骰</td>
+                <td>3 : 1</td>
+            </tr>
+            <tr>
+                <td>双骰组合</td>
+                <td>6 : 1</td>
+            </tr>
+            <tr>
+                <td>任意三个同骰</td>
+                <td>30 : 1</td>
+            </tr>
+            <tr>
+                <td>指定三个同骰</td>
+                <td>180 : 1</td>
+            </tr>
+            <tr>
+                <td>指定两个同骰</td>
+                <td>11 : 1</td>
+            </tr>
+            <tr>
+                <td>4/17 总点数</td>
+                <td>60 : 1</td>
+            </tr>
+            <tr>
+                <td>5/16 总点数</td>
+                <td>20 : 1</td>
+            </tr>
+            <tr>
+                <td>6/15 总点数</td>
+                <td>18 : 1</td>
+            </tr>
+            <tr>
+                <td>7/14 总点数</td>
+                <td>12 : 1</td>
+            </tr>
+            <tr>
+                <td>8/13 总点数</td>
+                <td>8 : 1</td>
+            </tr>
+            <tr>
+                <td>9/10/11/12 总点数</td>
+                <td>6 : 1</td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>庄家优势</h4>
+    <table class="table">
+      <tbody>
+            <tr>
+                <th>下注类型</th>
+                <th>优势</th>
+            </tr>
+            <tr>
+                <td>大/小</td>
+                <td>2.8%</td>
+            </tr>
+            <tr>
+                <td>单骰</td>
+                <td>7.9%</td>
+            </tr>
+            <tr>
+                <td>双骰组合</td>
+                <td>16.7%</td>
+            </tr>
+            <tr>
+                <td>任意三同骰</td>
+                <td>30.6</td>
+            </tr>
+            <tr>
+                <td>指定三同骰</td>
+                <td>30.1%</td>
+            </tr>
+            <tr>
+                <td>双同骰</td>
+                <td>33.3%</td>
+            </tr>
+            <tr>
+                <td>4/17 总点数</td>
+                <td>29.2%</td>
+            </tr>
+            <tr>
+                <td>5/16 总点数</td>
+                <td>47.2%</td>
+            </tr>
+            <tr>
+                <td>6/15 总点数</td>
+                <td>30.6%</td>
+            </tr>
+            <tr>
+                <td>7/14 总点数</td>
+                <td>9.7%</td>
+            </tr>
+            <tr>
+                <td>8/13 总点数</td>
+                <td>19%</td>
+            </tr>
+            <tr>
+                <td>9/12 总点数</td>
+                <td>12.5%</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4 class="ng-binding">每盘游戏有没有最低赌注限制？</h4>
+	<p class="ng-binding">最低赌注为0.000001 个比特币</p><p></p>
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+	<provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+	<p><a target="_blank" href="./js/app/directives/provably-fair.js">点击这里显示用来验证游戏公平性的代码</a></p>
+	<!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+	<div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-xs-12 col-md-4 col-md-offset-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3 class="text-center"><%= buttons.create_new_account %></h3>
+                <div class="col-xs-12">
+                    <form ng-submit="signup()" name="signUpForm">
+                        <div class="form-group">
+                            <label class="control-label"><%= text.desired_username %></label>
+                            <input type="text" name="username" class="form-control" placeholder="" ng-model="userdata.alias" ng-blur="checkAlias()" ng-minlength="1" ng-maxlength="32" bc-popover="{{isExist||(signUpForm.username.$dirty&&signUpForm.username.$invalid)}}" autocorrect="off" autocapitalize="off" required />
+                            <div class="errors hide">
+                                <span class="error" ng-show="isExist"><%= text.alias_taken %></span>
+                                <span class="error" ng-show="signUpForm.username.$error.required"><%= text.enter_username %></span>
+                                <span class="error" ng-show="signUpForm.username.$error.maxlength"><%= text.username_max_length %></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><%= text.choose_password %></label>
+                            <input type="password" class="form-control" placeholder="" ng-model="userdata.password" ng-keyup="validatePassword()" ng-minlength="10" ng-maxlength="64" name="password" bc-popover="{{(signUpForm.password.$invalid&&signUpForm.password.$dirty)}}" required/>
+                            <div class="errors hide">
+                                <span class="error" ng-show="signUpForm.password.$error.minlength"><%= text.password_min_length %></span>
+                                <span class="error" ng-show="signUpForm.password.$error.maxlength"><%= text.password_max_length %></span>
+                                <span class="error" ng-show="signUpForm.password.$error.required"><%= text.enterpassword %></span>
+                            </div>
+                        </div>
+                        <div class="errors" ng-show="invalidPassword||isNotEqual">
+                            <span class="error invalid-password" ng-show="invalidPassword"><%= text.invalid_password %></span>
+                            <span class="error invalid-password" ng-show="isNotEqual"><%= text.password_validation %></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><%= text.confirm_password %></label>
+                            <input type="password" class="form-control" placeholder="" ng-model="userdata.confirm_password" ng-keyup="validatePassword()" ng-minlength="10" ng-maxlength="64" name="confirm_password" bc-popover="{{(signUpForm.confirm_password.$invalid&&signUpForm.confirm_password.$dirty)}}" required/>
+                            <div class="errors hide">
+                                <span class="error" ng-show="invalidPassword"><%= text.invalid_password %></span>
+                                <span class="error" ng-show="signUpForm.confirm_password.$error.minlength"><%= text.password_min_length %></span>
+                                <span class="error" ng-show="signUpForm.confirm_password.$error.maxlength"><%= text.password_max_length %></span>
+                                <span class="error" ng-show="signUpForm.confirm_password.$error.required"><%= text.enterpassword %></span>
+                                <span class="error" ng-show="isNotEqual"><%= text.password_validation %></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><%= text.your_email_address %></label>
+                            <input type="email" class="form-control" placeholder="" ng-model="userdata.email" name="email" bc-popover="{{signUpForm.email.$invalid&&signUpForm.email.$dirty}}" required/>
+                            <div class="errors hide">
+                                <span class="error"><%= email.required %></span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-hide="userdata.createWallet">
+                            <input type="text" class="form-control" placeholder="Withdraw Address" ng-model="userdata.withdrawAddress">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-block" value="<%= buttons.create_new_account %>" bc-popover="{{error!=null}}" ng-disabled="signUpForm.$invalid || isExist || isNotEqual || invalidPassword">
+                            <div class="errors hide">
+                                <span class="error">{{error|error}}</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+{
+    "prod": "tigerdragon",
+    "meta": {
+        "title": "BetCoin ™ Tiger Dragon Bitcoin Casino - Play Provably fair bitcoin Tiger Dragon"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-tigerdragon.png"
+    },
+    "home": {
+        "title_image": "img/icons/tigerdragon280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/tigerdragon"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/dou"
+        }
+    },
+    "game": {
+        "spinmessage": "Select your Bet Size－Tie Bet Pays 8 to 1",
+        "score": "Score",
+        "winner": "WINNER",
+        "tie": "TIE",
+        "suitedtie": "Suited Tie",
+        "big": "Big",
+        "small": "Small",
+        "suit": {
+            "c": "♣",
+            "d": "♦",
+            "h": "♥",
+            "s": "♠"
+        },
+        "dragon": "Dragon",
+        "tiger": "Tiger"
+    },
+    "buttons": {
+        "tiebet": "Tie Bet",
+        "clear_bets": "Clear Bets"
+    }
+}

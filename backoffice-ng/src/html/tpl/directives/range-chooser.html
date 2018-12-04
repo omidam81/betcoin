@@ -1,0 +1,23 @@
+<form ng-submit="rangeSubmit()">
+    <div class="form-group">
+        <select class="form-control" ng-model="rangeType">
+            <option value="time">Time Range</option>
+            <option value="date">Date Range</option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="rangeType == 'time'">
+        <input type="number" class="form-control" ng-model="timeValue">
+        <select class="form-control" ng-model="timeUnit">
+            <option value="minutes">minutes</option>
+            <option value="hours">Hours</option>
+            <option value="days">Days</option>
+            <option value="weeks">Weeks</option>
+            <option value="months">Months</option>
+        </select>
+    </div>
+    <div class="form-group" ng-show="rangeType == 'date'">
+        <input ui-date class="form-control" ng-model="startDate">
+        <input ui-date class="form-control" ng-model="endDate">
+    </div>
+    <input type="submit" class="btn btn-default" value="Submit">
+</form>

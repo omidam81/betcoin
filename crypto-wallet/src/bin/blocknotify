@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+curl --silent --output /dev/null -X POST http://localhost:1339/blocknotify --data "$1"
+

@@ -1,0 +1,77 @@
+<div class="tabcontent">
+    <h1>How to Play</h1>
+    <p class="ng-binding"><b class="ng-binding">BetCoin ™ Fan Tan</b> is one of the oldest and most famous casino games. that allows you to wager with the digital currency Bitcoin. It is an easy and fun way to play with and win more Bitcoins!</p>
+
+    <p>The dealer rolls three dices. The object of the game is to correctly guess the result of the combination of three dices.</p>
+    <br>
+    <ol class="padding-left-40">
+        <li class="ng-binding"><b class="ng-binding">Login or Register</b>, or play anonymously with your BTC wallet address</li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">Fund</b> your playing balance with Bitcoins using the provided personal deposit address</li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">Select wager</b> amount by using either the slider, percentage of balance buttons, incremental buttons, or by clicking on the wager box. The maximum wager value is adjusted dynamically.</li>
+        <br>
+        <li class="ng-binding">Check your progress and follow players around the world using the in-game Leaderboard and Recent Spins tabs located below the playing screen.</li>
+        <br>
+        <li class="ng-binding">If you play anonymously, your balance will automatically be returned to you after 30 minutes of inactivity or upon closing your browser.</li>
+        <br>
+    </ol>
+    <h4>Playing Fan Tan</h4>
+    <ul>
+        <li><p>
+            <b>Fan:</b> A bet on a single number. Wins pay 3 to 1 before commission, or 2.85 after.
+        </p></li>
+        <li><p>
+            <b>Nim:</b> A bet on two numbers, one of which is indicated as a push. The winning number pays 2 to 1 before commission, or 1.9 after.
+        </p></li>
+        <li><p>
+            <b>Kwok:</b> A bet on two numbers, both of which win. The winning number pays 1 to 1 before commission, or 19 to 20 after.
+        </p></li>
+        <li><p>
+            <b>Nga Tan:</b> A bet on three numbers, one of which is indicated as a push. The winning numbers pay 1 to 2 before commission, or 19 to 40 after.
+        </p></li>
+        <li><p>
+            <b>Sheh-Sam-Hong:</b> A bet on three numbers, all of which win. The winning numbers pay 1 to 3 before commission, or 19 to 60 after.
+        </p></li>
+    </ul>
+    <h4>Payouts</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Bet</th>
+                <th>Pays</th>
+            </tr>
+            <tr>
+                <td>Fan</td>
+                <td>2.85</td>
+            </tr>
+            <tr>
+                <td>Nim</td>
+                <td>1.9</td>
+            </tr>
+            <tr>
+                <td>Kwok</td>
+                <td>0.95</td>
+            </tr>
+            <tr>
+                <td>Nga Tan</td>
+                <td>0.475</td>
+            </tr>
+            <tr>
+                <td>Sheh-Sam-Hong</td>
+                <td>0.316667</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair></provably-fair>
+
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">Click here to view the source code of the provably fair algorithm.</a>
+    </p>
+
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+
+
+</div>

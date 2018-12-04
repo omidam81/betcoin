@@ -1,0 +1,13 @@
+<div id="spinmessage">
+            <!-- <div class="color-gold" ng-show="maxBetErr"><%= serverErrors["172"] %></div>
+            <div class="color-gold" ng-show="minbetMsg"><%= serverErrors["173"] %></div>
+            <div class="color-gold" ng-show="serverMsg"><%= serverMsg %></div>
+            <div class="color-gold" ng-show="serverErr"><%= serverErrors["032"] %></div>
+            <div class="color-gold" ng-show="minconfErr"><%= minconfMsg %></div>
+            <div class="color-gold" ng-show="withdrawErr"><%= withdrawErrorMsg %></div> -->
+            <div class="color-gold" ng-show="error">{{error|error}}</div>
+            <span ng-hide="hasError() || isGameInProgress || resultProfit != null"><%= game.spinmessage %></span>
+            <span ng-show="isGameInProgress&&!player.anonymous"><%= game.spinningmessage %></span>
+            <span ng-show="isGameInProgress&&player.anonymous"><%= game.spinningmessage_anonymous %></span>
+            <span ng-show="resultProfit && !isGameInProgress"><%= game.winmessage %> {{ currencyAbbr }} {{ resultProfit | cryptovalue }}</span>
+        </div>

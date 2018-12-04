@@ -1,0 +1,9 @@
+*.swp
+*.bak*
+*.log
+backups/
+.net*
+view/
+tmp/
+tags
+bundle/

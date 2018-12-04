@@ -1,0 +1,242 @@
+
+
+.cards {
+  clear: both;
+  text-align: center;
+
+}
+
+.livecard {
+  top: -200px;
+  left: -600px;
+  opacity: 0;
+}
+
+.cards > div {
+  margin-left: 0;
+  margin-left-value: 0;
+  margin-left-ltr-source: physical;
+  margin-left-rtl-source: physical;
+  float: none;
+  position: relative;
+  display: inline-block;
+  @media (max-width: 992px) {
+    -ms-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    margin-left: 0;
+  }
+  @media (max-width: 768px) {
+    -ms-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    margin-left: 0;
+  }
+  @media (max-width: 568px) {
+    -ms-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -o-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    margin-left: 0;
+  }
+  @media (max-width: 480px) {
+    -ms-transform: scale(0.58);
+    -moz-transform: scale(0.58);
+    -o-transform: scale(0.7);
+    -webkit-transform: scale(0.58);
+    transform: scale(0.58);
+    margin-left: 0;
+  }
+}
+
+.cards > div:first-child {
+  /*float: left;*/
+  margin-left: 0px;
+  margin-left-value: 0px;
+  margin-left-ltr-source: physical;
+  margin-left-rtl-source: physical;
+}
+
+.picked .card {
+  position: relative;
+  top: -20px;
+}
+
+#dealer-cards, #player-cards {
+  zoom: 1;
+  position: relative;
+  margin: 20px auto 0;
+  height: auto;
+}
+
+#player-cards {
+  padding-top: 20px;
+}
+
+#player-two-cards {
+  margin-top: 20px;
+}
+
+.card.lost {
+  opacity: .5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -webkit-transition: opacity 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out;
+  -ms-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+}
+
+.card.lost .back {
+  display: none
+}
+
+.card {
+  width: 7em;
+  height: 10em;
+  box-shadow: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.howtoplay .card {
+  position:relative;
+  display:inline-block;
+}
+
+.front, .back {
+  border: none;
+  background-color: transparent;
+  float: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: inherit;
+  height: inherit;
+}
+
+.front {
+  webkit-background-size: contain;
+  moz-background-size: contain;
+  o-background-size: contain;
+  background-size: contain !important;
+  z-index: 1;
+}
+
+.front:before {
+  content: "";
+  position: absolute;
+  border: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.back {
+  background: url('@{cdnAppUrl}img/tiles/1.png') no-repeat center center;
+  webkit-background-size: contain;
+  moz-background-size: contain;
+  o-background-size: contain;
+  background-size: contain;
+  z-index: 0;
+}
+
+.back:before {
+  content: "";
+  position: absolute;
+  border: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.flipped .front {
+  display: none;
+}
+
+.flipped .back {
+  z-index: 1;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -o-transform: none;
+  -ms-transform: none;
+  transform: none
+}
+
+.turn .front {
+  z-index: 2
+}
+
+.tile20 {
+  background: url('@{cdnAppUrl}img/tiles/2.png') no-repeat center center
+}
+.tile12 {
+  background: url('@{cdnAppUrl}img/tiles/3.png') no-repeat center center
+}
+.tile13 {
+  background: url('@{cdnAppUrl}img/tiles/4.png') no-repeat center center
+}
+.tile50 {
+  background: url('@{cdnAppUrl}img/tiles/5.png') no-repeat center center
+}
+.tile15 {
+  background: url('@{cdnAppUrl}img/tiles/6.png') no-repeat center center
+}
+.tile16 {
+  background: url('@{cdnAppUrl}img/tiles/7.png') no-repeat center center
+}
+.tile04 {
+  background: url('@{cdnAppUrl}img/tiles/8.png') no-repeat center center
+}
+.tile05 {
+  background: url('@{cdnAppUrl}img/tiles/9.png') no-repeat center center
+}
+.tile42 {
+  background: url('@{cdnAppUrl}img/tiles/10.png') no-repeat center center
+}
+.tile07 {
+  background: url('@{cdnAppUrl}img/tiles/11.png') no-repeat center center
+}
+.tile08 {
+  background: url('@{cdnAppUrl}img/tiles/12.png') no-repeat center center
+}
+.tile06 {
+  background: url('@{cdnAppUrl}img/tiles/13.png') no-repeat center center
+}
+.tile43 {
+  background: url('@{cdnAppUrl}img/tiles/14.png') no-repeat center center
+}
+.tile08-1 {
+  background: url('@{cdnAppUrl}img/tiles/15.png') no-repeat center center
+}
+.tile09 {
+  background: url('@{cdnAppUrl}img/tiles/16.png') no-repeat center center
+}
+.tile80 {
+  background: url('@{cdnAppUrl}img/tiles/17.png') no-repeat center center
+}
+.tile45 {
+  background: url('@{cdnAppUrl}img/tiles/18.png') no-repeat center center
+}
+.tile46 {
+  background: url('@{cdnAppUrl}img/tiles/19.png') no-repeat center center
+}
+.tile010 {
+  background: url('@{cdnAppUrl}img/tiles/20.png') no-repeat center center
+}
+.tile011 {
+  background: url('@{cdnAppUrl}img/tiles/21.png') no-repeat center center
+}
+.tile66 {
+  background: url('@{cdnAppUrl}img/tiles/22.png') no-repeat center center
+}

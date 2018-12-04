@@ -1,0 +1,278 @@
+<div ng-controller="GameController" class="row noselect roulette-area" id="gameContainer">
+    <div class="col-xs-12 col-md-4 text-center col-md-push-8">
+
+        <div><img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" /></div>
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <div>
+            <spinmessage></spinmessage>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+        </div>
+        <div class="clear-both position-relative">
+              <div class="roulette-game-sound-toggle-container">
+                  <div class="soundToggle"><img  ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+              </div>
+              <proof-button></proof-button>
+              <small class="display-none">
+                  <dl class="dl-horizontal">
+                      <dt><%= game.SsHeader2 %></dt><dd>{{ nextGameId }}</dd>
+                      <dt>SHA256:</dt><dd class="allow-word-wrap-with-word-break">{{ sha256 }}</dd>
+                  </dl>
+              </small>
+
+              <bc-client-seed class="seed-container" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-8 game col-md-pull-4 padding-0">
+      <div id="g-roulette">
+            <div id="board" class="board">
+                  <div id="col-1" class="green">2:1</div>
+                  <div id="col-2" class="green">2:1</div>
+                  <div id="col-3" class="green">2:1</div>
+                  <div id="doz-1" class="green">1st 12</div>
+                  <div id="doz-2" class="green">2nd 12</div>
+                  <div id="doz-3" class="green">3rd 12</div>
+                  <div id="hilo-1" class="green">1 to 18</div>
+                  <div id="hilo-2" class="green">19 to 36</div>
+                  <div id="eo-1" class="green">Even</div>
+                  <div id="eo-2" class="green">Odd</div>
+                  <div id="rb-1" class=""></div>
+                  <div id="rb-2" class=""></div>
+                  <!-- -> Number Bets-->
+                  <div id="num-0" class="{{(corner_1||corner_2||splitv0||splitv_1||splitv_2||line1||overZero)?'bet-highlight':'green'}}">0</div>
+                  <div id="bet-num-0" placebet data-bet="[0]" ng-mouseover="overZero=true" ng-mouseout="overZero=false"><div class="chips"></div></div>
+                  <div id="num-1" class="number {{(corner_2||splitv_2||street1||line1||line2||corner1||splith1||splitv1||overOdd||overLow||overRed||overDozenOne||overRowThree||over1)?'bet-highlight':'red'}}">1</div>
+                  <div id="bet-num-1" placebet data-bet="[1]" ng-mouseover="over1=true" ng-mouseout="over1=false"><div class="chips"></div></div>
+                  <div id="num-2" class="number {{(corner_1||corner_2||splitv_1||street1||line1||line2||corner1||corner2||splith2||splith1||splitv2||overEven||overLow||overBlack||overDozenOne||overRowTwo||over2)?'bet-highlight':'black'}}">2</div>
+                  <div id="bet-num-2" placebet data-bet="[2]" ng-mouseover="over2=true" ng-mouseout="over2=false"><div class="chips"></div></div>
+                  <div id="num-3" class="number {{(corner_1||splitv0||street1||line1||line2||corner2||splith2||splitv3||overOdd||overLow||overRed||overDozenOne||overRowOne||over3)?'bet-highlight':'red'}}">3</div>
+                  <div id="bet-num-3" placebet data-bet="[3]" ng-mouseover="over3=true" ng-mouseout="over3=false"><div class="chips"></div></div>
+                  <div id="num-4" class="number {{(line2||line3||street2||corner1||corner4||splith4||splitv1||splitv4||overEven||overLow||overBlack||overDozenOne||overRowThree||over4)?'bet-highlight':'black'}}">4</div>
+                  <div id="bet-num-4" placebet data-bet="[4]" ng-mouseover="over4=true" ng-mouseout="over4=false"><div class="chips"></div></div>
+                  <div id="num-5" class="number {{(line2||line3||street2||corner1||corner2||corner4||corner5||splith4||splith5||splitv2||splitv5||overOdd||overLow||overRed||overDozenOne||overRowTwo||over5)?'bet-highlight':'red'}}">5</div>
+                  <div id="bet-num-5" placebet data-bet="[5]" ng-mouseover="over5=true" ng-mouseout="over5=false"><div class="chips"></div></div>
+                  <div id="num-6" class="number {{(line2||line3||street2||corner2||corner5||splith5||splitv3||splitv6||overEven||overLow||overBlack||overDozenOne||overRowOne||over6)?'bet-highlight':'black'}}">6</div>
+                  <div id="bet-num-6" placebet data-bet="[6]" ng-mouseover="over6=true" ng-mouseout="over6=false"><div class="chips"></div></div>
+                  <div id="num-7" class="number {{(line3||line4||street3||corner4||corner7||splith7||splitv4||splitv7||overOdd||overLow||overRed||overDozenOne||overRowThree||over7)?'bet-highlight':'red'}}">7</div>
+                  <div id="bet-num-7" placebet data-bet="[7]" ng-mouseover="over7=true" ng-mouseout="over7=false"><div class="chips"></div></div>
+                  <div id="num-8" class="number {{(line3||line4||street3||corner4||corner5||corner7||corner8||splith7||splith8||splitv5||splitv8||overEven||overLow||overBlack||overDozenOne||overRowTwo||over8)?'bet-highlight':'black'}}">8</div>
+                  <div id="bet-num-8" placebet data-bet="[8]" ng-mouseover="over8=true" ng-mouseout="over8=false"><div class="chips"></div></div>
+                  <div id="num-9" class="number {{(line3||line4||street3||corner5||corner8||splith8||splitv6||splitv9||overOdd||overLow||overRed||overDozenOne||overRowOne||over9)?'bet-highlight':'red'}}">9</div>
+                  <div id="bet-num-9" placebet data-bet="[9]" ng-mouseover="over9=true" ng-mouseout="over9=false"><div class="chips"></div></div>
+                  <div id="num-10" class="number {{(line4||line5||street4||corner7||corner10||splith10||splitv7||splitv10||overEven||overLow||overBlack||overDozenOne||overRowThree||over10)?'bet-highlight':'black'}}">10</div>
+                  <div id="bet-num-10" placebet data-bet="[10]" ng-mouseover="over10=true" ng-mouseout="over10=false"><div class="chips"></div></div>
+                  <div id="num-11" class="number {{(line4||line5||street4||corner7||corner8||corner10||corner11||splith10||splith11||splitv8||splitv11||overOdd||overLow||overBlack||overDozenOne||overRowTwo||over11)?'bet-highlight':'black'}}">11</div>
+                  <div id="bet-num-11" placebet data-bet="[11]" ng-mouseover="over11=true" ng-mouseout="over11=false"><div class="chips"></div></div>
+                  <div id="num-12" class="number {{(line4||line5||street4||corner8||corner11||splith11||splitv9||splitv12||splitv9||splitv12||overEven||overLow||overRed||overDozenOne||overRowOne||over12)?'bet-highlight':'red'}}">12</div>
+                  <div id="bet-num-12" placebet data-bet="[12]" ng-mouseover="over12=true" ng-mouseout="over12=false"><div class="chips"></div></div>
+                  <div id="num-13" class="number {{(line5||line6||street5||corner10||corner13||splith13||splitv10||splitv13||overOdd||overLow||overBlack||overDozenTwo||overRowThree||over13)?'bet-highlight':'black'}}">13</div>
+                  <div id="bet-num-13" placebet data-bet="[13]" ng-mouseover="over13=true" ng-mouseout="over13=false"><div class="chips"></div></div>
+                  <div id="num-14" class="number {{(line5||line6||street5||corner10||corner11||corner13||corner14||splith13||splith14||splitv11||splitv14||overEven||overLow||overRed||overDozenTwo||overRowTwo||over14)?'bet-highlight':'red'}}">14</div>
+                  <div id="bet-num-14" placebet data-bet="[14]" ng-mouseover="over14=true" ng-mouseout="over14=false"><div class="chips"></div></div>
+                  <div id="num-15" class="number {{(line5||line6||street5||corner11||corner14||splith14||splitv12||splitv15||overOdd||overLow||overBlack||overDozenTwo||overRowOne||over15)?'bet-highlight':'black'}}">15</div>
+                  <div id="bet-num-15" placebet data-bet="[15]" ng-mouseover="over15=true" ng-mouseout="over15=false"><div class="chips"></div></div>
+                  <div id="num-16" class="number {{(line6||line7||street6||corner13||corner16||splith16||splitv13||splitv16||overEven||overLow||overRed||overDozenTwo||overRowThree||over16)?'bet-highlight':'red'}}">16</div>
+                  <div id="bet-num-16" placebet data-bet="[16]" ng-mouseover="over16=true" ng-mouseout="over16=false"><div class="chips"></div></div>
+                  <div id="num-17" class="number {{(line6||line7||street6||corner13||corner14||corner16||corner17||splith16||splith17||splitv14||splitv17||overOdd||overLow||overBlack||overDozenTwo||overRowTwo||over17)?'bet-highlight':'black'}}">17</div>
+                  <div id="bet-num-17" placebet data-bet="[17]" ng-mouseover="over17=true" ng-mouseout="over17=false"><div class="chips"></div></div>
+                  <div id="num-18" class="number {{(line6||line7||street6||corner14||corner17||splith17||splitv15||splitv18||overEven||overLow||overRed||overDozenTwo||overRowOne||over18)?'bet-highlight':'red'}}">18</div>
+                  <div id="bet-num-18" placebet data-bet="[18]" ng-mouseover="over18=true" ng-mouseout="over18=false"><div class="chips"></div></div>
+                  <div id="num-19" class="number {{(line7||line8||street7||corner16||corner19||splith19||splitv16||splitv19||overOdd||overHigh||overRed||overDozenTwo||overRowThree||over19)?'bet-highlight':'red'}}">19</div>
+                  <div id="bet-num-19" placebet data-bet="[19]" ng-mouseover="over19=true" ng-mouseout="over19=false"><div class="chips"></div></div>
+                  <div id="num-20" class="number {{(line7||line8||street7||corner16||corner17||corner19||corner20||splith19||splith20||splitv17||splitv20||overEven||overHigh||overBlack||overDozenTwo||overRowTwo||over20)?'bet-highlight':'black'}}">20</div>
+                  <div id="bet-num-20" placebet data-bet="[20]" ng-mouseover="over20=true" ng-mouseout="over20=false"><div class="chips"></div></div>
+                  <div id="num-21" class="number {{(line7||line8||street7||corner17||corner20||splith20||splitv18||splitv21||overOdd||overHigh||overRed||overDozenTwo||overRowOne||over21)?'bet-highlight':'red'}}">21</div>
+                  <div id="bet-num-21" placebet data-bet="[21]" ng-mouseover="over21=true" ng-mouseout="over21=false"><div class="chips"></div></div>
+                  <div id="num-22" class="number {{(line8||line9||street8||corner19||corner22||splith22||splitv19||splitv22||overEven||overHigh||overBlack||overDozenTwo||overRowThree||over22)?'bet-highlight':'black'}}">22</div>
+                  <div id="bet-num-22" placebet data-bet="[22]" ng-mouseover="over22=true" ng-mouseout="over22=false"><div class="chips"></div></div>
+                  <div id="num-23" class="number {{(line8||line9||street8||corner19||corner22||corner20||corner23||splith22||splith23||splitv20||splitv23||overOdd||overHigh||overRed||overDozenTwo||overRowTwo||over23)?'bet-highlight':'red'}}">23</div>
+                  <div id="bet-num-23" placebet data-bet="[23]" ng-mouseover="over23=true" ng-mouseout="over23=false"><div class="chips"></div></div>
+                  <div id="num-24" class="number {{(line8||line9||street8||corner20||corner23||splith23||splitv21||splitv24||overEven||overHigh||overBlack||overDozenTwo||overRowOne||over24)?'bet-highlight':'black'}}">24</div>
+                  <div id="bet-num-24" placebet data-bet="[24]" ng-mouseover="over24=true" ng-mouseout="over24=false"><div class="chips"></div></div>
+                  <div id="num-25" class="number {{(line9||line10||street9||corner22||corner25||splith25||splitv22||splitv25||overOdd||overHigh||overRed||overDozenThree||overRowThree||over25)?'bet-highlight':'red'}}">25</div>
+                  <div id="bet-num-25" placebet data-bet="[25]" ng-mouseover="over25=true" ng-mouseout="over25=false"><div class="chips"></div></div>
+                  <div id="num-26" class="number {{(line9||line10||street9||corner22||corner23||corner25||corner26||splith25||splith26||splitv23||splitv26||overEven||overHigh||overBlack||overDozenThree||overRowTwo||over26)?'bet-highlight':'black'}}">26</div>
+                  <div id="bet-num-26" placebet data-bet="[26]" ng-mouseover="over26=true" ng-mouseout="over26=false"><div class="chips"></div></div>
+                  <div id="num-27" class="number {{(line9||line10||street9||corner23||corner26||splith26||splitv24||splitv27||overOdd||overHigh||overRed||overDozenThree||overRowOne||over27)?'bet-highlight':'red'}}">27</div>
+                  <div id="bet-num-27" placebet data-bet="[27]" ng-mouseover="over27=true" ng-mouseout="over27=false"><div class="chips"></div></div>
+                  <div id="num-28" class="number {{(line10||line11||street10||corner25||corner28||splith28||splitv25||splitv28||overEven||overHigh||overBlack||overDozenThree||overRowThree||over28)?'bet-highlight':'black'}}">28</div>
+                  <div id="bet-num-28" placebet data-bet="[28]" ng-mouseover="over28=true" ng-mouseout="over28=false"><div class="chips"></div></div>
+                  <div id="num-29" class="number {{(line10||line11||street10||corner25||corner26||corner28||corner29||splith28||splith29||splitv26||splitv29||overOdd||overHigh||overBlack||overDozenThree||overRowTwo||over29)?'bet-highlight':'black'}}">29</div>
+                  <div id="bet-num-29" placebet data-bet="[29]" ng-mouseover="over29=true" ng-mouseout="over29=false"><div class="chips"></div></div>
+                  <div id="num-30" class="number {{(line10||line11||street10||corner26||corner29||splith29||splitv27||splitv30||overEven||overHigh||overRed||overDozenThree||overRowOne||over30)?'bet-highlight':'red'}}">30</div>
+                  <div id="bet-num-30" placebet data-bet="[30]" ng-mouseover="over30=true" ng-mouseout="over30=false"><div class="chips"></div></div>
+                  <div id="num-31" class="number {{(line11||line12||street11||corner28||corner31||splith31||splitv28||splitv31||overOdd||overHigh||overBlack||overDozenThree||overRowThree||over31)?'bet-highlight':'black'}}">31</div>
+                  <div id="bet-num-31" placebet data-bet="[31]" ng-mouseover="over31=true" ng-mouseout="over31=false"><div class="chips"></div></div>
+                  <div id="num-32" class="number {{(line11||line12||street11||corner28||corner29||corner31||corner32||splith31||splith32||splitv29||splitv32||overEven||overHigh||overRed||overDozenThree||overRowTwo||over32)?'bet-highlight':'red'}}">32</div>
+                  <div id="bet-num-32" placebet data-bet="[32]" ng-mouseover="over32=true" ng-mouseout="over32=false"><div class="chips"></div></div>
+                  <div id="num-33" class="number {{(line11||line12||street11||corner29||corner32||splith32||splitv30||splitv33||overOdd||overHigh||overBlack||overDozenThree||overRowOne||over33)?'bet-highlight':'black'}}">33</div>
+                  <div id="bet-num-33" placebet data-bet="[33]" ng-mouseover="over33=true" ng-mouseout="over33=false"><div class="chips"></div></div>
+                  <div id="num-34" class="number {{(line12||street12||corner31||corner34||splith34||splitv31||overEven||overHigh||overRed||overDozenThree||overRowThree||over34)?'bet-highlight':'red'}}">34</div>
+                  <div id="bet-num-34" placebet data-bet="[34]" ng-mouseover="over34=true" ng-mouseout="over34=false"><div class="chips"></div></div>
+                  <div id="num-35" class="number {{(line12||street12||corner31||corner32||corner34||corner35||splith34||splith35||splitv32||overOdd||overHigh||overBlack||overDozenThree||overRowTwo||over35)?'bet-highlight':'black'}}">35</div>
+                  <div id="bet-num-35" placebet data-bet="[35]" ng-mouseover="over35=true" ng-mouseout="over35=false"><div class="chips"></div></div>
+                  <div id="num-36" class="number {{(line12||street12||corner32||corner35||splith35||splitv33||overEven||overHigh||overRed||overDozenThree||overRowOne||over36)?'bet-highlight':'red'}}">36</div>
+                  <div id="bet-num-36" placebet data-bet="[36]" ng-mouseover="over36=true" ng-mouseout="over36=false"><div class="chips"></div></div>
+                  <!-- -> Vertical Split Bets-->
+                  <div id="bet-spl-v-0-2" placebet data-bet="[3,6]" ng-mouseover="splitv3=true" ng-mouseout="splitv3=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-3" placebet data-bet="[6,9]" ng-mouseover="splitv6=true" ng-mouseout="splitv6=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-4" placebet data-bet="[9,12]" ng-mouseover="splitv9=true" ng-mouseout="splitv9=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-5" placebet data-bet="[12,15]" ng-mouseover="splitv12=true" ng-mouseout="splitv12=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-6" placebet data-bet="[15,18]" ng-mouseover="splitv15=true" ng-mouseout="splitv15=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-7" placebet data-bet="[18,21]" ng-mouseover="splitv18=true" ng-mouseout="splitv18=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-8" placebet data-bet="[21,24]" ng-mouseover="splitv21=true" ng-mouseout="splitv21=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-9" placebet data-bet="[24,27]" ng-mouseover="splitv24=true" ng-mouseout="splitv24=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-10" placebet data-bet="[27,30]" ng-mouseover="splitv27=true" ng-mouseout="splitv27=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-11" placebet data-bet="[30,33]" ng-mouseover="splitv30=true" ng-mouseout="splitv30=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-12" placebet data-bet="[33,36]" ng-mouseover="splitv33=true" ng-mouseout="splitv33=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-2" placebet data-bet="[2,5]" ng-mouseover="splitv2=true" ng-mouseout="splitv2=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-3" placebet data-bet="[5,8]" ng-mouseover="splitv5=true" ng-mouseout="splitv5=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-4" placebet data-bet="[8,11]" ng-mouseover="splitv8=true" ng-mouseout="splitv8=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-5" placebet data-bet="[11,14]" ng-mouseover="splitv11=true" ng-mouseout="splitv11=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-6" placebet data-bet="[14,17]" ng-mouseover="splitv14=true" ng-mouseout="splitv14=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-7" placebet data-bet="[17,20]" ng-mouseover="splitv17=true" ng-mouseout="splitv17=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-8" placebet data-bet="[20,23]" ng-mouseover="splitv20=true" ng-mouseout="splitv20=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-9" placebet data-bet="[23,26]" ng-mouseover="splitv23=true" ng-mouseout="splitv23=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-10" placebet data-bet="[26,29]" ng-mouseover="splitv26=true" ng-mouseout="splitv26=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-11" placebet data-bet="[29,32]" ng-mouseover="splitv29=true" ng-mouseout="splitv29=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-12" placebet data-bet="[32,35]" ng-mouseover="splitv32=true" ng-mouseout="splitv32=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-2" placebet data-bet="[1,4]" ng-mouseover="splitv1=true" ng-mouseout="splitv1=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-3" placebet data-bet="[4,7]" ng-mouseover="splitv4=true" ng-mouseout="splitv4=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-4" placebet data-bet="[7,10]" ng-mouseover="splitv7=true" ng-mouseout="splitv7=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-5" placebet data-bet="[10,13]" ng-mouseover="splitv10=true" ng-mouseout="splitv10=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-6" placebet data-bet="[13,16]" ng-mouseover="splitv13=true" ng-mouseout="splitv13=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-7" placebet data-bet="[16,19]" ng-mouseover="splitv16=true" ng-mouseout="splitv16=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-8" placebet data-bet="[19,22]" ng-mouseover="splitv19=true" ng-mouseout="splitv19=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-9" placebet data-bet="[22,25]" ng-mouseover="splitv22=true" ng-mouseout="splitv22=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-10" placebet data-bet="[25,28]" ng-mouseover="splitv25=true" ng-mouseout="splitv25=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-11" placebet data-bet="[28,31]" ng-mouseover="splitv28=true" ng-mouseout="splitv28=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-12" placebet data-bet="[31,34]" ng-mouseover="splitv31=true" ng-mouseout="splitv31=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-0-1" placebet data-bet="[0,3]" ng-mouseover="splitv0=true" ng-mouseout="splitv0=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-1-1" placebet data-bet="[0,2]" ng-mouseover="splitv_1=true" ng-mouseout="splitv_1=false"><div class="chips"></div></div>
+                  <div id="bet-spl-v-2-1" placebet data-bet="[0,1]" ng-mouseover="splitv_2=true" ng-mouseout="splitv_2=false"><div class="chips"></div></div>
+                  <!-- -> Horizontal Split Bets-->
+                  <div id="bet-spl-h-1-1" placebet data-bet="[2,3]" ng-mouseover="splith2=true" ng-mouseout="splith2=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-1" placebet data-bet="[1,2]" ng-mouseover="splith1=true" ng-mouseout="splith1=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-2" placebet data-bet="[5,6]" ng-mouseover="splith5=true" ng-mouseout="splith5=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-2" placebet data-bet="[4,5]" ng-mouseover="splith4=true" ng-mouseout="splith4=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-3" placebet data-bet="[8,9]" ng-mouseover="splith8=true" ng-mouseout="splith8=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-3" placebet data-bet="[7,8]" ng-mouseover="splith7=true" ng-mouseout="splith7=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-4" placebet data-bet="[11,12]" ng-mouseover="splith11=true" ng-mouseout="splith11=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-4" placebet data-bet="[10,11]" ng-mouseover="splith10=true" ng-mouseout="splith10=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-5" placebet data-bet="[14,15]" ng-mouseover="splith14=true" ng-mouseout="splith14=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-5" placebet data-bet="[13,14]" ng-mouseover="splith13=true" ng-mouseout="splith13=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-6" placebet data-bet="[17,18]" ng-mouseover="splith17=true" ng-mouseout="splith17=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-6" placebet data-bet="[16,17]" ng-mouseover="splith16=true" ng-mouseout="splith16=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-7" placebet data-bet="[20,21]" ng-mouseover="splith20=true" ng-mouseout="splith20=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-7" placebet data-bet="[19,20]" ng-mouseover="splith19=true" ng-mouseout="splith19=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-8" placebet data-bet="[23,24]" ng-mouseover="splith23=true" ng-mouseout="splith23=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-8" placebet data-bet="[22,23]" ng-mouseover="splith22=true" ng-mouseout="splith22=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-9" placebet data-bet="[26,27]" ng-mouseover="splith26=true" ng-mouseout="splith26=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-9" placebet data-bet="[25,26]" ng-mouseover="splith25=true" ng-mouseout="splith25=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-10" placebet data-bet="[29,30]" ng-mouseover="splith29=true" ng-mouseout="splith29=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-10" placebet data-bet="[28,29]" ng-mouseover="splith28=true" ng-mouseout="splith28=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-11" placebet data-bet="[32,33]" ng-mouseover="splith32=true" ng-mouseout="splith32=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-11" placebet data-bet="[31,32]" ng-mouseover="splith31=true" ng-mouseout="splith31=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-1-12" placebet data-bet="[35,36]" ng-mouseover="splith35=true" ng-mouseout="splith35=false"><div class="chips"></div></div>
+                  <div id="bet-spl-h-2-12" placebet data-bet="[34,35]" ng-mouseover="splith34=true" ng-mouseout="splith34=false"><div class="chips"></div></div>
+                  <!-- -> Corners Bets-->
+                  <div id="bet-cor-1-2" placebet data-bet="[2,3,5,6]" ng-mouseover="corner2=true" ng-mouseout="corner2=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-2" placebet data-bet="[1,2,4,5]" ng-mouseover="corner1=true" ng-mouseout="corner1=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-3" placebet data-bet="[5,6,8,9]" ng-mouseover="corner5=true" ng-mouseout="corner5=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-3" placebet data-bet="[4,5,7,8]" ng-mouseover="corner4=true" ng-mouseout="corner4=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-4" placebet data-bet="[8,9,11,12]" ng-mouseover="corner8=true" ng-mouseout="corner8=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-4" placebet data-bet="[7,8,10,11]" ng-mouseover="corner7=true" ng-mouseout="corner7=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-5" placebet data-bet="[11,12,14,15]" ng-mouseover="corner11=true" ng-mouseout="corner11=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-5" placebet data-bet="[10,11,13,14]" ng-mouseover="corner10=true" ng-mouseout="corner10=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-6" placebet data-bet="[14,15,17,18]" ng-mouseover="corner14=true" ng-mouseout="corner14=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-6" placebet data-bet="[13,14,16,17]" ng-mouseover="corner13=true" ng-mouseout="corner13=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-7" placebet data-bet="[17,18,20,21]" ng-mouseover="corner17=true" ng-mouseout="corner17=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-7" placebet data-bet="[16,17,19,20]" ng-mouseover="corner16=true" ng-mouseout="corner16=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-8" placebet data-bet="[20,21,23,24]" ng-mouseover="corner20=true" ng-mouseout="corner20=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-8" placebet data-bet="[19,20,22,23]" ng-mouseover="corner19=true" ng-mouseout="corner19=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-9" placebet data-bet="[23,24,26,27]" ng-mouseover="corner23=true" ng-mouseout="corner23=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-9" placebet data-bet="[22,23,25,26]" ng-mouseover="corner22=true" ng-mouseout="corner22=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-10" placebet data-bet="[26,27,29,30]" ng-mouseover="corner26=true" ng-mouseout="corner26=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-10" placebet data-bet="[25,26,28,29]" ng-mouseover="corner25=true" ng-mouseout="corner25=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-11" placebet data-bet="[29,30,32,33]" ng-mouseover="corner29=true" ng-mouseout="corner29=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-11" placebet data-bet="[28,29,31,32]" ng-mouseover="corner28=true" ng-mouseout="corner28=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-12" placebet data-bet="[32,33,35,36]" ng-mouseover="corner32=true" ng-mouseout="corner32=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-12" placebet data-bet="[31,32,34,35]" ng-mouseover="corner31=true" ng-mouseout="corner31=false"><div class="chips"></div></div>
+                  <div id="bet-cor-1-1" placebet data-bet="[0,2,3]" ng-mouseover="corner_1=true" ng-mouseout="corner_1=false"><div class="chips"></div></div>
+                  <div id="bet-cor-2-1" placebet data-bet="[0,1,2]" ng-mouseover="corner_2=true" ng-mouseout="corner_2=false"><div class="chips"></div></div>
+                  <!-- -> Line Bets, Street Bets-->
+                  <div id="bet-line-1" placebet data-bet="[0,1,2,3]" ng-mouseover="line1=true" ng-mouseout="line1=false"><div class="chips"></div></div>
+                  <div id="bet-str-1" placebet data-bet="[1,2,3]" ng-mouseover="street1=true" ng-mouseout="street1=false"><div class="chips"></div></div>
+                  <div id="bet-line-2" placebet data-bet="[1,2,3,4,5,6]" ng-mouseover="line2=true" ng-mouseout="line2=false"><div class="chips"></div></div>
+                  <div id="bet-str-2" placebet data-bet="[4,5,6]" ng-mouseover="street2=true" ng-mouseout="street2=false"><div class="chips"></div></div>
+                  <div id="bet-line-3" placebet data-bet="[4,5,6,7,8,9]" ng-mouseover="line3=true" ng-mouseout="line3=false"><div class="chips"></div></div>
+                  <div id="bet-str-3" placebet data-bet="[7,8,9]" ng-mouseover="street3=true" ng-mouseout="street3=false"><div class="chips"></div></div>
+                  <div id="bet-line-4" placebet data-bet="[7,8,9,10,11,12]" ng-mouseover="line4=true" ng-mouseout="line4=false"><div class="chips"></div></div>
+                  <div id="bet-str-4" placebet data-bet="[10,11,12]" ng-mouseover="street4=true" ng-mouseout="street4=false"><div class="chips"></div></div>
+                  <div id="bet-line-5" placebet data-bet="[10,11,12,13,14,15]" ng-mouseover="line5=true" ng-mouseout="line5=false"><div class="chips"></div></div>
+                  <div id="bet-str-5" placebet data-bet="[13,14,15]" ng-mouseover="street5=true" ng-mouseout="street5=false"><div class="chips"></div></div>
+                  <div id="bet-line-6" placebet data-bet="[13,14,15,16,17,18]" ng-mouseover="line6=true" ng-mouseout="line6=false"><div class="chips"></div></div>
+                  <div id="bet-str-6" placebet data-bet="[16,17,18]" ng-mouseover="street6=true" ng-mouseout="street6=false"><div class="chips"></div></div>
+                  <div id="bet-line-7" placebet data-bet="[16,17,18,19,20,21]" ng-mouseover="line7=true" ng-mouseout="line7=false"><div class="chips"></div></div>
+                  <div id="bet-str-7" placebet data-bet="[19,20,21]" ng-mouseover="street7=true" ng-mouseout="street7=false"><div class="chips"></div></div>
+                  <div id="bet-line-8" placebet data-bet="[19,20,21,22,23,24]" ng-mouseover="line8=true" ng-mouseout="line8=false"><div class="chips"></div></div>
+                  <div id="bet-str-8" placebet data-bet="[22,23,24]" ng-mouseover="street8=true" ng-mouseout="street8=false"><div class="chips"></div></div>
+                  <div id="bet-line-9" placebet data-bet="[22,23,24,25,26,27]" ng-mouseover="line9=true" ng-mouseout="line9=false"><div class="chips"></div></div>
+                  <div id="bet-str-9" placebet data-bet="[25,26,27]" ng-mouseover="street9=true" ng-mouseout="street9=false"><div class="chips"></div></div>
+                  <div id="bet-line-10" placebet data-bet="[25,26,27,28,29,30]" ng-mouseover="line10=true" ng-mouseout="line10=false"><div class="chips"></div></div>
+                  <div id="bet-str-10" placebet data-bet="[28,29,30]" ng-mouseover="street10=true" ng-mouseout="street10=false"><div class="chips"></div></div>
+                  <div id="bet-line-11" placebet data-bet="[28,29,30,31,32,33]" ng-mouseover="line11=true" ng-mouseout="line11=false"><div class="chips"></div></div>
+                  <div id="bet-str-11" placebet data-bet="[31,32,33]" ng-mouseover="street11=true" ng-mouseout="street11=false"><div class="chips"></div></div>
+                  <div id="bet-line-12" placebet data-bet="[31,32,33,34,35,36]" ng-mouseover="line12=true" ng-mouseout="line12=false"><div class="chips"></div></div>
+                  <div id="bet-str-12" placebet data-bet="[34,35,36]" ng-mouseover="street12=true" ng-mouseout="street12=false"><div class="chips"></div></div>
+                  <!-- -> Column Bets, Dozen Bets-->
+                  <div id="bet-col-1" placebet data-bet="[1,4,7,10,13,16,19,22,25,28,31,34]" ng-mouseover="overRowThree=true" ng-mouseout="overRowThree=false"><div class="chips"></div></div>
+                  <div id="bet-doz-1" placebet data-bet="[1,2,3,4,5,6,7,8,9,10,11,12]" ng-mouseover="overDozenOne=true" ng-mouseout="overDozenOne=false"><div class="chips"></div></div>
+                  <div id="bet-col-2" placebet data-bet="[2,5,8,11,14,17,20,23,26,29,32,35]" ng-mouseover="overRowTwo=true" ng-mouseout="overRowTwo=false"><div class="chips"></div></div>
+                  <div id="bet-doz-2" placebet data-bet="[13,14,15,16,17,18,19,20,21,22,23,24]" ng-mouseover="overDozenTwo=true" ng-mouseout="overDozenTwo=false"><div class="chips"></div></div>
+                  <div id="bet-col-3" placebet data-bet="[3,6,9,12,15,18,21,24,27,30,33,36]" ng-mouseover="overRowOne=true" ng-mouseout="overRowOne=false"><div class="chips"></div></div>
+                  <div id="bet-doz-3" placebet data-bet="[25,26,27,28,29,30,31,32,33,34,35,36]" ng-mouseover="overDozenThree=true" ng-mouseout="overDozenThree=false"><div class="chips"></div></div>
+                  <!-- -> High/Low Bets, Even/Odd Bets, Red/Black Bets-->
+                  <div id="bet-hilo-1" placebet data-bet="[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]" ng-mouseover="overLow=true" ng-mouseout="overLow=false"><div class="chips"></div></div>
+                  <div id="bet-eo-1" placebet data-bet="[2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36]" ng-mouseover="overEven=true" ng-mouseout="overEven=false"><div class="chips"></div></div>
+                  <div id="bet-rb-1" placebet data-bet="[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]" ng-mouseover="overRed=true" ng-mouseout="overRed=false"><div class="chips"></div></div>
+                  <div id="bet-hilo-2" placebet data-bet="[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]" ng-mouseover="overHigh=true" ng-mouseout="overHigh=false"><div class="chips"></div></div>
+                  <div id="bet-eo-2" placebet data-bet="[1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35]" ng-mouseover="overOdd=true" ng-mouseout="overOdd=false"><div class="chips"></div></div>
+                  <div id="bet-rb-2" placebet data-bet="[2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35]" ng-mouseover="overBlack=true" ng-mouseout="overBlack=false"><div class="chips"></div></div>
+            </div>
+      </div>
+      <div class="row position-relative">
+        <div id="wheelhistory" class="col-xs-12">
+          <div class="history">
+            <bethistory ng-repeat="number in recentnumbers" data-color="{{number.color}}" data-number="{{number.number}}"></bethistory>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-6">
+            <button ng-disabled="isGameInProgress" ng-click="play();" class="btn btn-flashy btn-lg btn-spin margin-10 font-size-30">
+                <%= buttons.start_spin %>
+            </button>
+            <br />
+            <autospin-button></autospin-button>
+            <br />
+            <button ng-click="clearBets();" class="btn btn-default" bc-popover="{{clearBetsPopover}}" bc-popover-content="<%= buttons.clearbets_individual %>" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top" ng-disabled="isGameInProgress">
+                <%= buttons.clearbets %>
+            </button>
+          </div>
+          <div class="col-xs-6">
+            <div class="margin-top-10"><%= home.totalbet %> {{totalbet | btc}} BTC</div>
+            <div class="wheel_placeholder_container"><img class="margin-0 margin-right-left-auto" id="wheel_placeholder" src="./img/wheel.png" /></div>
+          </div>
+      </div>
+
+      <div class="rouletteCanvasContainer">
+       <canvas id="gameCanvas" class="margin-0 margin-right-left-auto" width="430" height="430"></canvas>
+      </div>
+
+    </div>
+    <div class="hide localizations">
+      <div id="localization-x"><span><%= game.x %></span></div>
+    </div>
+    <div class="clearfix"></div>
+</div>

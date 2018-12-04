@@ -1,0 +1,57 @@
+<div>
+    <div id="modal-{{ game.id || game._id }}" class="game-proof">
+        <h3><%= spins.ProofHeader1 %></h3>
+        <div class="row">
+            <div class="col-xs-12 col-md-8 game col-md-push-2">
+                <!--<div id="g-fantan-history" class="g-fantan">
+                    <div id="board" class="board" ng-if="game.bets">
+                    </div>
+                </div>--><div class="row">
+                    <div class="col-xs-12">
+                        <div id="dices-history">
+                            <img src="./res/dice_num{{dice}}.png" ng-repeat="dice in game.dices track by $index" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <dl class="dl-horizontal">
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh1 %></dt><dd class="margin-left-120 wrap-word">{{ game.id || game._id }}
+            </dd>
+            <dt  class="spins-dt-width">
+            <%= username %></dt><dd class="margin-left-120">{{ game.player_alias }}
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh3 %></dt><dd class="margin-left-120">{{ game | winnings }}<%= game.x %>
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh4 %></dt><dd class="margin-left-120">{{ game.wager | cryptovalue }}
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh9 %></dt><dd class="margin-left-120">
+            <span ng-repeat="(key, bet) in game.bets">{{key}}:{{ bet | cryptovalue }} </span>
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh5 %></dt><dd class="margin-left-120">{{ game.winnings | cryptovalue }}
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh7 %></dt><dd class="margin-left-120">{{ game.createdAt | date:"MM/dd HH:mm:ss" }}
+            </dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt1 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.server_seed }}</dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt3 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.seed_hash }}</dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt4 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.client_seed }}</dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt5 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.final_array }}</dd>
+            <dt class="spins-dt-width"><%= game.luckynumber %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.result }}</dd>
+        </dl>
+
+        <provably-fair init-array="{{game.init_array}}" server-seed="{{game.server_seed}}" client-seed="{{game.client_seed}}"></provably-fair>
+    </div>
+
+    <button class="btn btn-default btn-lg" ng-click="backToList()"><%= gameDetails.returnToList %></button>
+</div>

@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8">
+        <h1>Receive a match bonus of up to {{offer.max | btc}} BTC</h1>
+        <h4>Deposit up to {{offer.max | btc}} BTC and we will match your deposit!</h4>
+        <p>The bonus unlock requirement is currently {{offer.unlockMultiplier}}x</p>
+        <p>You will receive the bonus as soon as you make your first deposit</p>
+        <h2>Accept your bonus now!</h2>
+        <div><button ng-click="acceptBonus(offer._id)" class="btn btn-flashy btn-lg"><%= bonus.accept %></button></div>
+        <h4>If you reject your welcome bonus, you are still eligible for future bonuses.</h4>
+        <div><button ng-click="rejectBonus(offer._id)" class="btn btn-default btn-sm"><%= bonus.reject %></button></div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <h3>Bonus Terms and Conditions</h3>
+        <p>You will need to wager {{player.bonusOffers.btc[0].unlockMultiplier}}x the amount of your match deposits plus match bonus, and have eleven toes to reach the unlock requirement.</p>
+        <p>Your balance will be split into two parts, one is your available balance which you can withdraw any time. The second is your "bonus balance" which can only be withdrawn after meeting the unlock requirement.</p>
+        <p>Your bonus will expire if it is not unlocked within 8 days.</p>
+    </div>
+</div>

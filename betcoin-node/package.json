@@ -1,0 +1,57 @@
+{
+  "name": "betcoin-node",
+  "version": "3.3.12",
+  "description": "Unified betcoin game and account services",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/betcn/betcoin-node"
+  },
+  "author": "atticus",
+  "license": "ISC",
+  "dependencies": {
+    "agenda": "^0.6.16",
+    "async": "^0.9.0",
+    "bcrypt": "^0.8.0",
+    "bitcoin": "^2.2.0",
+    "bitcoin-math": "^0.2.0",
+    "body-parser": "^1.6.0",
+    "colors": "^1.0.3",
+    "cors": "^2.4.1",
+    "dependable": "^0.2.5",
+    "ejs": "^1.0.0",
+    "express": "^4.8.0",
+    "mandrill-api": "^1.0.40",
+    "modella": "^0.2.8",
+    "modella-filter": "^0.1.0",
+    "modella-mongo": "^0.2.13",
+    "modella-timestamps": "^0.1.2",
+    "modella-validators": "^0.1.1",
+    "moment": "^2.8.1",
+    "mongo-queryfilter": "^0.1.3",
+    "mongoskin": "^1.4.4",
+    "newrelic": "^1.9.1",
+    "node-hubspot": "0.0.3",
+    "prompt": "^0.2.13",
+    "qr-image": "^1.2.1",
+    "request": "^2.47.0",
+    "socket.io": "^1.0.6",
+    "speakeasy": "^1.0.3",
+    "underscore": "~1.5.2",
+    "winston": "^0.8.0",
+    "ws": "^0.4.32",
+    "yargs": "^1.3.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-simple-mocha": "^0.4.0",
+    "mocha": "^1.21.4",
+    "modella-memory": "^0.3.0",
+    "supertest": "^0.14.0"
+  }
+}

@@ -1,0 +1,77 @@
+{
+    "prod": "3card",
+    "meta": {
+        "title": "Betcoin™ 3 Card Poker - Provably Fair - Win Bitcoin!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-3card.png"
+    },
+    "home": {
+        "title_image": "img/icons/3card280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/3card"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/san"
+        }
+    },
+    "game": {
+        "foldedmessage": "FOLDED",
+        "unqualifiedmessage": " - Dealer Doesn't Qualify",
+        "ante": "Ante",
+        "pairplus": "Pairplus",
+        "payout": "Payout"
+    },
+    "buttons": {
+        "raise": "Raise",
+        "fold": "Fold",
+        "clear_bets": "Clear Bets"
+    },
+    "text": {
+        "invalid_raise": "Invalid raise"
+    },
+    "threecardRanks": [
+        "",
+        "Royal flush",
+        "Straight flush",
+        "Three of a kind",
+        "Straight",
+        "Flush",
+        [
+            "",
+            "",
+            "A pair of 2's",
+            "A pair of 3's",
+            "A pair of 4's",
+            "A pair of 5's",
+            "A pair of 6's",
+            "A pair of 7's",
+            "A pair of 8's",
+            "A pair of 9's",
+            "A pair of Tens",
+            "A pair of Jacks",
+            "A pair of Queens",
+            "A pair of Kings",
+            "A pair of Aces"
+        ],
+        [
+            "",
+            "",
+            "2 High",
+            "3 High",
+            "4 High",
+            "5 High",
+            "6 High",
+            "7 High",
+            "8 High",
+            "9 High",
+            "Ten High",
+            "Jack High",
+            "Queen High",
+            "King High",
+            "Ace High"
+        ]
+    ]
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="application" id="home">
+    <head>
+        <title><%= meta.title %></title>
+        <base href="/"><!--[if lte IE 6]></base><![endif]-->
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="<%= meta.description %>">
+        <meta name="keywords" content="<%= meta.keywords %>" />
+        <link rel="shortcut icon" href="img/favicons/<%= prod %>.ico" type="image/x-icon">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="fragment" content="!">
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/app.css" rel="stylesheet">
+    </head>
+    <body>
+    <!--[if lt IE 10]>
+            <div class="use-a-real-browser">
+                <div class="margin-top-300">
+                 <img src="<%= loading_img %>" class="img-responsive img-centered">
+                    <h4>Internet Explorer 9 IS NOT supported by BetCoin&trade;. Please use an actual web browser, such as Google Chrome, Mozilla Firefox, Opera, or Safari.</h4>
+                </div>
+            </div>
+    <![endif] -->
+
+    <div>
+        <div ng-hide="removeLoading" id="loading-mask">
+            <img src="<%= loading_img %>" class="img-responsive img-centered">
+            <div class="progress progress-striped active">
+                <div class="width-full progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <bc-checklanguage></bc-checklanguage>
+
+        <bc-navigation></bc-navigation>
+        <div class="container">
+            <bc-notifications></bc-notifications>
+            <div ng-view></div>
+        </div>
+        <bc-footer></bc-footer>
+        <div class="container">
+            <div class="justify-paragraph footer-seoblurb">
+                <%= home.footer_description %>
+            </div>
+        </div>
+        <!--SCRIPTS-->
+        <!-- include: "type": "js", "files": "jquery/**/*.js" -->
+        <!-- include: "type": "js", "files": "angular/**/*.js" -->
+        <!-- include: "type": "js", "files": "vendor/**/*.js" -->
+        <!-- include: "type": "js", "files": "app/**/*.js" -->
+        <!--SCRIPTS END-->
+
+    </body>
+</html>

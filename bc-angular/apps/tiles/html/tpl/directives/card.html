@@ -1,0 +1,7 @@
+<div class="card {{card.flipped}}">
+    <div ng-if="flipped" class="back">
+    </div>
+    <div ng-if="!flipped" class="front tile{{card.red}}{{card.white}}{{card.other?'-1':''}}">
+    </div>
+    <div class="back"></div>
+</div>

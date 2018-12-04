@@ -1,0 +1,44 @@
+<div class="col-md-offset-2 col-md-8">
+    <div ng-show="error" class="panel panel-default main-container">
+        <h3><%= text.ticket %> #{{ticket._id}} <%= text.ticket_notfound%></h3>
+    </div>
+    <div ng-hide="error" class="panel panel-default main-container">
+        <div class="panel-heading">
+            <%= text.ticket %> #{{ticket._id}} by {{ticket.owner}} (<%= text.ticket_status%>: {{ statuses[ticket.status] }})
+        </div>
+        <div class="panel-footer">
+            <div class="media-body">
+                <div class="panel panel-dark"> 
+                    <div class="reply"><%= text.ticket_username %>: {{ticket.owner}}</div>
+                    <div class="reply"><%= text.ticket_email %>: {{ticket.email}}</div>
+                    <div class="reply"><%= text.ticket_subject %>: {{ticket.subject}}</div>
+                    <div class="reply"><%= text.ticket_referringurl %>: {{ticket.referUrl}}</div>
+                    <div class="panel-body"><p>{{ticket.description}}</p> </div>
+                    <div class="text-muted date"> {{ticket.dateCreated | date}}</div>
+                </div>      
+            </div>          
+            <div>
+                <div ng-repeat="comment in ticket.comments" class="media">
+                    <div class="media-body">
+                        <div class="panel panel-dark"> 
+                            <div class="reply">Reply from {{comment.isAdmin && "Admin" || ticket.owner }}</div>
+                            <div class="panel-body"><p>{{comment.message}}</p> </div>
+                            <div class="text-muted date"> {{comment.dateModified | date}}</div>
+                        </div>      
+                    </div>
+                </div>              
+            </div>
+            <form class="form-horizontal" name="replyForm" ng-show="allowComments" ng-submit="leaveComment()">
+                <div class="form-group">
+                    <label for="ticket-reply" class="control-label indent-label">Send a reply</label>
+                    <textarea type="text" placeholder="<%= text.ticket_reply_placeholder %>" rows="5" cols="50" name="ticket-reply"
+                              class="form-control" ng-model="reply.message" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" ng-disabled="replyForm.$invalid" value="<%= text.ticket_reply_submit %>">
+                </div>                                                  
+            </form>
+            
+        </div>  
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{
+    "prod": "hilo",
+    "meta": {
+        "title": "BetCoin ™ Hi-Lo - Provably fair cards",
+        "description": "BetCoin ™ War is the provably fair casino war game for bitcoin. Double your money instantly or win 10x on a tie!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-hilo.png"
+    },
+    "home": {
+        "title_image": "img/icons/hilo280.png"
+    },
+    "text": {
+        "guess_card": "Guess Next Card is",
+        "bigger": "Higher",
+        "smaller": "Lower",
+        "black": "Black",
+        "red": "Red",
+        "possible_payout": "Possible Payout",
+        "current_winnings": "Current Winnings",
+        "start_newgame": "Start New Game",
+        "guess": "Bet"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/hilo"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/gao"
+        }
+    },
+    "game": {
+        "spinmessage": "",
+        "winmessage": "Winner"
+    }
+}

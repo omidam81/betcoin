@@ -1,0 +1,37 @@
+<div class="row"
+     ng-controller="UserAffiliateController">
+    <h3>Totals</h3>
+    <dl class="dl-horizontal">
+        <dt>Total Associates</dt><dd>{{associates.total}}</dd>
+        <dt ng-repeat-start="(currency, total) in affiliateTotals">
+            {{currency}}
+        </dt>
+        <dd ng-repeat-end>
+            {{currency | cryptosymbol}}{{total | cryptovalue}}
+        </dd>
+    </dl>
+    <p>
+        <a ng-href="search/transaction?q_type=affiliate&q_userId={{user._id}}">
+            All Affiliate Transactions
+        </a>
+    </p>
+    <h3>Per Associate Per Currency</h3>
+    <table class="table">
+        <thead>
+            <th>Associate</th>
+            <th>Currency</th>
+            <th>Income</th>
+            <th>Wager Count</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in affiliateReport">
+                <td><a ng-href="user/{{record.user._id}}">{{record.user.username}}</a></td>
+                <td>{{record._id.currency}}</td>
+                <td>{{record._id.currency | cryptosymbol}}{{record.total | cryptovalue}}</td>
+                <td><a ng-href="search/transaction?q_meta.associate=__oid_{{record.user._id}}&q_currency={{record._id.currency}}">
+                    {{record.count | number}}
+                </a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

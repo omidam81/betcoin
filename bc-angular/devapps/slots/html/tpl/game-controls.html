@@ -1,0 +1,60 @@
+<div ng-controller="GameController" class="row noselect">
+    <div class="col-xs-12 col-md-5 col-md-push-7 text-center">
+        <img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" />
+        <div ng-show="player._id" >
+            <player-info></player-info>
+            <cashout-button player = "player" game="game"></cashout-button>
+            <spinmessage></spinmessage>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-7 col-md-pull-5">
+        <div  id="gameContainer">
+            <div id="slotmachine" >
+                <div id="game" >
+                    <div id="slots-container" >
+                        <canvas id="slots" ></canvas>
+                    </div>
+                    <div id="slots-accessories-container" >
+                        <div id="line-markers">
+                            <div class="left">
+                                <div class="line-marker one active"></div>
+                                <div class="line-marker two active"></div>
+                                <div class="line-marker three active"></div>
+                                <div class="line-marker four active"></div>
+                                <div class="line-marker five active"></div>
+                            </div>
+                        </div>
+                    </div>
+                        <div id="slots-resources" class="display-none">
+                            <audio src="/audio/bigwin.mp3" id="audio-bigwin" preload="auto"></audio>
+                            <audio src="/audio/win.mp3" id="audio-win" preload="auto"></audio>
+                            <audio src="/audio/reelstop.mp3" id="audio-reelstop" preload="auto"></audio>
+                            <audio src="/audio/spinup.mp3" id="audio-spinup" preload="auto"></audio>
+                            <img id="sprite-sprites" src="./img/sprites.png" >
+                        </div>
+                </div>
+                <div class="game-withdraw clear-both position-relative">
+                    <div class="reels-game-sound-toggle-container">
+                        <div class="soundToggle"><img  ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+                    </div>
+                    <autospin-button></autospin-button>
+                    <button ng-disabled="isGameInProgress" ng-click="play();" class="btn btn-flashy btn-lg reels-game-spin-text margin-10">
+                        <%= buttons.start_spin %>
+                    </button>
+                    <proof-button></proof-button>
+                    <small class="display-none">
+                        <dl class="dl-horizontal">
+                            <dt><%= game.SsHeader2 %></dt><dd>{{ nextGameId }}</dd>
+                            <dt>SHA256:</dt><dd class="allow-word-wrap-with-break-word">{{ sha256 }}</dd>
+                        </dl>
+                    </small>
+                </div>
+                <div class="margin-top-10 margin-bottom-10 margin-right-left-auto">
+                        <bc-client-seed reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

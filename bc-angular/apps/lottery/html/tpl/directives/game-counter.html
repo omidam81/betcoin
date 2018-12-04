@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="row">
+        <cup type="gamedata.interval" ng-hide="hidecup" confirm='playerInvolved' winner="gamedata.winner"></cup>
+        <button class="btn btn-default" ng-click="playGame(gamedata)" ng-disabled="isGameInProgress" ng-hide="disableBet"><%=game.place_bet%></button>
+        <div class="col-12 col-lg-12 column-bottom">
+            <div class="counter counter-right">
+                <div ng-hide="winner">
+                    <div class="counter-numbers">{{ gamedata.jackpot | cryptovalue }}</div>
+
+                    <div ng-show="gamedata.currency=='bitcoin'">BTC</div>
+                    <div ng-show="gamedata.currency=='dogecoin'">XDG</div>
+                    <div ng-show="gamedata.currency=='litecoin'">LTC</div>
+                </div>
+                <div class="counter-title"><%= text.time_left %>:</div>
+                <div class="counter-numbers">
+                    <span ng-hide="gamedata.interval.indexOf('d') === -1">
+                        {{ timers[gamedata.game].daysLeft }}
+                        <span>
+                            <span class="days"><%= text.days %></span>
+                        </span>
+                    </span>
+                    <div>
+                        {{ timers[gamedata.game].timeString }}
+                    </div>
+                </div>
+                <div ng-show="hidecup"><%= text.mine %>: {{gamedata.total_player_wagered| cryptovalue}} <span ng-show="gamedata.currency=='bitcoin'">BTC</span><span ng-show="gamedata.currency=='dogecoin'">XDG</span><span ng-show="gamedata.currency=='litecoin'">LTC</span></div>
+                <div ng-show="hidecup"><%= text.win_chance %>: {{100*gamedata.total_player_wagered/gamedata.total_wagered|number}}%</div>
+            </div>
+        </div>
+
+    </div>
+<hr class="hidden-md hidden-lg"></hr>
+</div>

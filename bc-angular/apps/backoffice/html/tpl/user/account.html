@@ -1,0 +1,355 @@
+<div class="row"
+     ng-show="message.length">
+    <span class="alert alert-primary">{{message}}</span>
+</div>
+<div class="row"
+     ng-controller="UserAccountController">
+    <div class="col-md-6 col-sm-12">
+        <div class="col-md-12 panel">
+            <h3>User Info</h3>
+            <dl class="dl-horizontal">
+                <dt>Username</dt>
+                <dd>{{user.username}}</dd>
+                <dt>Member Since</dt>
+                <dd>{{user.createdAt | date:DATE_FORMAT}} (<elapsed date="user.createdAt"></elapsed>)</dd>
+                <dt ng-if="user.upgradedAt!=user.createdAt">VIP since</dt>
+                <dd ng-if="user.upgradedAt!=user.createdAt">{{user.upgradedAt | date:DATE_FORMAT}}</dd>
+                <dt ng-if="user.email">Email</dt>
+                <dd ng-if="user.email">{{user.email}}</dd>
+                <dt ng-if="user.pendingEmail">Pending Email</dt>
+                <dd ng-if="user.pendingEmail">{{user.pendingEmail}}</dd>
+                <dt>VIP Level</dt>
+                <dd>{{vipLevels[user.vipLevel || 0]._id}}</dd>
+                <dt ng-if="user.lock">Lock</dt>
+                <dd ng-if="user.lock">{{user.lock}}</dd>
+                <dt ng-if="user.ignore">Ignore</dt>
+                <dd ng-if="user.ignore">{{user.ignore}}</dd>
+            </dl>
+            <h3>Cashflow Overview</h3>
+            <div ng-repeat="overview in cashflowOverview">
+                <h4>{{overview[0].type}}</h4>
+                <h5 ng-repeat-start="currencyData in overview">{{currencyData._id}}</h5>
+                <dl class="dl-horizontal"
+                    ng-repeat-end>
+                    <dt>Count</dt>
+                    <dd>{{currencyData.count| number}}</dd>
+                    <dt>Amount</dt>
+                    <dd>{{currencyData._id | cryptosymbol}}{{currencyData.total | cryptovalue}}</dd>
+                    <dt>First</dt>
+                    <dd>{{currencyData.first | gmtdatetime}}</dd>
+                    <dt>Last</dt>
+                    <dd>{{currencyData.last | gmtdatetime}}</dd>
+                </dl>
+            </div>
+            <button class="btn btn-primary"
+                    ng-click="showForms=!showForms">Edit User</button>
+            <div ng-show="showForms">
+                <div ng-if="BCAdminSession.user.accessLevel <= 1">
+                    <form>
+                        <div class="form-group">
+                            <label>Cashout Limit</label>
+                            <crypto-input model="user.cashoutLimits.total"
+                                          currency="'bitcoin'"
+                                          class="input-group"></crypto-input>
+                        </div>
+                        <div class="form-group">
+                            <label>Cashout Count</label>
+                            <input type="number"
+                                   class="form-control"
+                                   ng-model="user.cashoutLimits.count">
+                        </div>
+                        <div class="form-group">
+                            <button class="form-control btn btn-primary"
+                                    type="submit"
+                                    ng-click="updateCashoutLimits()">Set Cashout Limits</button>
+                        </div>
+                    </form>
+                </div>
+                <div ng-if="BCAdminSession.user.accessLevel <= 1">
+                    <form>
+                        <div class="form-group">
+                            <label>New VIP Level</label>
+                            <select class="form-control"
+                                    ng-options="i as vipLevel._id for (i, vipLevel) in vipLevels"
+                                    ng-model="newLevel"></select>
+                        </div>
+                        <div class="form-group">
+                            <button class="form-control btn btn-primary"
+                                    type="submit"
+                                    ng-click="changeVipLevel(newLevel)">Change VIP Status</button>
+                        </div>
+                    </form>
+                    <div class="form-group"
+                         ng-if="vipLevelError">
+                        <span class="label label-danger">{{vipLevelError.error}} - {{vipLevelError.message}}</span>
+                    </div>
+                </div>
+                <div ng-if="BCAdminSession.user.accessLevel <= 1">
+                    <h4>Withdraw Lock</h4>
+                    <form ng-if="!user.lock">
+                        <div class="form-group">
+                            <label>Reason</label>
+                            <input class="form-control"
+                                   ng-model="lockForm.reason">
+                        </div>
+                        <div class="form-group">
+                            <button class="form-control btn btn-primary"
+                                    type="submit"
+                                    ng-click="lockUser()">LOCK THEM!!</button>
+                        </div>
+                    </form>
+                    <button ng-if="user.lock"
+                            class="form-control btn btn-primary"
+                            ng-click="lockUser(false)">Unlock</button>
+                    <div class="form-group"
+                         ng-if="lockError">
+                        <span class="label label-danger">{{lockError.error}} - {{lockError.message}}</span>
+                    </div>
+                </div>
+                <div ng-if="BCAdminSession.user.accessLevel <= 1">
+                    <h4>Block VIP Level Advancement</h4>
+                    <form ng-if="user.pendingVipLevel != -2">
+                        <div class="form-group">
+                            <button class="form-control btn btn-primary"
+                                    type="submit"
+                                    ng-click="lockVip()">NO MORE VIP LEVELS!!</button>
+                        </div>
+                    </form>
+                    <button ng-if="user.pendingVipLevel == -2"
+                            class="form-control btn btn-primary"
+                            ng-click="lockVip(true)">Unlock VIP advancement</button>
+                    <div class="form-group"
+                         ng-if="vipLockError">
+                        <span class="label label-danger">{{vipLockError.error}} - {{vipLockError.message}}</span>
+                    </div>
+                </div>
+                <div ng-if="BCAdminSession.user.accessLevel <= 1">
+                    <h4>Ignore from backoffice stats</h4>
+                    <form ng-if="!user.ignore">
+                        <div class="form-group">
+                            <label>Reason</label>
+                            <input class="form-control"
+                                   ng-model="ignoreForm.reason">
+                        </div>
+                        <div class="form-group">
+                            <button class="form-control btn btn-primary"
+                                    type="submit"
+                                    ng-click="ignoreUser()">IGNORE THEM!!</button>
+                        </div>
+                    </form>
+                    <button ng-if="user.ignore"
+                            class="form-control btn btn-primary"
+                            ng-click="ignoreUser(false)">Unignore</button>
+                    <div class="form-group"
+                         ng-if="ignoreError">
+                        <span class="label label-danger">{{ignoreError.error}} - {{ignoreError.message}}</span>
+                    </div>
+                </div>
+                <div ng-if="BCAdminSession.user.accessLevel <= 1">
+                    <h4>Disable Login</h4>
+                    <form ng-if="!user.disable">
+                        <div class="form-group">
+                            <label>Reason</label>
+                            <input class="form-control"
+                                   ng-model="disableForm.reason">
+                        </div>
+                        <div class="form-group">
+                            <button class="form-control btn btn-primary"
+                                    type="submit"
+                                    ng-click="disableUser()">DISABLE THEM!!</button>
+                        </div>
+                    </form>
+                    <button ng-if="user.disable"
+                            class="form-control btn btn-primary"
+                            ng-click="disableUser(false)">Re-enable Login</button>
+                    <div class="form-group"
+                         ng-if="disableError">
+                        <span class="label label-danger">{{disableError.error}} - {{disableError.message}}</span>
+                    </div>
+                </div>
+                <div ng-if="BCAdminSession.user.accessLevel <= 1">
+                    <h4>Change Password</h4>
+                    <form>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input class="form-control"
+                                   ng-model="passwordForm.password">
+                        </div>
+                        <div class="form-group">
+                            <button class="form-control btn btn-primary"
+                                    type="submit"
+                                    ng-click="changePassword()">Change Password</button>
+                        </div>
+                    </form>
+                    <div class="form-group"
+                         ng-if="passwordError">
+                        <span class="label label-danger">{{passwordError.error}} - {{passwordError.message}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="BCAdminSession.user.accessLevel <= 1"
+             class="col-md-12 panel">
+            <h3>Send a message</h3>
+            <form class="form">
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input class="form-control"
+                           ng-model="messageForm.subject">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control"
+                              ng-model="messageForm.message"
+                              rows="3"></textarea>
+                </div>
+                <p class="help-block">
+                    This text will all be put on one line when the user sees it, so keep that in
+                    mind.
+                </p>
+                <div class="checkbox">
+                    <label><input type="checkbox" ng-model="messageForm.sendEmail">Send Email?</label>
+                </div>
+            </form>
+            <button class="btn btn-primary btn-sm"
+                    ng-click="sendMessage()">Send Message</button>
+        </div>
+        <div class="col-md-12 panel">
+            <h3>Searches</h3>
+            <p>
+                <a ng-href="search/transaction?q_type=__or_deposit||withdraw&q_userId={{user._id}}">
+                    Deposits and Withdrawals
+                </a>
+            </p>
+            <p>
+                <a ng-href="search/logs?__sort=timestamp_desc&or_q_meta.username={{user.username}}&or_q_usernames={{user.username}}">
+                    Logs
+                </a>
+            </p>
+            <p>
+                <a ng-href="search/transaction?q_type=affiliate&q_userId={{user._id}}">
+                    Affiliate Transactions
+                </a>
+            </p>
+        </div>
+        <div class="col-md-12 panel">
+            <h3>Bonuses</h3>
+            <dl class="dl-horizontal panel"
+                ng-repeat-start="(index, bonus) in bonuses.result">
+                <dt ng-repeat-start="key in ['offeredAt', 'acceptedAt', 'rejectedAt', 'activatedAt', 'exhaustedAt', 'unlockedAt']" ng-if="bonus[key]">{{key}}</dt>
+                <dd ng-repeat-end ng-if="bonus[key]">{{bonus[key] | date:DATE_FORMAT}}</dd>
+                <dt>rollover</dt>
+                <dd>{{bonus.rollover|number}}</dd>
+                <dt ng-repeat-start="key in ['initialValue', 'value', 'wagered']" ng-if="bonus[key]">{{key}}</dt>
+                <dd ng-repeat-end ng-if="bonus[key]">{{bonus.currency|cryptosymbol}} {{bonus[key] | cryptovalue}}</dd>
+                <dt>unlock</dt>
+                <dd>
+                    {{bonus.currency|cryptosymbol}} {{bonus.rollover*bonus.initialValue|cryptovalue}}
+                    ({{(bonus.wagered/(bonus.rollover*bonus.initialValue))*100|number:2}}%)
+                </dd>
+            </dl>
+            <hr ng-repeat-end>
+            <div class="col-md-12"
+                 ng-if="BCAdminSession.user.accessLevel <= 1">
+                <h3>Give Bonus</h3>
+                <div class="checkbox">
+                    <label><input type="checkbox" ng-model="bonusForm.isMatch">Match Bonus?</label>
+                </div>
+                <div class="form-group"
+                     ng-hide="bonusForm.isMatch">
+                    <label>Amount</label>
+                    <input type="number"
+                           class="form-control"
+                           ng-model="bonusForm.amountDecimal">
+                </div>
+                <div class="form-group"
+                     ng-hide="bonusForm.isMatch">
+                    <select class="form-control"
+                            ng-model="bonusForm.currency"
+                            ng-options="currency for currency in currencyOptions"></select>
+                </div>
+                <div class="form-group">
+                    <label>Rollover</label>
+                    <input type="number"
+                           class="form-control"
+                           ng-model="bonusForm.rollover">
+                </div>
+                <div class="form-group">
+                    <button class="form-control btn btn-primary"
+                            type="submit"
+                            ng-click="giveBonus()">Bonus the shit out of this guy.</button>
+                </div>
+                <div class="form-group"
+                     ng-if="error">
+                    <span class="label label-danger">{{bonusError.error}} - {{bonusError.message}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12 panel">
+        <h3>Wallets</h3>
+        <dl ng-repeat="(currency, wallet) in wallets" class="dl-horizontal">
+            <dt>Currency</dt>
+            <dd>{{wallet.currency}}</dd>
+            <dt>Balance</dt>
+            <dd>{{wallet.currency | cryptosymbol }} {{ wallet.balance | cryptovalue }}</dd>
+            <dt>Available Balance</dt>
+            <dd>{{wallet.currency | cryptosymbol }} {{ wallet.availableBalance | cryptovalue }}</dd>
+            <dt ng-if="BCAdminSession.user.accessLevel <= 1"></dt>
+            <dd ng-if="BCAdminSession.user.accessLevel <= 1">
+                <button class="btn btn-primary btn-sm"
+                        ng-click="cashoutUser(currency)">Cashout</button>
+            </dd>
+            <dt ng-if="BCAdminSession.user.accessLevel <= 1">
+                <button class="btn btn-primary btn-sm"
+                        ng-click="changeWithdraw(currency)">Change Withdraw</button>
+            </dt>
+            <dd ng-if="BCAdminSession.user.accessLevel <= 1">
+                <input class="form-control"
+                       ng-model="wallets[currency].withdrawAddress">
+            </dd>
+        </dl>
+        <form ng-if="BCAdminSession.user.accessLevel == 0">
+            <h3>Debit/Credit User</h3>
+            <div class="form-group">
+                <select class="form-control"
+                        ng-model="creditForm.action"
+                        ng-options="action for action in ['debit', 'credit']"></select>
+            </div>
+            <div class="form-group">
+                <select class="form-control"
+                        ng-model="creditForm.currency"
+                        ng-options="currency for currency in currencyOptions"></select>
+            </div>
+            <div class="form-group">
+                <label>Amount</label>
+                <input class="form-control"
+                       type="text"
+                       ng-model="creditForm.amountDecimal">
+            </div>
+            <div class="form-group">
+                <label>Reason</label>
+                <input class="form-control"
+                       type="text"
+                       ng-model="creditForm.reason"
+                       ng-pattern="/[a-zA-Z_-]+/">
+            </div>
+            <div class="form-group">
+                <label>Memo</label>
+                <input class="form-control"
+                       type="text"
+                       ng-model="creditForm.memo"
+                       ng-minlength="10">
+            </div>
+            <div class="form-group">
+                <button class="form-control btn btn-primary"
+                        type="submit"
+                        ng-click="creditUser()">Do it. Yeah.</button>
+            </div>
+            <div class="form-group"
+                 ng-if="error">
+                <span class="label label-danger">{{error.error}} - {{error.message}}</span>
+            </div>
+        </form>
+    </div>
+</div>

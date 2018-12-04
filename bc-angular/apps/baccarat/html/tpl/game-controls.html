@@ -1,0 +1,113 @@
+<div ng-controller="GameController" class="row noselect">
+
+    <div class="col-xs-12 col-sm-5 text-center col-sm-push-7">
+
+        <img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" />
+        <div id="gameControls">
+            <player-info></player-info>
+            <cashout-button player = "player" game="game"></cashout-button>
+            <spinmessage></spinmessage>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+            <div style="clear:both;position:relative;">
+                <div style="display:inline-block">
+                    <div><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+                </div>
+                <autospin-button></autospin-button>
+                <proof-button></proof-button>
+            </div>
+            <div style="margin:10px auto;position:relative;">
+
+                <bc-client-seed style="" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-7 col-sm-pull-5">
+        <div id="gameContainer">
+            <div class="row">
+                <div class="col-md-5 stack-wrapper">
+                    <div class="label label-danger margin-top-10"><%= game.dealer %></div>
+                    <div class="cards" id="dealer-cards">
+                        <div ng-if="!bankercards.cards">
+                            <card flipped="true"></card>
+                        </div>
+                        <div class="livecard banker-hand" ng-if="bankercards.cards" ng-repeat="card in bankercards.cards">
+                            <card data-card="card"></card>
+                        </div>
+                    </div>
+                    <div class="scoreboard-wrapper">
+                        <span class="scoreboard" ng-if="bankercards.cards">
+                            <%=game.score%>:{{bankercards.scoreSum}}
+                        </span>
+                        <span class="scoreboard" ng-if="bankercards.winLoseTie === 3">
+                            <%=game.winner%>
+                        </span>
+                        <span class="scoreboard" ng-if="bankercards.winLoseTie === 1">
+                            <%=game.tie%>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-2" style="padding:0px;">
+                    <div class="hidden-xs">
+                        <div class="bets-circle btn btn-flashy" placebet data-bet="tie" ng-mouseover="overZero=true" ng-mouseout="overZero=false"><div  class="chips"></div><%=game.tie%></div>
+                        <div class="bets-circle btn btn-flashy" placebet data-bet="banker" ng-mouseover="overZero=true" ng-mouseout="overZero=false"><div  class="chips "></div><%=game.dealer%></div>
+                        <div class="bets-circle btn btn-flashy" placebet data-bet="player" ng-mouseover="overZero=true" ng-mouseout="overZero=false"><div class="chips "></div><%=game.player%></div>
+                    </div>
+                </div>
+                <div class="col-md-5 stack-wrapper">
+                    <div class="label label-danger"><%= game.player %></div>
+                    <div class="cards" id="player-cards">
+                        <div ng-if="!playercards.cards">
+                            <card  flipped="true"></card>
+                        </div>
+                        <div class="livecard player-hand" ng-if="playercards.cards" ng-repeat="card in playercards.cards">
+                            <card data-card="card"></card>
+                        </div>
+                    </div>
+                    <div class="scoreboard-wrapper">
+                        <span class="scoreboard" ng-if="playercards.cards">
+                            <%=game.score%>:{{playercards.scoreSum}}
+                        </span>
+                        <span class="scoreboard" ng-if="playercards.winLoseTie === 3">
+                            <%=game.winner%>
+                        </span>
+                        <span class="scoreboard" ng-if="playercards.winLoseTie === 1">
+                            <%=game.tie%>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="gOptions" style="display:inline-block">
+                <button ng-click="nextAction(true);" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.go_to_war %>
+                </button>
+                <button ng-click="nextAction(false);" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.surrender %>
+                </button>
+            </div>
+            <div class="visible-xs">
+                <div class="row text-center" >
+                    <div style="display:inline-block;">
+                        <div class="bets-circle btn btn-flashy" placebet data-bet="tie" ng-mouseover="overZero=true" ng-mouseout="overZero=false"><div  class="chips"></div><%=game.tie%></div>
+                    </div>
+                    <div style="display:inline-block;">
+                        <div class="bets-circle btn btn-flashy" placebet data-bet="dealer" ng-mouseover="overZero=true" ng-mouseout="overZero=false"><div  class="chips "></div><%=game.dealer%></div>
+                    </div>
+                    <div style="display:inline-block;">
+                        <div class="bets-circle btn btn-flashy" placebet data-bet="player" ng-mouseover="overZero=true" ng-mouseout="overZero=false"><div class="chips "></div><%=game.player%></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button ng-disabled="isGameInProgress" ng-click="play();" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.bet %>
+                </button>
+                <button ng-click="clearBets();" class="btn btn-default ng-scope" bc-popover="false" bc-popover-content="To clear an individual bet, press and hold a chip for 2 seconds, and then release" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top" ng-disabled="isGameInProgress" data-original-title="" title="">
+                    <%= buttons.clear_bets %>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

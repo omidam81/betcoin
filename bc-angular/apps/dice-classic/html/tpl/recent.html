@@ -1,0 +1,108 @@
+<ul class="nav nav-pills nav-justified">
+    <li ng-class="getRecentTabClass('recent')">
+        <a href="recent">
+            <%= games.recent %>
+        </a>
+    </li>
+    <li ng-class="getRecentTabClass('big')">
+        <a href="recent/big">
+            <%= games.tabs_big %>
+        </a>
+    </li>
+    <li ng-class="getRecentTabClass('rare')">
+        <a href="recent/rare">
+            <%= games.tabs_rare %>
+        </a>
+    </li>
+</ul>
+<div class="alert" ng-show="diceLoading">Loading</div>
+<div class="alert" ng-show="error">{{ error }}</div>
+<fieldset ng-hide="diceLoading || error" id="recent">
+    <table class="table table-bordered gamesTable">
+        <thead>
+            <tr>
+                <th>
+                    <%= games.games_wrap_th9 %>
+                </th>
+                <th><%= games.tr_li1 %></th>
+                <th class="">
+                    <%= games.games_wrap_th10 %>
+                </th>
+                <th>
+                    <%= games.games_wrap_th11 %>
+                </th>
+                <!--
+                <th class="hidden-phone hidden-tablet">
+                    <%= games.games_wrap_th12 %>
+                </th>
+                <th class="hidden-phone hidden-tablet">
+                    <%= games.games_wrap_th13 %>
+                </th>-->
+                <th class="hidden-phone hidden-tablet">
+                    <%= games.games_wrap_th14 %>
+                </th>
+                <th class="hidden-phone hidden-tablet">
+                    <%= games.games_wrap_th15 %>
+                </th>
+                <th>
+                    <%= games.games_wrap_th16 %>
+                </th>
+                <th>
+                    <%= games.games_wrap_th17 %>
+                </th>
+                <th class="hidden-phone hidden-tablet">
+                    <%= games.games_wrap_th18 %>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-hide="dices && dices.length > 0" class="error">
+                <td colspan="6">
+                    <div class="text-center"><strong><%= games.games_wrap_div1 %></strong>
+                    </div>
+                </td>
+            </tr>
+            <tr data-ng-repeat="dice in dices">
+                <td>
+                    <a data-toggle="modal"
+                       style="cursor: pointer;"
+                       data-target="#transactions{{dice._id.replace(':', '')}}">
+                        <%= games.game_wrap_button %>
+                    </a>
+                    <div ng-include="'tpl/detail-modal.html'"
+                         id="transactions{{dice._id.replace(':', '')}}"
+                         class="modal fade"></div>
+                </td>
+                <td>
+                    {{ dice.createdAt | date:"MM/dd/yy HH:mm:ss" }}
+                </td>
+                <td class="">
+                    <img style="cursor: pointer;" ng-src="{{ starGraphic(dice.player_id) }}" ng-click="toggleStar(dice.player_id)" />
+                </td>
+                <td>&lt; {{ dice.game }}</td>
+                <!--
+                <td class="hidden-phone hidden-tablet">
+                    <div blockchain-info="{{ dice.tx_in }}" chars="16"></div>
+                </td>
+                <td class="hidden-phone hidden-tablet">
+                    <div blockchain-info="{{ dice.tx_out }}" chars="16"></div>
+                </td>-->
+                <td class="hidden-phone hidden-tablet">
+                    <div blockchain-info="{{ dice.player_id }}" chars="6"></div>
+                </td>
+                <td class="hidden-phone hidden-tablet">
+                    {{ dice.wager | btc }}
+                </td>
+                <td>
+                    {{ dice.winnings > dice.wager && "<%= win %>" || "<%= lose %>" }}
+                </td>
+                <td>
+                    {{ dice.winnings | btc }}
+                </td>
+                <td class="hidden-phone hidden-tablet">
+                    {{ dice.result }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</fieldset>

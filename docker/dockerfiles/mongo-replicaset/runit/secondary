@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+[[ -d /data/secondary/db ]] || mkdir /data/secondary/db
+chown -R mongodb:65535 /data
+exec /sbin/setuser mongodb /usr/bin/mongod -f /data/secondary/mongod.conf >> /var/log/mongod.log 2>&1
+

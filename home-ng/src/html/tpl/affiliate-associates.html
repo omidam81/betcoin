@@ -1,0 +1,17 @@
+
+    <table class="table gamesTable">
+        <thead>
+            <tr>
+                <th><%= text.alias %></th>
+                <th><%= text.date_joined %></th>
+                <th><%= text.revenue_btc %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="associate in associates">
+                <td><a href="affiliate/{{user._id}}/associate/{{associate._id}}">{{ associate.alias }}</a></td>
+                <td>{{ associate.created | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td>{{ associate.totalEarning | btc }}</td>
+            </tr>
+        </tbody>
+    </table>

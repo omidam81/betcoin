@@ -1,0 +1,49 @@
+{
+    "prod": "sicbo",
+    "meta": {
+        "title": "BetCoin ™ Sic Bo Bitcoin Casino - Win Bitcoins!",
+        "meta_description": "With BetCoin ™ Sic Bo you can bet in bitcoin and play the classic Sic Bo wheel. Try the game today to hit a bitcoin jackpot!",
+        "meta_keywords": "Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Sic Bo, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-sicbo.png"
+    },
+    "home": {
+        "title_image": "img/icons/sicbo280.png",
+        "promote_header_a": "Play the Provably Fair Classic Sic Bo"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/sicbo"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/bao"
+        }
+    },
+    "game": {
+        "x": "x",
+        "symbol": "Symbol",
+        "multiplier": "Payout Multiplier",
+        "win": "Win",
+        "lose": "Lose",
+        "CircleDiv3": "My Bets"
+    },
+    "spins": {
+        "myspins": "My Bets",
+        "CircleTh9": "Bets"
+    },
+    "buttons": {
+        "start_roll": "ROLL"
+    },
+    "boards": {
+        "small": "SMALL",
+        "big": "BIG",
+        "smallstr": "4 to 10<br/>1 : 1<br/>Lose if any<br/>triple appear",
+        "bigstr": "11 to 17<br/>1 : 1<br/>Lose if any<br/>triple appear",
+        "twodicestr": "Two<br/>Dice<br/>6 : 1",
+        "singledicestr1": "1 : 1 for one match",
+        "singledicestr2": "2 : 1 for two matches",
+        "singledicestr3": "3 : 1 for three matches",
+        "ratestr": "x"
+    }
+}

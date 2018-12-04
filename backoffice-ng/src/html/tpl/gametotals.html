@@ -1,0 +1,256 @@
+<div>
+    <h1>Game Totals</h1>
+    <div class="row">
+        <h3>Range</h3>
+        <div ng-show="rangeAlert">To pull data before April 1st, 2014, see administrator</div>
+        <range-display class="col-md-4" since="range.start" until="range.end"></range-display>
+        <range-chooser class="col-md-4" on-submit="rangeChanged(range)"></range-chooser>
+    </div>
+    <div class="row">
+        <game-totals game="account" range="range" data="accountData" class="col-md-3">
+            <h3>Account Totals</h3>
+            <div ng-show="dataLoading">Loading</div>
+            <div ng-hide="dataLoading">
+                <table class="table">
+                    <tr><td>Deposited</td><td>{{ accountData.total.deposited | btc }}</td></tr>
+                    <tr><td>Withdrawn</td><td>{{ accountData.total.withdrawn | btc }}</td></tr>
+                    <tr><td>Profit</td><td>{{ (accountData.total.deposited - accountData.total.withdrawn) | btc }}</td></tr>
+                    <tr><td>Game Won</td><td>{{ accountData.total.gamewon | btc }}</td></tr>
+                    <tr><td>Game Loss</td><td>{{ accountData.total.gameloss | btc }}</td></tr>
+                    <tr><td>Game Profit</td><td>{{ (accountData.total.gameloss - accountData.total.gamewon) | btc }}</td></tr>
+                    <tr><td>House Edge</td><td>{{ ((accountData.total.gameloss - accountData.total.gamewon)/accountData.total.gameloss) * 100 | number:2}}%</td></tr>
+                </table>
+            </div>
+        </game-totals>
+        <game-totals game="bonus" range="range" data="bonusData" class="col-md-3">
+            <h3>Bonus Totals</h3>
+            <div ng-show="dataLoading">Loading</div>
+            <div ng-hide="dataLoading">
+                <table class="table">
+                    <tr><td>Bonus Amount</td><td>{{ bonusData.amountTotal|btc }}</td></tr>
+                    <tr><td># of Offers</td><td>{{ bonusData.counts.offeredBonusesCount }}</td></tr>
+                    <tr><td># of Accepted</td><td>{{ bonusData.counts.acceptedBonusesCount }}</td></tr>
+                    <tr><td># of Activated</td><td>{{ bonusData.counts.activatedBonusesCount }}</td></tr>
+                    <tr><td># of Unlocked</td><td>{{ bonusData.counts.unlockedBonusesCount }}</td></tr>
+                    <tr><td># of Exhausted</td><td>{{ bonusData.counts.exhaustedBonusesCount }}</td></tr>
+                </table>
+            </div>
+        </game-totals>
+        <game-totals game="unplayed" range="range" data="unplayedData" class="col-md-3">
+            <h3>Unplayed Totals</h3>
+            <div ng-show="dataLoading">Loading</div>
+            <div ng-hide="dataLoading">
+                <table class="table">
+                    <tr ng-repeat="(key, value) in unplayedData"><td>{{key.toUpperCase()}}</td><td><a href="games/{{key}}/unplayed/players">{{ value }}</a></td></tr>
+                </table>
+            </div>
+        </game-totals>
+    </div>
+    <div class="row" >
+        <table class="table">
+            <thead>
+                <th>Game</th>
+                <th>Bets</th>
+                <th>Wagered</th>
+                <th>Won</th>
+                <th>Profit</th>
+                <th>House Edge</th>
+                <th>Avg.Wager</th>
+            </thead>
+            <tbody>
+                <div game-totals game="reel" range="range" data="reelData">
+                    <tr>
+                    <td>Reels</td>
+                    <td>{{ reelData.total.bets }}</td>
+                    <td>{{ reelData.total.wagered | btc }}</td>
+                    <td>{{ reelData.total.gamewon | btc }}</td>
+                    <td>{{ (reelData.total.wagered - reelData.total.gamewon) | btc }}</td>
+                    <td>{{ ((reelData.total.wagered - reelData.total.gamewon)/reelData.total.wagered) * 100 | number:2}}%</td>
+                    <td>{{ (reelData.total.wagered/reelData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="circle" range="range" data="circleData">
+                    <tr>
+                        <td>Circle</td>
+                        <td>{{ circleData.total.bets }}</td>
+                        <td>{{ circleData.total.wagered | btc }}</td>
+                        <td>{{ circleData.total.won | btc }}</td>
+                        <td>{{ circleData.total.profit | btc }}</td>
+                        <td>{{ ((circleData.total.wagered - circleData.total.won) / circleData.total.wagered) * 100 | number:2 }}%</td>
+                        <td>{{ circleData.total.averageWager | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="war" range="range" data="warData">
+                    <tr>
+                        <td>War</td>
+                        <td>{{ warData.total.bets }}</td>
+                        <td>{{ warData.total.wagered | btc }}</td>
+                        <td>{{ warData.total.gamewon | btc }}</td>
+                        <td>{{ (warData.total.wagered - warData.total.gamewon) | btc }}</td>
+                        <td>{{ ((warData.total.wagered - warData.total.gamewon)/warData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (warData.total.wagered/warData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="roulette" range="range" data="rouletteData">
+                    <tr>
+                        <td>Roulette</td>
+                        <td>{{ rouletteData.total.bets }}</td>
+                        <td>{{ rouletteData.total.wagered | btc }}</td>
+                        <td>{{ rouletteData.total.gamewon | btc }}</td>
+                        <td>{{ (rouletteData.total.wagered - rouletteData.total.gamewon) | btc }}</td>
+                        <td>{{ ((rouletteData.total.wagered - rouletteData.total.gamewon)/rouletteData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (rouletteData.total.wagered/rouletteData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="dice-new" range="range" data="diceNewData">
+                    <tr>
+                        <td>Dice</td>
+                        <td>{{ diceNewData.total.bets }}</td>
+                        <td>{{ diceNewData.total.wagered | btc }}</td>
+                        <td>{{ diceNewData.total.gamewon | btc }}</td>
+                        <td>{{ (diceNewData.total.wagered - diceNewData.total.gamewon) | btc }}</td>
+                        <td>{{ ((diceNewData.total.wagered - diceNewData.total.gamewon)/diceNewData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (diceNewData.total.wagered/diceNewData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="bj" range="range" data="bjData">
+                    <tr>
+                        <td>Blackjack</td>
+                        <td>{{ bjData.total.bets }}</td>
+                        <td>{{ bjData.total.wagered | btc }}</td>
+                        <td>{{ bjData.total.gamewon | btc }}</td>
+                        <td>{{ (bjData.total.wagered - bjData.total.gamewon) | btc }}</td>
+                        <td>{{ ((bjData.total.wagered - bjData.total.gamewon)/bjData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (bjData.total.wagered/bjData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="baccarat" range="range" data="baccaratData">
+                    <tr>
+                        <td>Baccarat</td>
+                        <td>{{ baccaratData.total.bets }}</td>
+                        <td>{{ baccaratData.total.wagered | btc }}</td>
+                        <td>{{ baccaratData.total.gamewon | btc }}</td>
+                        <td>{{ (baccaratData.total.wagered - baccaratData.total.gamewon) | btc }}</td>
+                        <td>{{ ((baccaratData.total.wagered - baccaratData.total.gamewon)/baccaratData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (baccaratData.total.wagered/baccaratData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="paigow" range="range" data="paigowData">
+                    <tr>
+                        <td>Pai Gow</td>
+                        <td>{{ paigowData.total.bets }}</td>
+                        <td>{{ paigowData.total.wagered | btc }}</td>
+                        <td>{{ paigowData.total.gamewon | btc }}</td>
+                        <td>{{ (paigowData.total.wagered - paigowData.total.gamewon) | btc }}</td>
+                        <td>{{ ((paigowData.total.wagered - paigowData.total.gamewon)/paigowData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (paigowData.total.wagered/paigowData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="hilo" range="range" data="hiloData">
+                    <tr>
+                        <td>Hi Lo</td>
+                        <td>{{ hiloData.total.bets }}</td>
+                        <td>{{ hiloData.total.wagered | btc }}</td>
+                        <td>{{ hiloData.total.gamewon | btc }}</td>
+                        <td>{{ (hiloData.total.wagered - hiloData.total.gamewon) | btc }}</td>
+                        <td>{{ ((hiloData.total.wagered - hiloData.total.gamewon)/hiloData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (hiloData.total.wagered/hiloData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="fortune" range="range" data="fortuneData">
+                    <tr>
+                        <td>Fortune</td>
+                        <td>{{ fortuneData.total.bets }}</td>
+                        <td>{{ fortuneData.total.wagered | btc }}</td>
+                        <td>{{ fortuneData.total.gamewon | btc }}</td>
+                        <td>{{ (fortuneData.total.wagered - fortuneData.total.gamewon) | btc }}</td>
+                        <td>{{ ((fortuneData.total.wagered - fortuneData.total.gamewon)/fortuneData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (fortuneData.total.wagered/fortuneData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="sicbo" range="range" data="sicboData">
+                    <tr>
+                        <td>Sic Bo</td>
+                        <td>{{ sicboData.total.bets }}</td>
+                        <td>{{ sicboData.total.wagered | btc }}</td>
+                        <td>{{ sicboData.total.gamewon | btc }}</td>
+                        <td>{{ (sicboData.total.wagered - sicboData.total.gamewon) | btc }}</td>
+                        <td>{{ ((sicboData.total.wagered - sicboData.total.gamewon)/sicboData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (sicboData.total.wagered/sicboData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="keno" range="range" data="kenoData">
+                    <tr>
+                        <td>Keno</td>
+                        <td>{{ kenoData.total.bets }}</td>
+                        <td>{{ kenoData.total.wagered | btc }}</td>
+                        <td>{{ kenoData.total.gamewon | btc }}</td>
+                        <td>{{ (kenoData.total.wagered - kenoData.total.gamewon) | btc }}</td>
+                        <td>{{ ((kenoData.total.wagered - kenoData.total.gamewon)/kenoData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (kenoData.total.wagered/kenoData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+                <div game-totals game="coinflip" range="range" data="coinflipData">
+                    <tr>
+                        <td>Coinflip</td>
+                        <td>{{ coinflipData.total.bets }}</td>
+                        <td>{{ coinflipData.total.wagered | btc }}</td>
+                        <td>{{ coinflipData.total.gamewon | btc }}</td>
+                        <td>{{ (coinflipData.total.wagered - coinflipData.total.gamewon) | btc }}</td>
+                        <td>{{ ((coinflipData.total.wagered - coinflipData.total.gamewon)/coinflipData.total.wagered) * 100 | number:2}}%</td>
+                        <td>{{ (coinflipData.total.wagered/coinflipData.total.bets) | btc }}</td>
+                    </tr>
+                </div>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <game-totals game="dice" type="all" range="range" data="diceData" class="col-md-3">
+
+            <h3>Dice Classic</h3>
+            <div ng-show="dataLoading">Loading</div>
+            <div ng-hide="dataLoading">
+                <table class="table">
+                    <tr><td>Bets</td><td>{{ diceData.total.bets }}</td></tr>
+                    <tr><td>Wagered</td><td>{{ diceData.total.wagered | btc }}</td></tr>
+                    <tr><td>Won</td><td>{{ diceData.total.won | btc }}</td></tr>
+                    <tr><td>Profit</td><td>{{ diceData.total.profit | btc }}</td></tr>
+                    <tr><td>House Edge</td><td>{{ ((diceData.total.wagered - diceData.total.won) / diceData.total.wagered) * 100 | number:2 }}%</td></tr>
+                    <tr><td>Avg. Wager</td><td>{{ diceData.total.averageWager | btc }}</td></tr>
+                </table>
+                <table class="table table-bordered" ng-repeat="game in diceData.games">
+                    <tr><th colspan="2">{{ game.gameName }}</th></tr>
+                    <tr><td>Bets</td><td>{{ game.bets }}</td></tr>
+                    <tr><td>Wagered</td><td>{{ game.wagered | btc }}</td></tr>
+                    <tr><td>Won</td><td>{{ game.won | btc }}</td></tr>
+                    <tr><td>Profit</td><td>{{ game.gameProfit | btc }}</td></tr>
+                    <tr><td>House Edge</td><td>{{ ((game.wagered - game.won) / game.wagered) * 100 | number:2 }}%</td></tr>
+                    <tr><td>Avg. Wager</td><td>{{ game.averageWager | btc }}</td></tr>
+                </table>
+                <!-- <pre>{{ diceData.total | json }}</pre> -->
+                <!-- <pre ng-repeat="game in diceData.games">{{ game | json}}</pre> -->
+            </div>
+        </game-totals>
+        <game-totals game="prize" range="range" data="prizeData" class="col-md-3">
+            <h3>Prize</h3>
+            <div ng-show="dataLoading">Loading</div>
+            <div ng-hide="dataLoading">
+                <table class="table">
+                    <tr><td>Bets</td><td>{{ prizeData.total.bets }}</td></tr>
+                    <tr><td>Tickets</td><td>{{ prizeData.total.tickets }}</td></tr>
+                    <tr><td>Wagered</td><td>{{ prizeData.total.wagered | btc }}</td></tr>
+                    <tr><td>Profit</td><td>{{ prizeData.total.profit | btc }}</td></tr>
+                </table>
+                <table class="table table-bordered" ng-repeat="game in prizeData.games">
+                    <tr><th colspan="2">{{ game.gameName }}</th></tr>
+                    <tr><td>Bets</td><td>{{ game.bets }}</td></tr>
+                    <tr><td>Tickets</td><td>{{ game.tickets }}</td></tr>
+                    <tr><td>Wagered</td><td>{{ game.wagered | btc }}</td></tr>
+                    <tr><td>Profit</td><td>{{ game.profit | btc }}</td></tr>
+                </table>
+                <!-- <pre>{{ prizeData.total | json }}</pre> -->
+                <!-- <pre ng-repeat="game in prizeData.games">{{ game | json}}</pre> -->
+            </div>
+        </game-totals>
+    </div>
+</div>

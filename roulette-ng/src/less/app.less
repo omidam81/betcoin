@@ -1,0 +1,1463 @@
+@gold: #ffd479;
+@golddark: #D6AE58;
+@goldvolume: rgb(173,150,95);
+.btn-spin {
+  color:#ffeeaa!important;
+}
+
+.results_wheel_placeholder_container {
+  position:relative;
+  width:460px;
+  height:460px;
+  margin:0px auto;
+}
+
+.wheel_placeholder_container {
+  position:relative;
+  width:150px;
+  height:150px;
+  margin:0px auto;
+  #wheel_placeholder {
+    width:150px;
+    height:150px;
+    margin:0px auto;
+    position:absolute;
+    opacity:1;
+    top:0;
+    left:0;
+  }
+}
+
+.rouletteCanvasContainer {
+  position:absolute;width:100%;height:430px;opacity:0;top:150px;z-index:-2;
+  canvas {
+     @media (max-width: 9999px) {
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+      }
+
+     @media (max-width: 480px) {
+    -ms-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+      }
+  }
+}
+#spinmessage {
+  height:34px!important;
+}
+.shimmer() {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffd479), color-stop(30%, #996633), color-stop(70%, #ffff88), color-stop(100%, #320000));
+  background-image: -webkit-linear-gradient(#ffd479, #996633 30%, #cccc88 70%, #ffff88);
+  background-image: -moz-linear-gradient(#ffd479, #996633 30%, #cccc88 70%, #ffff88);
+  background-image: -o-linear-gradient(#ffd479, #996633 30%, #cccc88 70%, #ffff88);
+  background-image: linear-gradient(#ffd479, #996633 30%, #cccc88 70%, #ffff88);
+
+    -moz-background-size:2px 100%;
+    background-size:2px 100%;
+    background-position:0 0, 100% 0;
+    background-repeat:no-repeat;
+    border:1px solid #ffaa00;
+    border-bottom:0px;
+    border-right:0px;
+}
+.shimmerc() {
+  .shimmer();
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffd479), color-stop(30%, #996633), color-stop(70%, #AA8811), color-stop(100%, #320000));
+  background-image: -webkit-linear-gradient(#ffd479, #AA8811 30%, #996633 70%, #ffaa55);
+  background-image: -moz-linear-gradient(#ffd479, #AA8811 30%, #996633 70%, #ffaa55);
+  background-image: -o-linear-gradient(#ffd479, #AA8811 30%, #996633 70%, #ffaa55);
+  background-image: linear-gradient(#ffd479, #AA8811 30%, #996633 70%, #ffaa55);
+  border:1px solid #ffd479;
+    border-bottom:0px;
+    border-right:0px;
+}
+.shimmerb() {
+  .shimmer();
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffd479), color-stop(30%, #996633), color-stop(70%, #AA8811), color-stop(100%, #320000));
+  background-image: -webkit-linear-gradient(#ffd479, #AA8811 30%, #996633 70%, #ffaa55);
+  background-image: -moz-linear-gradient(#ffd479, #AA8811 30%, #996633 70%, #ffaa55);
+  background-image: -o-linear-gradient(#ffd479, #AA8811 30%, #996633 70%, #ffaa55);
+  background-image: linear-gradient(#ffd479, #AA8811 30%, #996633 70%, #ffaa55);
+  border:1px solid #ffd479;
+    border-bottom:0px;
+    border-right:0px;
+}
+.bet() {
+  position:absolute;
+  cursor:pointer;
+  z-index:99;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+
+}
+.bet-cor() {
+  .bet();
+  width:12px;
+  height:12px;
+}
+.bet-num() {
+  .bet();
+  width:48px;
+  height:48px;
+  margin:6px;
+}
+.bet-spl-v {
+  .bet();
+  height:48px;
+  width:12px;
+  margin:6px 0;
+}
+.bet-spl-h {
+  .bet();
+  width:48px;
+  height:12px;
+  margin:0px 6px;
+}
+.bet-hilo {
+  border:0;
+  margin:6px;
+}
+.seed-container  {
+  display:inline-block;
+  .seed {
+    width:60px!important;
+    min-width:60px!important;
+  }
+}
+#wheelhistory {
+  text-align:right;
+  .history {
+    width:60%;
+    height:38px;
+    margin:0px auto;
+    overflow:hidden;
+    border-radius:5px;
+    background-color:#440000;
+    border:1px solid #AA0000;
+    bethistory {
+      white-space:no-wrap;
+      float:right;
+      width:43px;
+      height:38px;
+      text-align:center;
+      vertical-align:top;
+      border:1px solid #AA0000;
+      .historynumber {
+        text-align:center;
+        padding:5px;
+        color:#ffffcc;
+        position:relative;
+        &.red {
+          background-color:#880000;
+        }
+        &.black {
+          background-color:#282525;
+        }
+        &.green {
+          background-color:#11461A;
+        }
+        font-size:13pt;
+      }
+    }
+  }
+}
+
+#g-roulette {
+position:relative;
+
+  @media (max-width: 9999px) {
+-ms-transform: scale(0.88);
+-moz-transform: scale(0.88);
+-o-transform: scale(0.88);
+-webkit-transform: scale(0.88);
+transform: scale(0.88);
+left:-41px;
+height:300px;
+margin-top:-20px;
+  }
+  @media (max-width: 1200px) {
+  -ms-transform: scale(0.7);
+  -moz-transform: scale(0.7);
+  -o-transform: scale(0.7);
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+  left:-89px;
+  height:260px;
+margin-top:-40px;
+  }
+  @media (max-width: 992px) {
+-ms-transform: scale(0.8);
+-moz-transform: scale(0.8);
+-o-transform: scale(0.8);
+-webkit-transform: scale(0.8);
+transform: scale(0.8);
+left:-50px;
+height:290px;
+margin-top:-30px;
+  }
+  @media (max-width: 768px) {
+  -ms-transform: scale(0.77);
+  -moz-transform: scale(0.77);
+  -o-transform: scale(0.77);
+  -webkit-transform: scale(0.77);
+  transform: scale(0.77);
+  left:-60px;
+  height:280px;
+margin-top:-40px;
+  }
+  @media (max-width: 568px) {
+-ms-transform: scale(0.57);
+-moz-transform: scale(0.57);
+-o-transform: scale(0.57);
+-webkit-transform: scale(0.57);
+transform: scale(0.57);
+left:-80px;
+height:240px;
+margin-top:-30px;
+  }
+  @media (max-width: 480px) {
+-ms-transform: scale(0.5);
+-moz-transform: scale(0.5);
+-o-transform: scale(0.5);
+-webkit-transform: scale(0.5);
+transform: scale(0.5);
+left:-100px;
+height:210px;
+margin-top:-40px;
+  }
+}
+#g-roulette .green {
+background-color: #11461A;
+}
+#g-roulette .black {
+background-color:#282525
+}
+#g-roulette .red {
+background-color:#880000;
+}
+
+#g-roulette .board {
+width:840px;
+height:300px;
+margin:20px auto 10px auto;
+position:relative;
+
+}
+#g-roulette .board .number {
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+box-sizing:border-box;
+position:absolute;
+line-height:60px;
+height:60px;
+text-align:center;
+color:#ffffcc;
+font-size:26px;
+font-weight:400;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+width:60px;
+}
+#g-roulette .board .number.highlight:after {
+content:"";
+height:100%;
+width:100%;
+top:0;
+left:0;
+position:absolute;
+background:rgba(255,255,255,0.5)
+}
+.winner() {
+  color:#ff0000;
+border:2px solid #ff0000;
+margin:0px 0px 0px 1px;
+-webkit-box-shadow:0 0 0 1px #ff0000;
+box-shadow:0 0 0 1px #ff0000;
+text-shadow:0 1px 0 rgba(0,0,0,0.2);
+z-index:98;
+  background-image: -webkit-radial-gradient(#ffd479, #996633 30%, #cccc88 70%, #ffff88);
+  background-image: -moz-radial-gradient(#ffd479, #996633 30%, #cccc88 70%, #ffff88);
+  background-image: -o-radial-gradient(#ffd479, #996633 30%, #cccc88 70%, #ffff88);
+  background-image: radial-gradient(#ffd479, #996633 30%, #cccc88 70%, #ffff88);
+      background-position:-2px 0, 100% 0;
+}
+#g-roulette .board .number.winner {
+.winner()
+}
+.chips {
+height:30px;
+min-width:30px;
+text-align:center;
+line-height:24px;
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+margin-top:-15px;
+margin-left:-15px;
+-webkit-border-radius:60px;
+border-radius:60px;
+background:-webkit-linear-gradient(#ffec8a, #d9c56c);
+background:-moz-linear-gradient(#ffec8a, #d9c56c);
+background:-o-linear-gradient(#ffec8a, #d9c56c);
+background:-ms-linear-gradient(#ffec8a, #d9c56c);
+background:linear-gradient(#ffec8a, #d9c56c);
+border:1px solid #483704;
+border-bottom:2px solid #483704;
+font-weight:400;
+color:#483704;
+font-size:16pt;
+padding:0 8px;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+box-sizing:border-box;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+-webkit-transition:border 1s ease-in-out, font-size 1s ease-in-out;
+-moz-transition:border 1s ease-in-out, font-size 1s ease-in-out;
+-o-transition:border 1s ease-in-out, font-size 1s ease-in-out;
+-ms-transition:border 1s ease-in-out, font-size 1s ease-in-out;
+transition:border 1s ease-in-out, font-size 1s ease-in-out;
+
+}
+
+.chips.lost {
+opacity:.7;
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+filter:alpha(opacity=70);
+
+}
+.chips.won {
+border:1px solid #ff0000;
+  background-image: -webkit-radial-gradient(#ffffcc, #ffff88 30%, #ffffcc 70%, #ffff88);
+  background-image: -moz-radial-gradient(#ffffcc, #ffff88 30%, #ffffcc 70%, #ffff88);
+  background-image: -o-radial-gradient(#ffffcc, #ffff88 30%, #ffffcc 70%, #ffff88);
+  background-image: radial-gradient(#ffffcc, #ffff88 30%, #ffffcc 70%, #ffff88);
+  font-size:120%;
+  font-weight:bold;
+}
+.BC .chips {
+background:-webkit-linear-gradient(#222, #333);
+background:-moz-linear-gradient(#222, #333);
+background:-o-linear-gradient(#222, #333);
+background:-ms-linear-gradient(#222, #333);
+background:linear-gradient(#222, #333);
+border:2px solid #dcb152;
+color:#dcb152
+}
+.localizations {
+  font-size: 70%;
+}
+#num-3,#num-6,#num-9,#num-12,#num-15,#num-18,#num-21,#num-24,#num-27,#num-30,#num-33,#num-36 {
+top:0;
+.bet();
+.shimmer();
+}
+#col-3 {
+  top:0px;
+  .shimmer();
+}
+#bet-num-3,#bet-num-6,#bet-num-9,#bet-num-12,#bet-num-15,#bet-num-18,#bet-num-21,#bet-num-24,#bet-num-27,#bet-num-30,#bet-num-33,#bet-num-36,#bet-col-3 {
+top:0;
+.bet();
+}
+#num-2,#num-5,#num-8,#num-11,#num-14,#num-17,#num-20,#num-23,#num-26,#num-29,#num-32,#num-35,#col-2
+{
+top:60px;
+.bet();
+.shimmerb();
+}
+
+#bet-num-2,#bet-num-5,#bet-num-8,#bet-num-11,#bet-num-14,#bet-num-17,#bet-num-20,#bet-num-23,#bet-num-26,#bet-num-29,#bet-num-32,#bet-num-35,#bet-col-2 {
+top:60px;
+.bet();
+}
+#num-1,#num-4,#num-7,#num-10,#num-13,#num-16,#num-19,#num-22,#num-25,#num-28,#num-31,#num-34,#col-1
+{
+top:120px;
+.bet();
+.shimmer();
+}
+#bet-num-1,#bet-num-4,#bet-num-7,#bet-num-10,#bet-num-13,#bet-num-16,#bet-num-19,#bet-num-22,#bet-num-25,#bet-num-28,#bet-num-31,#bet-num-34,#bet-col-1 {
+top:120px;
+.bet();
+}
+
+#hilo-1,#hilo-2,#eo-1,#eo-2,#rb-1,#rb-2 {
+top:240px;
+.bet();
+.shimmer();
+}
+
+#bet-hilo-1,#bet-eo-1,#bet-rb-1,#bet-hilo-2,#bet-eo-2,#bet-rb-2 {
+top:240px;
+.bet();
+}
+#num-3,#num-2,#num-1,#bet-num-1,#bet-num-2,#bet-num-3 {
+left:60px
+}
+#num-6,#num-5,#num-4,#bet-num-4,#bet-num-5,#bet-num-6 {
+left:120px
+}
+#num-9,#num-8,#num-7,#bet-num-7,#bet-num-8,#bet-num-9 {
+left:180px
+}
+#num-12,#num-11,#num-10,#bet-num-10,#bet-num-11,#bet-num-12 {
+left:240px
+}
+#num-15,#num-14,#num-13,#bet-num-13,#bet-num-14,#bet-num-15 {
+left:300px
+}
+#num-18,#num-17,#num-16,#bet-num-16,#bet-num-17,#bet-num-18 {
+left:360px
+}
+#num-21,#num-20,#num-19,#bet-num-19,#bet-num-20,#bet-num-21 {
+left:420px
+}
+#num-24,#num-23,#num-22,#bet-num-22,#bet-num-23,#bet-num-24 {
+left:480px
+}
+#num-27,#num-26,#num-25,#bet-num-25,#bet-num-26,#bet-num-27 {
+left:540px
+}
+#num-30,#num-29,#num-28,#bet-num-28,#bet-num-29,#bet-num-30 {
+left:600px
+}
+#num-33,#num-32,#num-31,#bet-num-31,#bet-num-32,#bet-num-33 {
+left:660px
+}
+#num-36,#num-35,#num-34,#bet-num-34,#bet-num-35,#bet-num-36 {
+left:720px
+}
+#col-1,#col-2,#col-3 {
+  border:1px solid #ffd479 !important;
+  left:780px;
+}
+
+#bet-col-1,#bet-col-2,#bet-col-3 {
+left:780px;
+}
+#num-0 {
+.shimmer();
+border:1px solid #ffd479;
+line-height:60px;
+height:60px;
+text-align:center;
+color:#ffffcc;
+font-size:26px;
+font-weight:400;
+left:0;
+width:60px;
+height:180px;
+line-height:180px;
+-webkit-border-radius:100px 0 0 100px;
+border-radius:100px 0 0 100px;
+.bet();
+.shimmer();
+}
+#num-0.highlight:after {
+content:"";
+height:100%;
+width:100%;
+top:0;
+left:0;
+position:absolute;
+background:rgba(255,255,255,0.5)
+}
+#num-0.winner {
+.winner();
+}
+#num-0.highlight:after {
+-webkit-border-radius:100px 0 0 100px;
+border-radius:100px 0 0 100px
+}
+#col-1,#col-2,#col-3,#bet-col-1,#bet-col-2,#bet-col-3 {
+line-height:60px;
+height:60px;
+text-align:center;
+color:#ffffcc;
+font-size:26px;
+font-weight:400;
+width:60px;
+.bet();
+}
+#col-1.highlight:after,#col-2.highlight:after,#col-3.highlight:after,#bet-col-1.highlight:after,#bet-col-2.highlight:after,#bet-col-3.highlight:after {
+content:"";
+height:100%;
+width:100%;
+top:0;
+left:0;
+position:absolute;
+background:rgba(255,255,255,0.5)
+}
+
+#col-1.winner,#col-2.winner,#col-3.winner,#bet-col-1.winner,#bet-col-2.winner,#bet-col-3.winner {
+.winner();
+}
+#col-1,#col-1.highlight:after,#bet-col-1 {
+-webkit-border-radius:0 0 10px 0;
+border-radius:0 0 10px 0
+}
+#col-3,#col-3.highlight:after,#bet-col-3 {
+-webkit-border-radius:0 10px 0 0;
+border-radius:0 10px 0 0
+}
+
+
+
+
+#doz-1,#doz-2,#doz-3 {
+  .bet();
+  line-height:60px;
+  height:60px;
+  text-align:center;
+  color:#ffffcc;
+  font-size:26px;
+  font-weight:400;
+  width:240px;
+  top:180px;
+  &.highlight:after {
+    content:"";
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    position:absolute;
+    background:rgba(255,255,255,0.5)
+  }
+  .shimmerc();
+}
+#doz-3 {
+  border:1px solid #ffd479;
+  border-right:3px solid #ffd479;
+  width:243px;
+}
+#bet-doz-1,#bet-doz-2,#bet-doz-3 {
+  .bet();
+  border:1px solid #ffffcc;
+  line-height:60px;
+  height:60px;
+  text-align:center;
+  color:#ffffcc;
+  font-size:26px;
+  font-weight:400;
+  width:240px;
+  top:180px;
+  &.highlight:after {
+    content:"";
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    position:absolute;
+    background:rgba(255,255,255,0.5)
+  }
+}
+
+#doz-1.winner,#doz-2.winner,#doz-3.winner,#bet-doz-1.winner,#bet-doz-2.winner,#bet-doz-3.winner {
+
+.winner();
+}
+#doz-1,#bet-doz-1 {
+left:60px;
+
+}
+#doz-2,#bet-doz-2 {
+left:300px
+}
+#doz-3,#bet-doz-3 {
+left:540px
+}
+
+#hilo-1,#hilo-2 {
+  line-height:60px;
+height:60px;
+text-align:center;
+color:#ffffcc;
+font-size:26px;
+font-weight:400;
+
+width:120px;
+
+border:1px solid #ffd479;
+
+}
+#hilo-2 {
+  width:123px;
+}
+
+#bet-hilo-1,#bet-hilo-2 {
+line-height:60px;
+height:60px;
+text-align:center;
+color:#ffffcc;
+font-size:26px;
+font-weight:400;
+
+width:120px;
+}
+#hilo-1.highlight:after,#hilo-2.highlight:after,#bet-hilo-1.highlight:after,#bet-hilo-2.highlight:after {
+content:"";
+height:100%;
+width:100%;
+top:0;
+left:0;
+position:absolute;
+background:rgba(255,255,255,0.5)
+}
+#hilo-1.winner,#hilo-2.winner,#bet-hilo-1.winner,#bet-hilo-2.winner {
+
+.winner();
+}
+#hilo-1,#bet-hilo-1 {
+left:60px;
+-webkit-border-radius:0 0 0 10px;
+border-radius:0 0 0 10px;
+
+}
+#hilo-1.highlight:after,#bet-hilo-1.highlight:after {
+-webkit-border-radius:0 0 0 10px;
+border-radius:0 0 0 10px
+}
+#hilo-2,#bet-hilo-2 {
+left:660px;
+-webkit-border-radius:0 0 10px 0;
+border-radius:0 0 10px 0;
+
+}
+#hilo-2.highlight:after,#bet-hilo-2.highlight:after {
+-webkit-border-radius:0 0 10px 0;
+border-radius:0 0 10px 0
+}
+#eo-1,#eo-2,#bet-eo-1,#bet-eo-2 {
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+box-sizing:border-box;
+position:absolute;
+line-height:60px;
+height:60px;
+text-align:center;
+color:#ffffcc;
+font-size:26px;
+font-weight:400;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+width:120px
+}
+#eo-1.highlight:after,#eo-2.highlight:after,#bet-eo-1.highlight:after,#bet-eo-2.highlight:after {
+content:"";
+height:100%;
+width:100%;
+top:0;
+left:0;
+position:absolute;
+background:rgba(255,255,255,0.5)
+}
+#eo-1.winner,#eo-2.winner,#bet-eo-1.winner,#bet-eo-2.winner {
+
+.winner();
+}
+#eo-1,#bet-eo-1 {
+left:180px
+}
+#eo-2,#bet-eo-2 {
+left:540px
+}
+#eo-1,#eo-2 {
+  .shimmerc();
+  border:1px solid #ffd479;
+}
+#rb-1,#rb-2 {
+  .shimmerb();
+  border:1px solid #ffd479;
+}
+
+#rb-1,#rb-2,#bet-rb-1,#bet-rb-2 {
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+box-sizing:border-box;
+position:absolute;
+line-height:60px;
+height:60px;
+text-align:center;
+color:#ffffcc;
+font-size:26px;
+font-weight:400;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+width:120px
+}
+#rb-1.highlight:after,#rb-2.highlight:after,#bet-rb-1.highlight:after,#bet-rb-2.highlight:after {
+content:"";
+height:100%;
+width:100%;
+top:0;
+left:0;
+position:absolute;
+background:rgba(255,255,255,0.5)
+}
+#rb-1.winner,#rb-2.winner,#bet-rb-1.winner,#bet-rb-2.winner {
+.winner();
+}
+#rb-1,#bet-rb-1 {
+left:300px;
+background-color:#880000;
+}
+#rb-2,#bet-rb-2 {
+left:420px;
+background-color:#282525
+}
+#bet-num-1,
+#bet-num-2,
+#bet-num-3,
+#bet-num-4,
+#bet-num-5,
+#bet-num-6,
+#bet-num-7,
+#bet-num-8,
+#bet-num-9,
+#bet-num-10,
+#bet-num-11,
+#bet-num-12,
+#bet-num-13,
+#bet-num-14,
+#bet-num-15,
+#bet-num-16,
+#bet-num-17,
+#bet-num-18,
+#bet-num-19,
+#bet-num-20,
+#bet-num-21,
+#bet-num-22,
+#bet-num-23,
+#bet-num-24,
+#bet-num-25,
+#bet-num-26,
+#bet-num-27,
+#bet-num-28,
+#bet-num-29,
+#bet-num-30,
+#bet-num-31,
+#bet-num-32,
+#bet-num-33,
+#bet-num-34,
+#bet-num-35,
+#bet-num-36,
+#bet-num-0 {
+  .bet-num();
+}
+#bet-num-0 {
+  height:170px;
+}
+
+#bet-spl-v-0-1 {
+left:54px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-2 {
+left:114px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-3 {
+left:174px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-4 {
+left:234px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-5 {
+left:294px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-6 {
+left:354px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-7 {
+left:414px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-8 {
+left:474px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-9 {
+left:534px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-10 {
+left:594px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-11 {
+left:654px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-0-12 {
+left:714px;
+top:0;
+.bet-spl-v();
+}
+#bet-spl-v-1-1 {
+left:54px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-2 {
+left:114px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-3 {
+
+left:174px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-4 {
+
+left:234px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-5 {
+
+left:294px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-6 {
+
+left:354px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-7 {
+
+left:414px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-8 {
+
+left:474px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-9 {
+
+left:534px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-10 {
+
+left:594px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-11 {
+
+left:654px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-1-12 {
+
+left:714px;
+top:60px;
+.bet-spl-v();
+}
+#bet-spl-v-2-1 {
+
+left:54px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-2 {
+
+left:114px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-3 {
+
+left:174px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-4 {
+
+left:234px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-5 {
+
+left:294px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-6 {
+
+left:354px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-7 {
+
+left:414px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-8 {
+
+left:474px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-9 {
+
+left:534px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-10 {
+
+left:594px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-11 {
+
+left:654px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-v-2-12 {
+
+left:714px;
+top:120px;
+.bet-spl-v();
+}
+#bet-spl-h-1-1 {
+
+left:60px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-1 {
+
+left:60px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-2 {
+
+left:120px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-2 {
+
+left:120px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-3 {
+
+left:180px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-3 {
+
+left:180px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-4 {
+
+left:240px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-4 {
+
+left:240px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-5 {
+
+left:300px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-5 {
+
+left:300px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-6 {
+
+left:360px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-6 {
+
+left:360px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-7 {
+
+left:420px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-7 {
+
+left:420px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-8 {
+
+left:480px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-8 {
+
+left:480px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-9 {
+
+left:540px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-9 {
+
+left:540px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-10 {
+
+left:600px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-10 {
+
+left:600px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-11 {
+
+left:660px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-11 {
+
+left:660px;
+top:114px;
+.bet-spl-h();
+}
+#bet-spl-h-1-12 {
+
+left:720px;
+top:54px;
+.bet-spl-h();
+}
+#bet-spl-h-2-12 {
+
+left:720px;
+top:114px;
+.bet-spl-h();
+}
+#bet-cor-1-1 {
+.bet-cor();
+left:54px;
+top:54px;
+.bet();
+}
+#bet-cor-2-1 {
+.bet-cor();
+left:54px;
+top:114px;
+.bet-cor();
+}
+#bet-cor-1-2 {
+.bet-cor();
+left:114px;
+top:54px;
+
+}
+#bet-cor-2-2 {
+.bet-cor();
+left:114px;
+top:114px;
+
+}
+#bet-cor-1-3 {
+.bet-cor();
+left:174px;
+top:54px;
+
+}
+#bet-cor-2-3 {
+.bet-cor();
+left:174px;
+top:114px;
+
+}
+#bet-cor-1-4 {
+.bet-cor();
+left:234px;
+top:54px;
+
+}
+#bet-cor-2-4 {
+.bet-cor();
+left:234px;
+top:114px;
+
+}
+#bet-cor-1-5 {
+.bet-cor();
+left:294px;
+top:54px;
+
+}
+#bet-cor-2-5 {
+.bet-cor();
+left:294px;
+top:114px;
+
+}
+#bet-cor-1-6 {
+.bet-cor();
+left:354px;
+top:54px;
+
+}
+#bet-cor-2-6 {
+.bet-cor();
+left:354px;
+top:114px;
+
+}
+#bet-cor-1-7 {
+.bet-cor();
+left:414px;
+top:54px;
+
+}
+#bet-cor-2-7 {
+.bet-cor();
+left:414px;
+top:114px;
+
+}
+#bet-cor-1-8 {
+.bet-cor();
+left:474px;
+top:54px;
+
+}
+#bet-cor-2-8 {
+.bet-cor();
+left:474px;
+top:114px;
+
+}
+#bet-cor-1-9 {
+.bet-cor();
+left:534px;
+top:54px;
+
+}
+#bet-cor-2-9 {
+.bet-cor();
+left:534px;
+top:114px;
+
+}
+#bet-cor-1-10 {
+.bet-cor();
+left:594px;
+top:54px;
+
+}
+#bet-cor-2-10 {
+.bet-cor();
+left:594px;
+top:114px;
+
+}
+#bet-cor-1-11 {
+.bet-cor();
+left:654px;
+top:54px;
+
+}
+#bet-cor-2-11 {
+.bet-cor();
+left:654px;
+top:114px;
+
+}
+#bet-cor-1-12 {
+.bet-cor();
+left:714px;
+top:54px;
+
+}
+#bet-cor-2-12 {
+.bet-cor();
+left:714px;
+top:114px;
+
+}
+#bet-line-1 {
+.bet-cor();
+left:54px;
+top:-6px;
+
+}
+#bet-str-1 {
+.bet-spl-h();
+left:60px;
+top:-6px;
+
+}
+#bet-line-2 {
+.bet-cor();
+left:114px;
+top:-6px;
+
+}
+#bet-str-2 {
+.bet-spl-h();
+left:120px;
+top:-6px;
+
+}
+#bet-line-3 {
+.bet-cor();
+left:174px;
+top:-6px;
+
+}
+#bet-str-3 {
+.bet-spl-h();
+left:180px;
+top:-6px;
+
+}
+#bet-line-4 {
+.bet-cor();
+left:234px;
+top:-6px;
+
+}
+#bet-str-4 {
+.bet-spl-h();
+left:240px;
+top:-6px;
+
+}
+#bet-line-5 {
+.bet-cor();
+left:294px;
+top:-6px;
+
+}
+#bet-str-5 {
+.bet-spl-h();
+left:300px;
+top:-6px;
+
+}
+#bet-line-6 {
+.bet-cor();
+left:354px;
+top:-6px;
+
+}
+#bet-str-6 {
+.bet-spl-h();
+left:360px;
+top:-6px;
+
+}
+#bet-line-7 {
+.bet-cor();
+left:414px;
+top:-6px;
+
+}
+#bet-str-7 {
+.bet-spl-h();
+left:420px;
+top:-6px;
+
+}
+#bet-line-8 {
+.bet-cor();
+left:474px;
+top:-6px;
+
+}
+#bet-str-8 {
+.bet-spl-h();
+left:480px;
+top:-6px;
+
+}
+#bet-line-9 {
+.bet-cor();
+left:534px;
+top:-6px;
+
+}
+#bet-str-9 {
+.bet-spl-h();
+left:540px;
+top:-6px;
+
+}
+#bet-line-10 {
+.bet-cor();
+left:594px;
+top:-6px;
+
+}
+#bet-str-10 {
+.bet-spl-h();
+left:600px;
+top:-6px;
+
+}
+#bet-line-11 {
+.bet-cor();
+left:654px;
+top:-6px;
+
+}
+#bet-str-11 {
+.bet-spl-h();
+left:660px;
+top:-6px;
+
+}
+#bet-line-12 {
+.bet-cor();
+left:714px;
+top:-6px;
+
+}
+#bet-str-12 {
+.bet-spl-h();
+left:720px;
+top:-6px;
+
+}
+#bet-doz-1 {
+.bet-hilo();
+width:228px;
+height:48px;
+}
+#bet-doz-2 {
+.bet-hilo();
+width:228px;
+height:48px;
+}
+#bet-doz-3 {
+.bet-hilo();
+width:228px;
+height:48px;
+}
+#bet-hilo-1 {
+.bet-hilo();
+width:108px;
+height:48px;
+}
+#bet-eo-1 {
+.bet-hilo();
+width:108px;
+height:48px;
+}
+#bet-rb-1 {
+.bet-hilo();
+width:108px;
+height:48px;
+}
+#bet-hilo-2 {
+.bet-hilo();
+width:108px;
+height:48px;
+}
+#bet-eo-2 {
+.bet-hilo();
+width:108px;
+height:48px;
+}
+#bet-rb-2 {
+.bet-hilo();
+width:108px;
+height:48px;
+}
+.bet-highlight {
+  background: rgba(255, 238, 170, 0.5);
+}
+
+// game specific styles extracted from html inline style tags
+
+
+.roulette-game-sound-toggle-container {
+display:inline-block;
+  div {
+    position:relative;top:-3px;
+  }
+}

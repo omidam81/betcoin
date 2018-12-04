@@ -1,0 +1,109 @@
+<div ng-controller="GameController" class="row noselect roulette-area" id="gameContainer">
+    <div class="col-xs-12 col-md-5 text-center col-md-push-7">
+
+        <div><img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" /></div>
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <div>
+             <spinmessage></spinmessage>
+
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+        </div>
+        <div class="clear-both position-relative" style="margin:10px;">
+
+              <bc-client-seed class="seed-container" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+        <div >
+
+      <div class="row position-relative" style="margin:10px;">
+        <div id="wheelhistory" class="col-xs-12">
+          <div class="history">
+            <bethistory ng-repeat="number in recentnumbers" data-color="{{number.color}}" data-number="{{number.number}}"></bethistory>
+          </div>
+        </div>
+         <!-- <div class="col-xs-6 col-sm-4 col-sm-push-5">
+            <div class="margin-top-10"><%= home.totalbet %> {{totalbet | cryptovalue}} BTC</div>
+
+          </div> -->
+      </div>
+          <div class="row" style="display:inline-block;margin:10px;">
+
+            <proof-button class=""></proof-button>
+
+            <autospin-button class="" ></autospin-button>
+          </div>
+
+
+      </div>
+    </div>
+
+
+    <div class="col-xs-12 col-md-7 game col-md-pull-5 wheelContainer">
+        <div class="sound-toggle-container">
+            <div class="soundToggle"><img  ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+        </div>
+
+        <div class="wheelWrap">
+            <div class="wheel" ng-style="listposition">
+                <div class="wheelArrow">
+                    <img src="./img/spike.png"/>
+                </div>
+
+                <img ng-disabled="withdrawPending || isGameInProgress" class="wheelBackImage" src="./img/w2.png" id="wheelBackImage" />
+                <img ng-disabled="withdrawPending || isGameInProgress" class="wheelImage" src="./img/w1b.png" id="wheelImage" />
+                <div class="circleCenter btn-image" bet-button ng-class="{'btn-working': withdrawPending || isGameInProgress}">
+                    <img class="normal" src="./img/w3.png"  />
+                    <img class="pressed" src="./img/w3b.png"  />
+                    <img class="spinning" src="./img/w3c.png"  />
+                </div>
+                <button id="wheelHitbox" ng-disabled="withdrawPending || isGameInProgress" ng-click="play()" class="noselect"></button>
+            </div>
+        </div>
+
+
+        <div class="betbuttons noselect text-center padding-10" >
+            <div class="bets bets-1 btn-image" placebet data-bet="1" ng-mouseover="overZero=true" ng-mouseout="overZero=false">
+                <div  class="chips" style="display:none;"></div>
+                <img class="normal" src="./img/bets/1.png"  />
+                <img class="pressed" src="./img/bets/1b.png"  />
+            </div>
+            <div class="bets bets-3 btn-image" placebet data-bet="3" ng-mouseover="overZero=true" ng-mouseout="overZero=false">
+                <div  class="chips " style="display:none;"></div>
+                <img class="normal" src="./img/bets/3.png"  />
+                <img class="pressed" src="./img/bets/3b.png"  />
+            </div>
+            <div class="bets bets-5 btn-image" placebet data-bet="5" ng-mouseover="overZero=true" ng-mouseout="overZero=false">
+                <div class="chips " style="display:none;"></div>
+                <img class="normal" src="./img/bets/5.png"  />
+                <img class="pressed" src="./img/bets/5b.png"  />
+            </div>
+            <div class="bets bets-10 btn-image" placebet data-bet="10" ng-mouseover="overZero=true" ng-mouseout="overZero=false">
+                <div  class="chips " style="display:none;"></div>
+                <img class="normal" src="./img/bets/10.png"  />
+                <img class="pressed" src="./img/bets/10b.png"  />
+            </div>
+            <div class="bets bets-20 btn-image" placebet  data-bet="20" ng-mouseover="overZero=true" ng-mouseout="overZero=false">
+                <div  class="chips " style="display:none;"></div>
+                <img class="normal" src="./img/bets/20.png"  />
+                <img class="pressed" src="./img/bets/20b.png"  />
+            </div>
+            <div class="bets bets-45 btn-image" placebet data-bet="45" ng-mouseover="overZero=true" ng-mouseout="overZero=false">
+                <div  class="chips " style="display:none;"></div>
+                <img class="normal" src="./img/bets/45.png"  />
+                <img class="pressed" src="./img/bets/45b.png"  />
+            </div>
+            <div clear-bet class="btn-clear" bc-popover="{{clearBetsPopover}}" bc-popover-content="<%= buttons.clearbets_individual %>" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top">
+                <div class="normal"/><div class="pressed"/>
+                <img class="normal" src="./img/bets/clear.png" style="display:none;" />
+                <img class="pressed" src="./img/bets/clearb.png" style="display:none;" />
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <div class="hide localizations">
+      <div id="localization-x"><span><%= game.x %></span></div>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,34 @@
+{
+    "prod": "tiles",
+    "meta": {
+        "title": "Betcoin™ Tiles - Provably Fair - Win Bitcoin!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-tiles.png"
+    },
+    "home": {
+        "title_image": "img/icons/tiles280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/tiles"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/pai"
+        }
+    },
+    "buttons": {
+        "split": "Split",
+        "house_way": "House Way"
+    },
+    "text": {
+        "invalid_split": "Two cards hand should not be higher than Five cards hand"
+    },
+    "rankNames": [
+        "",
+        "Pair",
+        "Wong",
+        "Gong",
+        ""
+    ]
+}

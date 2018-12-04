@@ -1,0 +1,155 @@
+<div ng-controller="GameController" class="row noselect">
+
+    <div class="col-xs-12 col-sm-5 text-center col-sm-push-7">
+
+        <img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" />
+        <div id="gameControls">
+            <player-info class="row"></player-info>
+            <cashout-button player = "player" game="game" class="row"></cashout-button>
+            <div id="spinmessage" class="row">
+                <div class="color-gold" ng-show="maxBetErr"><%= serverErrors["172"] %></div>
+                <div class="color-gold" ng-show="minbetMsg"><%= serverErrors["173"] %></div>
+                <div class="color-gold" ng-show="serverMsg"><%= serverMsg %></div>
+                <div class="color-gold" ng-show="serverErr"><%= serverErrors["032"] %></div>
+                <div class="color-gold" ng-show="minconfErr"><%= minconfMsg %></div>
+                <div class="color-gold" ng-show="withdrawErr"><%= withdrawErrorMsg %></div>
+                <span ng-hide="hasError() || isGameInProgress || resultProfit != null"><%= game.spinmessage %></span>
+                <!-- <span ng-show="isGameInProgress&&!player.anonymous"><%= game.spinningmessage %></span> -->
+                <span ng-show="isGameInProgress&&player.anonymous"><%= game.spinningmessage_anonymous %></span>
+                <div ng-show="resultProfit && !isGameInProgress"><%= game.winmessage %> {{ currencyAbbr }} {{ resultProfit | cryptovalue }}</div>
+                <div ng-show="resultMultiplier==1 && !isGameInProgress"><%= game.returnbet %></div>
+            </div>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr" class="row"></bet-panel>
+            <div style="clear:both;position:relative;">
+                <div style="display:inline-block">
+                    <div><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+                </div>
+                <proof-button></proof-button>
+            </div>
+            <div style="margin:10px auto;position:relative;">
+                <bc-client-seed style="" reset="isResetSeed"
+                                seed-value="clientSeedValue"
+                                init-seed-value="gameData.client_seed"></bc-client-seed>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-7 col-sm-pull-5">
+        <div id="gameContainer">
+            <div class="table-background margin-top-10">
+                <div class="panel panel-default">
+                    <div class="panel-header">
+                    </div>
+                    <div class="panel-body" id="play-intros">
+                        <div ng-show="!currentWinner">
+                            <%= text.buy_tickets_intro %>
+                        </div>
+                        <div ng-show="currentWinner">
+                            <cup hidecup="true" timeframe="true" type="currentWinner.interval"></cup>
+                            <span ng-show="currentWinner.result == player._id">
+                                <%= text.current_win_intro %>
+                            </span>
+                            <span ng-show="currentWinner.result != player._id">
+                                <%= text.current_nowin_intro %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2 cups">
+                                <gamecounter gamedata="lotteries[BCSession.currency][0]"
+                                             player="player"
+                                             on-add-bet="playGame(game, callback)"
+                                             is-game-in-progress="isGameInProgress|| btcWager<1000"></gamecounter>
+                            </div>
+                            <div class="col-md-2 cups">
+                                <gamecounter gamedata="lotteries[BCSession.currency][1]"
+                                             player="player"
+                                             on-add-bet="playGame(game, callback)"
+                                             is-game-in-progress="isGameInProgress|| btcWager<1000"></gamecounter>
+                            </div>
+                            <div class="col-md-2 cups">
+                                <gamecounter gamedata="lotteries[BCSession.currency][2]"
+                                             player="player"
+                                             on-add-bet="playGame(game, callback)"
+                                             is-game-in-progress="isGameInProgress|| btcWager<1000"></gamecounter>
+                            </div>
+                            <div class="col-md-2 cups">
+                                <gamecounter gamedata="lotteries[BCSession.currency][3]"
+                                             player="player"
+                                             on-add-bet="playGame(game, callback)"
+                                             is-game-in-progress="isGameInProgress|| btcWager<1000"></gamecounter>
+                            </div>
+                            <div class="col-md-2 cups">
+                                <gamecounter gamedata="lotteries[BCSession.currency][4]"
+                                             player="player"
+                                             on-add-bet="playGame(game, callback)"
+                                             is-game-in-progress="isGameInProgress|| btcWager<1000"></gamecounter>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="hidden-xs hidden-sm"></hr>
+                    <div class="row my-current-bets" ng-show="playerGames.length > 0">
+                        <div class="col-md-6">
+                            <%= text.my_live_bets %>
+                            <table class="table col-md-12 margin-top-10">
+                                <thead>
+                                    <th class="text-center"><%= game.type %></th>
+                                    <th class="text-center"><%= spins.jackpot %></th>
+                                    <th class="text-center"><%= spins.mybets %></th>
+                                    <th class="text-center"><%= text.cuttime %></th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="playerGame in playerGames | orderBy:'end':reverse"
+                                        ng-show="playerGame.total_player_wagered>0">
+                                        <td>
+                                            {{ playerGame.interval.substring(0, playerGame.interval.length - 1) }}
+                                            <span ng-show="playerGame.interval.indexOf('m') !== -1"><%= text.minutes %></span>
+                                            <span ng-show="playerGame.interval.indexOf('h') !== -1"><%= text.hours %></span>
+                                            <span ng-show="playerGame.interval.indexOf('d') !== -1"><%= text.days %></span>
+                                        </td>
+                                        <td>{{playerGame.jackpot| cryptovalue}}</td>
+                                        <td>{{playerGame.total_player_wagered| cryptovalue}}</td>
+                                        <td>{{playerGame.end | date:"MM/dd HH:mm:ss"}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <%= text.my_next_drawing%>
+                            <div class="panel panel-default select-game" ng-repeat="nextDraw in nextDraws">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <cup type="nextDraw.interval"></cup>
+                                            <div class="counter-numbers">{{ nextDraw.jackpot | cryptovalue }}</div>
+                                            <div ng-show="nextDraw.currency=='bitcoin'">BTC</div>
+                                            <div ng-show="nextDraw.currency=='dogecoin'">XDG</div>
+                                            <div ng-show="nextDraw.currency=='litecoin'">LTC</div>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <gamecounter gamedata="nextDraw"
+                                                         class="row" winner="true"
+                                                         player="player" hidecup="true"
+                                                         disable-bet="true"></gamecounter>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="winner && nextDraw.winner.player_alias">
+                                        <label class="current-winner">
+                                            <%=text.current_winner%>:
+                                        </label>
+                                        <div class="current-winner">
+                                            {{nextDraw.winner.player_alias}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

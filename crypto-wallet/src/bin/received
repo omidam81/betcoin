@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+curl --silent --output /dev/null -X POST http://localhost:1339/walletnotify --data "$1"
+

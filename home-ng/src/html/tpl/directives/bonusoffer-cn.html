@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+<div class="panel-body">
+    <h4>您赢得了 <span ng-include="'tpl/bonus-type-cn.html'"></span> 奖励!</h4>
+    <p>您充值的额度，最高到 {{max | btc}} 个比特币, 我们将会赠送相应的额度！</p>
+    <p>额度解锁要求：总下注需要是你的充值额度和相应赠送额度加起来的 {{unlockMultiplier}}倍。</p>
+    <h2>马上接受充值奖励</h2>
+    <div><button ng-click="acceptBonus()" class="btn btn-flashy btn-lg"><%= bonus.accept %></button></div>
+    <br />
+    <div><button ng-click="rejectBonus()" class="btn btn-default btn-sm"><%= bonus.reject %></button></div>
+</div>
+</div>

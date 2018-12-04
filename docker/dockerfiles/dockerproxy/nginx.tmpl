@@ -1,0 +1,53 @@
+map $http_upgrade $connection_upgrade {
+    default Upgrade;
+    ''      close;
+}
+
+{{ range $host, $containers := groupBy $ "Env.UPSTREAM" }}
+upstream {{ $host }} {
+{{ range $index, $value := $containers }}
+    ip_hash;
+    {{ with $address := index $value.Addresses 0 }}
+    server {{ $address.IP }}:{{ $address.Port }};
+    {{ end }}
+{{ end }}
+}
+{{ end }}
+{{ range $host, $hostcontainers := groupBy $ "Env.VIRTUAL_HOST" }}
+{{ range $port, $containers := groupBy $hostcontainers "Env.PROXY_PORT" }}
+server {
+    listen {{ $port }};
+    server_name {{ $host }};
+# ssl
+    ssl on;
+    ssl_certificate /ssl/betcoin.tm.chained.crt;
+    ssl_certificate_key /ssl/betcoin.tm.key;
+    ssl_session_timeout 5m;
+    ssl_protocols SSLv3 TLSv1;
+    ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+    ssl_prefer_server_ciphers on;
+    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+{{ range $mount, $mountcontainers := groupBy $containers "Env.API_MOUNT" }}
+{{ if $mount }}
+    location /{{ $mount }}/ {
+{{ else }}
+    location / {
+{{ end }}
+        proxy_pass http://{{ (index $mountcontainers 0).Env.UPSTREAM }}/;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $host;
+        proxy_set_header X-NginX-Proxy true;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+# sockets
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_send_timeout 5;
+        proxy_read_timeout 9000;
+        proxy_connect_timeout 3;
+    }
+{{ end }}
+}
+{{ end }}
+{{ end }}

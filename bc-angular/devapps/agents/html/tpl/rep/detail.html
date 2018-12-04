@@ -1,0 +1,42 @@
+<div class="row"
+     ng-controller="RepDetailController">
+    <div class="col-md-12">
+        <h1>Rep {{rep.repToken}}</h1>
+        <h2>{{rep.name}} ({{rep.username}})</h2>
+        <h2>{{rep.email}}</h2>
+        <p>Created: {{rep.createdAt | gmtdatetime}}</p>
+        <p>Last Updated: {{rep.updatedAt | gmtdatetime}}</p>
+        <pre>{{rep.address}}</pre>
+        <p>{{rep.phone}}</p>
+        <pre>{{rep.notes}}</pre>
+        <pre>{{income}}</pre>
+        <h3>{{affiliates | number}} affiliates</h3>
+        <h3>Income</h3>
+        <div ng-repeat="(currency, amount) in income">
+            {{currency | cryptosymbol}}{{amount | cryptovalue}}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table ng-show="unassignedWelcomePacks.length"
+               class="table">
+            <thead>
+                <th>Serial Number</th>
+                <th>Bonus Code</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="welcomePack in unassignedWelcomePacks">
+                    <td>{{welcomePack.serialNumber}}</td>
+                    <td>{{welcomePack.bonusCode}}</td>
+                    <td>
+                        <button class="btn btn-primary"
+                                ng-click="registerPack($index)">
+                            Assign Pack to Rep
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div welcome-pack-table="welcomePacks"></div>
+    </div>
+</div>

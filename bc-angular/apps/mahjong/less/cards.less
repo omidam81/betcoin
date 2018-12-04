@@ -1,0 +1,310 @@
+.blink {
+  -animation: blink 1s steps(2) infinite;
+  -webkit-animation: blink 1s steps(2) infinite;
+  -moz-animation: blink 1s steps(2) infinite;
+  -o-animation: blink 1s steps(2) infinite;
+}
+.livecard.stolen .blink{
+  -animation: none;
+  -webkit-animation: none;
+  -moz-animation:none;
+  -o-animation:none;
+}
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.3; }
+}
+@-webkit-keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.3; }
+}
+@-moz-keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.3; }
+}
+@-o-keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.3; }
+}
+
+.cards {
+  clear: both;
+  text-align: center;
+  &.meld {
+    margin-right: 10px;
+  }
+}
+
+.livecard {
+  top: -200px;
+  left: -600px;
+  opacity: 0;
+}
+.livecard.dealt {
+  top: 0px;
+  left: 0px;
+  opacity: 1;
+}
+.livecard.stolen {
+  opacity: 0.3;
+}
+
+.cards > div {
+  margin-left: 0;
+  margin-left-value: 0;
+  margin-left-ltr-source: physical;
+  margin-left-rtl-source: physical;
+  float: none;
+  position: relative;
+  display: inline-block;
+}
+
+.cards > div:first-child {
+  /*float: left;*/
+  margin-left: 0px;
+  margin-left-value: 0px;
+  margin-left-ltr-source: physical;
+  margin-left-rtl-source: physical;
+}
+
+.picked .card {
+  position: relative;
+  top: -20px;
+}
+
+#dealer-cards, #player-cards {
+  zoom: 1;
+  position: relative;
+  margin: 20px auto 0;
+  height: auto;
+}
+
+#player-cards {
+  padding-top: 20px;
+}
+
+#player-two-cards {
+  margin-top: 20px;
+}
+
+.card.lost {
+  opacity: .5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -webkit-transition: opacity 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out;
+  -ms-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+}
+
+.card.lost .back {
+  display: none
+}
+
+.card {
+  width: 33px;
+  height: 50px;
+  box-shadow: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.howtoplay .card {
+  position:relative;
+  display:inline-block;
+}
+
+.front, .back {
+  border: none;
+  background-color: transparent;
+  float: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: inherit;
+  height: inherit;
+}
+
+.front {
+  webkit-background-size: contain;
+  moz-background-size: contain;
+  o-background-size: contain;
+  background-size: contain !important;
+  z-index: 1;
+}
+
+.front:before {
+  content: "";
+  position: absolute;
+  border: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.back {
+  background: url('@{cdnAppUrl}img/tiles/back.png') no-repeat center center;
+  webkit-background-size: contain;
+  moz-background-size: contain;
+  o-background-size: contain;
+  background-size: contain;
+  z-index: 0;
+}
+
+.back:before {
+  content: "";
+  position: absolute;
+  border: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.flipped .front {
+  display: none;
+}
+
+.flipped .back {
+  z-index: 1;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -o-transform: none;
+  -ms-transform: none;
+  transform: none
+}
+
+.turn .front {
+  z-index: 2
+}
+
+.character1 {
+  background: url('@{cdnAppUrl}img/tiles/c1.png') no-repeat center center
+}
+.character2 {
+  background: url('@{cdnAppUrl}img/tiles/c2.png') no-repeat center center
+}
+.character3 {
+  background: url('@{cdnAppUrl}img/tiles/c3.png') no-repeat center center
+}
+.character4 {
+  background: url('@{cdnAppUrl}img/tiles/c4.png') no-repeat center center
+}
+.character5 {
+  background: url('@{cdnAppUrl}img/tiles/c5.png') no-repeat center center
+}
+.character6 {
+  background: url('@{cdnAppUrl}img/tiles/c6.png') no-repeat center center
+}
+.character7 {
+  background: url('@{cdnAppUrl}img/tiles/c7.png') no-repeat center center
+}
+.character8 {
+  background: url('@{cdnAppUrl}img/tiles/c8.png') no-repeat center center
+}
+.character9 {
+  background: url('@{cdnAppUrl}img/tiles/c9.png') no-repeat center center
+}
+.bamboo1 {
+  background: url('@{cdnAppUrl}img/tiles/b1.png') no-repeat center center
+}
+.bamboo2 {
+  background: url('@{cdnAppUrl}img/tiles/b2.png') no-repeat center center
+}
+.bamboo3 {
+  background: url('@{cdnAppUrl}img/tiles/b3.png') no-repeat center center
+}
+.bamboo4 {
+  background: url('@{cdnAppUrl}img/tiles/b4.png') no-repeat center center
+}
+.bamboo5 {
+  background: url('@{cdnAppUrl}img/tiles/b5.png') no-repeat center center
+}
+.bamboo6 {
+  background: url('@{cdnAppUrl}img/tiles/b6.png') no-repeat center center
+}
+.bamboo7 {
+  background: url('@{cdnAppUrl}img/tiles/b7.png') no-repeat center center
+}
+.bamboo8 {
+  background: url('@{cdnAppUrl}img/tiles/b8.png') no-repeat center center
+}
+.bamboo9 {
+  background: url('@{cdnAppUrl}img/tiles/b9.png') no-repeat center center
+}
+.circle1 {
+  background: url('@{cdnAppUrl}img/tiles/d1.png') no-repeat center center
+}
+.circle2 {
+  background: url('@{cdnAppUrl}img/tiles/d2.png') no-repeat center center
+}
+.circle3 {
+  background: url('@{cdnAppUrl}img/tiles/d3.png') no-repeat center center
+}
+.circle4 {
+  background: url('@{cdnAppUrl}img/tiles/d4.png') no-repeat center center
+}
+.circle5 {
+  background: url('@{cdnAppUrl}img/tiles/d5.png') no-repeat center center
+}
+.circle6 {
+  background: url('@{cdnAppUrl}img/tiles/d6.png') no-repeat center center
+}
+.circle7 {
+  background: url('@{cdnAppUrl}img/tiles/d7.png') no-repeat center center
+}
+.circle8 {
+  background: url('@{cdnAppUrl}img/tiles/d8.png') no-repeat center center
+}
+.circle9 {
+  background: url('@{cdnAppUrl}img/tiles/d9.png') no-repeat center center
+}
+.windeast {
+  background: url('@{cdnAppUrl}img/tiles/we.png') no-repeat center center
+}
+.windsouth {
+  background: url('@{cdnAppUrl}img/tiles/ws.png') no-repeat center center
+}
+.windwest {
+  background: url('@{cdnAppUrl}img/tiles/ww.png') no-repeat center center
+}
+.windnorth {
+  background: url('@{cdnAppUrl}img/tiles/wn.png') no-repeat center center
+}
+.dragonred {
+  background: url('@{cdnAppUrl}img/tiles/dr.png') no-repeat center center
+}
+.dragongreen {
+  background: url('@{cdnAppUrl}img/tiles/dg.png') no-repeat center center
+}
+.dragonwhite {
+  background: url('@{cdnAppUrl}img/tiles/dw.png') no-repeat center center
+}
+.flowerplum {
+  background: url('@{cdnAppUrl}img/tiles/plum.png') no-repeat center center
+}
+.flowerorchid {
+  background: url('@{cdnAppUrl}img/tiles/orchid.png') no-repeat center center
+}
+.flowerchrysan {
+  background: url('@{cdnAppUrl}img/tiles/chrysan.png') no-repeat center center
+}
+.flowerbamboo {
+  background: url('@{cdnAppUrl}img/tiles/bamboo.png') no-repeat center center
+}
+.seasonspring {
+  background: url('@{cdnAppUrl}img/tiles/spring.png') no-repeat center center
+}
+.seasonsummer {
+  background: url('@{cdnAppUrl}img/tiles/summer.png') no-repeat center center
+}
+.seasonautumn {
+  background: url('@{cdnAppUrl}img/tiles/autumn.png') no-repeat center center
+}
+.seasonwinter {
+  background: url('@{cdnAppUrl}img/tiles/winter.png') no-repeat center center
+}

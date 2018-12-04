@@ -1,0 +1,58 @@
+<table class="table bc-multi-table"
+       ng-init="showUserDetails = {}"
+       ng-hide="loading">
+    <thead>
+        <th>User</th>
+        <th>Email</th>
+        <th>User ID</th>
+        <th>IP Address</th>
+        <th>locale</th>
+        <th>Last Updated</th>
+    </thead>
+    <tbody ng-repeat="user in listData.result">
+        <tr ng-class="showUserDetails[user._id]?'highlighted':''">
+            <td>
+                <form class="form">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"
+                                   ng-model="user.selected"
+                                   ng-change="toggleUserSelect(user._id)">
+                            {{ user.username }}
+                        </label>
+                    </div>
+                </form>
+                <hr>
+                <span class="glyphicon glyphicon-globe" ng-if="user.token"></span>
+                <span class="glyphicon glyphicon-certificate" ng-if="!user.anonymous"></span>
+                <span class="glyphicon glyphicon-lock" ng-if="user.lock">({{user.lock}})</span>
+                <span ng-click="showUserDetails[user._id]=!showUserDetails[user._id]"
+                      class="glyphicon glyphicon-chevron-down"
+                      style="cursor: pointer;">More
+                </span>
+                <span class="pull-right">Member for <elapsed date="user.createdAt"></elapsed></span>
+            </td>
+            <td>{{ user.email || user.pendingEmail }}</td>
+            <td><a ng-href="user/{{user._id}}">{{ user._id }}</a></td>
+            <td>{{ user.ip }}</td>
+            <td>{{ user.locale }}</td>
+            <td>
+                {{ user.updatedAt | gmtdatetime }}
+            </td>
+        </tr>
+        <tr class="bc-sub-table"
+            ng-show="showUserDetails[user._id]">
+            <td colspan="2">
+                <a href="search/wallet?q_userId={{user._id}}">Find Wallets</a>
+            </td>
+            <td colspan="2">
+                <a href="search/transaction?q_userId={{user._id}}">Find Transactions</a>
+            </td>
+            <td colspan="2">
+                <a href="search/transaction?q_userId={{user._id}}&q_type=__or_deposit||withdraw">
+                    Find Deposits/Withdrawals
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

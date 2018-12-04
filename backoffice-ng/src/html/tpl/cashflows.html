@@ -1,0 +1,32 @@
+<div ng-controller="PlayerCashflowController">
+    <table class="table">
+        <caption>CASHOUT/CASHIN</caption>
+        <thead>
+            <tr>
+                <th>Transaction Id</th>
+                <th>User Id
+                </th>
+                <th><a sort-column sort-obj="sortObj" sort-field="transaction_amount" sort-func="load()">Amount</a>
+                </th>
+                <th><a sort-column sort-obj="sortObj" sort-field="transaction_cashflow_type" sort-func="load()">Action</a>
+                </th>
+                <th>
+                    <a sort-column sort-obj="sortObj" sort-field="transaction_date" sort-func="load()">Datetime</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="transaction in transactions.results">
+                <td>
+                    <div chars="12" blockchain-info="{{transaction.transaction_meta.txid}}" target="_blank">{{transaction.meta.txid}}</div>
+                </td>
+                <td>{{transaction.transaction_userid}}
+                </td>
+                <td>{{transaction.transaction_amount|btc}}</td>
+                <td>{{transaction.transaction_type}}</td>
+                <td>{{transaction.transaction_date|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination total-items="total" page="page" items-per-page="20" max-size="10" on-select-page="onSelectPage(page)" class="pagination-sm" boundary-links="true"></pagination>
+</div>

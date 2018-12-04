@@ -1,0 +1,55 @@
+<div ng-show="globalError">
+    <h1>
+        <span class="alert alert-danger">{{ globalError }}</span>
+    </h1>
+</div>
+<div class="row"
+     ng-if="hasLogin"
+     ng-controller="InfoBarController">
+    <span>Active Users: {{activeUsers}}</span>
+</div>
+<div class="row" ng-if="hasLogin">
+    <div class="col-xs-12">
+        <ul ng-controller="NavController" class="nav nav-pills">
+            <li ng-class="getActive('/search')"><a href="search">Search</a></li>
+            <li ng-class="getActive('/support')"><a href="support">Support</a></li>
+            <li ng-class="getActive('/security')"><a href="security">Security</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/alerts')"><a href="alerts">Alerts</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/vip')"><a href="vip">VIP</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/promotions')"><a href="promotions">Promotions</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/contacts')"><a href="contacts">Contacts</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/user-stats')"><a href="user-stats">User Stats</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/agents')"><a href="agents">Agents</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/reps')"><a href="reps">Reps</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/gamesearch')"><a href="gamesearch">Game Search</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/gametotals')"><a href="gametotals">Game Totals</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/bonustotals')"><a href="bonustotals">Bonus Totals</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/bankroll')"><a href="bankroll">Bankroll</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/reports')"><a href="reports">Reports</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel == ACCESS_SUPER_ADMIN"
+                ng-class="getActive('/cashouts')"><a href="cashouts">Pending Cashouts</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/cashbacks')"><a href="cashbacks">Cashbacks</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel == ACCESS_SUPER_ADMIN"
+                ng-class="getActive('/send-crypto')"><a href="send-crypto">Send Crypto</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/logs')"><a href="logs">Logs</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/config')"><a href="config">Configurations</a></li>
+            <li ng-if="BCAdminSession.user.accessLevel <= ACCESS_ADMIN"
+                ng-class="getActive('/logout')" ng-click="logout()"><a>log Out</a></li>
+        </ul>
+    </div>
+</div>

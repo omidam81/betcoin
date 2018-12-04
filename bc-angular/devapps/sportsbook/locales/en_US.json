@@ -1,0 +1,72 @@
+{
+    "prod": "fantan",
+    "meta": {
+        "title": "BetCoin ™ Fan Tan Bitcoin Casino - Win Bitcoins!",
+        "meta_description": "With BetCoin ™ Fan Tan you can bet in bitcoin and play the classic Fan Tan wheel. Try the game today to hit a bitcoin jackpot!",
+        "meta_keywords": "Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Fan Tan, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-olympia.png",
+        "withdrawAddress": "Your Bitcoin Wallet Address"
+    },
+    "nav": {
+        "spins": "Recent Bets",
+        "leaderboard": "Leaderboard",
+        "howtoplay": "How to Play"
+    },
+    "home": {
+        "title_image": "img/icons/olympia.png",
+        "promote_header_a": "Play to Win!",
+        "promote_header_d": "Provably fair, transparent system",
+        "totalbet": "Total Bet:"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/sportsbook"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/sportsbook"
+        }
+    },
+    "toggleNavigation": "Toggle Navigation",
+    "myDashboard": "My Dashboard",
+    "olympia": "Olympia",
+    "classic": "Classic",
+    "support": "Support",
+    "about": "About",
+    "whatIsBitcoin": "What is Bitcoin?",
+    "whereToGetBitcoins": "Where to get Bitcoins",
+    "fairness": "Fairness",
+    "loading": "Loading...",
+    "shortTitle": "BetCoin™ Olympia",
+    "title": "BetCoin™ Olympia Sportsbooking - Win Bitcoins!",
+    "meta_description": "BetCoin™ Olympia Sportsbooking - an amazing Bitcoin Casino with $1 million tax-free payouts on a $15 bet!  Highest instant Bitcoin payouts in the world! 财神骰子™比特币博彩娱乐场－赢大量比特币！",
+    "meta_keywords": "Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair",
+    "hottestEvents": "Hottest Events",
+    "upcomingEvents": "Upcoming Events",
+    "leagueEvents": "League Events",
+    "latestWins": "Latest Wins",
+    "sportSpotlight": "Sport Spotlight",
+    "leagueSpotlight": "League Spotlight",
+    "leagues": "Leagues",
+    "league": "League",
+    "event": "event",
+    "bet": "Bet",
+    "betValueDescription": "Bet value (e.g. 0.8)",
+    "alphabetical": "Alphabetical",
+    "byHotness": "By Hotness",
+    "eventsCount": "By Events Count",
+    "logout": "Logout",
+    "login": "Login",
+    "passwordUser": "Password user",
+    "upgrade": "Upgrade",
+    "signedUser": "Signed user",
+    "facebookAltText": "Facebook",
+    "twitterAltText": "Twitter",
+    "copyright": "Copyright &copy; Betcoin.tm",
+    "carousel": {
+        "title1": "bla",
+        "title2": "bla",
+        "title3": "bla"
+    }
+}

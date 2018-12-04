@@ -1,0 +1,19 @@
+<% if (locale === "zh_CN") { %>
+
+<p>尊敬的 <%= user.username %>:</p>
+<br>
+<p>恭喜! 您已经获得<%= amount %> <%= currency %> 现金返还励。</p>
+<br>
+<p>如果您有任何疑问或则顾虑，请联系我们。谢谢！</p>
+<p>财神堂 ™ 客服</p>
+
+<% } else { %>
+
+<p>Dear <%= user.username %>:</p>
+<br>
+<p>Congratulations! You have earned a cashback bonus of <%= amount %> <%= currency %></p>
+<br>
+<p>Please contact us if you have any questions or concerns. Thank you!</p>
+<p>BetCoin™ Customer Service</p>
+
+<% } %>

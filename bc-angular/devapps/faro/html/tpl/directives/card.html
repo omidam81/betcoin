@@ -1,0 +1,11 @@
+<div class="card {{card.lose}} {{card.flipped}}">
+    <div ng-if="flipped" class="back">
+        <span class="rank suit-color-{{card.suit}}">{{card.rank}}</span>
+        <span class="suit suit-color-{{card.suit}}">{{suitsymbol}}</span>
+    </div>
+    <div ng-if="!flipped" class="front suit-{{card.suit}} rank-{{card.rank}}">
+        <span class="rank suit-color-{{card.suit}}">{{card.rank}}</span>
+        <span class="suit suit-color-{{card.suit}}">{{suitsymbol}}</span>
+    </div>
+    <div class="back"></div>
+</div>

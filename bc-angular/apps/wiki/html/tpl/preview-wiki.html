@@ -1,0 +1,16 @@
+<div class="col-xs-12 col-sm-9">
+	<div class="panel panel-default main-container">
+		<div class="panel-heading">Preview Wiki</div>
+		<div class="panel-body">
+			<h1><span ng-bind-html="wiki.title"></span></h1>
+			<div class="row">
+				<p ng-bind-html="wiki.content" class="paragraph-content"></p>
+			</div>
+			<div>
+				<hr>
+				<button class="btn btn-primary" ng-click="back()">Back</button>
+				<button class="btn btn-primary" ng-click="saveWiki(wiki._id)">Save</button>
+			</div>
+		</div>	
+	</div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+    <div data-ng-repeat="blog in blogs" class="panel panel-default">
+        <div class="panel-heading"><h1 ng-bind-html="blog.title"></h1><small> - {{blog.date_created | date:'medium'}}</small></div>
+        <div class="panel-body">
+            <div>
+                <div class="row">
+                    <p ng-bind-html="blog.summary" class="paragraph-content"></p>
+                </div>
+                <p><a href="read/{{blog.slug}}">Read more...</a></p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div>
+    <form ng-submit="login()">
+        <div class="form-group" ng-show="!requireOneTimePassword">
+             <label for="username-input">User Name:</label>
+             <input type="text" id="username-input" class="form-control" ng-model="username">
+        </div>
+        <div class="form-group" ng-show="!requireOneTimePassword">
+            <label for="password-input">Password:</label>
+            <input type="password" id="password-input" class="form-control" ng-model="password">
+        </div>
+        <div class="form-group" ng-show="requireOneTimePass">
+            <label for="" class="control-label"><%= text.one_time_pass %></label>
+            <input name="one-time-pass" type="text" class="form-control" ng-model="oneTimePass" ng-required="requireOneTimePass"/>
+        </div>
+        <input type="submit" class="form-control" value="Login">
+    </form>
+</div>

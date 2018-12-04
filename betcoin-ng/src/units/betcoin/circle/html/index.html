@@ -1,0 +1,30 @@
+<div>
+    <div ng-if="user" ui-view="gamecontrols"></div>
+    <div ng-if="!user">
+        <div class="col-xs-12 col-sm-4 homeleft">
+            <img alt="<%= title %>" src="/img/circle/logo.png" class="center-block width-240"/>
+            <br />
+            <img src="img/icons/circle.png" class="margin-bottom-15 center-block img-responsive"/>
+        </div>
+        <div class="col-xs-12 col-sm-8 homeright">
+            <div class="gameusps">
+                <!-- <div class="gamecta"><%- home.splashHeader1 %></div> -->
+                <div class="gamecta text-center">
+                    <h2 class="promote-header-a"><%- home.circle_promote_header_a %></h2>
+                    <h4><%- home.circle_promote_header_b %></h4>
+                    <h4><%- home.circle_promote_header_c %></h4>
+                    <h5><%- home.circle_promote_header_d %></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div ng-controller="NavController">
+        <ul class="nav nav-tabs nav-justified game-nav-tabs">
+            <li ng-class="getClass('', 'spins', 2)"><a href="circle/spins"><%- nav.spins %></a></li>
+            <li ng-class="getClass('leaderboard', 2)"><a href="circle/leaderboard"><%- nav.leaderboard %></a></li>
+            <li ng-class="getClass('howtoplay', 2)"><a href="circle/howtoplay"><%- nav.howtoplay %></a></li>
+        </ul>
+    </div>
+    <ui-view></ui-view>
+</div>

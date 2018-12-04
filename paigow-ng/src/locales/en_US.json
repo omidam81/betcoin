@@ -1,0 +1,110 @@
+{
+    "prod": "paigow",
+    "meta": {
+        "title": "Betcoin™ Paigow - Provably Fair - Win Bitcoin!",
+        "description": "BetCoin ™ is your one-stop shop for bitcoin gambling. Play dozens of bitcoin games and hit a bitcoin jackpot today!",
+        "meta_keywords": "Bitcoin, Casino, Gambling, free bitcoin, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "isLocalized" : "true",
+    "minbetMsg": "The minimum bet is 0.000001 BTC",
+    "global": {
+        "logourl": "img/words/betcoin-paigow.png"
+    },
+    "nav": {
+        "spins": "Recent Bets",
+        "leaderboard": "Leaderboard",
+        "howtoplay": "How to Play"
+    },
+    "home": {
+        "title_image": "img/icons/paigow280.png"
+    },
+    "reels": {
+        "x": "x",
+        "symbol": "Symbol",
+        "multiplier": "Payout Multiplier"
+    },
+    "locales" : {
+        "en" : {
+            "url" : "https://www.betcoin.tm/paigow"
+        },
+        "zh" : {
+            "url" : "https://www.caishentang.com/jiu"
+        }
+    },
+    "game": {
+        "dealer": "Dealer",
+        "player": "Player",
+        "details": "Details",
+        "CircleDiv2": "Total Spins",
+        "CircleDiv3": "My Spins",
+        "CircleDiv4": "Bet:",
+        "CircleDiv5": "Credit:",
+        "CircleDiv6": "Deposit Address:",
+        "CircleButtonCashOut": "Cash Out",
+        "cashoutConfirm": "Please confirm that you want to cash out",
+        "returnToGame": "Return to game",
+        "SsHeader1": "Set Seed",
+        "SsHeader2": "Next Game ID:",
+        "SsHeader3": "Set Client Seed",
+        "spinmessage": "Select your Bet Size",
+        "spinningmessage":"<a href=\"https://www.betcoin.tm/prize\" target=\"_blank\">BetCoin Prize－World's Best Bitcoin Lottery</a>",
+        "winmessage": "WINNER",
+        "tiemessage": "PUSH",
+        "autospin_text" : " Autobet",
+        "proof_text" : "Proof"
+    },
+    "leaderboard": {
+        "topPlayers": "Top Players",
+        "bronze": "Bronze",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum",
+        "diamond": "Diamond",
+        "alias": "Username",
+        "btcwagered": "BTC Wagered"
+    },
+    "spins": {
+        "global": "Global",
+        "mybets": "My Bets",
+        "CircleTh1": "ID",
+        "CircleTh2": "Username",
+        "CircleTh3": "Result",
+        "CircleTh4": "Bet",
+        "CircleTh5": "Return",
+        "CircleTh6": "Proof",
+        "CircleTh7": "Time",
+        "CircleTh8": "Circle",
+        "ProofHeader1": "Proof",
+        "ProofDt1": "Server Seed",
+        "ProofDt2": "Initial Array",
+        "ProofDt3": "Initial Hash",
+        "ProofDt4": "Client Seed",
+        "ProofDt5": "Final Array"
+    },
+    "buttons" : {
+        "auto_war_text_on" : "Auto WAR: OFF",
+        "auto_war_text_off" : "Auto WAR: ON",
+        "auto_surrender_text_on" : "Auto Surrender: OFF",
+        "auto_surrender_text_off" : "Auto Surrender: ON",
+        "bet": "Bet",
+        "split": "Split",
+        "house_way": "House Way"
+    },
+    "text" : {
+        "invalid_split" : "Two cards hand should not be higher than Five cards hand"
+    },
+    "rankNames" : [
+        "",
+        "Five of a kind",
+        "Royal flush",
+        "Straight flush",
+        "Four of a kind",
+        "Full house",
+        "Flush",
+        "Straight",
+        "Three of a kind",
+        "Two pairs",
+        "One pair",
+        "No pair"
+    ]
+}

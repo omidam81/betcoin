@@ -1,0 +1,30 @@
+{
+    "prod": "baccarat",
+    "meta": {
+        "title": "BetCoin ™ Baccarat Bitcoin Casino - Play Provably fair bitcoin Baccarat"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-baccarat.png"
+    },
+    "home": {
+        "title_image": "img/icons/baccarat280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/baccarat"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/le"
+        }
+    },
+    "game": {
+        "spinmessage": "Select your Bet Size－Tie Bet Pays 8 to 1",
+        "score": "Score",
+        "winner": "WINNER",
+        "tie": "TIE"
+    },
+    "buttons": {
+        "tiebet": "Tie Bet",
+        "clear_bets": "Clear Bets"
+    }
+}

@@ -1,0 +1,134 @@
+<div ng-controller="GameController" class="row noselect">
+
+    <div class="col-xs-12 col-sm-5 text-center col-sm-push-7">
+
+        <img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" />
+        <div id="gameControls">
+            <player-info></player-info>
+            <cashout-button player = "player" game="game"></cashout-button>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+            <div style="clear:both;position:relative;">
+                <autospin-button></autospin-button>
+                <proof-button></proof-button>
+            </div>
+            <div style="margin:10px auto;position:relative;">
+
+                <bc-client-seed style="" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-7 col-sm-pull-5">
+        <div id="gameContainer">
+            <div>
+                <div class="label label-danger margin-top-10"><%= game.dealer %></div>
+                <div class="label label-danger margin-top-10 result-message" ng-show="playerWinLoseTie === 0&&!isGameInProgress&&!dealingCard">
+                    <%=game.winmessage%>
+                </div>
+                <div class="label label-danger margin-top-10 result-message" ng-show="playerWinLoseTie === 1&&!isGameInProgress&&!dealingCard">
+                    <%=game.tiemessage%>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="display:table;">
+                        <div class="cards-wrapper">
+                            <div class="cards" id="dealer-cards">
+                                <div ng-if="!dealercards.cards">
+                                    <card flipped="true"></card>
+                                </div>
+                                <div class="livecard" ng-if="dealercards.cards" ng-repeat="card in dealercards.cards">
+                                    <card data-card="card"></card>
+                                </div>
+                            </div>
+                            <div class="bet_results">
+                                <div ng-if="dealercards.rank&&animateCardCount >= 5">
+                                    <% for (var i = 0; i < 12; i++) { %>
+                                    <span ng-if="dealercards.rank === <%=i%>"><%=rankNames[i]%></span>
+                                    <% } %>
+                                    <span ng-if="dealercards.winLoseTie === 3&&!dealingCard"><%=game.winmessage%></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cards-wrapper">
+                            <div class="cards" id="dealer-two-cards">
+                                <div class="livecard" ng-repeat="card in dealerTwoCards.cards">
+                                    <card data-card="card"></card>
+                                </div>
+                            </div>
+                            <div class="bet_results">
+                                <div ng-if="dealerTwoCards.rank&&animateCardCount >= 7">
+                                    <% for (var i = 0; i < 12; i++) { %>
+                                    <span ng-if="dealerTwoCards.rank === <%=i%>"><%=rankNames[i]%></span>
+                                    <% } %>
+                                    <span ng-if="dealerTwoCards.winLoseTie === 3&&!dealingCard"><%=game.winmessage%></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="label label-danger"><%= game.player %></div>
+                <div class="label label-danger result-message" ng-show="playerWinLoseTie === 3&&!isGameInProgress&&!dealingCard">
+                    <%=game.winmessage%>
+                </div>
+                <div class="label label-danger result-message" ng-show="playerWinLoseTie === 1&&!isGameInProgress&&!dealingCard">
+                    <%=game.tiemessage%>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="display:table;">
+                        <div class="cards-wrapper">
+                            <div class="cards" id="player-cards">
+                                <div ng-if="!playercards.cards">
+                                    <card  flipped="true"></card>
+                                </div>
+                                <div class="livecard" ng-if="playercards.cards" ng-repeat="card in playercards.cards">
+                                    <card data-card="card" ng-click="pickCard($index+1)" class="{{getSplitIndex($index+1)!=-1?'picked':''}}"></card>
+                                </div>
+                            </div>
+                            <div class="bet_results">
+                                <div ng-if="playercards.rank&&animateCardCount >= 12">
+                                    <% for (var i = 0; i < 12; i++) { %>
+                                    <span ng-if="playercards.rank === <%=i%>"><%=rankNames[i]%></span>
+                                    <% } %>
+                                    <span ng-if="playercards.winLoseTie === 3&&!dealingCard"><%=game.winmessage%></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cards-wrapper">
+                            <div class="cards" id="player-two-cards">
+                                <div class="livecard" ng-repeat="card in playerTwoCards.cards">
+                                    <card data-card="card"></card>
+                                </div>
+                            </div>
+                            <div class="bet_results">
+                                <div ng-if="playerTwoCards.rank&&animateCardCount >= 14">
+                                    <% for (var i = 0; i < 12; i++) { %>
+                                    <span ng-if="playerTwoCards.rank === <%=i%>"><%=rankNames[i]%></span>
+                                    <% } %>
+                                    <span ng-if="playerTwoCards.winLoseTie === 3&&!dealingCard"><%=game.winmessage%></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <spinmessage></spinmessage>
+            <div>
+                <div style="display:inline-block">
+                    <div><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+                </div>
+                <button ng-show="!isGameInProgress" ng-click="play();" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.bet %>
+                </button>
+                <button ng-show="isGameInProgress" ng-disabled="split.length!=2" ng-click="nextAction();" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;" bc-popover="{{splitError != null}}" bc-popover-direction="top">
+                    <%= buttons.split %>
+                </button>
+                <div class="errors hide">
+                    <span class="error"><%= text.invalid_split %></span>
+                </div>
+                <button ng-show="isGameInProgress" ng-disabled="dealingCard==null||dealingCard||dealerTwoCards.rank" ng-click="nextAction(true);" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.house_way %>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

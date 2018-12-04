@@ -1,0 +1,214 @@
+<div ng-controller="GameController" class="row noselect">
+<div class="col-xs-12 col-md-12 text-center">
+
+    <img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" />
+    <div id="gameControls">
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <div style="display:inline-block;">
+            <div class="clear-both width-90-pcnt margin-right-left-auto margin-top-0 margin-bottom-0">
+                <div class="balance">
+                    <div><%=game.CircleDiv5 %></div>
+                    <div class="numbers numbersBalance">{{ currencyAbbr }} {{ BCSession.user.wallets[BCSession.currency].balance | cryptovalue }}</div>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;position:relative;display:inline-block;">
+            <proof-button></proof-button>
+        </div>
+        <div style="margin:10px auto;position:relative;display:inline-block;">
+            <div style="float:left;margin-top:23px;">
+                <div><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+            </div>
+            <bc-client-seed style="" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+    </div>
+</div>
+    <div id="gameContainer" class="col-xs-12 col-md-12 padding-0">
+        <div id="mahjongPanel">
+            <div class="row">
+                <div class="col-xs-12" id="top-player">
+                    <div class="cards-wrapper">
+                        <div class="cards">
+                            <div ng-if="allHands[2]" ng-repeat="meld in allHands[2].melds | reverse" class="cards meld">
+                                <div class="livecard" ng-repeat="card in meld.tiles | reverse" ng-class="{dealt:card.dealt}">
+                                    <card data-card="card"></card>
+                                </div>
+                            </div>
+                            <div class="label label-danger" ng-if="allHands[2]" ng-class="{active:allHands[2].seat === activeSeat}" style="top:-20px;">
+                                <% for (var wind in winds) {%>
+                                <span ng-if="allHands[2].seat === '<%=wind%>'"><%= winds[wind] %></span>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="cards bonuses" style="position:absolute;text-align:left;padding-left:80px;height:50px;">
+                            <div class="livecard" ng-if="allHands[2]" ng-repeat="card in allHands[2].bonusTiles" ng-class="{dealt:card.dealt}">
+                                <card data-card="card"></card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3" id="left-player">
+                    <div class="cards-wrapper">
+                        <div class="cards">
+                            <div class="label label-danger" ng-if="allHands[3]" style="margin-bottom:30px;" ng-class="{active:allHands[3].seat === activeSeat}">
+                                <% for (var wind in winds) {%>
+                                <span ng-if="allHands[3].seat === '<%=wind%>'"><%= winds[wind] %></span>
+                                <% } %>
+                            </div>
+                            <div ng-if="allHands[3]" ng-repeat="meld in allHands[3].melds" class="cards meld">
+                                <div class="livecard" ng-repeat="card in meld.tiles" ng-class="{dealt:card.dealt}">
+                                    <card data-card="card"></card>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cards bonuses" style="position:absolute;right:-50px;bottom:0px;">
+                            <div class="livecard" ng-if="allHands[3]" ng-repeat="card in allHands[3].bonusTiles" ng-class="{dealt:card.dealt}">
+                                <card data-card="card"></card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6" id="center">
+                    <div class="row">
+                        <div class="col-xs-12 cards" id="top-removed">
+                            <div class="livecard" ng-if="allHands[2]" ng-repeat="card in allHands[2].removedTiles" ng-class="{dealt:card.dealt, stolen: card.stolen}">
+                                <card data-card="card"></card>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="removed-center">
+                        <div id="left-removed" class="cards">
+                            <div class="livecard" ng-if="allHands[3]" ng-repeat="card in allHands[3].removedTiles" ng-class="{dealt:card.dealt, stolen: card.stolen}">
+                                <card data-card="card"></card>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="meld-notify" ng-show="notification&&isGameInProgress">
+                                <div class="label label-danger">
+                                <% for (var wind in winds) {%>
+                                <span ng-if="notificationSeat === '<%=wind%>'"><%= winds[wind] %></span>
+                                <% } %>
+                                <% for (var option in options) {%>
+                                <span ng-if="notification === <%=options[option].type%>" ><%= options[option].label %></span>
+                                <% } %>
+                                </div>
+                            </div>
+                            <div class="cards">
+                                <div style="margin-top:13%;margin-bottom:10px;">
+                                    <% for (var wind in winds) {%>
+                                    <div class="label label-danger" ng-if="roundWind === '<%=wind%>'"><%= winds[wind] %></div>
+                                    <% } %>
+                                </div><br/>
+                                <div>
+                                    <card flipped="true"></card>
+                                </div>
+                            </div>
+                            <div class="label label-danger" ng-if="allHands">{{remainingLength}}</div>
+                        </div>
+                        <div id="right-removed" class="cards">
+                            <div class="livecard" ng-if="allHands[1]" ng-repeat="card in allHands[1].removedTiles" ng-class="{dealt:card.dealt, stolen: card.stolen}">
+                                <card data-card="card"></card>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 cards" id="bottom-removed">
+                            <div class="livecard" ng-if="allHands[0]" ng-repeat="card in allHands[0].removedTiles" ng-class="{dealt:card.dealt, stolen: card.stolen}">
+                                <card data-card="card"></card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3" id="right-player">
+                    <div class="cards-wrapper">
+                        <div class="cards" style="float:right;">
+                            <div ng-if="allHands[1]" ng-repeat="meld in allHands[1].melds | reverse" class="cards meld">
+                                <div class="livecard" ng-repeat="card in meld.tiles | reverse" ng-class="{dealt:card.dealt}">
+                                    <card data-card="card"></card>
+                                </div>
+                            </div>
+                            <div class="label label-danger" ng-if="allHands[1]" ng-class="{active:allHands[1].seat === activeSeat}">
+                                <% for (var wind in winds) {%>
+                                <span ng-if="allHands[1].seat === '<%=wind%>'"><%= winds[wind] %></span>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="cards bonuses" style="position: absolute;top: 0px;left: -50px;margin-top:40px;">
+                            <div class="livecard" ng-if="allHands[1]" ng-repeat="card in allHands[1].bonusTiles" ng-class="{dealt:card.dealt}">
+                                <card data-card="card"></card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" id="bottom-player">
+                    <div class="cards-wrapper">
+                        <div class="cards bonuses" style="position:absolute;right: 60px;margin-top:-55px;">
+                            <div class="livecard" ng-if="allHands[0]" ng-repeat="card in allHands[0].bonusTiles" ng-class="{dealt:card.dealt}">
+                                <card data-card="card"></card>
+                            </div>
+                        </div>
+                        <div class="cards" id="player-hand">
+                            <div class="label label-danger" ng-if="allHands[0]" ng-class="{active:allHands[0].seat === activeSeat}" style="top:-18px;">
+                                <% for (var wind in winds) {%>
+                                <span ng-if="allHands[0].seat === '<%=wind%>'"><%= winds[wind] %></span>
+                                <% } %>
+                            </div>
+                            <div ng-if="allHands[0]" ng-repeat="meld in allHands[0].melds" class="cards meld">
+                                <div class="livecard picked" ng-repeat="card in meld.tiles" ng-class="{dealt:card.dealt}">
+                                    <card data-card="card"></card>
+                                </div>
+                            </div>
+                            <div class="livecard" ng-if="allHands[0]" ng-repeat="card in allHands[0].unmeldedTiles" ng-class="{dealt:card.dealt, highlight: gOptions && removable}" ng-click="removeTile(card.val);">
+                                <card data-card="card"></card>
+                            </div>
+                            <div class="livecard" ng-if="allHands[0].newTile && allHands[0].newTile.val >= 0" ng-class="{dealt:allHands[0].newTile.dealt, highlight: gOptions && removable}" ng-click="removeTile(allHands[0].newTile.val);" style="margin-left:10px;">
+                                <card data-card="allHands[0].newTile"></card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="options" ng-show="!isGameInProgress || (gOptions && gOptions.length >= 2)">
+            <div>
+                <div>
+                    <div id="result" ng-if="payouts">
+                        <% for (var wind in labels.winds) {%>
+                        <div ng-if="payouts.winner === '<%=wind%>'"><%= labels.winds[wind] %> <%=labels.won_the_round%></div>
+                        <% } %>
+                        <div ng-if="payouts.winner">
+                            <div><%=labels.fan%>: {{payouts.fan}}</div>
+                            <% for (var wind in labels.winds) {%>
+                            <div class="payout"><%=labels.winds[wind]%>: {{payouts["<%=wind%>"]}}</div>
+                            <% } %>
+                        </div>
+                        <div ng-if="!payouts.winner">
+                            <%=labels.draw_game%>
+                        </div>
+                    </div>
+                    <div ng-show="!isGameInProgress">
+                        <spinmessage></spinmessage>
+                        <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+                    </div>
+                    <button id="btn-play" ng-show="!isGameInProgress" ng-click="play();" class="btn btn-flashy btn-lg btn-roll">
+                        <%= buttons.start %>
+                    </button>
+                    <button ng-repeat="option in gOptions" class="btn btn-flashy btn-sm  btn-roll cards" ng-if="option.type !== -10" style="margin:0 10px;padding: 0;" ng-click="nextAction(option, {})">
+                        <div class="livecard dealt" ng-if="option.tiles && option.type !== 40 && option.type !== 50" ng-repeat="card in option.tiles track by $index">
+                            <card data-card="{val:card}"></card>
+                        </div>
+                        <% for (var option in options) {%>
+                        <span ng-if="option.type === <%=options[option].type%>" ng-class="{'padding-10':!option.tiles || option.type === 40 || option.type === 50}"><%= options[option].label %></span>
+                        <% } %>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

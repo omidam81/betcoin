@@ -1,0 +1,6 @@
+<p>Dear <%= user.alias %>:</p>
+<br>
+<p>Congratulations! You have won the lottery, <% if(params.interval.indexOf('h')!=-1) { %> Raffles <% } else if(params.interval.indexOf('d')!=-1){ %> Jackpots <% } %> <% if(params.interval.indexOf('1')!=-1) { %> Bronze Cup <% } else if(params.interval.indexOf('3')!=-1) { %> Silver Cup <% } else if(params.interval.indexOf('7')!=-1) { %> Gold Cup <% } else if(params.interval.indexOf('9')!=-1) { %> Platinum Cup <% } else if(params.interval.indexOf('15')!=-1) { %> Diamond Cup <% } %>, <%= params.jackpot.toBitcoin() %> BTC</p>
+<br>
+<p>Please contact us if you have any questions or concerns. Thank you!</p>
+<p>BetCoin Customer Service</p>

@@ -1,0 +1,36 @@
+{
+    "prod": "tiles",
+    "meta": {
+        "title": "财神牌™"
+    },
+    "global": {
+        "logourl": "img/words/cn/tiles.png"
+    },
+    "home": {
+        "title_image": "img/icons/tiles280.png",
+        "promote_header_a":"全球仅有的比特币牌九"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/tiles"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/pai"
+        }
+    },
+    "buttons": {
+        "tiebet": "批对下注",
+        "split": "分牌",
+        "house_way": "自动分牌"
+    },
+    "text": {
+        "invalid_split": "前两张牌不能比后五张牌大"
+    },
+    "rankNames": [
+        "",
+        "Pair",
+        "Wong",
+        "Gong",
+        ""
+    ]
+}

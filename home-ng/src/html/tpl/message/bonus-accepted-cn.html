@@ -1,0 +1,16 @@
+<a data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}" ng-click="markRead()">
+    {{message.datetime | date:'yyyy-MM-dd HH:mm:ss'}} -
+    <b><span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> 奖励已经被接受</b>
+</a>
+<div bindonce="message" id="{{message.id}}" class="panel panel-default panel-collapse collapse" bo-class="{'in':!message.hasRead}">
+    <div class="panel-body">
+        <div>
+            <p>恭喜! 您已经接受 <span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> 奖励! 当您在下一次对账号充值时，奖励额度会自动增加到您当充值帐号。</p>
+            <p>如果您有任何疑问或则顾虑，请联系我们。谢谢！</p>
+            <p>财神堂 ™ 客服</p>
+        </div>
+        <button class="btn btn-primary btn-block" ng-click="markRead()" data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}">
+            <%=buttons.dismiss_message %>
+        </button>
+    </div>
+</div>

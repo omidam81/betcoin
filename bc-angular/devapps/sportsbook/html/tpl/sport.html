@@ -1,0 +1,20 @@
+<div bc-page loading="isLoading">
+    <div class="row">
+        <div bc-submenu class="col-xs-12 col-md-3"></div>
+        <div bc-leagues></div>
+
+        <div class="col-xs-12 col-md-5 xs-fullwidth">
+            <div bc-box  title="{{sport.name}}: <%= upcomingEvents %>">
+                <div bc-events-list data="upcomingEvents"></div>
+            </div>
+            <div bc-box title="{{sport.name}}: <%= hottestEvents %>">
+                <div bc-events-list data="hottestEvents"></div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4 xs-fullwidth">
+            <div bc-box title="<%= leagueSpotlight %> - {{spotlightLeague.league.name}}">
+                <div bc-events-list data="spotlightLeague.events"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+<div class="panel-body">
+    <h4>You earned a {{type}} bonus!</h4>
+    <p>Deposit up to {{max | btc}} BTC, and we will match your deposit!</p>
+    <p>Unlock requirements: wager {{unlockMultiplier}}x your match deposits plus match bonus.</p>
+    <h2>Accept your bonus now!</h2>
+    <div><button ng-click="acceptBonus()" class="btn btn-flashy btn-lg"><%= bonus.accept %></button></div>
+    <br />
+    <div><button ng-click="rejectBonus()" class="btn btn-default btn-sm"><%= bonus.reject %></button></div>
+</div>
+</div>

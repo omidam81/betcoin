@@ -1,0 +1,7 @@
+[Unit]
+Description=Mount some storage
+[Mount]
+What=/dev/xvdf1
+# the file name must match where the volume is mounted
+Where=/media/external
+Type=ext4

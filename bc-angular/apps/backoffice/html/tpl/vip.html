@@ -1,0 +1,24 @@
+<div class="row">
+    <table class="table bc-backoffice-table">
+        <thead>
+            <th>User</th>
+            <th>Current Level</th>
+            <th>Next Level</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users">
+                <td><a ng-href="user/{{user._id}}">{{user.username}}</a></td>
+                <td>{{vipLevels[user.vipLevel]._id}} ({{user.vipLevel}})</td>
+                <td>{{vipLevels[user.pendingVipLevel]._id}} ({{user.pendingVipLevel}})</td>
+                <td>
+                    <button class="btn btn-primary btn-sm"
+                            ng-click="permitUpgrade(user)">Upgrade</button>
+                    <button class="btn btn-primary btn-sm"
+                            ng-click="disallowUpgrade(user)">Cancel</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pre>{{users|json}}</pre>
+</div>

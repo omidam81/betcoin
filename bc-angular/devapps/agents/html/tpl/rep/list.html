@@ -1,0 +1,156 @@
+<div ng-controller="RepListController">
+    <button class="btn btn-primary"
+        ng-click="showAddForm=!showAddForm">Add New Rep</button>
+    <form class="form-horizontal"
+          name="affForm"
+          id="affForm"
+          ng-show="showAddForm">
+        <fieldset>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="affRealName">First / Last Name</label>
+                <input id="affRealName"
+                       name="affRealName"
+                       type="text"
+                       ng-model="newRep.name"
+                       class="form-control input-md"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="affUsername">Username</label>
+                <input id="affUsername"
+                       name="username"
+                       type="text"
+                       ng-model="newRep.username"
+                       class="form-control input-md"
+                       required
+                       ng-minlength="1"
+                       ng-maxlength="32"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       no-timeout="true">
+                <div class="errors hide">
+                    <span class="error hide username-taken"><%= text.alias_taken %></span>
+                    <span class="error" ng-show="affForm.username.$error.required"><%= text.enter_username %></span>
+                    <span class="error" ng-show="affForm.username.$error.maxlength"><%= text.username_max_length %></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"><%= text.choose_password %></label>
+                <input type="password"
+                       class="form-control"
+                       placeholder=""
+                       ng-model="newRep.password"
+                       ng-keyup="validatePassword()"
+                       ng-minlength="10"
+                       ng-maxlength="64"
+                       name="password"
+                       id="affPassword"
+                       bc-popover="{{passwordPopup}}"
+                       no-timeout="true"
+                       required>
+                <div class="errors hide">
+                    <span class="error" ng-show="affForm.password.$error.minlength"><%= text.password_min_length %></span>
+                    <span class="error" ng-show="affForm.password.$error.maxlength"><%= text.password_max_length %></span>
+                    <span class="error" ng-show="affForm.password.$error.required"><%= text.enterpassword %></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"><%= text.confirm_password %></label>
+                <input type="password"
+                       class="form-control"
+                       placeholder=""
+                       ng-model="newRep.passwordConfirm"
+                       ng-keyup="validatePassword()"
+                       ng-minlength="10"
+                       ng-maxlength="64"
+                       id="affPasswordConfirm"
+                       name="passwordConfirm"
+                       bc-popover="{{confirmPasswordPopup}}"
+                       no-timeout="true"
+                       required>
+                <div class="errors hide">
+                    <span class="error" ng-show="invalidPassword"><%= text.invalid_password %></span>
+                    <span class="error hide password-notmatch"><%= text.password_validation %></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="affEmail">Email Address</label>
+                <input id="affEmail"
+                       name="email"
+                       type="email"
+                       ng-model="newRep.email"
+                       bc-popover="{{emailPopup}}"
+                       ng-blur="checkEmail()"
+                       no-timeout="true"
+                       class="form-control input-md"
+                       required>
+                <div class="errors hide">
+                    <span class="error"><%= email.enter_valid %></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="affPhone">Phone Number</label>
+                <input id="affPhone"
+                       name="affPhone"
+                       type="text"
+                       ng-keyup="formatPhoneNumber()"
+                       ng-model="newRep.phone"
+                       class="form-control input-md">
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="affAddress">Mailing Address</label>
+                <textarea class="form-control"
+                          id="affAddress"
+                          ng-model="newRep.address"
+                          name="affAddress"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="affNotes">Notes/Comments</label>
+                <textarea class="form-control"
+                          id="affNotes"
+                          ng-model="newRep.notes"
+                          name="affNotes"></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit"
+                        ladda="registering"
+                        id="affAddButton"
+                        name="affAddButton"
+                        class="btn btn-default"
+                        bc-popover="{{error!=null}}"
+                        ng-click="saveRep()"
+                        ng-disabled="affForm.$invalid || errorVisible.usernameExist || errorVisible.isNotEqual || invalidPassword || errorVisible.badSerials">
+                    Add New Affiliate
+                </button>
+                <div class="errors hide">
+                    <span class="error">{{error|error}}</span>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+    <table class="table">
+        <thead>
+            <th>Username</th>
+            <th>Income</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="rep in reps">
+                <td><a ng-href="rep/{{rep._id}}">{{rep.username}}</a></td>
+                <td>
+                    <div ng-repeat="(currency, income) in rep.income">
+                        {{currency | cryptosymbol}}{{income | cryptovalue}}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

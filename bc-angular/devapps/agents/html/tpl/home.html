@@ -1,0 +1,26 @@
+<div class="container" ng-controller="HomeController">
+    <div ng-hide="player._id">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-sm-push-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1><%= buttons.login %></h1>
+                    </div>
+                    <div class="panel-body">
+                        <bc-login on-login="loginSuccess(player)" path="agent/auth"></bc-login>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div ng-show="player._id">
+
+        <img  class="center-block" src="/img/words/CN-betcoin.png" />
+        <div class="text-center margin-top-10">
+            <a href="./dashboard" class="btn btn-flashy btn-large">Dashboard</a>
+            <a href="./rep" class="btn btn-flashy btn-large">Reps</a>
+            <a href="./account" class="btn btn-flashy btn-large">Edit Account Details</a>
+        </div>
+    </div>
+</div>

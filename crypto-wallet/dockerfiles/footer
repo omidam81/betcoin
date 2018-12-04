@@ -1,0 +1,12 @@
+
+# make a directory for the init script and touch the logfile
+RUN mkdir /etc/service/app && touch /var/log/app.log && chown app:app /var/log/app.log
+ADD runit/run /etc/service/app/
+
+
+ADD ./package.json /app/
+RUN rm -rf /app/node_modules && cd /app && npm install --production
+ADD ./src/ /app/src/
+RUN chown -R app:app /app
+
+CMD ["--"]

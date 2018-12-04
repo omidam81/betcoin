@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-8">
+        <h1>可以收到最高 {{offer.max | btc}} 个比特币</h1>
+        <p>目前的奖励额度解锁要求是{{offer.unlockMultiplier}}倍</p>
+        <p>在您第一次充值之后，将会收到奖励额度</p>
+        <h2>马上接受您的奖励额度！</h2>
+        <div><button ng-click="acceptBonus(offer._id)" class="btn btn-flashy btn-lg"><%= bonus.accept %></button></div>
+        <h4>如果您拒绝这个奖励, 在未来您还是可以接受到我们提供的奖励。</h4>
+        <div><button ng-click="rejectBonus(offer._id)" class="btn btn-default btn-sm"><%= bonus.reject %></button></div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <h3>奖励条款与规则</h3>
+        <p>总下注额度需要是你的充值额度和相应赠送额度加起来的{{player.bonusOffers.btc[0].unlockMultiplier}}倍。</p>
+        <p>您的余额将会分成两部分。第一个是可用余额，随时可以取款。第二个奖励余额，需要满足规则方可取款。</p>
+    </div>
+</div>

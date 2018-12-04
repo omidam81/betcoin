@@ -1,0 +1,194 @@
+<div ng-controller="GameController" class="row noselect craps-area" id="gameContainer">
+    <div class="col-xs-12 col-md-4 text-center col-md-push-8">
+
+        <div><img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" /></div>
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <div>
+            <spinmessage></spinmessage>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+        </div>
+        <div class="clear-both position-relative">
+              <div class="craps-game-sound-toggle-container">
+                  <div class="soundToggle"><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+              </div>
+              <proof-button></proof-button>
+              <small class="display-none">
+                  <dl class="dl-horizontal">
+                      <dt><%= game.SsHeader2 %></dt><dd>{{ nextGameId }}</dd>
+                      <dt>SHA256:</dt><dd class="allow-word-wrap-with-word-break">{{ sha256 }}</dd>
+                  </dl>
+              </small>
+
+              <bc-client-seed class="seed-container" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-8 game col-md-pull-4 padding-0">
+      <div id="g-craps">
+          <div id="board" class="board">
+              <div id="panel_pass_odds" placebet class="number">
+                  <div class="chips" style="top:390px"></div>
+              </div>
+              <div id="panel_pass_line" placebet class="number">
+                  <div class="chips" style="top:370px"></div>
+                  <p class="txtpassline"><%= boards.passline%></p>
+              </div>
+              <div id="panel_dont_pass_odds" placebet class="number">
+                  <div class="chips" style="top:340px"></div>
+              </div>
+              <div id="panel_dont_pass" placebet class="number">
+                  <div class="chips" style="top:320px"></div>
+                  <p class="txtdontpass"><%= boards.dontpass%></p>
+                  <div id="imgdice6_6" style="position:absolute;top:300px;left:370px"></div>
+              </div>
+              <div id="panel_come" placebet class="number">
+                  <div class="chips"></div>
+                  <p class="come"><%= boards.come%></p>
+              </div>
+              <div id="panel_field" placebet class="number">
+                  <div class="chips"></div>
+                  <div id="imgfield2_12"></div>
+                  <p class="come" style="font-size:24px;line-height:32px"><%= boards.field%></p>
+              </div>
+              <div id="panel_dont_come" placebet class="number">
+                  <div class="chips"></div>
+                  <p style="font-size:16px"><%= boards.dontcome%></p>
+                  <div id="imgdice6_6"></div>
+              </div>
+              <div id="panel_lay_4" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_lay_5" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_lay_6" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_lay_8" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_lay_9" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_lay_10" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_buy_4" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_place_5" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_place_6" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_place_8" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_place_9" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_buy_10" placebet class="number">
+                  <div class="chips"></div>
+              </div>
+              <div id="panel_4" placebet class="number">
+                  <div class="chips"></div>
+                  <p class="boardnumber">4</p>
+              </div>
+              <div id="panel_5" placebet class="number">
+                  <div class="chips"></div>
+                  <p class="boardnumber">5</p>
+              </div>
+              <div id="panel_6" placebet class="number">
+                  <div class="chips"></div>
+                  <p class="boardnumber"><%= boards.six%></p>
+              </div>
+              <div id="panel_8" placebet class="number">
+                  <div class="chips"></div>
+                  <p class="boardnumber">8</p>
+              </div>
+              <div id="panel_9" placebet class="number">
+                  <div class="chips"></div>
+                  <p class="boardnumber"><%= boards.nine%></p>
+              </div>
+              <div id="panel_10" placebet class="number">
+                  <div class="chips"></div>
+                  <p class="boardnumber">10</p>
+              </div>
+              
+              <div id="panel_seven" placebet class="number">
+                  <div class="chips"></div>
+                  <p><%= boards.seven%></p>
+                  4 to 1
+              </div>
+              <div id="panel_anycraps" placebet class="number">
+                  <div class="chips"></div>
+                  <p><%= boards.anycraps%></p>
+                  7 to 1
+              </div>
+              <div id="panel_sub1" placebet class="number">
+                  <div class="chips"></div>
+                  <div id="imgdice2_2"></div>
+              </div>
+              <div id="panel_sub2" placebet class="number">
+                  <div class="chips"></div>
+                  <div id="imgdice5_5"></div>
+              </div>
+              <div id="panel_sub3" placebet class="number">
+                  <div class="chips"></div>
+                  <div id="imgdice3_3"></div>
+              </div>
+              <div id="panel_sub4" placebet class="number">
+                  <div class="chips"></div>
+                  <div id="imgdice4_4"></div>
+              </div>
+              <div id="panel_sub5" placebet class="number">
+                  <div class="chips"></div>
+                  <div id="imgdice1_2"></div>
+              </div>
+              <div id="panel_sub6" placebet class="number">
+                  <div class="chips"></div>
+                  <div id="imgdice5_6"></div>
+              </div>
+              <div id="panel_sub7" placebet class="number">
+                  <div class="chips"></div>
+                  <div id="imgdice1_1"></div>
+              </div>
+              <div id="panel_sub8" placebet class="number">
+                  <div class="chips"></div>
+                  <div id="imgdice6_6"></div>
+              </div>
+              
+          </div>
+      </div>
+      <div class="row position-relative">
+        <div id="wheelhistory" class="col-xs-12">
+          <div class="history">
+            <bethistory ng-repeat="number in recentnumbers" data-color="{{number.color}}" data-number="{{number.number}}"></bethistory>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-6">
+            <button ng-disabled="isGameInProgress" ng-click="play();" class="btn btn-flashy btn-lg btn-spin margin-10 font-size-30">
+                <%= buttons.start_spin %>
+            </button>
+            <br />
+            <autospin-button></autospin-button>
+            <br />
+            <button ng-click="clearBets();" class="btn btn-default" bc-popover="{{clearBetsPopover}}" bc-popover-content="<%= buttons.clearbets_individual %>" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top" ng-disabled="isGameInProgress">
+                <%= buttons.clearbets %>
+            </button>
+          </div>
+          <div class="col-xs-6">
+            <div class="margin-top-10"><%= home.totalbet %> {{totalbet | btc}} BTC</div>
+            <div><canvas id="gameCanvas" width="300" height="100"></canvas></div>
+          </div>
+        </div>
+      
+    </div>
+    <div class="hide localizations">
+      <div id="localization-x"><span><%= game.x %></span></div>
+    </div>
+    <div class="clearfix"></div>
+</div>

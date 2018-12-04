@@ -1,0 +1,31 @@
+{
+    "prod": "caribbean",
+    "meta": {
+        "title": "财神加™ 财神加勒比扑克 - 绝对公平卡牌游戏"
+    },
+    "global": {
+        "logourl": "img/words/cn/caribbean.png"
+    },
+    "home": {
+        "title_image": "img/icons/caribbean280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/caribbean"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/jia"
+        }
+    },
+    "game": {
+        "foldedmessage": "折叠",
+        "unqualifiedmessage": " - 经销商不符合"
+    },
+    "buttons": {
+        "raise": "募集",
+        "fold": "倍"
+    },
+    "text": {
+        "invalid_raise": "无效加薪"
+    }
+}

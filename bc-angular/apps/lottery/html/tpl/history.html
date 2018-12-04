@@ -1,0 +1,76 @@
+<div>
+    <ul class="nav nav-pills nav-justified">
+        <li ng-class="getRecentSpinsTabClass('global')"><a href="history/global"><%= spins.global %></a></li>
+        <li ng-class="getRecentSpinsTabClass('player')"><a href="history/player"><%= spins.mybets %></a></li>
+        <li ng-class="getRecentSpinsTabClass('lotteries')"><a href="history/lotteries"><%= spins.lotteries %></a></li>
+    </ul>
+    <table class="table table-bordered gamesTable" ng-show="tableType=='global'||tableType=='player'">
+        <thead>
+            <tr>
+                <th><%= game.type %></th>
+                <th ng-hide="tableType=='player'"><%= username %></th>
+                <th><%= global.currency %></th>
+                <th class="hidden-xs"><%= spins.CircleTh4 %></th>
+                <th ><%= spins.CircleTh7 %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="game in games | orderBy:orderby:reverse" ng-class="{ 'nonZeroColor': game.payout_multiplier > 0,'zeroColor': game.payout_multiplier == 0 }">
+                <td class="">
+                    {{ game.lottery_interval.substring(0, game.lottery_interval.length - 1) }}
+                    <span ng-show="game.lottery_interval.indexOf('m') !== -1"><%= text.minutes %></span>
+                    <span ng-show="game.lottery_interval.indexOf('h') !== -1"><%= text.hours %></span>
+                    <span ng-show="game.lottery_interval.indexOf('d') !== -1"><%= text.days %></span>
+                </td>
+                <td ng-hide="tableType=='player'" class="">
+                    {{ game.player_alias }}
+                </td>
+                <td>
+                    {{ game.currency }}
+                </td>
+                <td class="hidden-xs">
+                    {{ game.wager | cryptovalue }}
+                </td>
+                <td class="">
+                    {{ game.createdAt | date:"MM/dd HH:mm:ss" }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered gamesTable" ng-show="tableType=='lotteries'">
+        <thead>
+            <tr>
+                <th><%= game.details %></th>
+                <th><%= game.type %></th>
+                <th ><%= text.winner %></th>
+                <th class="hidden-xs"><%= spins.jackpot %></th>
+                <th ><%= text.cuttime %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="lottery in lotteries | orderBy:orderby:reverse" ng-class="{ 'nonZeroColor': lottery.payout_multiplier > 0,'zeroColor': lottery.payout_multiplier == 0 }">
+                <td>
+                    <a href="history/details/{{lottery.id || lottery._id}}"
+                        style="font-size:25px;"
+                        class="glyphicon glyphicon-info-sign">
+                    </a>
+                </td>
+                <td class="">
+                    {{ lottery.interval.substring(0, lottery.interval.length - 1) }}
+                    <span ng-show="lottery.interval.indexOf('m') !== -1"><%= text.minutes %></span>
+                    <span ng-show="lottery.interval.indexOf('h') !== -1"><%= text.hours %></span>
+                    <span ng-show="lottery.interval.indexOf('d') !== -1"><%= text.days %></span>
+                </td>
+                <td class="">
+                    {{ lottery.player_alias }}
+                </td>
+                <td class="hidden-xs">
+                    {{ lottery.jackpot | cryptovalue }}
+                </td>
+                <td class="">
+                    {{ lottery.end | date:"MM/dd HH:mm:ss" }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

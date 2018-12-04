@@ -1,0 +1,34 @@
+{
+    "prod": "reels",
+    "meta": {
+        "title": "财神卷™ 比特币游戏 - 玩最公平的老虎机游戏，赢得大量的比特币",
+        "description": "财神转™ 是最公平的比特币老虎机游戏。 开始转动财神转，瞬间让你的比特币翻倍！",
+        "keywords": "比特币, 赌场, 赌博, 骰子, 游戏, Satoshi, 投注, 转轮, 老虎机, Blockchain, 比特币投注,  扑克, 21点, 几率平等"
+    },
+    "minbetMsg": "最少投注 0.000003 个比特币",
+    "global": {
+        "logourl": "img/words/CN-REELS.png"
+    },
+    "home": {
+        "title_image": "img/icons/reels.png",
+        "promote_header_a": "最公平的老虎机游戏<br/>一转就能赢得888倍",
+        "promote_header_d": "<h4>绝对公平、透明的系统 － 全球最高的玩家回报: 98.35%</h4>"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/reels"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/juan"
+        }
+    },
+    "game": {
+        "CircleButtonCashOut": "提款",
+        "spinmessage": "选择您的押注大小<br />开始旋转赢得最高888倍赌注"
+    },
+    "buttons": {
+        "auto_spin_text_on": "自动投注: 停止",
+        "auto_spin_text_off": "自动投注: 开始",
+        "start_spin": "开始转动"
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "prod": "roulette",
+    "meta": {
+        "title": "财神盘 ™ 比特币轮盘赌场 - 赢比特币!",
+        "meta_description": "在财神堂 ™ 轮盘赌，您可以用比特币玩经典轮盘赌游戏。开始游戏，赢取大量比特币!"
+    },
+    "global": {
+        "logourl": "img/words/CN-ROULETTE.png"
+    },
+    "home": {
+        "title_image": "img/icons/roulette.png",
+        "promote_header_a": "可验证公平的比特币轮盘"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/roulette"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/pan"
+        }
+    },
+    "game": {
+        "details": "详情"
+    },
+    "spins": {
+        "myspins": "我的游戏"
+    },
+    "buttons" : {
+        "start_spin" : "转动",
+        "clearbets": "取消所有下注",
+        "clearbets_individual": "如果想取消单个筹码，按住筹码两秒钟，然后松开",
+        "repeat_bets": "REPEAT bets"
+    },
+    "boards": {
+        "voisins": "JEU ZERO",
+        "orphelins": "Orphelins",
+        "tiers": "Tier"
+    }
+}

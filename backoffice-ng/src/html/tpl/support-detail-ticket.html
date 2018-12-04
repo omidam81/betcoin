@@ -1,0 +1,58 @@
+<div class="col-sm-9">
+    <div class="panel panel-default main-container">
+        <div class="panel-heading">
+            Ticket #{{ticket._id}} by {{ticket.owner}} 
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-primary btn-xs" ng-click="updateTicketStatus(ticket._id, 2)">Close</button>
+                <button type="button" class="btn btn-primary btn-xs" ng-click="updateTicketStatus(ticket._id, 4)">Flag</button>
+            </div>
+            <label class="pull-right" ng-hide="isAdmin">Status: {{ticket.status | status}}</label>
+        </div>
+        <div class="panel-footer">
+            <div class="media-body">
+                <div class="panel panel-dark"> 
+                    <div class="reply">Name: {{ticket.owner}}</div>
+                    <div class="reply">Email: {{ticket.email}}</div>
+                    <div class="reply">VIP: <span class="glyphicon" ng-class="ticket.anonymous && 'glyphicon-remove' || 'glyphicon-ok'"></span></div>
+                    <div class="reply">Subject: {{ticket.subject}}</div>
+                    <div class="reply">Referring Url: {{ticket.referUrl}}</div>
+                    <div class="panel-body"><p>{{ticket.description}}</p> </div>
+                    <div class="text-muted date"> {{ticket.dateCreated | date:'medium'}}</div>
+                </div>      
+            </div>          
+            <div>
+                <div ng-repeat="comment in comments" class="media">
+                    <div class="media-body">
+                        <div class="panel panel-dark"> 
+                            <div class="reply">Reply from {{comment.isAdmin | user }}</div>
+                            <div class="panel-body"><p>{{comment.message}}</p> </div>
+                            <div class="text-muted date"> {{comment.dateModified | date:'medium'}}</div>
+                        </div>      
+                    </div>
+                </div>              
+            </div>
+            <form action="" class="form-horizontal" name="replyForm" ng-hide="ticket.status == 2">
+                <div class="form-group">
+                    <label class="control-label indent-label">Send a reply</label>
+                    <div class="col-sm-12">
+                        <textarea placeholder="Reply to the comment here" rows="5" cols="50" class="form-control" ng-model="comment.message" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="replyForm.$invalid">Reply <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a ng-click="commentTicket(ticket._id, 1)">Reply</a></li>
+                                <li><a ng-click="commentTicket(ticket._id, 2)">Reply and close</a></li>
+                                <li><a ng-click="commentTicket(ticket._id, 4)">Reply and flag</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>                                                  
+            </form>
+            
+        </div>  
+    </div>
+</div>

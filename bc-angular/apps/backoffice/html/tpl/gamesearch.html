@@ -1,0 +1,6 @@
+<ul>
+    <li ng-repeat="game in GAMES"
+        ng-if="['lottery'].indexOf(game)<0">
+        <a ng-href="search/{{game}}">{{game}}</a>
+    </li>
+</ul>

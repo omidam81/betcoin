@@ -1,0 +1,109 @@
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Currency</th>
+                <th>Balance</th>
+                <th>User Balance</th>
+                <th>Bankroll</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="(currency, data) in bankroll">
+            <tr ng-repeat="(balanceType, balance) in data.balance">
+                <th ng-if="$first" rowspan="3">{{ currency }}</th>
+                <td>{{ currency | cryptosymbol }} {{ balance | cryptovalue }} {{balanceType}}</td>
+                <td ng-if="$first" rowspan="3">{{ currency | cryptosymbol }} {{ data.userBalance | cryptovalue }}</td>
+                <td ng-if="$first" rowspan="3">{{ currency | cryptosymbol }} {{ data.balance.available - data.userBalance | cryptovalue }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row" ng-show="loading">
+    <h3>Loading</h3>
+    <h4>{{message}}</h4>
+    <div ng-if="toProcess"
+         class="progress">
+        <div class="progress-bar progress-bar-striped active"
+             role="progressbar"
+             aria-valuenow="{{percentCompleted}}"
+             aria-valuemin="0"
+             aria-valuemax="100"
+             ng-style="{'width':percentCompleted+'%'}">
+            {{percentCompleted | number:2}}%
+        </div>
+    </div>
+    <div ng-if="toProcess">
+        <h4>{{processed|number}} of {{toProcess|number}} records processed</h4>
+    </div>
+</div>
+<div class="row"
+     ng-hide="loading">
+    <h3>This Month</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Currency</th>
+                <th>Month</th>
+                <th>Deposited</th>
+                <th>Deposit Count</th>
+                <th>Average Deposit</th>
+                <th>Withdrawn</th>
+                <th>Withdraw Count</th>
+                <th>Average Withdraw</th>
+                <th>Profit</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="(currency, data) in profitHistory">
+            <tr ng-repeat="(index, data) in profitHistory[currency].months">
+                <th rowspan="{{profitHistory[currency].months.length}}"
+                    ng-if="index == 0">{{ currency }}</th>
+                <td>{{ data.month | gmtdate:"month" }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.deposited | cryptovalue }}</td>
+                <td>{{ data.deposits }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.averageDeposit | cryptovalue }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.withdrawn | cryptovalue }}</td>
+                <td>{{ data.withdrawals }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.averageWithdraw | cryptovalue }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.deposited - data.withdrawn | cryptovalue }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Daily</h3>
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="nav nav-pills">
+                <li ng-repeat="currency in CURRENCIES">
+                    <a ng-click="filterDailyTable(currency)">{{currency}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Currency</th>
+                <th>Deposited</th>
+                <th>Deposit Count</th>
+                <th>Average Deposit</th>
+                <th>Withdrawn</th>
+                <th>Withdraw Count</th>
+                <th>Average Withdraw</th>
+                <th>Profit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="(index, dayData) in profitHistory[dailyCurrency].days">
+                <th>{{ dayData.day | gmtdate:"day" }}</th>
+                <th>{{ dailyCurrency }}</th>
+                <td>{{ dailyCurrency | cryptosymbol }} {{ dayData.deposited | cryptovalue }}</td>
+                <td>{{ dayData.deposits }}</td>
+                <td>{{ dailyCurrency | cryptosymbol }} {{ dayData.averageDeposit | cryptovalue }}</td>
+                <td>{{ dailyCurrency | cryptosymbol }} {{ dayData.withdrawn | cryptovalue }}</td>
+                <td>{{ dayData.withdrawals }}</td>
+                <td>{{ dailyCurrency | cryptosymbol }} {{ dayData.averageWithdraw | cryptovalue }}</td>
+                <td>{{ dailyCurrency | cryptosymbol }} {{ dayData.deposited - dayData.withdrawn | cryptovalue }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

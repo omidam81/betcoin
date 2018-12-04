@@ -1,0 +1,35 @@
+<div>
+    <form ng-submit="apiCall()">
+        <div class="form-group">
+            <label for="game-select">Game: </label>
+            <select ng-model="selectedGame" name="game-select" class="form-control">
+                <option value="dice">Dice</option>
+                <option value="circle">Circle</option>
+                <option value="prize">Prize</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="endpoint-select">Data Endpoint: </label>
+            <select
+                 ng-model="dataEndpoint"
+                 ng-options="endpoint.label for endpoint in endpoints[selectedGame]"
+                 name="endpoint-select"
+                 class="form-control">
+            </select>
+        </div>
+        <div class="form-group" ng-show="requirePlayerId">
+            <label for="player-id">Player ID</label>
+            <input ng-model="playerId" name="player-id">
+        </div>
+        <div class="form-group" ng-show="requireDate">
+            <label for="start-date">Start Date</label>
+            <input ui-date name="start-date" ng-model="startDate">
+            <label for="end-date">End Date</label>
+            <input ui-date name="end-date" ng-model="endDate">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn" value="Get Data">
+        </div>
+    </form>
+    <pre>{{ apiResponse | json }}</pre>
+</div>

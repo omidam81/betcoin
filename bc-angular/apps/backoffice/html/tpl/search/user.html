@@ -1,0 +1,12 @@
+<form class="form">
+    <div mongo-input query-object="query" type="text"
+         field="username" class="form-group"></div>
+    <div mongo-input query-object="query" type="text"
+         field="_id" class="form-group"></div>
+    <div mongo-input query-object="query" type="text"
+         field="email" field-alias="pendingEmail" class="form-group"></div>
+	<div mongo-input query-object="query" type="text"
+         field="ip" field-alias="ip" class="form-group"></div>
+    <div mongo-input query-object="query" type="select" options="'exists'"
+         field="token" label="Logged in?" class="form-group"></div>
+</form>

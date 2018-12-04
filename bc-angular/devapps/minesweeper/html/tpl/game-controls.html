@@ -1,0 +1,87 @@
+<div ng-controller="GameController" class="row noselect minesweeper-area" id="gameContainer">
+    <div class="col-xs-12 col-md-4 text-center col-md-push-8">
+
+        <div><img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" /></div>
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <div>
+            <spinmessage></spinmessage>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+        </div>
+        <div class="clear-both position-relative">
+              <div class="minesweeper-game-sound-toggle-container">
+                  <div class="soundToggle"><img  ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+              </div>
+              <proof-button></proof-button>
+              <small class="display-none">
+                  <dl class="dl-horizontal">
+                      <dt><%= game.SsHeader2 %></dt><dd>{{ nextGameId }}</dd>
+                      <dt>SHA256:</dt><dd class="allow-word-wrap-with-word-break">{{ sha256 }}</dd>
+                  </dl>
+              </small>
+              <bc-client-seed class="seed-container" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-8 game col-md-pull-4 padding-0">
+      
+        <div id="g-minesweeper">
+          <div ng-class='row.className' ng-repeat="row in gameData">
+              <div ng-repeat='cell in row.rows' ng-show="cell.show == 1" ng-class='cell.className' ng-click="checkMine($index, $parent.$index)">
+                
+                
+              </div>
+              <div class='multiplier' id='multiplier'>x{{ row.magnification }}</div>
+          </div>
+        </div>
+      
+
+      <div class="row margin-10">
+        <form class="form-inline ng-dirty ng-valid ng-valid-required ng-submitted" role="form" ng-show="isPlaying == 0">
+          <div class="form-group">
+            <label class="sr-only control-label" for="fieldSize">Field Size</label>
+            <select name="fieldSize" class="form-control ng-valid ng-touched ng-dirty" ng-model="selectedFieldSize" ng-options="box_size.name for box_size in boxSize" ng-change="selectBoxSize();">
+
+            </select>
+          </div>
+          <button ng-click="play()" class="btn btn-primary"><%= buttons.start_game %></button>
+        </form>
+        <button class='btn btn-danger' ng-show="isPlaying == 1"><%= buttons.take_4_play_money %></button>  
+
+      </div>
+
+      <div class="row position-relative">
+        <div id="wheelhistory" class="col-xs-12">
+          <div class="history">
+            <bethistory ng-repeat="number in recentnumbers" data-color="{{number.color}}" data-number="{{number.number}}"></bethistory>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col-xs-6">
+            <button ng-disabled="isGameInProgress" ng-click="play();" class="btn btn-flashy btn-lg btn-spin margin-10 font-size-30">
+                <%= buttons.start_spin %>
+            </button>
+            <br />
+            <autospin-button></autospin-button>
+            <br />
+            <button ng-click="clearBets();" class="btn btn-default" bc-popover="{{clearBetsPopover}}" bc-popover-content="<%= buttons.clearbets_individual %>" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top" ng-disabled="isGameInProgress">
+                <%= buttons.clearbets %>
+            </button>
+          </div>
+          <div class="col-xs-6">
+            <div class="margin-top-10"><%= home.totalbet %> {{totalbet | cryptovalue}} BTC</div>
+            <div class="wheel_placeholder_container"><img class="margin-0 margin-right-left-auto" id="wheel_placeholder" src="./img/wheel.png" /></div>
+          </div>
+      </div>
+
+      <div class="minesweeperCanvasContainer">
+       <canvas id="gameCanvas" class="margin-0 margin-right-left-auto" width="430" height="430"></canvas>
+      </div>
+
+    </div>
+    <div class="hide localizations">
+      <div id="localization-x"><span><%= game.x %></span></div>
+    </div>
+    <div class="clearfix"></div>
+</div>

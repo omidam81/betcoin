@@ -1,0 +1,21 @@
+<div>
+    <div class="row">
+        <div ng-repeat="config in options"
+             ng-init="currency = config._id.replace('MaxMatchBonus', '')"
+             class="col-md-2">
+            <h3>{{currency}}</h3>
+            <form class="form">
+                <div class="form-group">
+                    <label>Amount</label>
+                    <crypto-input model="config.value"
+                                  currency="currency"
+                                  class="input-group"></crypto-input>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary"
+                            ng-click="updateLimit(config)">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

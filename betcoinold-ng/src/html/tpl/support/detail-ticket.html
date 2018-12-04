@@ -1,0 +1,47 @@
+<div class="tab-content">
+	<div class="panel panel-default main-container">
+		<div class="panel-heading">
+			Ticket #{{ticket._id}} by {{ticket.owner}}
+			<label class="pull-right">Status: {{ticket.status | status}}</label>
+		</div>
+		<div class="panel-footer">
+				<div class="media-body">
+						<div class="panel panel-dark"> 
+							<div class="reply">Subject: {{ticket.subject}}</div>
+							<div class="panel-body"><p>{{ticket.description}}</p> </div>
+							<div class="text-muted date"> {{ticket.dateCreated | date:'medium'}}</div>
+						</div> 	
+				</div>			
+			<div>
+				<div ng-repeat="comment in comments" class="media">
+					<div class="media-body">
+							<div class="panel panel-dark"> 
+								<div class="reply">Reply from {{comment.isAdmin | user }}</div>
+								<div class="panel-body"><p>{{comment.message}}</p> </div>
+								<div class="text-muted date"> {{comment.dateModified | date:'medium'}}</div>
+							</div> 	
+					</div>
+				</div>				
+			</div>
+			<form action="" class="form-horizontal" name="replyForm" ng-hide="ticket.status == 2">
+				<div class="form-group">
+					<label class="control-label indent-label">Send a reply</label>
+					<div class="col-sm-12">
+						<textarea placeholder="Reply to the comment here" rows="5" cols="50" class="form-control" ng-model="comment.message" required></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div class="btn-group">
+							<div ng-hide="isAdmin">
+								<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="replyForm.$invalid" ng-click="replyToTicketByuser(ticket._id)">Reply															</button>
+							</div>				
+						</div>
+					</div>
+				</div>													
+			</form>
+		
+		</div>	
+	</div>
+</div>
+

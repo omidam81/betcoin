@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="application" id="home">
+    <head>
+        <title><%= meta.title %></title>
+        <!-- @ifndef HIVEAPP -->
+        <base href="/<%= baseHref %>/"><!--[if lte IE 6]></base><![endif]-->
+        <!-- @endif -->
+        <!-- @ifdef HIVEAPP -->
+        <base href="/">
+        <!-- @endif -->
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="<%= meta.description %>">
+        <meta name="keywords" content="<%= meta.keywords %>" />
+        <link rel="shortcut icon" href="img/favicons/<%= prod %>.ico" type="image/x-icon">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="fragment" content="!">
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/app.css" rel="stylesheet">
+    </head>
+    <body>
+        <!--[if IE lt 10]>
+        <div style="background:black;color:#FFd479;z-index:999999;width:100%;height:100%;position:fixed;top:0;left:0px;text-align:center;outline: 9999px solid rgba(30,0,0,1)">
+            <div style="margin-top:300px">
+                <img src="<%= loading_img %>" class="img-responsive img-centered">
+                <h4>Internet Explorer IS NOT supported by BetCoin&trade;. Please use an actual web browser, such as Google Chrome, Mozilla Firefox, Opera, or Safari.</h4>
+            </div>
+        </div>
+        <![endif] -->
+
+        <div>
+            <div ng-hide="removeLoading" id="loading-mask">
+                <img src="<%= loading_img %>" class="img-responsive img-centered">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar width-full"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <bcCheckLang></bcCheckLang>
+
+        <bc-navigation></bc-navigation>
+        <div class="container">
+            <bc-notifications></bc-notifications>
+            <div ng-view></div>
+        </div>
+        <bc-footer></bc-footer>
+        <div class="container">
+            <div class="justify-paragraph footer-seoblurb">
+                <%= home.footer_description %>
+            </div>
+        </div>
+        <!--SCRIPTS-->
+        <!-- include: "type": "js", "files": "jquery/**/*.js" -->
+        <!-- include: "type": "js", "files": "angular/**/*.js" -->
+        <!-- include: "type": "js", "files": "vendor/**/*.js" -->
+        <!-- include: "type": "js", "files": "app/**/*.js" -->
+        <!--SCRIPTS END-->
+
+    </body>
+</html>

@@ -1,0 +1,87 @@
+{
+    "prod": "minesweeper",
+    "meta": {
+        "title": "财神盘 ™ 比特币轮盘赌场 - 赢比特币!",
+        "meta_description": "在财神堂 ™ 轮盘赌，您可以用比特币玩经典轮盘赌游戏。开始游戏，赢取大量比特币!",
+        "meta_keywords": "财神灵™,财神堂™,比特币博彩, 比特币游戏, 比特币骰子, 比特币块链, 中本聪,比特币色字"
+    },
+    "isLocalized": "true",
+    "serverMsg": "无法链接服务器",
+    "minconfMsg": "至少有一个充值没有被确定，请等待",
+    "withdrawErrorMsg": "取款错误，请重试",
+    "global": {
+        "logourl": "img/words/CN-MINESWEEPER.png",
+        "withdrawAddress": "取款地址"
+    },
+    "nav": {
+        "spins": "近期游戏",
+        "leaderboard": "高手排名榜",
+        "howtoplay": "游戏说明"
+    },
+    "home": {
+        "title_image": "img/icons/minesweeper.png",
+        "promote_header_a": "玩绝对公平的经典轮盘赌游戏",
+        "promote_header_d": "<h4>绝对公平、透明的系统</h4>",
+        "totalbet": "总共下注:"
+    },
+    "text": {
+        "withdrawAddress": "输入您的比特币钱包地址",
+        "totalbalance": "总余额",
+        "availablebalance": "可用余额"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/minesweeper"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/pan"
+        }
+    },
+    "game": {
+        "luckynumber": "幸运号码",
+        "x": "倍",
+        "symbol": "图案",
+        "multiplier": "赔率",
+        "details": "详情",
+        "CircleDiv2": "旋转总次数",
+        "CircleDiv4": "赌注",
+        "CircleDiv5": "存款",
+        "CircleDiv6": "存款地址",
+        "cashoutConfirm": "请确认您要取款并退出游戏",
+        "returnToGame": "回到游戏中",
+        "SsHeader1": "设置种子",
+        "SsHeader2": "下一个游戏编号",
+        "SsHeader3": "设置下一次旋转的客户端种子",
+        "spinmessage": "选择您的押注大小",
+        "spinningmessage": "<a href=\"https://www.caishentang.com/jiang\" target=\"_blank\">全球最大的比特币彩票</a>",
+        "winmessage": "你赢了",
+        "proof_text": "证明",
+        "win": "赢",
+        "lose": "输",
+        "my_games": "我的游戏",
+        "tabs_recent": "全球游戏",
+        "tabs_leaderboard": "高手排名榜",
+        "tabs_howtoplay": "游戏说明"
+    },
+    "leaderboard": {
+        "topPlayers": "顶级高手",
+        "bronze": "青铜级",
+        "silver": "白银级",
+        "gold": "黄金级",
+        "platinum": "铂金级",
+        "diamond": "钻石级",
+        "alias": "别名",
+        "btcwagered": "投注比特币"
+    },
+    "spins": {
+        "myspins": "我的游戏",
+        "CircleTh4": "赌注",
+        "ProofDt5": "最终排列"
+    },
+    "buttons": {
+        "start_spin": "转动",
+        "clearbets": "取消所有下注",
+        "clearbets_individual": "如果想取消单个筹码，按住筹码两秒钟，然后松开",
+        "start_game": "START GAME"
+    }
+}

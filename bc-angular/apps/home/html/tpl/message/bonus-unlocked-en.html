@@ -1,0 +1,14 @@
+<a data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}" ng-click="markRead()">
+    {{message.datetime | date:'yyyy-MM-dd HH:mm:ss'}} -
+    <b><span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> bonus has been unlocked</b>
+</a>
+<div bindonce="message" id="{{message.id}}" class="panel panel-default panel-collapse collapse" bo-class="{'in':!message.hasRead}">
+    <div class="panel-body">
+        <div>
+            <p>Congratulations! Your <span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> bonus has been unlocked, and {{message.finalValue}} has been made available for withdrawal!</p>
+        </div>
+        <button class="btn btn-primary btn-block" ng-click="markRead()" data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}">
+            <%=buttons.dismiss_message %>
+        </button>
+    </div>
+</div>

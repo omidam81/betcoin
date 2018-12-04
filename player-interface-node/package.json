@@ -1,0 +1,23 @@
+{
+  "name": "player-interface-node",
+  "version": "0.6.2",
+  "description": "player-node server interface for game servers",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/betcn/player-interface-node"
+  },
+  "author": "",
+  "dependencies": {
+    "mongowrap": "^0.1.1",
+    "node-etcd": "^2.1.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

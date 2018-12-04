@@ -1,0 +1,22 @@
+<% if (locale === "zh_CN") { %>
+
+<h3>财神堂 ™ 协助</h3><br><hr><br>
+<p>财神堂协助人员已经回复您的请求 # <%= ticketObject._id %></p>
+<p style=\"margin-left: 20px\">  <%= message %></p>
+<p>点击 <a href='https://www.caishentang.com/support/<%= ticketObject._id %>'>这里</a> 进行回复。</p>
+<p>如果以上链接无法打开，您可以前往以下地址查看更新<br>
+https://www.caishentang.com/support/<%= ticketObject._id %></p>
+<p>谢谢，<br>财神堂 ™ 协助团队</p>
+
+<% } else { %>
+
+<h3>BetCoin ™ Support</h3><br><hr><br>
+<p>The BetCoin support staff has responded to your support ticket # <%= ticketObject._id %></p>
+<p style=\"margin-left: 20px\">  <%= message %></p>
+<p>Click <a href='https://www.betcoin.tm/support/<%= ticketObject._id %>'> here</a>
+to respond.</p>
+<p>If the above link does not work, you can view the ticket by visiting
+https://www.betcoin.tm/support/<%= ticketObject._id %>   in your web browser</p>
+<p>Thanks,<br>BetCoin ™ Support</p>
+
+<% } %>

@@ -1,0 +1,81 @@
+<div class="panel panel-default">
+    <div class="panel-heading">VIP Status</div>
+    <div class="panel-body">
+        <h1>{{ vipLevelInfo.currentAmount|btc}} BTC</h1>
+        Current Tier:
+        <div class="btn-group">
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=1">Bronze</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=2">Silver</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=3">Gold</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=4">Platinum</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=5">Diamond</button>
+        </div>
+        <br>
+        <table class="table" ng-show="vipLevelInfo.level!=5">
+            <tbody>
+                <tr>
+                    <td>To Reach Next Level</td>
+                    <td>{{vipLevelInfo.nextLevelAmount|btc}} BTC</td>
+                </tr>
+                <tr>
+                    <td>Amount Left</td>
+                    <td>{{(vipLevelInfo.nextLevelAmount - vipLevelInfo.currentAmount)|btc}} BTC</td>
+                </tr>
+            </tbody>
+        </table>
+        <div ng-if="vipLevelInfo.level!=5">
+            <percent-slider min="{{vipLevelInfo.currentMinAmount}}" max="{{vipLevelInfo.nextLevelAmount}}" step="1" percent-slider-value="vipLevelInfo.currentAmount" disabled>
+        </div>
+        <div>
+            <h3>
+                Betcoin™ Bonus system
+            </h3>
+            <p>
+                Betcoin™ offers 2 amazing bonus systems which offer the best value for your bitcoin.
+            </p>
+            <br>
+            <h5>
+                MATCH BONUS
+            </h5>
+            <p>
+                Our 100% match bonus is available for new accounts on the first deposit. After accepting the bonus, when you make a deposit you will receive double your deposit amount in your account. For you to withdraw any of the winnings you get with the bonus amount, you will need to bet your deposit and bonus amount only 58x on any of our games. So if you deposit 1 BTC you will receive an additional 1 BTC in your account. to withdraw any winnings from this you need to bet 58x 2 BTC ( 1 from deposit and 1 from the bonus ) so in total it is 116 BTC.
+            </p>
+            <p>
+                If you do not meet the requirements you will not be able to withdraw your winnings, but you will always be able to withdraw your own deposit amount. In total you will have 8 days to clear the bonus. After 10 days, the remaining bonus amount is removed from your account.
+            </p>
+            <br>
+            <h5>
+                CASHBACK BONUS
+            </h5>
+            <p>
+                We at Betcoin™ believe that loyalty should be rewarded. So we have come up with an industry leading cash back bonus that will give you up to 9.88% of your losses back. How does this work?
+            </p>
+            <p>
+                Simple.. play with us and every Monday morning we will give you up to 9.88% of your net losses back into your account. There is nothing you need to do for this, all is done automatically. 
+            </p>
+            <p>
+                the amount of cash back received depends on your VIP  level and the higher your level the higher the percentage of your cashback will be every single Monday.
+            </p>
+            <p>
+                For instance: You have achieved our highest VIP level and in the week leading up to the Monday you have unfortunately lost 1 BTC. On Monday morning you will receive 0.0988 BTC back in your account as a thank you for playing with us during the week.
+            </p>
+            <br>
+
+            <p>
+                VIP Level Bronze: 1.88% cashback
+            </p>
+            <p>
+                VIP Level Silver: 3.88% cashback
+            </p>
+            <p>
+                VIP Level Gold: 5.88% cashback
+            </p>
+            <p>
+                VIP Level Platinum: 7.88% cashback
+            </p>
+            <p>
+                VIP Level Diamond: 9.88% cashback
+            </p>
+        </div>
+    </div>
+</div>

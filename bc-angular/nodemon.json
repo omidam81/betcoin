@@ -1,0 +1,19 @@
+{
+	"ignore": [
+		"build/**/*",
+		"config/**/*",
+		"devapps/**/*",
+		"dockerfiles/**/*",
+		"env/**/*",
+		"node/**/*",
+		"node_modules/**/*",
+		"runit/**/*",
+		"tasks/**/*",
+		"tmp/**/*"
+	],
+	"watch": ["src/**/*","apps/**/*"],
+	"ext": "js",
+	"verbose": true,
+	"script": "Makefile",
+	"exec": "make run PROD=home CONF=dev -f"
+}

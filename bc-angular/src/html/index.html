@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="application" id="<%= prod %>">
+    <head>
+        <title><%= meta.title %></title>
+        <base href="/<%= baseHrefMarkup %>"><!--[if lte IE 6]></base><![endif]-->
+        <meta name="description" content="<%= meta.description %>">
+        <meta name="keywords" content="<%= meta.keywords %>" />
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <link rel="shortcut icon" href="img/favicons/<%= prod %>.ico" type="image/x-icon">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="fragment" content="!">
+        <link href="/home/css/bootstrap.css" rel="stylesheet">
+        <link href="/<%= baseHref %>/css/app.css" rel="stylesheet">
+    </head>
+    <body>
+        <toastMsg id="tstMsg"
+                  data-login-success="<%= text.login_success %>"
+                  data-account-edit-success="<%= text.account_edit_success %>"
+                  data-cashout-request-generated="<%= text.cashout_request_generated %>"
+                  data-withdraw-processed="<%= text.withdraw_processed %>"
+                  data-pwd-reset-success="<%= text.password_reset_success %>"
+                  data-new-contact-send-success="<%= text.new_contact_send_success %>"
+                  data-resend-email-success="<%= text.resend_email_success %>"
+                  data-account-creation-success="<%= text.account_creation_success %>"></toastMsg>
+        <toast></toast>
+
+        <!--[if IE lt 10]>
+             <div style="background:black;color:#FFd479;z-index:999999;width:100%;height:100%;position:fixed;top:0;left:0px;text-align:center;outline: 9999px solid rgba(30,0,0,1)">
+             <div style="margin-top:300px">
+             <img src="<%= loading_img %>" class="img-responsive img-centered">
+             <h4><%= text.browser_no_supported %></h4>
+             </div>
+             </div>
+             <![endif] -->
+
+        <div ng-hide="removeLoading" id="loading-mask">
+            <div class="load">
+                <img src="<%= loading_img %>" class="img-responsive img-centered">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar width-full"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="maintenance_mode" id="{{maintenance_mode?'loading-mask':''}}">
+            <%= global.maintenance_mode %>
+        </div>
+        <div id="confirm_max_wager" style="display:none"><%= global.confirmWager %></div>
+
+        <bcCheckLang></bcCheckLang>
+
+        <bc-navigation></bc-navigation>
+
+        <bc-notifications></bc-notifications>
+
+        <div ng-include="'tpl/home.html'"></div>
+        <div ng-view autoscroll="true"></div>
+
+        <bc-footer></bc-footer>
+        <div class="justify-paragraph footer-seoblurb">
+            <%= footer_description %>
+        </div>
+
+        <!--SCRIPTS-->
+        <!-- include: "type": "js", "files": "./js/base/vendor/**/*.*" -->
+        <!-- include: "type": "js", "files": "./js/base/inherited/**/*.*" -->
+        <!-- include: "type": "js", "files": "./js/app/app-vendor/**/*.js" -->
+        <!-- include: "type": "js", "files": "./js/app/app.js" -->
+        <!-- include: "type": "js", "files": "./js/base/app.js" -->
+        <!-- include: "type": "js", "files": "./js/base/lib/*.js" -->
+        <!-- include: "type": "js", "files": "./js/base/controllers/*.js" -->
+        <!-- include: "type": "js", "files": "./js/base/directives/*.js" -->
+        <!-- include: "type": "js", "files": "./js/base/filters/*.js" -->
+        <!-- include: "type": "js", "files": "./js/base/services/*.js" -->
+        <!-- include: "type": "js", "files": "./js/base/navigation/*.js" -->
+        <!-- include: "type": "js", "files": "./js/app/services/*.js" -->
+        <!-- include: "type": "js", "files": "./js/app/controllers/*.js" -->
+        <!-- include: "type": "js", "files": "./js/app/directives/*.js" -->
+        <!-- include: "type": "js", "files": "./js/app/filters/*.js" -->
+        <!--SCRIPTS END-->
+
+        <!-- @if LOC="en_US" -->
+        <!-- ClickDesk Live Chat Service for websites -->
+        <script type='text/javascript'>
+         var _glc =_glc || []; _glc.push('ag9zfmNsaWNrZGVza2NoYXRyEQsSB3dpZGdldHMYova96AcM');
+         var glcpath = (('https:' == document.location.protocol) ? 'https://my.clickdesk.com/clickdesk-ui/browser/' :
+                        'http://my.clickdesk.com/clickdesk-ui/browser/');
+         var glcp = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+         var glcspt = document.createElement('script'); glcspt.type = 'text/javascript';
+         glcspt.async = true; glcspt.src = glcpath + 'livechat-new.js';
+         var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glcspt, s);
+        </script>
+        <!-- End of ClickDesk -->
+        <!-- @endif -->
+        <!-- @if LOC="zh_CN" -->
+        <!-- ClickDesk Live Chat Service for websites -->
+        <script type='text/javascript'>
+         var _glc =_glc || []; _glc.push('ag9zfmNsaWNrZGVza2NoYXRyEQsSB3dpZGdldHMYtc2k_wcM');
+         var glcpath = (('https:' == document.location.protocol) ? 'https://my.clickdesk.com/clickdesk-ui/browser/' :
+                        'http://my.clickdesk.com/clickdesk-ui/browser/');
+         var glcp = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+         var glcspt = document.createElement('script'); glcspt.type = 'text/javascript';
+         glcspt.async = true; glcspt.src = glcpath + 'livechat-new.js';
+         var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glcspt, s);
+        </script>
+        <!-- End of ClickDesk -->
+        <!-- @endif -->
+        <script type='text/javascript'>
+         window.onbeforeunload = function () {
+             if(window.isGameInProgress === true)
+                 return "<%= exitMsg %>";
+             else return;
+         };
+        </script>
+        <!-- code for nadle logout in other tab -->
+
+        <script type="text/javascript">
+         window.addEventListener("storage", function(event) {
+             var key = event.key;
+             var value = event.newValue;
+             if(key === 'betcoin_session_value'){
+                 setTimeout(function() { window.location.reload(); }, 3000);
+             }
+         });
+        </script>
+
+        <!-- Start of Async HubSpot Analytics Code -->
+          <script type="text/javascript">
+            (function(d,s,i,r) {
+              if (d.getElementById(i)){return;}
+              var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+              n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/478940.js';
+              e.parentNode.insertBefore(n, e);
+            })(document,"script","hs-analytics",300000);
+          </script>
+        <!-- End of Async HubSpot Analytics Code -->
+        <!-- Modal -->
+        <div class="modal fade" id="maintenance" tabindex="-1" role="dialog" aria-labelledby="maintenanceModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><%= close %></span></button>
+                        <p>{{maintenanceError.data.message}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="squeeze" tabindex="-1" role="dialog" aria-labelledby="squeezeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><%= close %></span></button>
+                        <h2 class="modal-title" id="myModalLabel"><%= squeeze.headline %></h2>
+                        <h3 class="margin-top-0"><%= squeeze.get_a_real %><br />
+                            <%= squeeze.risk_free_no_deposit %><br />
+                            <%= squeeze.cash_bonus %></h3>
+                        <button type="button" class="btn btn-flashy btn-claim-bonus" data-dismiss="modal"  data-toggle="modal" data-target="#signupModal"><%= squeeze.claim_free_bonus %></button>
+                        <div class="center-block margin-top-15">
+                            <a data-toggle="modal" data-target="#loginModal" data-dismiss="modal"><%= buttons.existing_member_login %></a>
+                        </div>
+                        <div class="center-block">
+                            <img class="squeezegraphic" src="./img/pileofgold.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><%= close %></span></button>
+                    <div ng-include src="'tpl/about-<%= fileSuffix %>.html'"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="jadeModal" tabindex="-1" role="dialog" aria-labelledby="jadeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><%= close %></span></button>
+                    <div ng-include src="'tpl/jade-<%= fileSuffix %>.html'"></div>
+                </div>
+            </div>
+        </div>
+        <div ng-include src="'tpl/signup.html'"></div>
+        <first-time-deposit></first-time-deposit>
+        <div ng-include src="'tpl/support/index-modal.html'"></div>
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><%= close %></span></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="text-center"><%= buttons.login %></h1>
+                        <bc-login on-login="loginSuccess(player)"></bc-login>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ftdDoneModal" tabindex="-1" role="dialog" aria-labelledby="ftdDoneLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><%= close %></span></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><%= text.first_deposit_text %></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="emailnotverify" tabindex="-1" role="dialog" aria-labelledby="emailnotverifyModalLabel" aria-hidden="true" ng-controller="VerifyEmailController">
+            <div class="modal-dialog">
+                <div class="modal-content modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><%= close %></span></button>
+                    <h1><%= text.please_verify_your_address %></h1>
+                    <h4><%= text.verify_info %></h4>
+                    <p><%= text.verify_instructions %></p>
+
+                    <div class="margin-top-15 form-group">
+                        <input type="email" class="form-control" id="pendingEmailResend"  ng-model="BCSession.user.pendingEmail"/>
+                    </div>
+                    <div>
+                        <button ladda="submitting" class="btn btn-large btn-flashy" ng-click="resendverifyemail()"><%= text.resend_email %></button>
+                    </div>
+
+                    <p class="margin-top-15" style="font-size:8pt;"><%= text.verify_anon %></p>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

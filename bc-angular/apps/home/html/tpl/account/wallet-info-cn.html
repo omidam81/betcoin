@@ -1,0 +1,12 @@
+                    <div ng-hide="user.wallets['bitcoin'].withdrawAddress">
+                        <h2>注册并认证您的比特币钱包</h2>
+                        <p>若要进行存款或取款你需要注册一个比特币钱包。请前往<a target="_blank" href="https://openblock.com/wallet/#/signup">OpenBlock.com</a>注册您的比特币钱包，您只需30秒钟即可完成钱包注册。
+                        </p>
+                        
+                        <p>若您已经拥有一个比特币钱包<a href="account/edit">请点击此处进行认认证。</a></p>
+                        <p><a href="account/aboutbtc">请点击此处以了解更多信息</a></p>
+                    </div>
+                    <h4>若您需要购买或卖出比特币<a href="account/exchange">请点击此处以了解更多信息</a></h4>
+
+                    <div>狗狗币及山寨币用户: <a href="account/wallets">请点击此处以查看钱包信息</a></div> 
+                    <div ng-include src="'tpl/newtobitcoin-<%= fileSuffix %>.html'"></div> 

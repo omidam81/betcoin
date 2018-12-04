@@ -1,0 +1,66 @@
+<div ng-controller="UserHistoryController">
+    <div class="row">
+        <range-display-back class="col-md-4" since="range.start" until="range.end"></range-display-back>
+        <range-chooser-back class="col-md-8" on-submit="rangeChanged(range)"></range-chooser-back>
+    </div>
+    <div class="row">
+        <h3>Cashflow</h3>
+        <table class="table bc-backoffice-table">
+            <thead>
+                <th>Currency</th>
+                <th>Total Deposited</th>
+                <th>Deposit Count</th>
+                <th>Total Withdrawn</th>
+                <th>Withdraw Count</th>
+                <th>Current Available Balance</th>
+                <th>Total House Profit</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(index, currency) in cashflow">
+                    <td>{{ currency._id }}</td>
+                    <td>{{ currency._id | cryptosymbol }} {{ currency.totalDeposit | cryptovalue }}</td>
+                    <td>{{ currency.depositCount | number }}</td>
+                    <td>{{ currency._id | cryptosymbol }} {{ currency.totalWithdraw | cryptovalue }}</td>
+                    <td>{{ currency.withdrawCount | number }}</td>
+                    <td>{{ currency._id | cryptosymbol }} {{ wallets[currency._id].availableBalance | cryptovalue }}</td>
+                    <td>
+                        {{ currency._id | cryptosymbol }}&nbsp;
+                        {{ currency.totalDeposit - currency.totalWithdraw - wallets[currency._id].availableBalance | cryptovalue }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h3>Game Stats</h3>
+        <table class="table bc-backoffice-table">
+            <thead>
+                <th>Game</th>
+                <th>Currency</th>
+                <th>Wagered</th>
+                <th>Won</th>
+                <th>Game Count</th>
+                <th>House Profit</th>
+                <th>House Edge</th>
+            </thead>
+            <tbody ng-repeat="(gameName, game) in gameData">
+                <tr ng-repeat="(index, currency) in game">
+                    <th rowspan="{{game.length}}" ng-if="index==0">
+                        <p>{{gameName}}</p>
+                        <a ng-href="search/transaction?q_userId={{user._id}}&q_type=__contains_{{gameName}}">Game Txs</a>
+                    </th>
+                    <td>{{ currency._id }}</td>
+                    <td>{{ currency._id | cryptosymbol }} {{ currency.wagered | cryptovalue }}</td>
+                    <td>{{ currency._id | cryptosymbol }} {{ currency.won | cryptovalue }}</td>
+                    <td>{{ currency.count | number }}</td>
+                    <td>{{ currency._id | cryptosymbol }} {{ currency.wagered - currency.won | cryptovalue }}</td>
+                    <td>{{ ((currency.wagered - currency.won)/currency.wagered)*100 | number:4 }}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <pre>{{user | json}}</pre>
+    <pre>{{wallets | json}}</pre>
+    <pre>{{gameData | json}}</pre>
+    <pre>{{bonuses | json}}</pre>
+    </div>

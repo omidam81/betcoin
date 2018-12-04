@@ -1,0 +1,22 @@
+<h3 class="text-center"><%= text.anonymous_mode %></h3>
+<div><%= text.anonymous_mode_description%></div>
+<form role="form" name="loginFormAnon" ng-submit="loginAnon()">
+    <!-- <div ng-show='error != null' class="alert alert-danger" style="text-align: center;">{{error}}</div> -->
+    <div class="form-group col-xs-12 {{inline?'col-sm-8':''}}">
+        <!-- <label for="" class="control-label"><%= text.withdrawAddress %></label> -->
+        <input type="text" autocorrect="off" autocapitalize="off" class="form-control input-lg" name="anonAddress" ng-model="anonAddress" required/>
+    </div>
+    <div class="form-group col-xs-12 {{inline?'col-sm-4':''}}">
+        <button type="submit" class="btn btn-lg btn-block btn-lowkey" ng-disabled="loginFormAnon.$invalid"  bc-popover="{{error != null}}"><%= buttons.anonlogin %></button>
+        <div class="errors hide">
+            <span class="error">{{error|error}}</span>
+        </div>
+    </div>
+    <!-- <h4><%= text.registered_players %></h4>
+    <ul>
+        <li><%= text.free_bitcoin %></li>
+        <li><%= text.bonuses %></li>
+        <li><%= text.vip %></li>
+        <li><%= text.promotions %></li>
+    </ul> -->
+</form>

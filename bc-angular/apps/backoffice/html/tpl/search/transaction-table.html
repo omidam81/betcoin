@@ -1,0 +1,36 @@
+<table class="table bc-multi-table"
+       ng-init="showDetails = {}"
+       ng-hide="loading">
+    <thead>
+        <th>User</th>
+        <th>Currency</th>
+        <th>Debit</th>
+        <th>Credit</th>
+        <th>Type</th>
+        <th>Date</th>
+    </thead>
+    <tbody ng-repeat="tx in listData.result">
+        <tr ng-class="showUserDetails[user._id]?'highlighted':''"
+            ng-click="showDetails[tx._id]=!showDetails[tx._id]"
+            style="cursor: pointer;">
+            <td><a href="search/user?q__id={{tx.user._id}}">{{ tx.user.username }}</a></td>
+            <td>{{ tx.currency }}</td>
+            <td>{{ tx.currency | cryptosymbol }} {{ tx.debit | cryptovalue }}</td>
+            <td>{{ tx.currency | cryptosymbol }} {{ tx.credit | cryptovalue }}</td>
+            <td>{{ tx.type }}</td>
+            <td log-search-link date="{{tx.createdAt}}"></td>
+        </tr>
+        <tr class="bc-sub-table"
+            ng-show="showDetails[tx._id]">
+            <td>REF ID</td>
+            <td colspan="5">{{tx.refId}}</td>
+        </tr>
+        <tr class="bc-sub-table"
+            ng-show="showDetails[tx._id]"
+            ng-repeat="key in ['status', 'txid', 'admin', 'memo']"
+            ng-if="tx.meta[key]">
+            <td>{{key}}</td>
+            <td colspan="5">{{tx.meta[key]}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,15 @@
+
+RUN add-apt-repository ppa:bitcoin/bitcoin
+
+RUN apt-get update --fix-missing
+
+RUN apt-get install -y libdb4.8-dev libdb4.8++-dev libboost-all-dev libssl-dev libglib2.0-dev
+
+# install namecoind
+RUN git clone https://github.com/namecoin/namecoin && cd namecoin && git checkout nc0.3.76
+
+RUN cd namecoin/src && make USE_UPNP= && cp namecoind /usr/bin
+
+
+RUN mkdir /etc/service/namecoind
+ADD runit/namecoind /etc/service/namecoind/run

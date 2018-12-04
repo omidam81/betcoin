@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+    <head>
+        <title>BetCoin Wiki</title>
+    </head>
+    <body>
+        <% for (var i = 0; i < docs.length; i++) { %>
+        <a href="https://www.betcoin.tm/wiki#!/read/<%= docs[i].slug %>"><%= docs[i].title %></a>
+        <% } %>
+    </body>
+</html>

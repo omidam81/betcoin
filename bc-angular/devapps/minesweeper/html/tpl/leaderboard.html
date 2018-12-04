@@ -1,0 +1,16 @@
+<div>
+    <table class="table table-bordered gamesTable">
+        <thead>
+            <tr>
+                <th><%= leaderboard.alias %></th>
+                <th><%= leaderboard.btcwagered %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="player in leaderboard">
+                <td>{{ player._id }}</td>
+                <td>{{ player.wagered | cryptovalue }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

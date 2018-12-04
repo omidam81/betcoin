@@ -1,0 +1,31 @@
+<div class="row"
+     ng-controller="ContactListController">
+    <h2>{{list.name}}</h2>
+    <h4>
+        <span ng-if="list.noDepositDays != undefined">{{list.noDepositDays}} days | </span>
+        <span ng-if="list.vipLevel != undefined">{{vipLevels[list.vipLevel]._id}}  | </span>
+        <span ng-if="list.locale != undefined">{{list.locale}} | </span>
+        <span ng-repeat="promoId in list.promos">
+            <a ng-href="promotions/{{promoId}}">{{promoMap[promoId]}}</a>
+            <span ng-if="!$last">, </span>
+        </span>
+    </h4>
+    <table class="table">
+        <thead>
+            <th>User</th>
+            <th>Signed Up</th>
+            <th>Deposited</th>
+            <th>Withdrawn</th>
+            <th>Profit</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in list.contacts">
+                <td><a ng-href="user/{{user._id}}">{{user._id}}</a></td>
+                <td><elapsed date="user.createdAt"></elapsed> ({{user.createdAt | gmtdatetime}})</td>
+                <td>{{'bitcoin' | cryptosymbol}}{{user.deposited['bitcoin'] | cryptovalue}}</td>
+                <td>{{'bitcoin' | cryptosymbol}}{{user.withdrawed['bitcoin'] | cryptovalue}}</td>
+                <td>{{'bitcoin' | cryptosymbol}}{{user.deposited['bitcoin'] - user.withdrawed['bitcoin'] | cryptovalue}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,86 @@
+@media screen and (max-width: 992px) {
+  .gamesTable tr td, .gamesTable tr th {
+    max-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+
+
+
+@media (max-width: @screen-xs-max) {
+  .content .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .gamesTable tr td, .gamesTable tr th {
+    max-width: 50px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .gamesTable {
+    table-layout: fixed;
+  }
+  .col-xs-12.xs-fullwidth {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .box > h3 {
+    margin-left: 10px;
+  }
+
+  .navbar .navbar-collapse {
+    background: #0a0a0a;
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+
+  #footer .navigation {
+      clear: both;
+  }
+
+  .navbar .navbar-right .currency-dropdown .dropdown-menu {
+    .currencies, .amounts {
+      > div {
+        height: 40px;
+        padding: 10px 0;
+      }
+    }
+  }
+  .game-nav-tabs.nav-tabs.nav-justified {
+    > li {
+      display: block;
+      width: auto;
+    }
+  }
+  .leftbar .list-item > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 357px) {
+  .mainlogo { width: 100%; }
+}
+
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+  .navbar-nav > li > a {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+  .logo-container img {
+    width: 100%;
+  }
+
+  .box .list-grid > div, .box .olympia-grid > div, .box .games-grid > div {
+    font-size: 11px;
+  }
+}

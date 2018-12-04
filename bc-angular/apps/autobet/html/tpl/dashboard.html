@@ -1,0 +1,207 @@
+<div ng-hide="!player._id">
+	<div class="row">
+        <form class="col-md-6">
+            <label>Existing User</label>
+		    <input class="input" ng-model="robotUserId" placeholder="Player ID"></input>
+		    <input class="input" ng-model="robotUsername" placeholder="Player Username"></input>
+		    <button class="btn btn-default" ng-click="addRobot()">Add Robot</button>
+        </form>
+        <form class="col-md-6">
+            <label>New User</label>
+		    <input class="input" ng-model="newRobotUsername" placeholder="Player Username"></input>
+		    <button class="btn btn-default" ng-click="addNewRobot()">Add New Robot</button>
+        </form>
+    </div>
+    <div class="row">
+	    <ul class="nav nav-tabs nav-justified game-nav-tabs" role="tablist">
+		    <li ng-click="switchPlayerTab(player_id)" class="{{current_user_id==player_id?'active':''}}" ng-repeat="(player_id,playerConfig) in players"><a class="game-type">Player {{$index}} - {{playerConfig.username}}</a></li>
+	    </ul>
+    </div>
+    <div class="row">
+	    <div class="panel-group col-md-12" id="robot">
+		    <div class="panel panel-default">
+			    <div class="panel-heading">
+				    {{players[current_user_id].username}} - {{players[current_user_id]._id}}
+			    </div>
+			    <div id="{{players[current_user_id].username}}" class="panel-collapse collapse in">
+				    <div class="panel-body">
+					    <div class="row">
+						    <div class="col-md-6">
+							    <div class="col-md-6">
+								    <select ng-model="gameType" class="form-control create-games">
+									    <option value="{{type}}" ng-repeat="type in defaultAutobets">{{type.toUpperCase()}}</option>
+								    </select>
+							    </div>
+							    <div class="col-md-6">
+								    <button class="btn btn-default btn-block" ng-disabled="!current_user_id" ng-click="addGameAutobet(gameType)">Add Game Autobet</button>
+							    </div>
+						    </div>
+						    <div class="col-md-6">
+							    <div class="row" ng-repeat="(currency,wallet) in wallets[current_user_id]">
+								    <span>{{currency.toUpperCase()}}</span> <span>Balance: {{wallet.balance|cryptovalue}}</span>
+							    </div>
+                                <button class="btn btn-default" ng-click="creditUser()">Credit User</button>
+						    </div>
+					    </div>
+					    <div class="panel-group col-md-6" id="{{players[current_user_id].username}}-games" ng-repeat="(gamekey, game) in players[current_user_id].games">
+						    <div class="panel panel-default">
+							    <div class="panel-heading">
+								    <a data-toggle="collapse" data-parent="#{{players[current_user_id].username}}-games" data-target="#{{game._id}}" class="row">
+									    <span class="col-md-6">
+										    {{game.name.toUpperCase()}} - {{game.type == 'custom'? 'CUSTOM' : 'DEFAULT'}}
+									    </span>
+									    <span class="col-md-6" ng-show="game.runCounts > 0">
+										    Run Counts: {{game.runCounts}}
+									    </span>
+									</a>
+								</div>
+								<div id="{{game._id}}" class="game-panel panel-collapse collapse {{!game._id?'in':''}}">
+									<div class="panel-body game-config">
+										<div class="input-group">
+											<span class="input-group-addon">Name</span>
+											<input type="text" class="input form-control" ng-model="game.name" placeholder="Autobet Name" ng-disabled="game.type!='custom'" />
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">Frequnecy</span>
+											<input type="number" min="10" class="input form-control" ng-model="game.frequency" placeholder="Frequency in Seconds"/>
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">Currency</span>
+											<select ng-init="game.currency=game.currency||currencies[0]" ng-model="game.currency" class="form-control create-games" ng-options="currency as currency.toUpperCase() for currency in currencies" ng-disabled="game.enabled">
+											</select>
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">Min Wager</span>
+											<input type="number" min="0" class="input form-control" ng-model="game.wager" placeholder="Wager in BTC"/>
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon">Max Wager</span>
+											<input type="number" min="0" class="input form-control" ng-model="game.wager_max" ng-init="game.wager_max=game.wager_max||game.wager" placeholder="Wager in BTC"/>
+										</div>
+										<div class="row">
+											<div class="row">
+												<div class="input-group">
+													<span class="input-group-addon">Stop After</span>
+													<input type="number" min="1" class="form-control runs" ng-model="game.max_runs" placeholder="Stop after how many runs"/>
+													<span class="input-group-addon runs">Runs</span>
+												</div>
+											</div>
+											<div class="row" ng-hide="game.type=='custom'">
+												<div class="row">
+													Then Restart After:
+												</div>
+												<div class="row">
+													<div class="input-group">
+														<span class="input-group-addon">Hours</span>
+														<input type="number" min="0" class="form-control" ng-model="game.restart_after_hours" placeholder="Hours"/>
+													</div>
+													<div class="input-group">
+														<span class="input-group-addon">Minutes</span>
+														<input type="number" min="0" class="form-control" ng-model="game.restart_after_mins" placeholder="Minutes"/>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row" ng-show="game.type=='custom'">
+											<select ng-model="type" class="form-control">
+												<option value="get">GET</option>
+												<option value="post">POST</option>
+												<option value="put">PUT</option>
+												<option value="convert">TRANSFORM PARAMS</option>
+												<option value="js">JS</option>
+											</select>
+											<button class="btn btn-default btn-block" ng-click="addAction(game, type)">ADD ACTION</button>
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<a data-toggle="collapse" data-target="#port-{{game._id}}">
+													    Import/Export
+													</a>
+												</div>
+												<div id="port-{{game._id}}" class="panel-collapse collapse">
+													<div class="panel-body">
+														<div class="row">
+															<button class="btn btn-default col-md-6" ng-click="importActions(game)">Import</button>
+															<button class="btn btn-default col-md-6" ng-click="exportActions(game)">Export</button>
+														</div>
+														<div class="row">
+															<div ui-ace="aceOption" ng-model="game.actionsJsonString"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<ul data-sortable="board.dragControlListeners" data-ng-model="game.actions" ng-show="game.type=='custom'">
+											<li data-ng-repeat="(key, action) in game.actions" data-sortable-item>
+												<div class="panel panel-default">
+													<div class="panel-heading" data-sortable-item-handle>
+														<div class="col-md-2">
+															{{action.httpType!=null?action.httpType.toUpperCase():action.type.toUpperCase()}}
+														</div>
+														<div class="col-md-offset-7 col-md-3">
+															Action: {{key + 1}}
+														</div>
+													</div>
+													<div class="panel-body">
+														<div class="row" ng-show="action.type=='http'">
+															<input type="text" class="input col-md-9" placeholder="ENDPOINT" ng-model="action.endpoint" />
+														</div>
+														<div class="row" ng-hide="action.httpType=='get'">
+															<!-- <textarea ng-model="action.body" placeholder="{{action.type=='js'?'ENTER JS':'ENTER JSON'}}" class="form-control"></textarea> -->
+															<div ui-ace="aceOption" ng-model="action.body"></div>
+
+														</div>
+														<div class="row">
+															<button class="btn btn-default btn-block" ng-click="removeAction(key)">Remove</button>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+										<!-- <div class="row" ng-repeat="(key, action) in game.actions">
+
+										</div> -->
+										<div class="row">
+											<button class="btn btn-default col-md-4" ng-click="saveGameAutobet()" ng-disabled="!game.name||!game.frequency||!game.wager||game.enabled">Save</button>
+											<button class="btn btn-default col-md-4" ng-click="removeGame(gamekey, game)" ng-disabled="game.enabled">Remove</button>
+											<button class="btn btn-default col-md-4" ng-disabled="!players[current_user_id].games.length||game.frequency<=0||!game.wager||!game._id" ng-click="toggleAutobet(players[current_user_id], game)"><span ng-show="game.enabled">Turn Off Autobet</span><span ng-show="!game.enabled">Turn On Autobet</span></button>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="row">
+												<div class="col-md-4" ng-repeat="(key, total) in game.totals" ng-if="key!='runCounts'">
+													{{key.toUpperCase()}}:{{total|cryptovalue}}
+												</div>
+											</div>
+											<div class="row">
+												<div ng-show="game.waitToRun">
+													Waiting for next round
+												</div>
+											</div>
+										</div>
+										<span class="row color-red" ng-if="game.error">{{game.error.message}}</span>
+										<hr/>
+										<div ng-if="game.type=='custom'" class="row" style="max-height:500px;overflow:scroll;">
+											<div class="row response-result">
+												<div ng-repeat="result in game.results">
+													<label>{{result.action.type.toUpperCase()}}
+														<span ng-show="result.action.httpType">-{{result.action.httpType.toUpperCase()}}</span>
+														<span>-{{result.time|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+													</label>
+													<pre>
+														{{result.text}}
+													</pre>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	  	</div>
+	</div>
+	<hr/>
+</div>

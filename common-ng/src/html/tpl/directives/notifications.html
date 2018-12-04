@@ -1,0 +1,23 @@
+<div class='panel' ng-show="notification">
+	<div class="panel-body">
+		<div class="pull-left" ng-show="notification.type === 'message_sent'">
+			<%= text.message_sent %>
+		</div>
+		<div class="pull-left" ng-show="notification.type === 'anonymous_upgrade'">
+			<%= text.anonymous_upgrade %>
+		</div>
+        <div  ng-show="notification.type === 'socket_disconnected' || notification.type === 'browser_no_supported'" class="notification-type-1">
+            <div class="margin-top-100">
+             <img src="<%= loading_img %>" class="img-responsive img-centered">
+             <h3><%= text.socket_browser %></h3>
+            </div>
+        </div>
+        <div  ng-show="notification.type === 'server_unreachable'" class="notification-type-2">
+            <div class="margin-top-100">
+             <img src="<%= loading_img %>" class="img-responsive img-centered">
+             <h3><%= text.server_unreachable %></h3>
+            </div>
+        </div>
+		<a class="close" ng-click="removeNotification()" aria-hidden="true">x</a>
+	</div>
+</div>

@@ -1,0 +1,58 @@
+{
+    "prod": "mahjong",
+    "meta": {
+        "title": "财神将™"
+    },
+    "global": {
+        "logourl": "img/words/cn/mahjong.png"
+    },
+    "home": {
+        "title_image": "img/icons/mahjong280.png",
+        "promote_header_a":"全球仅有的比特币麻将"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/mahjong"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/majiang"
+        }
+    },
+    "winds": {
+        "east" : "東",
+        "south" : "南",
+        "west" : "西",
+        "north" : "北"
+    },
+    "labels": {
+        "won_the_round": "赢得本局",
+        "draw_game": "平局",
+        "base_payment": "基础奖金",
+        "winds": {
+            "east": "EAST",
+            "south": "SOUTH",
+            "west": "WEST",
+            "north": "NORTH"
+        },
+        "fan": "分",
+        "betsize": "您的赌注大小等于您的基础奖金. 赌注的最大金额是您余额的1/64"
+    },
+    "buttons": {
+        "start": "开始新游戏",
+        "resume_previous_game": "Resume Previous"
+    },
+    "options": [
+        {"type": -10, "label": "Remove"},
+        {"type": 0, "label": "跳过"},
+        {"type": 5, "label": "跳过"},
+        {"type": 7, "label": "Pair"},
+        {"type": 10, "label": "吃"},
+        {"type": 20, "label": "碰"},
+        {"type": 21, "label": "碰"},
+        {"type": 30, "label": "杠"},
+        {"type": 35, "label": "杠"},
+        {"type": 36, "label": "杠"},
+        {"type": 40, "label": "胜！"},
+        {"type": 50, "label": "从牌中得胜"}
+    ]
+}

@@ -1,0 +1,97 @@
+
+    <h1>VIP 状态</h1>
+    <div class="">
+        <ul class="nav nav-tabs nav-justified game-nav-tabs" role="tablist">
+            <li class="{{currency=='bitcoin'?'active':''}}"><a class="game-type" ng-click="determineVIPLevel(totals, 'bitcoin')">比特币</a></li>
+            <li class="{{currency=='dogecoin'?'active':''}}"><a class="game-type" ng-click="determineVIPLevel(totals, 'dogecoin')">狗币</a></li>
+            <li class="{{currency=='litecoin'?'active':''}}"><a class="game-type" ng-click="determineVIPLevel(totals, 'litecoin')">莱特币</a></li>
+            <li class="{{currency=='ppcoin'?'active':''}}"><a class="game-type" ng-click="determineVIPLevel(totals, 'ppcoin')">点点币</a></li>
+            <li class="{{currency=='namecoin'?'active':''}}"><a class="game-type" ng-click="determineVIPLevel(totals, 'namecoin')">NameCoin</a></li>
+        </ul>
+        <h1>{{ vipLevelInfo.currentAmount| cryptovalue}} <wallet-currency wallet="user.wallets[currency]"></wallet-currency></h1>
+        当前等级:
+        <div class="btn-group">
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=1">铜牌会员</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=2">白银会员</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=3">黄金会员</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=4">铂金会员</button>
+            <button class="btn btn-default" ng-disabled="vipLevelInfo.level!=5">钻石会员</button>
+        </div>
+        <br>
+        <table class="table" ng-show="vipLevelInfo.level!=5">
+            <tbody>
+                <tr>
+                    <td>下个等级下注总额要求</td>
+                    <td>{{vipLevelInfo.nextLevelAmount| cryptovalue}} <wallet-currency wallet="user.wallets[currency]"></wallet-currency></td>
+                </tr>
+                <tr>
+                    <td>还需要下注额度</td>
+                    <td>{{(vipLevelInfo.nextLevelAmount - vipLevelInfo.currentAmount)| cryptovalue}} <wallet-currency wallet="user.wallets[currency]"></wallet-currency></td>
+                </tr>
+            </tbody>
+        </table>
+        <div ng-if="vipLevelInfo && vipLevelInfo.level!=5">
+            <span class="color-red" ng-if="error">{{error}}</span>
+            <percent-slider min="{{vipLevelInfo.currentMinAmount}}" max="{{vipLevelInfo.nextLevelAmount}}" step="1" percent-slider-value="vipLevelInfo.currentAmount" disabled>
+        </div>
+        <div>
+            <h3>
+                财神堂™ 奖励机制
+            </h3>
+            <p>
+                财神堂™ 提供人兴奋的奖励机制，从而提高您<wallet-currency wallet="user.wallets[currency]"></wallet-currency>的价值。
+            </p>
+            <br>
+            <h5>
+                完全无风险无需存款免费加入奖赏
+            </h5>
+            <p>
+                我们所提供的免费欢迎奖励将在您注册帐户的时候给您提供一些用于试玩游戏的免费比特币。在完成帐户注册之后此欢迎鉴赏将立即充入您的账户。您将会需要在我们的游戏中下注888倍于充值和奖励的额度，从而能提取所有的奖励额度。比如，您充值 1 个<wallet-currency wallet="user.wallets[currency]"></wallet-currency>，将会同时获得 1.08 <wallet-currency wallet="user.wallets[currency]"></wallet-currency>的额度。要从奖励额度中汇出<wallet-currency wallet="user.wallets[currency]"></wallet-currency>，需要在任何游戏中下注 1847.04 个<wallet-currency wallet="user.wallets[currency]"></wallet-currency>（2.08 个<wallet-currency wallet="user.wallets[currency]"></wallet-currency>的888倍，1个来自充值，一个来自奖励）。
+            </p>         
+            <p>
+                如果你没有满足上面的要求，将无法汇出奖励额度。您将有 7 天的时间来达到获取奖励所需的下注数。7天之后，奖励额度将会被去除。
+            </p>               
+            <h5>
+                首存奖金
+            </h5>
+            <p>
+                我们提供给新玩家的第一个充值108%的充值奖励。在接受此类别奖励后，当你充值时将会获得双倍的充值额度。您将会需要在我们的游戏中下注888倍于充值和奖励的额度，从而能提取所有的奖励额度。比如，您充值 1 个<wallet-currency wallet="user.wallets[currency]"></wallet-currency>，将会同时获得 1.08 <wallet-currency wallet="user.wallets[currency]"></wallet-currency>的额度。要从奖励额度中汇出<wallet-currency wallet="user.wallets[currency]"></wallet-currency>，需要在任何游戏中下注 1847.04 个<wallet-currency wallet="user.wallets[currency]"></wallet-currency>（2.08 个<wallet-currency wallet="user.wallets[currency]"></wallet-currency>的888倍，1个来自充值，一个来自奖励）。
+            </p>
+            <p>
+                如果你没有满足上面的要求，将无法汇出奖励额度，但还是可以汇出您所充值的金额。您将有 7 天的时间来达到获取奖励所需的下注数。7天之后，奖励额度将会被去除。
+            </p>
+            <br>
+            <h5>
+                现金返还奖励
+            </h5>
+            <p>
+                财神堂™ 相信老顾客需要被奖励。所以我们决定提供下注损失总额的9.88%现金返还奖励（领域最高）具体是怎样的？
+            </p>
+            <p>
+                简单 —— 每星期一早上，我们将最高返还9.88%您的下注损失总额到账户。您不需要做任何事情。
+            </p>
+            <p>
+                返还额度将取决于您到 VIP 等级。等级越高，每星期一的返还额度比例越高。
+            </p>
+            <p>
+                比如：用户若已达到了最高的 钻石VIP 等级，在一个星期内，星期一之前下注损失金额为100<wallet-currency wallet="user.wallets[currency]"></wallet-currency>。在星期一的早上，您将会收到9.88<wallet-currency wallet="user.wallets[currency]"></wallet-currency>比特币的返还到您到账户，当作感谢您在过去的一星期里玩我们的游戏。
+            </p>
+            <br>
+
+            <p>
+                VIP 等级 铜牌会员: 1.88% 返还
+            </p>
+            <p>
+                VIP 等级 白银会员: 3.88% 返还
+            </p>
+            <p>
+                VIP 等级 黄金会员: 5.88% 返还
+            </p>
+            <p>
+                VIP 等级 铂金会员: 7.88% 返还
+            </p>
+            <p>
+                VIP 等级 钻石会员: 9.88% 返还
+            </p>
+        </div>
+    </div>

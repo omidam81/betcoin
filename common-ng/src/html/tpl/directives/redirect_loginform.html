@@ -1,0 +1,19 @@
+<h3 class="text-center"><%= buttons.login_register%></h3>
+<p>
+    <%= text.redirect_login_instructions%>
+</p>
+<div ng-hide="home_description">
+    <small><%= text.redirect_login_description%></small>
+</div>
+<form role="form" class="form form-inline" name="loginForm">
+    <div class="form-group col-xs-12 {{inline?'col-sm-7 col-md-8':''}}">
+        <input type="text" autocorrect="off" autocapitalize="off" class="form-control input-lg" ng-model="identity" required />
+    </div>
+    <div class="form-group col-xs-12 {{inline?'col-sm-5 col-md-4':''}}">
+        <button ng-click="checkAlias()" class="btn btn-lg btn-block btn-flashy" bc-popover="{{error != null}}" ng-disabled="loginForm.$invalid"><%= buttons.login_register %></button>
+        <div class="errors hide">
+            <span class="error">{{error|error}}</span>
+        </div>
+    </div>
+    <div class="padding-5 form-group col-xs-12"><a href="/password/reset"><%= buttons.password_forgot %></a></div>
+</form>

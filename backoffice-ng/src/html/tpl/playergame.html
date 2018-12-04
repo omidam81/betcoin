@@ -1,0 +1,63 @@
+<div class="row" ng-show="playerId.length">
+    <div ng-show="loadingPlayerData" style="text-align: center;" class="panel col-md-6"><h4>Loading Account Data</h4></div>
+    <div ng-show="accountData" style="min-height: 285px;" class="panel col-md-6">
+        <div class="panel-heading">
+            <h4 style="text-align: center;">Account Info</h4>
+            <h4 style="text-align: center;">{{ accountData._id }}</h4>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Balance</dt><dd>{{ accountData.account_balance }}</dd>
+                <dt>Alias</dt><dd>{{ accountData.alias }}</dd>
+                <dt>Deposit Address</dt><dd>{{ accountData.deposit_address }}</dd>
+                <dt>Created</dt><dd>{{ accountData.createdAt | date:'yyyy-MM-dd @ hh:mm:ss a' }}</dd>
+                <dt>Updated</dt><dd>{{ accountData.updatedAt | date:'yyyy-MM-dd @ hh:mm:ss a' }}</dd>
+                <dt>Reward Points</dt><dd>{{ accountData.reward_points | number }}</dd>
+                <dt>Last Cashout</dt><dd>{{ accountData.lastCashout | date:'yyyy-MM-dd @ hh:mm:ss a' }}</dd>
+            </dl>
+        </div>
+    </div>
+    <div ng-show="loadingPlayerData" style="text-align: center;" class="panel col-md-6"><h4>Loading Player Stats</h4></div>
+    <div ng-show="playerStats" style="min-height: 285px;" class="panel col-md-6">
+        <div class="panel-heading"><h4 style="text-align: center;">Player Stats</h4></div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Bets</dt><dd>{{ playerStats.bets }}</dd>
+                <dt>Wagered</dt><dd>{{ playerStats.wagered | btc:true }}</dd>
+                <dt>Won</dt><dd>{{ playerStats.won | btc:true }}</dd>
+                <dt>Last Bet</dt><dd>{{ playerStats.lastbet | date:'yyyy-MM-dd @ hh:mm:ss a' }}</dd>
+                <dt>Game Profit</dt><dd>{{ playerStats.gameProfit | btc:true }}</dd>
+                <dt>Edge vs House</dt><dd>{{ playerStats.edgevshouse * 100 | number:6 }}%</dd>
+                <dt>Deposited</dt><dd>{{ playerStats.totalDeposited | btc:true }}</dd>
+                <dt>Returned</dt><dd>{{ playerStats.totalReturned | btc:true }}</dd>
+                <dt>Player Profit</dt><dd>{{ playerStats.playerProfit | btc:true }}</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div ng-show="loadingTimeline" style="text-align: center;" class="panel col-md-12"><h4>Loading Timeline</h4></div>
+    <label>Expanded Timeline<input type="checkbox" ng-disabled="loadingTimeline" ng-model="expandedTimeline"></label>
+    <small>WARNING!! If this player has a lot of bets, checking this may crash your browser</small>
+    <table ng-show="timeline.length" class="col-md-12 table table-bordered table-condensed">
+        <thead>
+            <tr><th colspan="5" style="text-align: center;"><h4>Player Timeline</h4></th></tr>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Balance</th>
+                <th>Game Count/TXID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="tx in timeline" ng-class="getTimelineClass(tx.type)">
+                <td>{{ tx.timestamp | date:'yyyy-MM-dd @ hh:mm:ss a' }}</td>
+                <td>{{ tx.type }}</td>
+                <td>{{ tx.change | btc:true }}</td>
+                <td>{{ tx.balance | btc:true }}</td>
+                <td>{{ tx.games || tx.txid }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

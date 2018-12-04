@@ -1,0 +1,79 @@
+<div class="tabcontent">
+  <h1><%= nav.howtoplay %></h1>
+  <p class="ng-binding"><b class="ng-binding">财神卷是</b>一种圆盘博彩游戏，允许您用电子货币比特币下注。这种游戏玩起来既简单又有趣，可以赢更多比特币！</p>
+  <br>
+  <ol class="padding-left-40">
+    <li class="ng-binding"><b class="ng-binding">输入您的取款地址</b>，选择“开始游戏</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">将比特币充入游戏为您设定的专用比特币存款地址</b> </li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">用滑块、余额百分比按钮、增量按钮或在下注框上单击并输入金额</b>，选择下注金额</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">单击圆盘中间的比特币以旋转财神轮</b> </li>
+    <br>
+    <li class="ng-binding">结果大于 1.0x 表示旋转赢了，会使您的余额增加，结果小于 1.0x 表示旋转输了，会使您余额减少</li>
+    <br>
+    <li class="ng-binding">检查您的进度，用游戏屏幕下方的游戏“高手排名榜”和“近期游戏”标签，可以跟踪全球的玩家</li>
+    <br>
+    <li class="ng-binding">静止 30 分钟后或关闭浏览器后，您的余额会自动返还给您</li>
+    <br>
+  </ol>
+
+<h4>奖励</h4>
+<div data-ng-include data-src="'tpl/paytables.html'"></div>
+
+  <h4>规则以及提醒</h4>
+  <ol>
+  <li><p>所有奖励对一种类型的组合有效。</p></li>
+  <li><p>所有奖励对从左到右的组合有效，除了特殊奖励图案。</p></li>
+  <li><p>所有奖励对所选择排成直线的组合有效，除了特殊奖励图案。</p></li>
+  <li><p>特殊奖励图案任意排列都可以获奖。</p></li>
+  <li><p>每次转动最多一个特殊奖励。</p></li>
+  <li><p>所选择的直线组合可以获得最高奖励。</p></li>
+  <li><p>破坏或作弊行为将不能得到转账，并不允许参与游戏。</p></li>
+  </ol>
+
+  <h4>如何计算游戏的奖励？</h4>
+  <ol>
+  <li>你的奖励分为5部分，每条奖励线代表一部分。</li>
+  <li>一旦通过我们的公平算法计算出游戏结果，对于每条获奖的奖励线，你将会得到那条奖励线的奖励（请查看下面的奖励表格）。比如说，如果你下注了5个比特币，而你的游戏结果是5个钻石杯在中间线，你的奖励会是1个比特币（中间线的赌注）乘于奖励组合的额度，在这情况下：1 BTC x 888 = 888 BTC</li>
+  </ol>
+
+  <h4>有多少个可能的奖励组合？</h4>
+  <p></p>
+  <ol>
+  <li>32的5次方，或则说是33,554,432 个可能的组合。</li>
+  <li>有5个转轮，每个转轮有32个图案，其中包含经过计算组合的8个不同的图案。</li>
+  <li>在转轮中，图案的位置以及次序不会改变游戏的结果，除非是宝石图案（分散图案）。宝石图案是经过仔细的计算来排列的。</li>
+  <li>我们的公平算法只随机地选择每个转轮中间线的图案。上端线与下端线的组合是32个图案的随机排列结果。</li>
+  <li>在转轮快要停止前，转轮上的图案不会显示真实的奖励图案。这是由于为了转动动画的性能与流畅性。</li>
+  </ol>
+
+  <h4 class="ng-binding">What is the expected return to player for BetCoin ™ Reels?</h4>
+  <p class="ng-binding">The return to player is approximately 98.35%.</p>
+  <h4>每次旋转有最低赌注吗？</h4>
+  <p>最少投注 0.000001 个比特币</p>
+
+  <h4>转轮图案</h4>
+  <div data-ng-include data-src="'tpl/reel-layout.html'"></div>
+
+
+  <h4>如何知道游戏结果是绝对公平？</h4>
+  <ol>
+  <li>在每次转动之前，服务端会利用SHA256哈希算法生成一个随机的矩阵，代表每个转轮。这个矩阵将会被利用SHA256加密，并在转动之前让玩家知道这个加密字符串。比如，那个哈希字符串："0ca1cb6b7e9414ca575b17218e35073e35ba9d920407132c0c829371855a5957".</li>
+  <li>客户端种子是随机产生，并且你可以改变它来影响游戏的结果。</li>
+  <li>当你按下“转动”，客户端种子会发送到服务端，转轮会被服务端种子和客户端种子所生成的SHA512哈希码洗牌。每个转轮都会有一个SHA512哈希码，所生成的HMAC哈希的第一个字节用于产生一个随机数，在0和31之间，代表着转轮的位置。</li>
+  <li>当完成转动，那个服务端种子（前面的那个SHA256哈希码原始字符串）会被公布。从而，能通过它来证明服务端种子没有被改变过，并且游戏的结果确实是由它与客户端种子所产生。</li>
+  </ol>
+
+  <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+  <provably-fair></provably-fair>
+
+  <p><a target="_blank" href="./js/app/directives/provably-fair.js">点击显示验证游戏公平性的代码</a></p>
+  <p><a target="_blank" href="./calc-odds.js">点击这里显示赌场赢率的计算代码</a></p>
+
+  <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+
+
+</div>

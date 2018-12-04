@@ -1,0 +1,14 @@
+<div class="row"
+     ng-controller="AgentListController">
+    <table class="table">
+        <thead>
+            <th>Username</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="agent in agentList">
+                <td><a ng-href="agents/detail/{{agent._id}}">{{agent.username}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <pre>{{agentList | json}}</pre>
+</div>

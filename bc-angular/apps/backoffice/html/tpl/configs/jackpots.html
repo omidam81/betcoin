@@ -1,0 +1,28 @@
+<div class="row">
+    <form class="form">
+        <div class="form-group"
+             ng-repeat-start="(name, jackpot) in config.value">
+            <label>System Name</label>
+            <input type="text"
+                   ng-model="name"
+                   ng-disabled="name != 'NEW'"
+                   class="form-control">
+        </div>
+        <div class="form-group"
+             ng-repeat="(locale, translation) in config.value[name].label">
+            <label>Label ({{locale}})</label>
+            <input type="text"
+                   ng-model="config.value[name].label[locale]"
+                   class="form-control">
+        </div>
+        <div class="form-group" >
+            <label>Value</label>
+            <crypto-input model="config.value[name].value"
+                          currency="'bitcoin'"
+                          class="input-group"></crypto-input>
+        </div>
+        <hr ng-repeat-end>
+        <button class="btn btn-primary"
+                ng-click="updateLimit(config)">Update</button>
+    </form>
+</div>

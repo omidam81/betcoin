@@ -1,0 +1,105 @@
+{
+    "prod": "fortunenew",
+    "meta": {
+        "title": "BetCoin ™ Fortune Bitcoin Casino - Win Bitcoins!",
+        "meta_description": "BetCoin ™ is your one-stop shop for bitcoin gambling. Play dozens of bitcoin games and hit a bitcoin jackpot today!",
+        "meta_keywords": "Bitcoin, Casino, Gambling, free bitcoin, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "isLocalized" : "true",
+    "minbetMsg": "The minimum bet is 0.000001 BTC",
+    "serverMsg": "The game server cannot be reached",
+    "minconfMsg": "At least 1 deposit has not been confirmed",
+    "withdrawErrorMsg": "Withdraw error, please try again",
+    "global": {
+        "logourl": "img/words/betcoin-fortune.png",
+        "withdrawAddress": "Your Bitcoin Wallet Address"
+    },
+    "nav": {
+        "spins": "Recent Bets",
+        "leaderboard": "Leaderboard",
+        "howtoplay": "How to Play"
+    },
+    "home": {
+        "title_image": "img/icons/fortune280.png",
+        "promote_header_b": "Ultra-secure design - accounts cannot be hacked",
+        "promote_header_c": "Huge INSTANT payouts - Largest in the industry",
+        "promote_header_d": "Provably fair, transparent system",
+        "my_games": "My Games",
+        "tabs_recent": "Global Games",
+        "tabs_leaderboard": "Leaderboard",
+        "tabs_howtoplay": "How To Play",
+        "totalbet": "Total Bet:"
+    },
+    "text": {
+        "withdrawAddress": "Enter Your Bitcoin Wallet Address",
+        "totalbalance": "Total Balance",
+        "availablebalance": "Available Balance"
+    },
+    "locales" : {
+        "en" : {
+            "url" : "https://www.betcoin.tm/fortune"
+        },
+        "zh" : {
+            "url" : "https://www.caishentang.com/yun"
+        }
+    },
+    "game": {
+        "luckynumber": "Lucky Number",
+        "x": "x",
+        "symbol": "Symbol",
+        "multiplier": "Payout Multiplier",
+        "win":"Win",
+        "lose":"Lose",
+        "details": "Details",
+        "CircleDiv2": "Total Spins",
+        "CircleDiv3": "My Spins",
+        "CircleDiv4": "Bet:",
+        "CircleDiv5": "Credit:",
+        "CircleDiv6": "Deposit Address:",
+        "CircleButtonCashOut": "Cash Out",
+        "cashoutConfirm": "Please confirm that you want to cash out",
+        "returnToGame": "Return to game",
+        "SsHeader1": "Set Seed",
+        "SsHeader2": "Next Game ID:",
+        "spinmessage": "Spin the circle by pressing the Bitcoin in the middle",
+        "spinningmessage":"<a href=\"https://www.betcoin.tm/prize\" target=\"_blank\">BetCoin Prize<br>World's Best Bitcoin Lottery</a>",
+        "winmessage": "You won",
+        "autospin_text" : " Autobet",
+        "proof_text" : "Proof",
+        "color" : "Color"
+    },
+    "leaderboard": {
+        "topPlayers": "Top Players",
+        "bronze": "Bronze",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum",
+        "diamond": "Diamond",
+        "alias": "Username",
+        "btcwagered": "BTC Wagered"
+    },
+    "spins": {
+        "global": "Global",
+        "myspins": "My Spins",
+        "CircleTh1": "ID",
+        "CircleTh2": "Username",
+        "CircleTh3": "Result",
+        "CircleTh4": "Bet",
+        "CircleTh9": "Bets",
+        "CircleTh5": "Return",
+        "CircleTh6": "Proof",
+        "CircleTh7": "Time",
+        "CircleTh8": "Circle",
+        "ProofHeader1": "Proof",
+        "ProofDt1": "Server Seed",
+        "ProofDt2": "Initial Array",
+        "ProofDt3": "Initial Hash",
+        "ProofDt4": "Client Seed",
+        "ProofDt5": "Final Array"
+    },
+    "buttons" : {
+        "start_spin" : "SPIN",
+        "clearbets": "Clear Bets",
+        "clearbets_individual": "To clear an individual bet, press and hold a chip for 2 seconds, and then release"
+    }
+}

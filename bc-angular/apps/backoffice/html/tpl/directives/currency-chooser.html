@@ -1,0 +1,10 @@
+<div class="checkbox currency-filter">
+    <label><input type="checkbox" ng-model="checkAll"> all</label><br>
+    <div ng-repeat="currency in CURRENCIES">
+        <label>
+            <input type="checkbox"
+                   ng-change="updateCurrencies()"
+                   ng-model="checkCurrencies[currency]"> {{ currency }}
+        </label><br>
+    </div>
+</div>

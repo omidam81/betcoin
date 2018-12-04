@@ -1,0 +1,26 @@
+<div>
+    <table class="table">
+        <caption><%= text.game_transactions %>: {{associateUsername}}</caption>
+        <thead>
+            <tr>
+                <th><a sort-column sort-obj="sort" sort-field="date" sort-func="updateData()"><%= text.transaction_datetime %></a></th>
+                <th><a sort-column sort-obj="sort" sort-field="amtOut" sort-func="updateData()"><%= text.wager %></a></th>
+                <th><a sort-column sort-obj="sort" sort-field="amtIn" sort-func="updateData()"><%= text.winnings %></a></th>
+                <th><%= text.house_edge %></th>
+                <th><%= text.affiliate_total_earnings %></th>
+                <th><a sort-column sort-obj="sort" sort-field="type" sort-func="updateData()"><%= text.game %></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="tx in transactions">
+                <td>{{ tx.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td>{{ tx.amtOut | btc }}</td>
+                <td>{{ tx.amtIn | btc }}</td>
+                <td><span ng-show="tx.houseEdge">{{ tx.houseEdge*100 | number:2}}%</span></td>
+                <td><span ng-show="tx.affiliateAward">{{ tx.affiliateAward | btc}}</span></td>
+                <td>{{tx.type.split(':')[0]}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination total-items="total" page="page" items-per-page="500" max-size="10" on-select-page="updateData(page)" class="pagination-sm" boundary-links="true"></pagination>
+</div>

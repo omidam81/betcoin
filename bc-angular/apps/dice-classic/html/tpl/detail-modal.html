@@ -1,0 +1,53 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><%= games.tr_header1 %></h3>
+            <p style="font-size:10px;">{{ dice.tx_in }}:{{ dice.output_number }}</p>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li><%= games.tr_li1 %>{{ dice.createdAt | date:"MM/dd/yy HH:mm:ss" }}</li>
+                <li><%= games.tr_li2 %>{{ dice.createdAt | date:"MM/dd/yy" }}</li>
+                <li><%= games.tr_li3 %>&lt; {{ dice.game }}</li>
+                <li><%= games.tr_li4 %><div blockchain-info="{{ dice.tx_in }}"></div></li>
+                <li><%= games.tr_li5 %><div blockchain-info="{{ dice.tx_out }}"></div></li>
+                <li><%= games.tr_li6 %>{{ dice.confirmed && "Confirmed" || "Unconfirmed" }}</li>
+                <li><%= games.tr_li7 %>{{ dice.wager | btc }}</li>
+                <li><%= games.tr_li8 %>{{ dice.winnings > dice.wager && "WIN" || "LOSE" }}</li>
+                <li><%= games.tr_li9 %>{{ dice.winnings | btc }}</li>
+                <li><%= games.tr_li10 %><div blockchain-info="{{ dice.player_id }}"></div></li>
+                <li><%= games.tr_li11 %>{{ dice.result }}</li>
+            </ul>
+            <h4><%= games.tr_header2 %></h4>
+            <h5><%= games.tr_header3 %></h5>
+            <p>
+                <%= games.tr_p1 %>
+                <a target="_blank" href="https://api.betcoin.tm/hashes.keys">
+                    <%= games.hash_keys %>
+                </a>
+            </p>
+            <p>
+                <%= games.tr_p2 %>
+                <a target="_blank" href="https://api.betcoin.tm/secret.keys">
+                    <%= games.secret_keys %>
+                </a>
+            </p>
+            <p>
+                <%= detail_modal.secret_key %>
+                <span ng-hide="loadingSecret || secrets[dice._id]"
+                      ng-click="loadSecret(dice)"
+                      style="cursor: pointer;">
+                    <%= detail_modal.click_hash_key %>
+                </span>
+                <span ng-show="loadingSecret"><% detail_modal.loading %></span>
+                <span ng-show="secrets[dice._id]">{{ secrets[dice._id] }}</span>
+            </p>
+            <div data-ng-include data-src="'tpl/verify.html'"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal">
+                <%= close %>
+            </button>
+        </div>
+    </div>
+</div>

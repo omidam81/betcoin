@@ -1,0 +1,429 @@
+<div ng-controller="GameController" class="row noselect fantan-area" id="gameContainer">
+    <div class="col-xs-12 col-md-4 text-center col-md-push-8">
+
+        <div><img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" /></div>
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <div>
+            <spinmessage></spinmessage>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+        </div>
+        <div class="clear-both position-relative">
+              <div class="fantan-game-sound-toggle-container">
+                  <div class="soundToggle"><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+              </div>
+              <proof-button></proof-button>
+              <small class="display-none">
+                  <dl class="dl-horizontal">
+                      <dt><%= game.SsHeader2 %></dt><dd>{{ nextGameId }}</dd>
+                      <dt>SHA256:</dt><dd class="allow-word-wrap-with-word-break">{{ sha256 }}</dd>
+                  </dl>
+              </small>
+
+              <bc-client-seed class="seed-container" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-8 game col-md-pull-4 padding-0">
+        <div class="legend">
+            <table class="pull-right">
+                <tr>
+                    <td class="X">
+                        <%=boards.x_color%>
+                    </td>
+                    <td class="X">
+                        <%=boards.x%>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="T">
+                        <%=boards.t_color%>
+                    </td>
+                    <td class="T">
+                        <%=boards.t%>
+                    </td>
+                </tr>
+            </table>
+        </div>
+      <div id="g-fantan" class="g-fantan">
+          <div id="board" class="board">
+              <div id="ratestr" style="display:none"><%= boards.ratestr%></div>
+
+              <div class="sshheader"><label><%=boards.ssh%> 3 : 0.95</label></div>
+              <div class="ssh_1" placebet data-bet='["ssh",1]' class="number">
+                  <div class="chips"></div>
+                  <div class="ssh">
+                      <div class="circle yellow">3</div>
+                      <div class="linked">
+                          <div class="circle red">4</div>
+                          <div class="circle green">2</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="ssh_2" placebet data-bet='["ssh",2]' class="number">
+                  <div class="chips"></div>
+                  <div class="ssh vertical">
+                      <div class="circle red">4</div>
+                      <div class="linked">
+                          <div class="circle yellow">3</div>
+                          <div class="circle white">1</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="ssh_3" placebet data-bet='["ssh",3]' class="number">
+                  <div class="chips"></div>
+                  <div class="ssh">
+                      <div class="linked">
+                          <div class="circle red">4</div>
+                          <div class="circle green">2</div>
+                      </div>
+                      <div class="circle white">1</div>
+                  </div>
+              </div>
+
+              <div class="ssh_4" placebet data-bet='["ssh",4]' class="number">
+                  <div class="chips"></div>
+                  <div class="ssh vertical">
+                      <div class="linked">
+                          <div class="circle yellow">3</div>
+                          <div class="circle white">1</div>
+                      </div>
+                      <div class="circle green">2</div>
+                  </div>
+              </div>
+
+              <div class="kwokheader"><label><%=boards.kwok%> 1 : 0.95</label></div>
+              <div class="kwok_1_2" placebet data-bet='["kwok",1,2]' class="number">
+                  <div class="chips"></div>
+                  <div class="kwok">
+                      <div class="label">1-2</div>
+                      <div class="stacks">
+                          <div class="stack white left"></div>
+                          <div class="stack green right"></div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="kwok_1_3" placebet data-bet='["kwok",1,3]' class="number">
+                  <div class="chips"></div>
+                  <div class="kwok">
+                      <div class="label">1-3</div>
+                      <div class="stacks">
+                          <div class="stack white left"></div>
+                          <div class="stack yellow right"></div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="kwok_1_4" placebet data-bet='["kwok",1,4]' class="number">
+                  <div class="chips"></div>
+                  <div class="kwok">
+                      <div class="label">1-4</div>
+                      <div class="stacks">
+                          <div class="stack white left"></div>
+                          <div class="stack red right"></div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="kwok_2_3" placebet data-bet='["kwok",2,3]' class="number">
+                  <div class="chips"></div>
+                  <div class="kwok">
+                      <div class="label">2-3</div>
+                      <div class="stacks">
+                          <div class="stack green left"></div>
+                          <div class="stack yellow right"></div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="kwok_2_4" placebet data-bet='["kwok",2,4]' class="number">
+                  <div class="chips"></div>
+                  <div class="kwok">
+                      <div class="label">2-4</div>
+                      <div class="stacks">
+                          <div class="stack green left"></div>
+                          <div class="stack red right"></div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="kwok_3_4" placebet data-bet='["kwok",3,4]' class="number">
+                  <div class="chips"></div>
+                  <div class="kwok">
+                      <div class="label">3-4</div>
+                      <div class="stacks">
+                          <div class="stack yellow left"></div>
+                          <div class="stack red right"></div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="fanheader"><label><%=boards.fan%> 1 : 2.85</label></div>
+              <div class="fanboard">
+                  <div class="up"></div>
+                  <div class="left"></div>
+                  <div class="down"></div>
+                  <div class="right"></div>
+                  <div class="fan_1" placebet data-bet='["fan",1]' class="number"><div class="chips"></div>1</div>
+                  <div class="fan_2" placebet data-bet='["fan",2]' class="number"><div class="chips"></div>2</div>
+                  <div class="fan_3" placebet data-bet='["fan",3]' class="number"><div class="chips"></div>3</div>
+                  <div class="fan_4" placebet data-bet='["fan",4]' class="number"><div class="chips"></div>4</div>
+              </div>
+
+              <div class="ngaheader"><label><span><%=boards.nga%></span> <span>2 : 0.95</span></label></div>
+              <div class="nga_1_2" placebet data-bet='["nga",1,2]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle yellow">3</div>
+                      <div class="circle red">4</div>
+                      <div class="circle green T">2</div>
+                      <div class="circle white X">1</div>
+                  </div>
+              </div>
+
+              <div class="nga_1_3" placebet data-bet='["nga",1,3]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle green">2</div>
+                      <div class="circle red">4</div>
+                      <div class="circle yellow T">3</div>
+                      <div class="circle white X">1</div>
+                  </div>
+              </div>
+
+              <div class="nga_1_4" placebet data-bet='["nga",1,4]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle green">2</div>
+                      <div class="circle yellow">3</div>
+                      <div class="circle red T">4</div>
+                      <div class="circle white X">1</div>
+                  </div>
+              </div>
+
+              <div class="nga_2_1" placebet data-bet='["nga",2,1]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle yellow">3</div>
+                      <div class="circle red">4</div>
+                      <div class="circle white T">1</div>
+                      <div class="circle green X">2</div>
+                  </div>
+              </div>
+
+              <div class="nga_2_3" placebet data-bet='["nga",2,3]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle white">1</div>
+                      <div class="circle red">4</div>
+                      <div class="circle yellow T">3</div>
+                      <div class="circle green X">2</div>
+                  </div>
+              </div>
+
+              <div class="nga_2_4" placebet data-bet='["nga",2,4]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle white">1</div>
+                      <div class="circle yellow">3</div>
+                      <div class="circle red T">4</div>
+                      <div class="circle green X">2</div>
+                  </div>
+              </div>
+
+              <div class="nga_3_1" placebet data-bet='["nga",3,1]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle green">2</div>
+                      <div class="circle red">4</div>
+                      <div class="circle white T">1</div>
+                      <div class="circle yellow X">3</div>
+                  </div>
+              </div>
+
+              <div class="nga_3_2" placebet data-bet='["nga",3,2]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle white">1</div>
+                      <div class="circle red">4</div>
+                      <div class="circle green T">2</div>
+                      <div class="circle yellow X">3</div>
+                  </div>
+              </div>
+
+              <div class="nga_3_4" placebet data-bet='["nga",3,4]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle white">1</div>
+                      <div class="circle green">2</div>
+                      <div class="circle red T">4</div>
+                      <div class="circle yellow X">3</div>
+                  </div>
+              </div>
+
+              <div class="nga_4_1" placebet data-bet='["nga",4,1]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle green">2</div>
+                      <div class="circle yellow">3</div>
+                      <div class="circle white T">1</div>
+                      <div class="circle red X">4</div>
+                  </div>
+              </div>
+
+              <div class="nga_4_2" placebet data-bet='["nga",4,2]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle white">1</div>
+                      <div class="circle yellow">3</div>
+                      <div class="circle green T">2</div>
+                      <div class="circle red X">4</div>
+                  </div>
+              </div>
+
+              <div class="nga_4_3" placebet data-bet='["nga",4,3]' class="number">
+                  <div class="chips"></div>
+                  <div class="nga">
+                      <div class="circle white">1</div>
+                      <div class="circle green">2</div>
+                      <div class="circle yellow T">3</div>
+                      <div class="circle red X">4</div>
+                  </div>
+              </div>
+
+              <div class="nimheader"><label><span><%=boards.nim%></span> <span>1 : 1.9</span></label></div>
+              <div class="nim_1_2" placebet data-bet='["nim",1,2]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle white">1</div>
+                      <div class="circle green T">2</div>
+                  </div>
+              </div>
+
+              <div class="nim_1_3" placebet data-bet='["nim",1,3]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle white">1</div>
+                      <div class="circle yellow T">3</div>
+                  </div>
+              </div>
+
+              <div class="nim_1_4" placebet data-bet='["nim",1,4]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle white">1</div>
+                      <div class="circle red T">4</div>
+                  </div>
+              </div>
+
+              <div class="nim_2_1" placebet data-bet='["nim",2,1]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle green">2</div>
+                      <div class="circle white T">1</div>
+                  </div>
+              </div>
+
+              <div class="nim_2_3" placebet data-bet='["nim",2,3]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle green">2</div>
+                      <div class="circle yellow T">3</div>
+                  </div>
+              </div>
+
+              <div class="nim_2_4" placebet data-bet='["nim",2,4]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle green">2</div>
+                      <div class="circle red T">4</div>
+                  </div>
+              </div>
+
+              <div class="nim_3_1" placebet data-bet='["nim",3,1]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle yellow">3</div>
+                      <div class="circle white T">1</div>
+                  </div>
+              </div>
+
+              <div class="nim_3_2" placebet data-bet='["nim",3,2]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle yellow">3</div>
+                      <div class="circle green T">2</div>
+                  </div>
+              </div>
+
+              <div class="nim_3_4" placebet data-bet='["nim",3,4]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle yellow">3</div>
+                      <div class="circle red T">4</div>
+                  </div>
+              </div>
+
+              <div class="nim_4_1" placebet data-bet='["nim",4,1]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle red">4</div>
+                      <div class="circle white T">1</div>
+                  </div>
+              </div>
+
+              <div class="nim_4_2" placebet data-bet='["nim",4,2]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle red">4</div>
+                      <div class="circle green T">2</div>
+                  </div>
+              </div>
+
+              <div class="nim_4_3" placebet data-bet='["nim",4,3]' class="number">
+                  <div class="chips"></div>
+                  <div class="nim">
+                      <div class="circle red">4</div>
+                      <div class="circle yellow T">3</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row position-relative">
+        <div id="wheelhistory" class="col-xs-12">
+          <div class="history">
+            <bethistory ng-repeat="number in recentnumbers" data-color="{{number.color}}" data-number="{{number.number}}"></bethistory>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12 col-sm-6" id="gameCanvasWrapper">
+              <div class="margin-top-10"><totalbets total="totalbet"></totalbets></div>
+              <div id="gameCanvas"></div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <div class="btn-container btn margin-10">
+              <button ng-disabled="isGameInProgress || animationsLoading" ng-click="play();" class="btn-lg btn-flashy btn-spin font-size-30">
+                  <%= buttons.start_roll %>                                          
+              </button>
+              <div class="flash-container">
+                <span class="flash"></span>
+              </div>                                         
+            </div>
+            <br />
+            <autospin-button></autospin-button>
+            <br />
+            <button ng-click="clearBets();" class="btn btn-default" bc-popover="{{clearBetsPopover}}" bc-popover-content="<%= buttons.clearbets_individual %>" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top" ng-disabled="isGameInProgress">
+                <%= buttons.clearbets %>
+            </button>
+          </div>
+        </div>
+      
+    </div>
+    <div class="hide localizations">
+      <div id="localization-x"><span><%= game.x %></span></div>
+    </div>
+    <div class="clearfix"></div>
+</div>

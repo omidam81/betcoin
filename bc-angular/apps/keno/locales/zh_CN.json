@@ -1,0 +1,49 @@
+{
+    "prod": "keno",
+    "meta": {
+        "title": "财神诺™ 比特币抽奖游戏 - 赢比特币!",
+        "meta_description": "在财神堂 ™ 轮盘赌，您可以用比特币玩经典轮盘赌游戏。开始游戏，赢取大量比特币!"
+    },
+    "global": {
+        "logourl": "img/words/cn/keno.png"
+    },
+    "nav": {
+        "draws": "近期游戏"
+    },
+    "home": {
+        "title_image": "img/icons/keno280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/keno"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/nuo"
+        }
+    },
+    "game": {
+        "autodraw_text": " 自动旋转",
+        "match_count": "匹配计数"
+    },
+    "draws": {
+        "global": "所有游戏",
+        "mydraws": "我的游戏",
+        "CircleTh1": "编号",
+        "CircleTh2": "别名",
+        "CircleTh3": "结果",
+        "CircleTh4": "赌注",
+        "CircleTh5": "返回",
+        "CircleTh6": "证明",
+        "CircleTh7": "时间",
+        "CircleTh8": "圆盘",
+        "ProofHeader1": "证明",
+        "ProofDt1": "服务端种子",
+        "ProofDt2": "初始排列",
+        "ProofDt3": "初始哈希",
+        "ProofDt4": "客户端种子",
+        "ProofDt5": "最终排列"
+    },
+    "buttons": {
+        "start_draw": "转动"
+    }
+}

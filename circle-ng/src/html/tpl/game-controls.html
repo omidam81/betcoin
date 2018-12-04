@@ -1,0 +1,54 @@
+<div ng-controller="GameController" class="row noselect" id="gameContainer">
+    <div class="col-xs-12 col-sm-6" id="wheelContainer">
+        <div>
+            <div class="wheelArrow">
+                <img src="img/circle/arrow.png"/>
+            </div>
+        </div>
+        <div class="wheelWrap">
+            <div class="wheel" ng-style="listposition">
+                <img ng-disabled="withdrawPending" ng-click="spin()" class="wheelImage" ng-src="img/circle/{{ wheelImages[currentGame][1] }}" id="wheelImage" />
+                <img ng-disabled="withdrawPending" ng-click="spin()" class="circleCenter" id="circleCenter" ng-src="img/circle/{{ wheelImages[currentGame][0] }}"  />
+                <button id="wheelHitbox" ng-disabled="withdrawPending" ng-click="spin()" class="noselect"></button>
+            </div>
+        </div>
+        <div class="visible-sm visible-sm-positioning">
+            <div class="wheelChoose">
+                <div><img ng-click='changeWheel(4)' ng-src="img/circle/{{ wheelImages[4][2] }}"/><br />2x</div>
+                <div><img ng-click='changeWheel(1)' ng-src="img/circle/{{ wheelImages[1][2] }}"/><br />3x</div>
+                <div><img ng-click='changeWheel(2)' ng-src="img/circle/{{ wheelImages[2][2] }}"/><br />5x</div>
+                <div><img ng-click='changeWheel(3)' ng-src="img/circle/{{ wheelImages[3][2] }}"/><br />10x</div>
+                <div><img ng-click='changeWheel(5)' ng-src="img/circle/{{ wheelImages[5][2] }}"/><br />15x</div>
+                <div><img ng-click='changeWheel(6)' ng-src="img/circle/{{ wheelImages[6][2] }}"/><br />25x</div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-1 hidden-sm hidden-sm-positioning">
+        <div class="wheelChoose">
+            <div><img ng-click='changeWheel(4)' ng-src="img/circle/{{ wheelImages[4][2] }}"/><br />2x</div>
+            <div><img ng-click='changeWheel(1)' ng-src="img/circle/{{ wheelImages[1][2] }}"/><br />3x</div>
+            <div><img ng-click='changeWheel(2)' ng-src="img/circle/{{ wheelImages[2][2] }}"/><br />5x</div>
+            <div><img ng-click='changeWheel(3)' ng-src="img/circle/{{ wheelImages[3][2] }}"/><br />10x</div>
+            <div><img ng-click='changeWheel(5)' ng-src="img/circle/{{ wheelImages[5][2] }}"/><br />15x</div>
+            <div><img ng-click='changeWheel(6)' ng-src="img/circle/{{ wheelImages[6][2] }}"/><br />25x</div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-5">
+        <div class="circle-game-sound-toggle-container">
+            <div class="soundToggle"><img  ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+        </div>
+        <img alt="BetCoin Circle Bitcoin Casino - Win Bitcoins!" src="<%= global.logourl %>" class="logo" />
+        <div ng-show="player._id" >
+            <player-info></player-info>
+            <cashout-button player = "player" game="game"></cashout-button>
+            <spinmessage></spinmessage>
+            <bet-panel wager="btcWager" player="player" currency-abbr="currencyAbbr"></bet-panel>
+            <autospin-button></autospin-button>
+            <proof-button></proof-button>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>

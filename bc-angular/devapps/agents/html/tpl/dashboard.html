@@ -1,0 +1,58 @@
+<div class="container">
+<div class="row">
+    <div class="panel-body">
+        <h1>Dashboard</h1>
+        <h2>{{agent.username}}</h2>
+        <h3>{{agent.email}}</h3>
+        <p><%= agent.dashboard.earningLevel %> {{ agent.earningLevel * 100 | number:2 }}%</p>
+        <p><%= agent.dashboard.agentToken %> {{ agent.agentToken }}</p>
+        <p><%= agent.dashboard.balances %></p>
+        <p ng-repeat="wallet in agent.wallets">
+            {{ wallet.currency | cryptosymbol }}{{ wallet.balance | cryptovalue }}
+        </p>
+    </div>
+    <h3>Rep Income</h3>
+    <table class="table">
+        <thead>
+            <th>Rep ID</th>
+            <th>Income</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="(rep, incomeData) in totals.reps">
+                <td><a ng-href="rep/{{rep}}">{{rep}}</a></td>
+                <td>
+                    <div ng-if="!incomeData.bitcoin">
+                        {{'bitcoin' | cryptosymbol}}{{0 | cryptovalue}}
+                    </div>
+                    <div ng-repeat="(currency, amount) in incomeData">
+                        {{currency | cryptosymbol}}{{amount | cryptovalue}}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Affiliate Income</h3>
+    <table class="table">
+        <thead>
+            <th>Affiliate ID</th>
+            <th>Income</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="(affiliate, incomeData) in totals.affiliates">
+                <td>{{affiliate}}</td>
+                <td>
+                    <div ng-if="!incomeData.bitcoin">
+                        {{'bitcoin' | cryptosymbol}}{{0 | cryptovalue}}
+                    </div>
+                    <div ng-repeat="(currency, amount) in incomeData">
+                        {{currency | cryptosymbol}}{{amount | cryptovalue}}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Welcome Packs</h3>
+    <div welcome-pack-table="welcomePacks"></div>
+</div>
+
+</div>

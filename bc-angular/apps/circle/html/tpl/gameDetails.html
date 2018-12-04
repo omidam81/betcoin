@@ -1,0 +1,26 @@
+<div>
+    <div id="modal-{{ game.id || game._id }}" class="circle-proof">
+        <h3><%= spins.ProofHeader1 %></h3>
+        <small><%= game.initial_hash_explain %></small>
+        <br>
+        <small><%= game.final_array_explain %></small>
+        <dl class="dl-horizontal">
+            <dt><%= spins.ProofDt1 %></dt>
+            <dd class="wrap-word">{{ game.server_seed }}</dd>
+            <dt><%= spins.ProofDt2 %></dt>
+            <dd class="wrap-word">{{ game.init_array }}</dd>
+            <dt><%= spins.ProofDt3 %></dt>
+            <dd class="wrap-word">{{ game.initial_hash }}</dd>
+            <dt><%= spins.ProofDt4 %></dt>
+            <dd class="wrap-word">{{ game.client_seed }}</dd>
+            <dt><%= spins.ProofDt5 %></dt>
+            <dd class="wrap-word">{{ game.final_array }}</dd>
+        </dl>
+        <hr>
+
+        <provably-fair server-seed="{{game.server_seed}}" client-seed="{{game.client_seed}}" init-array="{{game.init_array}}" final-array="{{game.finaly_array}}" initial-hash="{{game.initial_hash}}"></provably-fair>
+
+    </div>
+
+        <button class="btn btn-default btn-lg" ng-click="backToList()"><%= gameDetails.returnToList %></button>
+</div>

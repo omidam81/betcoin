@@ -1,0 +1,21 @@
+<div class="col-xs-12 col-sm-9">
+	<div class="panel panel-default main-container">
+		<div class="panel-heading">Press</div>
+		<div class="panel-footer">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th width="95%">Title</th>
+						<th width="5%"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="press in presss">
+						<td><span>{{press.title}}</span></td>
+						<td><button ng-click="viewPress(press._id)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span> Edit</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</div>
+</div>

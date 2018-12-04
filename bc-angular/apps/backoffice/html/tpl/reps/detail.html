@@ -1,0 +1,49 @@
+<div class="row"
+     ng-controller="RepDetailController">
+    <h3>Rep {{rep.repToken}} - {{rep.username}}</h3>
+    <form name="repDetailForm">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text"
+                   class="form-control"
+                   ng-model="rep.username"
+                   required>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="text"
+                   class="form-control"
+                   ng-model="rep.password"
+                   required>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email"
+                   class="form-control"
+                   ng-model="rep.email"
+                   required>
+        </div>
+        <div class="form-group">
+            <label>Locale</label>
+            <select class="form-control"
+                    ng-model="rep.locale"
+                    ng-options="value for value in LOCALES"
+                    required></select>
+        </div>
+        <button class="btn btn-primary"
+                ng-click="saveRep()">Save</button>
+    </form>
+    <form name="welcomePackForm">
+        <div class="form-group">
+            <label>Serial Number</label>
+            <input type="text"
+                   class="form-control"
+                   ng-model="newWelcomePack.serialNumber"
+                   required>
+            <button class="btn btn-primary"
+                    ng-click="registerPack()">Register Welcome Pack</button>
+        </div>
+    </form>
+    <div welcome-pack-table="welcomePacks"></div>
+    <pre>{{rep | json}}</pre>
+</div>

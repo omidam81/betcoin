@@ -1,0 +1,138 @@
+<div ng-controller="GameController" class="row noselect">
+
+    <div class="col-xs-12 col-sm-5 text-center col-sm-push-7">
+
+        <img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" />
+        <div id="gameControls">
+            <player-info></player-info>
+            <cashout-button player = "player" game="game"></cashout-button>
+            <spinmessage></spinmessage>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+            <div style="clear:both;position:relative;">
+                <div style="display:inline-block">
+                    <div><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+                </div>
+                <autospin-button></autospin-button>
+                <proof-button></proof-button>
+            </div>
+            <div style="margin:10px auto;position:relative;">
+
+                <bc-client-seed style="" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-7 col-sm-pull-5">
+        <div id="gameContainer">
+            <div class="row">
+                <div class="col-xs-6 stack-wrapper">
+                    <div class="label label-danger margin-top-10"><%= game.dragon %></div>
+                    <div class="cards" id="dealer-cards">
+                        <div ng-if="!bankercards.cards">
+                            <card flipped="true"></card>
+                        </div>
+                        <div class="livecard banker-hand" ng-if="bankercards.cards" ng-repeat="card in bankercards.cards">
+                            <card data-card="card"></card>
+                        </div>
+                    </div>
+                    <div class="scoreboard-wrapper">
+                        <span class="scoreboard" ng-if="bankercards.winLoseTie === 3">
+                            <%=game.winner%>
+                        </span>
+                        <span class="scoreboard" ng-if="bankercards.winLoseTie === 1">
+                            <%=game.tie%>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-6 stack-wrapper">
+                    <div class="label label-danger"><%= game.tiger %></div>
+                    <div class="cards" id="player-cards">
+                        <div ng-if="!playercards.cards">
+                            <card  flipped="true"></card>
+                        </div>
+                        <div class="livecard player-hand" ng-if="playercards.cards" ng-repeat="card in playercards.cards">
+                            <card data-card="card"></card>
+                        </div>
+                    </div>
+                    <div class="scoreboard-wrapper">
+                        <span class="scoreboard" ng-if="playercards.winLoseTie === 3">
+                            <%=game.winner%>
+                        </span>
+                        <span class="scoreboard" ng-if="playercards.winLoseTie === 1">
+                            <%=game.tie%>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" id="betpanel">
+                    <div class="dragon btn btn-flashy" placebet data-bet="banker">
+                        <div class="chips"></div>
+                        <%=game.dragon%>
+                    </div>
+                    <div class="tie btn btn-flashy bets-circle" placebet data-bet="tie">
+                        <div class="chips"></div>
+                        <%=game.tie%>
+                    </div>
+                    <div class="tiger btn btn-flashy" placebet data-bet="player">
+                        <div class="chips"></div>
+                        <%=game.tiger%>
+                    </div><br/>
+                    <div class="suit-set">
+                        <div class="suits suit-color-S btn btn-flashy" placebet data-bet="bankers">
+                            <div class="chips"></div>
+                            <%=game.suit.s%>
+                        </div>
+                        <div class="suith suit-color-H btn btn-flashy" placebet data-bet="bankerh">
+                            <div class="chips"></div>
+                            <%=game.suit.h%>
+                        </div>
+                        <div class="suitc suit-color-C btn btn-flashy" placebet data-bet="bankerc">
+                            <div  class="chips"></div>
+                            <%=game.suit.c%>
+                        </div>
+                        <div class="suitd suit-color-D btn btn-flashy" placebet data-bet="bankerd">
+                            <div class="chips"></div>
+                            <%=game.suit.d%>
+                        </div><br/>
+                        <div class="btn btn-flashy bigsmall" placebet data-bet="bankerbig"><div class="chips"></div><%=game.big%></div>
+                        <div class="btn btn-flashy bigsmall" placebet data-bet="bankersmall"><div class="chips "></div><%=game.small%></div>
+                    </div>
+                    <div class="suitedtie btn btn-flashy" placebet data-bet="suitedtie">
+                        <div  class="chips"></div>
+                        <%=game.suitedtie%>
+                    </div>
+                    <div class="suit-set">
+                        <div class="suits suit-color-S btn btn-flashy" placebet data-bet="players">
+                            <div class="chips"></div>
+                            <%=game.suit.s%>
+                        </div>
+                        <div class="suith suit-color-H btn btn-flashy" placebet data-bet="playerh">
+                            <div class="chips"></div>
+                            <%=game.suit.h%>
+                        </div>
+                        <div class="suitc suit-color-C btn btn-flashy" placebet data-bet="playerc">
+                            <div  class="chips"></div>
+                            <%=game.suit.c%>
+                        </div>
+                        <div class="suitd suit-color-D btn btn-flashy" placebet data-bet="playerd">
+                            <div class="chips"></div>
+                            <%=game.suit.d%>
+                        </div><br/>
+                        <div class="btn btn-flashy bigsmall" placebet data-bet="playerbig"><div  class="chips"></div><%=game.big%></div>
+                        <div class="btn btn-flashy bigsmall" placebet data-bet="playersmall"><div  class="chips "></div><%=game.small%></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button ng-disabled="isGameInProgress" ng-click="play();" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.bet %>
+                </button>
+                <button ng-click="clearBets();" class="btn btn-default ng-scope" bc-popover="false" bc-popover-content="To clear an individual bet, press and hold a chip for 2 seconds, and then release" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top" ng-disabled="isGameInProgress" data-original-title="" title="">
+                    <%= buttons.clear_bets %>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

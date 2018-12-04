@@ -1,0 +1,343 @@
+@gold: #ffd479;
+@golddark: #D6AE58;
+@goldvolume: rgb(173,150,95);
+.btn-spin {
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  width: 150px;
+  height: 50px;
+  border-radius: 90px;
+  background-image: url('../img/img4.png');
+  background-position: -06px -05px;
+  background-repeat: no-repeat;
+}
+.btn-clear {
+  width: 178px;
+  height: 75px;
+  border: none;
+  vertical-align: bottom;
+  margin: 5px;
+  &.btn-down {
+    .normal {
+      display: none;
+    }
+    .pressed {
+      display: block;
+    }
+  }
+
+  .normal {
+    background-color: transparent;
+    background-image: url('../img/bets/clear.png');
+    background-repeat: no-repeat;
+    background-position: 0px -3px;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .pressed {
+    background-repeat: no-repeat;
+    background-image: url('../img/bets/clearb.png');
+    background-repeat: no-repeat;
+    background-position: 0px -3px;
+    width: 100%;
+    height: 100%;
+    display:none;
+  }
+}
+
+
+.bets {
+  position:relative;
+}
+.bets-1,
+.bets-3,
+.bets-5,
+.bets-10,
+.bets-20,
+.bets-45{
+  cursor:pointer;
+  margin:5px;
+  width: 143px;
+  height: 75px;
+  border: none;
+}
+.btn-image {
+  .normal {
+    display:inline-block;
+  }
+  .pressed {
+    display:none;
+  }
+  &.btn-down {
+    .normal {
+      display:none;
+    }
+    .pressed {
+      display:inline-block;
+    }
+  }
+}
+
+.chips {
+height:36px;
+min-width:38px;
+text-align:center;
+line-height:24px;
+display:none;
+position:absolute;
+top:40%;
+left:25%;
+margin-top:-20px;
+margin-left:-20px;
+background-image: url('../img/bets/coin.png');
+border:none;
+font-weight:400;
+color:#fff;
+font-size:16pt;
+padding:3px 8px;
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+box-sizing:border-box;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+-webkit-transition:border 1s ease-in-out, font-size 1s ease-in-out;
+-moz-transition:border 1s ease-in-out, font-size 1s ease-in-out;
+-o-transition:border 1s ease-in-out, font-size 1s ease-in-out;
+-ms-transition:border 1s ease-in-out, font-size 1s ease-in-out;
+transition:border 1s ease-in-out, font-size 1s ease-in-out;
+
+}
+
+.chips.lost {
+opacity:.7;
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+filter:alpha(opacity=70);
+
+}
+.chips.won {
+border:1px solid #ff0000;
+  background-image: -webkit-radial-gradient(#ffffcc, #ffff88 30%, #ffffcc 70%, #ffff88);
+  background-image: -moz-radial-gradient(#ffffcc, #ffff88 30%, #ffffcc 70%, #ffff88);
+  background-image: -o-radial-gradient(#ffffcc, #ffff88 30%, #ffffcc 70%, #ffff88);
+  background-image: radial-gradient(#ffffcc, #ffff88 30%, #ffffcc 70%, #ffff88);
+  font-size:120%;
+  font-weight:bold;
+}
+
+.betbuttons {
+  margin-top: 10px;
+  > div {
+    z-index:2;
+    display:inline-block;
+    div.bets {
+    }
+  }
+}
+
+.wheelContainer {
+
+    background-image:url("../img/w2.png");
+    background-repeat:no-repeat;
+    background-size: 100% auto;
+
+  .wheelWrap {
+    z-index: 1;
+
+    position:relative;
+
+    height:500px;
+    width:466px;
+    max-width:466px;
+    max-height:500px;
+    margin: 0 auto;
+
+    @media screen and (max-width: 1200px) {
+          height:500px;
+          width:466px;
+          max-width:466px;
+          max-height:500px;
+    }
+
+    @media screen and (max-width: 992px) {
+      height:400px;
+      width:360px;
+      max-width:360px;
+      max-height:400px;
+    }
+
+    @media screen and (max-width: 480px) {
+      height:360px;
+      width:320px;
+    }
+
+    @media screen and (max-width: 360px) {
+      height:300px;
+      width:260px;
+    }
+
+
+
+    .wheel {
+      position:relative;
+
+      #wheelHitbox {
+        z-index: 1;
+        position: absolute;
+        width:25%;
+        height:25%;
+        top: 48%;
+        left: 37.5%;
+        cursor: pointer;
+        background: transparent;
+        border:none;
+        outline: none;
+      }
+
+      img {
+        margin: auto;
+        height:466px;
+        width:466px;
+        max-width:466px;
+        max-height:466px;
+
+        @media screen and (max-width: 1200px) {
+              height:466px;
+              width:466px;
+              max-width:466px;
+              max-height:466px;
+        }
+
+        @media screen and (max-width: 992px) {
+          height:360px;
+          width:360px;
+          max-width:360px;
+          max-height:360px;
+        }
+
+        @media screen and (max-width: 480px) {
+          height:320px;
+          width:320px;
+        }
+
+        @media screen and (max-width: 360px) {
+          height:260px;
+          width:260px;
+        }
+      }
+      .wheelBackImage {
+        z-index:0;
+      }
+      .wheelImage{
+        position:absolute;top:0;left:0;
+        z-index: 1;
+        top:12%;
+      }
+
+
+      .circleCenter {
+        position:absolute;top:0;left:0;
+        width:35%;
+        height:35%;
+        left:32.5%;
+        top:44%;
+        z-index: 11;
+        cursor:pointer;
+
+        img.spinning {
+          display: none;
+        }
+
+        &.btn-down {
+          img.spinning {
+             display: none;
+          }
+        }
+        &.btn-working {
+          .normal {
+            display: none !important;
+          }
+          .pressed {
+            display: none !important;
+          }
+          .spinning {
+            display: inline-block !important;
+          }
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .circleIcon {
+        position:absolute;
+        z-index:12;
+      }
+
+      .wheelArrow {
+        z-index:2;
+
+        position: absolute;
+        top:4%;
+        left:47%;
+        width : 5%;
+        height : 10%;
+
+        img {
+          width : 100%;
+          height : 100%;
+          margin : 0px auto;
+
+        }
+        }
+    }
+  }
+
+}
+
+
+.sound-toggle-container {
+	position:absolute;
+	top:5px;
+	left:5px;
+}
+#wheelhistory {
+  text-align:right;
+  .history {
+    width:60%;
+    height:38px;
+    margin:0px auto;
+    overflow:hidden;
+    border-radius:5px;
+    background-color:#440000;
+    border:1px solid #AA0000;
+    bethistory {
+      white-space:no-wrap;
+      float:right;
+      width:43px;
+      height:38px;
+      text-align:center;
+      vertical-align:top;
+      border:1px solid #AA0000;
+      .historynumber {
+        text-align:center;
+        padding:5px;
+        color:#ffffcc;
+        position:relative;
+        &.red {
+          background-color:#880000;
+        }
+        &.black {
+          background-color:#282525;
+        }
+        &.green {
+          background-color:#11461A;
+        }
+        font-size:13pt;
+      }
+    }
+  }
+}

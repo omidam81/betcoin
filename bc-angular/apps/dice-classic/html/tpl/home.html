@@ -1,0 +1,63 @@
+
+<div class="container" ng-controller="DiceController" id="dice-game-container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 text-center">
+            <img alt="<%= home.betcoin_dice_img_alt %>" src="<%= home.title_image %>" style="width:200px;margin-top:10px;" /><br />
+            <img alt="<%= home.betcoin_dice_img_alt %>" src="./img/icons/dice.png" style="width:200px;margin:10px auto;" />
+        </div>
+        <div class="col-xs-12 col-sm-8 text-center">
+            <h1 style="color:#ff0000;"><a href="<%= httplink %><%= home.dice_link%>"><%= home.logo_title_a %></a></h1>
+            <h2><a href="<%= httplink %><%= home.dice_link%>"><%= home.logo_title_b %></a></h2>
+
+        </div>
+        <div class="col-xs-12 col-sm-8 pull-right">
+            <div class="text-center">
+                <bc-dropdown></bc-dropdown>
+            </div>
+        </div>
+        <div class="game-container col-xs-12 col-sm-12 col-md-8 pull-right">
+
+            <div id="spinmessage">
+                <div style="float:left;position: absolute; cursor: pointer;">
+                    <div class="soundToggle"><img  ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+                </div>
+                <div ng-show="status == 'idle'">
+                    <h1><%= animation.idleText %></h1>
+                    <h2 style="margin-top:2px;"><%= home.logo_title_2 %><nobr><%= home.logo_title_3 %></nobr></h2>
+                </div>
+                <div ng-show="status == 'rolling'">
+                    <div><h3><%= animation.rolling %> &lt; {{ gameinfo.game }} <%= animation.forPlayer %></h3></div>
+                    <div><h4>{{ gameinfo.player_id }}</h4></div>
+                </div>
+                <div ng-show="status == 'revealed'">
+                    <div ng-show="gameinfo.result < gameinfo.game"><h3><%= animation.winner %></h3></div>
+                    <div ng-show="gameinfo.result < gameinfo.game"><h4>{{ gameinfo.winnings | btc }} BTC</h4></div>
+                </div>
+            </div>
+            <div id="gameCanvas" style="position:relative;z-index:-2;margin-bottom:10px;"></div>
+        </div>
+        <div class="col-xs-12 col-md-4 pull-left" >
+            <div class="panel">
+                 <bc-game-counters></bc-game-counters>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="visible-xs visible-sm visible-md" style="margin:10px 0px;">
+        <ul ng-controller="NavController" class="nav nav-pills nav-stacked">
+            <li ng-class="getActive('/')"> <a href=' '> <%= home.my_games %> </a> </li>
+            <li ng-class="getActive('/recent')"> <a href='recent'> <%= home.tabs_recent %> </a> </li>
+            <li ng-class="getActive('/leaderboard')"> <a href='leaderboard'> <%= home.tabs_leaderboard %> </a> </li>
+            <li ng-class="getActive('/how-to-play')"> <a href='how-to-play'> <%= home.tabs_howtoplay %> </a> </li>
+        </ul>
+    </div>
+    <div class="visible-lg">
+        <ul ng-controller="NavController" class="nav nav-justified nav-tabs game-nav-tabs">
+            <li style="width:284px;" ng-class="getActive('/')"> <a href=' '> <%= home.my_games %> </a> </li>
+            <li style="width:284px;" ng-class="getActive('/recent')"> <a href='recent'> <%= home.tabs_recent %> </a> </li>
+            <li style="width:284px;" ng-class="getActive('/leaderboard')"> <a href='leaderboard'> <%= home.tabs_leaderboard %> </a> </li>
+            <li style="width:284px;" ng-class="getActive('/how-to-play')"> <a href='how-to-play'> <%= home.tabs_howtoplay %> </a> </li>
+        </ul>
+    </div>
+
+</div>

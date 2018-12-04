@@ -1,0 +1,6 @@
+node_modules/
+.gitdeps
+*.log
+
+.tern-port
+.DS_Store

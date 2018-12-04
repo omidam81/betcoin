@@ -1,0 +1,15 @@
+<div class="large-centered animated hide-in-20">
+    <h3 ng-show="status == 'pending'"><%= email.pending %></h3>
+    <h3 ng-show="status == 'confirmed'"><%= email.confirm %></h3>
+    <h3 ng-show="status == 'error'"><%= email.error %></h3>
+</div>
+
+<div ng-hide="BCSession.user"
+     class="fill-center"
+     style="width:400px">
+	<div>
+		<h1 class="text-center"><%= buttons.login %></h1>
+        <bc-login on-login="loginSuccess(player)"></bc-login>
+	</div>
+	<div ng-include src="tpl/account/home.html" ng-show="BCSession.user"></div>
+</div>

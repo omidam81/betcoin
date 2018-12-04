@@ -1,0 +1,31 @@
+{
+    "prod": "caribbean",
+    "meta": {
+        "title": "Betcoin™ Caribbean Poker - Provably Fair - Win Bitcoin!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-caribbean.png"
+    },
+    "home": {
+        "title_image": "img/icons/caribbean280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/caribbean"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/jia"
+        }
+    },
+    "game": {
+        "foldedmessage": "FOLDED",
+        "unqualifiedmessage": " - Dealer Doesn't Qualify"
+    },
+    "buttons": {
+        "raise": "Raise",
+        "fold": "Fold"
+    },
+    "text": {
+        "invalid_raise": "Invalid raise"
+    }
+}

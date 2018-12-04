@@ -1,0 +1,51 @@
+{
+    "prod": "minesweeper",
+    "meta": {
+        "title": "BetCoin ™ Minesweeper Bitcoin Casino - Win Bitcoins!",
+        "meta_description": "With BetCoin ™ Minesweeper you can bet in bitcoin and play the classic Minesweeper wheel. Try the game today to hit a bitcoin jackpot!",
+        "meta_keywords": "Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Minesweeper, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Minesweeper, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "serverMsg": "The game server cannot be reached",
+    "minconfMsg": "At least 1 deposit has not been confirmed",
+    "withdrawErrorMsg": "Withdraw error, please try again",
+    "global": {
+        "logourl": "img/words/betcoin-minesweeper.png",
+        "withdrawAddress": "Your Bitcoin Wallet Address"
+    },
+    "home": {
+        "title_image": "img/icons/minesweeper.png",
+        "promote_header_a": "Play the Provably Fair Classic Minesweeper",
+        "promote_header_d": "Provably fair, transparent system",
+        "totalbet": "Total Bet:"
+    },
+    "text": {
+        "withdrawAddress": "Enter Your Bitcoin Wallet Address",
+        "totalbalance": "Total Balance",
+        "availablebalance": "Available Balance"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/minesweeper"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/pan"
+        }
+    },
+    "game": {
+        "x": "x",
+        "symbol": "Symbol",
+        "multiplier": "Payout Multiplier",
+        "win": "Win",
+        "lose": "Lose"
+    },
+    "spins": {
+        "CircleTh4": "Bet",
+        "ProofDt5": "Final Array"
+    },
+    "buttons": {
+        "start_spin": "SPIN",
+        "clearbets": "Clear Bets",
+        "clearbets_individual": "To clear an individual bet, press and hold a chip for 2 seconds, and then release",
+        "start_game": "START GAME"
+    }
+}

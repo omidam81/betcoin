@@ -1,0 +1,71 @@
+{
+    "prod": "lottery",
+    "meta": {
+        "title": "财神奖™ - 绝对公平抽奖游戏",
+        "meta_description": "财神堂™ - 最好的比特币博彩游戏: 彩票,扑克,轮盘,骰子,老虎机! 全球最高的比特币奖金!",
+        "meta_keywords": "比特币博彩,财神堂,财神轮,才神灵,免费的比特币,财神骰子,比特币娱乐场, 比特币赌博, 骰子,比特币游戏,中本聪,比特币下注,比特币投注,比特币扑克, 比特币轮盘,比特币老虎机,块链,赌比特币,比特币彩票, 比特币21点, 比特币公平"
+    },
+    "global": {
+        "logourl": "img/words/cn/lottery.png"
+    },
+    "home": {
+        "promote_header_a":"选择最丰富的比特币彩票游戏",
+        "title_image": "img/icons/prize.png"
+    },
+    "text": {
+        "buy_tickets_intro": " 如何开始? <br>每张抽奖券需要 0.00001 下注额度. 选择您的下注额度，然后对想要参与的乐透进行下注。 <br>下注额度越高，购买越多抽奖券, 从而得到越高对机会赢得乐透！",
+        "current_win_intro": "您是当前乐透的赢家。<br>留意获奖金额对不断增长，并与其他玩家进行竞争。",
+        "current_nowin_intro": "您不是当前此乐透的赢家。<br>留意此乐透的变化，看能否通过其他玩家的下注来改变您的获奖机会，或者通过购买更多抽奖券来提高赢取乐透的机会。",
+        "win_chance": "赢率",
+        "time_left": "剩余时间",
+        "buy_tickets": "购买彩票",
+        "buy": "购买",
+        "tickets": "彩票",
+        "confirm": "确定",
+        "current_winner": "当前赢家",
+        "winner": "赢家",
+        "cuttime": "截止时间",
+        "win_lottery": "赢得抽奖",
+        "my_live_bets": "我的所有下注",
+        "my_next_drawing": "我的下个抽奖",
+        "mine": "本人",
+        "all_bets_this_game": "所有下注",
+        "minutes": "分钟",
+        "hours": "小时",
+        "days": "天"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/lottery"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/letou"
+        }
+    },
+    "game": {
+        "type": "类别",
+        "spinmessage": "",
+        "bronze": "铜杯",
+        "silver": "银杯",
+        "gold": "金杯",
+        "platinum": "白金杯",
+        "diamond": "钻石杯",
+        "jackpots": "长程",
+        "raffles": "中程",
+        "battles": "短程",
+        "returnbet": "返还下注筹码",
+        "place_bet": "下注"
+    },
+    "leaderboard": {
+        "silver": "白银",
+        "gold": "黄金"
+    },
+    "spins": {
+        "lotteries": "抽奖结果",
+        "jackpot": "奖金总额",
+        "total_wagered": "总下注额度"
+    },
+    "buttons": {
+        "play_now": "选择"
+    }
+}

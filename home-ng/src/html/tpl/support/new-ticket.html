@@ -1,0 +1,79 @@
+<div class="col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3><%= text.new_ticket_title %></h3> 
+            <p>
+            <%= text.new_ticket_help %></p>
+            <p>
+            <strong><%= text.new_ticket_note %></strong></p>
+        </div>
+    </div>
+    <div class="panel panel-default main-container">
+        <div class="panel-heading"><%= text.new_ticket_header %></div>
+        <div class="panel-footer">
+            <form action="" class="form-horizontal" name="ticketForm" novalidate>
+                <div ng-hide="BCSession.user._id" class="form-group">
+                    <label class="col-sm-2 control-label"><%= text.ticket_username %></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="ticket.owner" placeholder="<%= text.ticket_username %>" required />
+                    </div>
+                </div>
+                <div ng-hide="BCSession.user.email" class="form-group">
+                    <label class="col-sm-2 control-label"><%= text.ticket_email %></label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" ng-model="ticket.email" placeholder="email@domain.com" required />
+                    </div>
+                </div>                          
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><%= text.ticket_subject %></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="ticket.subject" placeholder="<%= text.ticket_subject %>"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><%= text.ticket_description %></label>
+                    <div class="col-sm-10">
+                        <textarea placeholder="<%= text.ticket_description_placeholder%>" rows="5" cols="50" class="form-control" ng-model="ticket.description" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><%= text.ticket_referringurl %></label>
+                    <div class="col-sm-10">
+                        <input type="url" class="form-control" ng-model="ticket.referUrl" placeholder="http://www.betcoindice.com" />
+                    </div>
+                </div>              
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2 control-label"><%= text.ticket_priority %></label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="language" ng-model="ticket.priority" required>
+                            <option value="1"><%= text.ticket_priority_low %></option>
+                            <option value="2"><%= text.ticket_priority_normal %></option>
+                            <option value="3"><%= text.ticket_priority_high %></option>
+                            <option value="4"><%= text.ticket_priority_urgent %></option>
+                        </select>                   
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2 control-label"><%= text.ticket_type %></label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="language" ng-model="ticket.type" required>
+                            <option value="1"><%= text.ticket_type_incident %></option>
+                            <option value="2"><%= text.ticket_type_question %></option>
+                            <option value="3"><%= text.ticket_type_problem %></option>
+                            <option value="4"><%= text.ticket_type_task %></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2 control-label"></label>
+                    <div class="col-sm-10">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-click="createTicket()" ng-disabled="ticketForm.$invalid||creatingTicket"><span ng-show="creatingTicket"><%= text.ticket_creating %></span><span ng-show="!creatingTicket"><%= text.ticket_submit %></span>
+                            </button>   
+                        </div>
+                    </div>
+                </div>                                          
+            </form>                     
+        </div>  
+    </div>
+</div>

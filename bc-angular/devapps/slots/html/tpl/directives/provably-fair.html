@@ -1,0 +1,44 @@
+<div>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="server-seed" class="col-sm-3 control-label">
+                <%= spins.ProofDt1 %>
+            </label>
+            <div class="col-sm-9">
+                <input id="server-seed" type="text" class="form-control" ng-model="serverSeed">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="client-seed" class="col-sm-3 control-label">
+                <%= spins.ProofDt4 %>
+            </label>
+            <div class="col-sm-9">
+                <input id="client-seed" type="text" class="form-control" ng-model="clientSeed">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="init-hash" class="col-sm-3 control-label">
+                <%= spins.ProofDt3 %>
+            </label>
+            <div class="col-sm-9 margin-top-5" id="init-hash">
+                {{initialHash}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="final-array" class="col-sm-3 control-label">
+                <%= spins.ProofDt5 %>
+            </label>
+            <div class="col-sm-9 margin-top-5" id="final-array">
+            {{finalArray}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="verify-fair" class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+                <button id="verify-fair" class="btn btn-default" ng-click="verify()">
+                    <%= buttons.verify %>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

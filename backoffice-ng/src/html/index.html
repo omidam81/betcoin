@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="application">
+    <head>
+        <base href="/backoffice/">
+        <title>Betcoin Back Office</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="fragment" content="!">
+        <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="css/app.css" rel="stylesheet" media="screen">
+        <link href="css/jquery-ui.css" rel="stylesheet" media="screen">
+    </head>
+    <body class="ng-cloak">
+        <div>
+            <div ng-if="hasLogin">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul ng-controller="NavController" class="nav nav-pills">
+                            <li ng-class="getActive('/dashboard')"><a href="dashboard">Dashboard</a></li>
+                            <li ng-class="getActive('/players')"><a href="players">Players</a></li>
+                            <li ng-class="getActive('/totals')"><a href="totals">Game  Totals</a></li>
+                            <li ng-class="getActive('/support')"><a href="support">Support</a></li>
+                            <li ng-class="getActive('/security')"><a href="security">Admin Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div ng-controller="BankrollController" ng-include="'tpl/bankroll.html'"></div>
+                </div>
+            </div>
+            <div ng-view></div>
+        </div>
+        <!--SCRIPTS-->
+        <!-- include: "type": "js", "files": "jquery/**/*.js" -->
+        <!-- include: "type": "js", "files": "angular/**/*.js" -->
+        <!-- include: "type": "js", "files": "jquery-plugin/**/*.js" -->
+        <!-- include: "type": "js", "files": "vendor/**/*.js" -->
+        <!-- include: "type": "js", "files": "app/**/*.js" -->
+        <!--SCRIPTS END-->
+
+    </body>
+</html>

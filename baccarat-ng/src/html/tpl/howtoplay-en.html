@@ -1,0 +1,56 @@
+<div class="tabcontent">
+  <h1>How to Play</h1>
+  <p class="ng-binding"><b class="ng-binding">BetCoin ™ Baccarat</b> is a classic card game that allows you to wager with the digital currency Bitcoin. It's an easy and fun way to play with and win more Bitcoins!</p>
+  <br>
+  <ol style="padding-left:40px;">
+    <li class="ng-binding"><b class="ng-binding">Login or Register</b>, or play anonymously with your BTC wallet address</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Fund</b> your playing balance with Bitcoins using the provided personal deposit address</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Select wager</b> amount by using either the slider, percentage of balance buttons, incremental buttons, or by clicking on the wager box.  The maximum wager value is adjusted dynamically.</li>
+    <br>
+    <li class="ng-binding">Check your progress and follow players around the world using the in-game Leaderboard and Recent Plays tabs located below the playing screen.</li>
+    <br>
+    <li class="ng-binding">If you play anonymously, your balance will automatically be returned to you after 30 minutes of inactivity or upon closing your browser.</li>
+    <br>
+  </ol>
+
+<!-- <h4>Pay Table</h4>
+
+<div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+    <h4>Baccarat is one of the oldest and most popular casino games.</h4>
+    <ul style="padding-left:40px;">
+        <li>Played with 1 deck of cards, reshuffled after each game.</li>
+        <li>Cards have values: Ace - 1, 2..9 - pip value, 10 and face cards - 0.</li>
+        <li>To start the game, place a bet on one of the following outcomes: Banker wins, Player wins or Tie.</li>
+        <li>Dealer gives two cards to the banker and the player. A third card may be dealt to the player or the dealer based on the following rules:</li>
+            <ul style="padding-left:40px;">
+                <li>if either the player or dealer have an 8 or a 9, no more cards are dealt,</li>
+                <li>if the player has 5 or less, the player hits, otherwise the player stands,</li>
+                <li>if the player stands, the banker hits on a total of 5 or less,</li>
+                <li>if the player hits, the banker draws according to its rules.</li>
+            </ul>
+            <h5>Banker's rule</h5>
+            <ul>
+                <li>If Player drew a 2 or 3, Banker draws with 0–4 and stands with 5–7.</li>
+                <li>If Player drew a 4 or 5, Banker draws with 0–5 and stands with 6–7.</li>
+                <li>If Player drew a 6 or 7, Banker draws with 0–6 and stands with 7.</li>
+                <li>If Player drew an 8, Banker draws with 0–2 and stands with 3–7.</li>
+                <li>If Player drew an ace, 9, 10, or face-card, the Banker draws with 0–3 and stands with 4–7.</li>
+            </ul>
+        <li>The winner is the one with the greater score.</li>
+        <li>Winning bets on the banker pay 19 to 20, winning bets on player pay 1 to 1, and tie pays 8 to 1</li>
+    </ul>
+    <h4 class="ng-binding">What is the expected return to player for BetCoin ™ Casino Baccarat?</h4>
+    <p>Expected Return to Player: 98.94% for banker bets, 98.77% for player bets and 85.64% for ties</p>
+    <h4 class="ng-binding">Is there a minimum wager per hand?</h4>
+    <p class="ng-binding">The minimum bet is 0.000001 BTC</p><p></p>
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">Click here to view the code used to verify each game</a></p>
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

@@ -1,0 +1,49 @@
+<div class="panel indent-text">
+	<div class="panel-heading">
+		<h1><%= text.verify_title %></h1>
+	</div>
+	<div class="panel-body">
+		<p><%= text.verify_header %></p>
+		<p><a ng-click="showVerifyInfo=true;"><%= text.read_more %></a></p>
+		<div ng-show="showVerifyInfo">
+			<p><%= text.verify_info_a %></p>
+			<p><%= text.verify_info_b %></p>
+			<p><%= text.verify_info_c %></p>
+		</div>
+		<p><%= text.create_wallet_instead %></p>
+		<div><a class="btn btn-primary btn-block" href="https://blockchain.info/wallet/new" target="_blank"><%= buttons.create_new_wallet %></a></div>
+	</div>
+</div>
+<div class="panel panel-default indent-text">
+	<div class="panel-body">
+		<h3><%= buttons.enter_wallet_address %></h3>
+		<div class="form-group">
+			<input type="text" class="form-control text-center" ng-model="walletAddress"/>
+		</div>
+		<h4><%= text.verify_wallet_list %></h4>
+		<p><a href="https://multibit.org/en/help/v0.5/help_signAndVerifyMessage.html" target="_blank">MultiBit</a></p>
+		<p><a href="https://blockchain.info/wallet/wallet-faq" target="_blank">Blockchain.info</a></p>
+		<h4><%= text.verify_wallet_info %></h4>
+		<ol>
+			<li><%= text.verify_p1 %></li>
+			<li><%= text.verify_p2 %>{{walletAddress}}</li>
+			<li><%= text.verify_p3 %>{{user.challenge}}</li>
+			<li><%= text.verify_p4 %></li>
+			<li><%= text.verify_p5 %></li>
+			<li><%= text.verify_p6 %></li>
+		</ol>
+		<div class="form-group">
+			<label for="" class="control-label"><%= text.message_sign %></label>
+			<input type="text" class="form-control" placeholder="message-to-sign-example" ng-model="user.challenge">
+		</div>
+		<div class="form-group">
+			<label for="" class="control-label"><%= text.signed_message %></label>
+			<input type="text" class="form-control" placeholder="" ng-model="textSigned">
+		</div>
+		<button class="btn btn-primary btn-block" ng-click="verifyWallet()" bc-popover="{{error!=null}}"><%= buttons.verify_submit %></button>
+		<div class="errors hide">
+			<span class="error">{{error|error}}</span>
+		</div>
+		</div>
+	</div>
+</div>

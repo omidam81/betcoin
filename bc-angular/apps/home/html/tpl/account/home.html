@@ -1,0 +1,541 @@
+<div class="row">
+    <div class="clearfix"></div>
+    <div class="col-xs-12 col-sm-4">
+
+        <bonusoffer bonuses="user.bonuses"
+                    user="user"
+                    ng-show="user.bonuses.length">
+        </bonusoffer>
+        <div class="navbar-left panel" id="account-nav">
+            <ul class="nav">
+                <li class="active"><a class="font-size-20" ng-href="account/"><%= accountmenu.games %></a></li>
+                <li><a ng-href="account/deposit"><%= accountmenu.deposit %></a></li>
+                <li><a ng-href="account/withdraw"><%= accountmenu.withdraw %></a></li>
+                <li><a ng-href="account/wallets"><%= accountmenu.account_details %></a></li>
+                <li><a ng-href="account/edit"><%= buttons.edit_account %></a></li>
+
+                <li><a ng-href="account/bonuses/"><%= text.bonus_information %></a></li>
+
+
+                <li><a ng-href="account/aboutbtc"><%= accountmenu.about_bitcoin %></a></li>
+
+                <li><a ng-href="account/exchange"><%= accountmenu.buy_sell_bitcoin %></a></li>
+                <li><a ng-href="account/jade"><%= accountmenu.jade_emperor_club %></a></li>
+
+                <li><a ng-href="account/messages"><%= buttons.your_inbox %><bc-unread ng-show="user.anonymous == false"></bc-unread></a></li>
+                <li><a data-target="#supportModal" data-toggle="modal"><%= buttons.your_outbox %></a></li>
+                <li><a ng-href="account/affiliate"><%= buttons.affiliate %></a></li>
+                <li><a ng-href="account/about"><%= accountmenu.about_betcoin %></a></li>
+                <li><a ng-click="logout()"><img alt="<%= home.signin_alt %>" src="img/toolbar/power44.png"/><span><%= home.logout %></span></a></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="col-xs-12 col-sm-8">
+        <div class="tab-content padding-top-0">
+            <!-- Edit Account Tab -->
+
+            <div class="tab-pane {{target === 'edit'?'active':''}}">
+                <div class="">
+                    <div class=""><h2 class=""><%= text.edit_account%></h2></div>
+                        <div class="">
+                            <form role="form" name="editDetailsForm">
+                                <div class="form-group">
+                                    <div class="row row-line">
+                                        <label for="" class="col-xs-4 control-label"><%= text.new_alias %></label>
+                                        <div class="col-xs-8">
+                                            <input type="text" autocorrect="off" autocapitalize="off" class="form-control" ng-model="userEditData.username" name="username" bc-popover="{{editDetailsForm.username.$invalid}}" required>
+                                            <div class="errors hide">
+                                                <span class="error"><%= text.require_alias %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row row-line">
+                                        <label for="" class="col-xs-4 control-label"><%= text.new_password %></label>
+                                        <div class="col-xs-8">
+                                            <input type="password" class="form-control" ng-model="userEditData.password" name="password" ng-minlength="10" ng-maxlength="64" bc-popover="{{editDetailsForm.password.$invalid && editDetailsForm.password.$dirty}}" ng-required="user.anonymous==true">
+                                            <div class="errors hide">
+                                                <span class="error" ng-show="editDetailsForm.password.$error.minlength"><%= text.password_min_length %></span>
+                                                <span class="error" ng-show="editDetailsForm.password.$error.maxlength"><%= text.password_max_length %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row row-line">
+                                        <label for="" class="col-xs-4 control-label"><%= text.confirm_new_password %></label>
+                                        <div class="col-xs-8">
+                                            <input type="password" class="form-control" ng-model="userEditData.passwordConfirm" name="confirmPassword" ng-minlength="10" ng-maxlength="64" bc-popover="{{(editDetailsForm.confirmPassword.$invalid && editDetailsForm.confirmPassword.$dirty)||(userEditData.password && userEditData.password !== userEditData.passwordConfirm)}}" ng-required="user.anonymous==true">
+                                            <div class="errors hide">
+                                                <span class="error" ng-show="editDetailsForm.confirmPassword.$error.minlength"><%= text.password_min_length %></span>
+                                                <span class="error" ng-show="editDetailsForm.confirmPassword.$error.maxlength"><%= text.password_max_length %></span>
+                                                <span class="error" ng-show="userEditData.password && userEditData.password !== userEditData.passwordConfirm"><%= text.password_validation %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row row-line">
+                                        <label for="" class="col-xs-4 control-label"><%= text.email_address %></label>
+                                        <div class="col-xs-8">
+                                            <input type="email" class="form-control" name="email" ng-model="userEditData.email" bc-popover="{{editDetailsForm.email.$invalid}}">
+                                            <div class="errors hide">
+                                                <span class="error"><%= email.required %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h4><%= global.withdrawAddress %>: {{ user.wallets.bitcoin.withdrawAddress  }}</h4>
+                                    <div class="row row-line">
+                                        <label for="" class="col-xs-4 control-label"><%= text.main_bitcoin_address %></label>
+                                        <div class="col-xs-8">
+                                            <input type="text" autocorrect="off" autocapitalize="off" class="form-control" name="withdrawAddress" ng-model="userEditData.wallets.bitcoin.withdrawAddress" bc-popover="{{editDetailsForm.wallets.bitcoin.withdrawAddress.$invalid}}" required>
+                                            <div class="errors hide">
+                                                <span class="error"><%= text.invalid_withdraw_address %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row row-line">
+                                        <label for="" class="col-xs-4 control-label"><%= text.backup_btc_address %></label>
+                                        <div class="col-xs-8">
+                                            <input type="text" autocorrect="off" autocapitalize="off" class="in-line form-control" name="backupAddress" ng-model="userEditData.wallets.bitcoin.withdrawBackup">
+
+                                            <span class="question" ng-click="showhelpmodal();">?</span>
+
+                                            <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header text-center">
+                                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                            <p><%= text.wallet_backup_info %></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span class="error" ng-show="userEditData.wallets.bitcoin.withdrawAddress === userEditData.wallets.bitcoin.withdrawBackup"><%= text.same_backup_withdraw_address %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row row-line">
+                                        <label for="" class="col-xs-4 control-label"><%= global.litecoinAddress %></label>
+                                        <div class="col-xs-8">
+                                            <input type="text" autocorrect="off" autocapitalize="off" class="form-control" name="ltcWithdrawAddress" ng-model="userEditData.wallets.litecoin.withdrawAddress">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row row-line">
+                                        <label for="" class="col-xs-4 control-label"><%= global.dogecoinAddress %></label>
+                                        <div class="col-xs-8">
+                                            <input type="text" autocorrect="off" autocapitalize="off" class="form-control" name="xdgWithdrawAddress" ng-model="userEditData.wallets.dogecoin.withdrawAddress">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row row-line">
+                                        <label for="" class="col-xs-4 control-label"><%= global.ppcoinAddress %></label>
+                                        <div class="col-xs-8">
+                                            <input type="text" autocorrect="off" autocapitalize="off" class="form-control" name="ppWithdrawAddress" ng-model="userEditData.wallets.ppcoin.withdrawAddress">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row row-line">
+                                        <label for="" class="col-xs-4 control-label"><%= global.namecoinAddress %></label>
+                                        <div class="col-xs-8">
+                                            <input type="text" autocorrect="off" autocapitalize="off" class="form-control" name="nameWithdrawAddress" ng-model="userEditData.wallets.namecoin.withdrawAddress">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h1><%= text.edit_verify %></h1>
+                                <p><%= text.verify_header %></p>
+                                <p><a ng-click="showVerifyInfo=true;"><%= text.read_more %></a></p>
+                                <div ng-show="showVerifyInfo">
+                                    <p><%= text.verify_info_a %></p>
+                                    <p><%= text.verify_info_b %></p>
+                                    <p><%= text.verify_info_c %></p>
+                                </div>
+                                <h4><%= text.verify_wallet_list %></h4>
+                                <p><a href="https://multibit.org/en/help/v0.5/help_signAndVerifyMessage.html" target="_blank">MultiBit</a></p>
+                                <p><a href="https://blockchain.info/wallet/wallet-faq" target="_blank">Blockchain.info</a></p>
+                                <p><a href="https://bsidebtc.com/sign-verify-message-electrum/" target="_blank">Electrum</a></p>
+                                <!-- @if LOC="en_US" -->
+                                <div>
+                                    <iframe src="//player.vimeo.com/video/117449844" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                </div>
+                                <!-- @endif -->
+                                <!-- @if LOC="zh_CN" -->
+                                 <div>
+                                    <iframe src="//player.vimeo.com/video/117449841" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                </div>
+
+                                <!-- @endif -->
+                                <h4><%= text.verify_wallet_info %></h4>
+                                <ol>
+                                    <li><%= text.verify_p1 %></li>
+                                    <li><%= text.verify_p2 %>{{userEditData.wallets.bitcoin.withdrawAddress}}</li>
+                                    <li><%= text.verify_p3 %>{{challenge}}</li>
+                                    <li><%= text.verify_p4 %></li>
+                                    <li><%= text.verify_p5 %></li>
+                                    <li><%= text.verify_p6 %></li>
+                                </ol>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="" class="control-label"><%=text.message_sign%></label>
+                                        <div class="input-group">
+                                            <div class="form-control">{{ challenge }}</div>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary input-group-custom-btn" ng-click="copyDialog(challenge)"><%= buttons.copy %></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="(user.wallets.bitcoin.withdrawAddress && user.wallets.bitcoin.withdrawAddress !== userEditData.wallets.bitcoin.withdrawAddress)">
+                                        <label for="" class="control-label"><%=text.signed_message_old_address%> ( {{user.wallets.bitcoin.withdrawAddress}} )</label>
+                                        <input type="text" autocorrect="off" autocapitalize="off" class="form-control" name="signature_old" ng-model="userEditData.signature_old" bc-popover="{{editDetailsForm.signature_old.$dirty&&editDetailsForm.signature_old.$invalid}}">
+                                        <div class="errors hide">
+                                            <div class="error">
+                                                <span class="error"><%= wallet.invalid_signature %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="control-label"><%=text.signed_message%> ( {{userEditData.wallets.bitcoin.withdrawAddress}} )</label>
+                                        <input type="text" autocorrect="off" autocapitalize="off" class="form-control" name="signature" ng-model="userEditData.signature" bc-popover="{{editDetailsForm.signature.$dirty&&editDetailsForm.signature.$invalid}}" required>
+                                        <div class="errors hide">
+                                            <div class="error">
+                                                <span class="error"><%= wallet.invalid_signature %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary btn-block" ng-click="update()" ng-disabled="editDetailsForm.$invalid || (userEditData.password && userEditData.password !== userEditData.passwordConfirm) || (userEditData.anonymous && !editDetailsForm.password)" bc-popover="{{error !== null && error !== undefined}}" bc-popover-direction="bottom"><%=buttons.edit_submit%></button>
+                                        <div class="errors hide">
+                                            <span class="error">{{error|error}}</span>
+                                        </div>
+                                        <span class="error text-center" ng-show="updated"></span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                </div>
+            </div>
+
+            <!-- End -->
+            <div class="tab-pane {{target === undefined?'active':''}}" id="games">
+                <h2><%= accountmenu.welcome %> {{ user.username }} <%= accountmenu.welcome_b %></h2><h3><%= account.your_balance_is %> {{"bitcoin"|cryptosymbol}}{{ user.wallets["bitcoin"].balance | cryptovalue}}
+                    ({{user.wallets["bitcoin"].fiatBalance | currency:fiatSymbols[fiat]}})</h3>
+
+                <div ng-controller="JackpotsController"
+                     class="panel panel-default text-center">
+                    <h2 class="margin-top-10 shadow-red"><%= jackpots.title %></h2>
+                    <div class="jackpots_account row">
+                        <div class="col-xs-12"
+                             ng-repeat-start="jackpot in jackpots">
+
+                             <h3 class="margin-top-5">{{jackpot.label[lang]}}</h3>
+                        </div>
+                        <div class="col-xs-4"><%= jackpots.current_value %></div>
+
+                        <div class="col-xs-4">
+                            <bc-countup
+                                class="amount-numbers"
+                                symbol="{{'bitcoin'|cryptosymbol}}"
+                                filter="cryptovalue"
+                                decimals="4"
+                                zeropad="jackpot.value.toBitcoin().toString().split('.')[0].length"
+                                value="jackpot.wagered"></bc-countup>
+                        </div>
+
+                        <div class="col-xs-4 amount-numbers">
+                            <bc-countup
+                                class="amount-numbers"
+                                symbol="{{lang|fiatsymbol}}"
+                                filter="paddednumber"
+                                decimals="0"
+                                zeropad="jackpot.fiatValue.toString().split('.')[0].length"
+                                value="jackpot.fiatWagered" dp='0'></bc-countup>
+                        </div>
+
+                        <div class="col-xs-4 amount-label"><%= jackpots.must_award_by %></div>
+                        <div class="col-xs-4 amount-numbers">{{'bitcoin'|cryptosymbol}}{{jackpot.value|cryptovalue:4:jackpot.value.toBitcoin().toString().split('.')[0].length}}</div>
+                        <div class="col-xs-4 amount-numbers"
+                             ng-repeat-end>{{lang|fiatsymbol}}{{jackpot.fiatValue|paddednumber:0:jackpot.fiatValue.toString().split('.')[0].length}}</div>
+                        <div class="col-xs-2"></div>
+                    </div>
+                </div>
+                <div class="row accountGameLinks" ng-include src="'tpl/game-links-<%= fileSuffix %>.html'"></div>
+            </div>
+
+            <div class="tab-pane {{target === 'aboutbtc'?'active':''}}" id="aboutbtc">
+                <div  ng-include src="'tpl/newtobitcoin-<%= fileSuffix %>.html'"></div>
+            </div>
+            <div class="tab-pane {{target === 'exchange'?'active':''}}" id="exchange">
+                <div  ng-include src="'tpl/exchange-<%= fileSuffix %>.html'"></div>
+            </div>
+            <div class="tab-pane {{target === 'jade'?'active':''}}" id="jade">
+                <div  ng-include src="'tpl/jade-<%= fileSuffix %>.html'"></div>
+            </div>
+            <div class="tab-pane {{target === 'deposit'?'active':''}}" id="deposit">
+                <h2><%= deposit.deposit_bitcoin %></h2>
+
+
+                <form name="depositBitcoinForm" class="form-horizontal" novalidate>
+                    <div class="form-group">
+                        <label class="control-label"><%= deposit.personal_deposit_address %><bc-bitcoin-icons data-btc-address="{{user.wallets.bitcoin.depositAddress}}" data-currency="'bitcoin'"></bc-bitcoin-icons></label>
+                        <div class="input-group">
+                            <div class="form-control">{{ user.wallets.bitcoin.depositAddress }}</div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary input-group-custom-btn" ng-click="copyDialog(user.wallets.bitcoin.depositAddress)"><%= buttons.copy %></button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                <h2><%= deposit.how_to_deposit %></h2>
+                <p><%= deposit.instructions %></p>
+
+
+                <div ng-include src="'tpl/account/wallet-info-<%= fileSuffix %>.html'"></div>
+            </div>
+            <div class="tab-pane {{target === 'withdraw'?'active':''}}" id="withdraw">
+                <h2><%= withdraw.withdraw_bitcoin %></h2>
+                <dl>
+                    <dt><%= text.total_balance %></dt>
+                    <dd>{{ user.wallets['bitcoin'].balance | cryptovalue }} <wallet-currency wallet="wallet"></wallet-currency> ({{ fiatValue(user.wallets['bitcoin'].balance, 'bitcoin') |  currency:fiatSymbols[fiat] }})</dd>
+                    <dt><%= text.available_balance %></dt>
+                    <dd>{{ user.wallets['bitcoin'].availableBalance | cryptovalue }} <wallet-currency wallet="wallet"></wallet-currency> ({{ fiatValue(user.wallets['bitcoin'].availableBalance, 'bitcoin') |  currency:fiatSymbols[fiat] }})</dd>
+                </dl>
+
+                <form name="btcForm" class="form-horizontal" novalidate ng-show="user.wallets['bitcoin']">
+                    <div class="form-group" ng-show="user.wallets['bitcoin'].withdrawAddress">
+                        <div ng-hide="withdrawPending">
+                            <h4 class="color-red" ng-show="errors.server">{{errors.server|error}}</h4>
+                            <label class="control-label"><%= text.withdraw %></label>
+                            <div class="input-group">
+                                <input type="number" name="btcWithdrawAmount" min="0" class="form-control col-xs-6" ng-model="btcWithdrawAmount" required>
+                                <span class="input-group-btn col-xs-6">
+                                    <button class="btn btn-primary input-group-custom-btn" ng-click="initiateWithdraw()" ng-disabled="btcForm.$invalid === true"><%=buttons.confirm%></button>
+                                </span>
+                            </div>
+                            <span class="error text-center" ng-show="btcForm.btcWithdrawAmount.$invalid"><%= text.invalid_withdraw_amount%></span>
+                        </div>
+                        <div ng-show="withdrawPending">
+                            <b><%= cashout.cashoutConfirm %> {{ btcWithdrawAmount }} <wallet-currency wallet="wallet"></wallet-currency></b><br>
+                            <button ng-disabled="wheelSpinning" ng-click="withdrawBtc(currency, btcWithdrawAmount)" class="btn btn-default"><%= cashout.cashoutButton %></button>
+                            <button class="btn btn-default" ng-click="withdrawPending = false"><%= cancel %></button>
+                        </div>
+                        <span class="text-center" ng-show="successWithdraw"><%= text.withdraw_success %></span>
+                    </div>
+                </form>
+
+                <div ng-include src="'tpl/account/wallet-info-<%= fileSuffix %>.html'"></div>
+            </div>
+           <div class="tab-pane {{target === 'wallets'?'active':''}}" id="accountdetails">
+                <div ng-include="'tpl/account/account_details.html'" data-ng-controller="AccountDetails"></div>
+            </div>
+            <div class="tab-pane {{target === 'messages'?'active':''}}" id="inbox" data-ng-controller="MessageController">
+                <div class="panel-group" id="message-accordion">
+                    <div class="">
+                        <div class="">
+                            <h2 class=""><%= text.messages %></h2>
+                        </div>
+                        <div class="">
+                            <h2 ng-show="inbox_messages==null||inbox_messages.length==0"><%= text.no_messages%></h2>
+                            <div ng-repeat="message in inbox_messages|orderBy:'datetime':true">
+                                <div ng-switch on="message.type">
+                                    <div ng-switch-when="withdraw">
+                                        <div ng-include="'tpl/message/withdraw-success.html'"></div>
+                                    </div>
+                                    <div ng-switch-when="deposit">
+                                        <div ng-include="'tpl/message/deposit-success.html'"></div>
+                                    </div>
+                                    <div ng-switch-when="win_lottery">
+                                        <div ng-include="'tpl/message/win-lottery-<%= fileSuffix %>.html'"></div>
+                                    </div>
+                                    <div ng-switch-when="match-bonus"></div>
+                                    <div ng-switch-when="welcome-bonus"></div>
+                                    <div ng-switch-when="straight-bonus"></div>
+                                    <div ng-if="message.type=='match-bonus'||message.type=='welcome-bonus'||message.type=='straight-bonus'">
+                                        <div ng-if="message.data.offered&&!message.data.accepted">
+                                            <div ng-include="'tpl/message/bonus-offered-<%= fileSuffix %>.html'"></div>
+                                        </div>
+                                        <div ng-if="message.data.accepted&&!message.data.activated">
+                                            <div ng-include="'tpl/message/bonus-accepted-<%= fileSuffix %>.html'"></div>
+                                        </div>
+                                        <div ng-if="message.data.activated&&!message.data.unlocked">
+                                            <div ng-include="'tpl/message/bonus-activated-<%= fileSuffix %>.html'"></div>
+                                        </div>
+                                        <div ng-if="message.data.unlocked">
+                                            <div ng-include="'tpl/message/bonus-unlocked-<%= fileSuffix %>.html'"></div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-default>
+                                        <div ng-include="'tpl/message/default.html'"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane {{target === 'contactus'?'active':''}}" id="outbox" data-ng-controller="SupportController">
+                <div ng-include="'tpl/support/new-ticket.html'" ng-controller="SupportController"></div>
+            </div>
+            <div class="tab-pane {{target === 'affiliate'?'active':''}}" id="affiliate">
+                <div ng-include="'tpl/account/affiliate.html'" ng-controller="AffiliateController"></div>
+            </div>
+
+
+
+
+
+            <div class="tab-pane {{target === 'bonuses'?'active':''}}" id="bonus_list" data-ng-controller="BonusesController">
+
+                    <div class='title'><h1><%= text.bounce_title %></h1></div>
+                        <ul class="nav nav-tabs  game-nav-tabs account-details-tab" role="tablist">
+                        <li class="{{activemenu=='bonus_information'?'active':''}}"><a ng-click="setActiveTab('bonus_information')"><%= text.bonus_information %></a></li>
+                        <li class="{{activemenu=='bonus_history'?'active':''}}"><a ng-click="setActiveTab('bonus_history')"><%= text.bonus_history %></a></li>
+                        <li class="{{activemenu=='bonus_request'?'active':''}}" ><a ng-click="setActiveTab('bonus_request')"><%= bonus.bonus_request %></a></li>
+                    </ul>
+
+
+                    <!-- Bonus History Tab -->
+
+                        <div ng-show="activemenu == 'bonus_history'" class="tab-pane {{target === 'bonuses'?'active':''}}" id="bonus_list" >
+                            <div class=""><h2 class=""><%= text.bonus_history %></h2></div>
+                            <div class="tab-pane col-xs-12 col-sm-6" ng-repeat="(key, bonus) in bonuses | limitTo:1 | filter:exhaustedFilter">
+                                    <div class="" ng-switch="bonus.status">
+                                        <span ng-switch-when="unlocked"><%=bonus.is_unlocked%></span>
+                                        <span ng-switch-when="expired"><%=bonus.is_expired%></span>
+                                        <span ng-switch-when="activated"><%=bonus.is_activated%></span>
+                                        <span ng-switch-when="offered"><%=bonus.is_offered%></span>
+                                    </div>
+                                    <div class="">
+                                        <bonusinfo class="form-group" data-activate-msg="true" data-bonus="bonus"></bonusinfo>
+                                    </div>
+                            </div>
+                            <div class="tab-pane col-xs-12 col-sm-6" ng-repeat="bonus in bonuses | limitTo:(-1*bonuses.length)+1 | filter:exhaustedFilter">
+                                <div class="">
+                                    <div class="" ng-switch="bonus.status">
+                                        <span ng-switch-when="unlocked"><%=bonus.is_unlocked%></span>
+                                        <span ng-switch-when="expired"><%=bonus.is_expired%></span>
+                                        <span ng-switch-when="activated"><%=bonus.is_activated%></span>
+                                        <span ng-switch-when="offered"><%=bonus.is_offered%></span>
+                                    </div>
+                                    <div class="">
+                                        <bonusinfo class="form-group" data-activate-msg="false" data-bonus="bonus"></bonusinfo>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="tab-pane {{target === 'bonuses'?'active':''}}" id="cashback_list" data-ng-controller="CashbacksController" ng-show="activemenu == 'bonus_history'">
+                                <div class=""><h2 class=""><%= text.cashbacks %></h2></div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th><%= text.cashback %> BTC</th>
+                                            <th><%= text.profit %> BTC</th>
+                                            <th><%= text.start_date %></th>
+                                            <th><%= text.end_date %></th>
+                                            <th><%= text.cashback_date %></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="tx in transactions.result">
+                                            <td>{{ tx.amtIn | cryptovalue }}</td>
+                                            <td>{{ tx.meta.profit | cryptovalue }}</td>
+                                            <td>{{ tx.meta.start | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                                            <td>{{ tx.meta.end | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                                            <td>{{ tx.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <pagination total-items="total" page="cashbackPage" items-per-page="30" max-size="10" on-select-page="getCashbacks(cashbackPage)" class="pagination-sm" boundary-links="true"></pagination>
+                        </div>
+                    <!--End -->
+
+
+                    <div class="" id="bonus-request" ng-show="activemenu == 'bonus_request'">
+                        <div>
+                            <div class="panel" data-ng-controller="BonusRequestController">
+                                <div class=""><h1><%= bonus.bonus_request%></h1></div>
+                                <div class="">
+                                    <label ng-if="level.level==0"><%= text.current_tier%>: <%= bonus.none%></label>
+                                    <label ng-if="level.level==1"><%= text.current_tier%>: <%= bonus.bronze%></label>
+                                    <label ng-if="level.level==2"><%= text.current_tier%>: <%= bonus.silver%></label>
+                                    <label ng-if="level.level==3"><%= text.current_tier%>: <%= bonus.gold%></label>
+                                    <label ng-if="level.level==4"><%= text.current_tier%>: <%= bonus.diamond%></label>
+                                    <label ng-if="level.level==5"><%= text.current_tier%>: <%= bonus.platinum%></label>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-6 col-sm-6">
+                                            <div class="row">
+                                                <%= bonus.match_bonus %>
+                                            </div>
+                                            <div class="row">
+                                                <%= bonus.amount %>: <%= text.upto%> {{level.match.bitcoin.amount|cryptovalue}} BTC
+                                            </div>
+                                            <div class="row">
+                                                <%= bonus.rollover_value %>: {{level.match.bitcoin.rollover}} <%= text.x %>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <button class="btn btn-default" ng-click="requestBonus('match')"><%= bonus.request_match_bonus%></button>
+                                            </div>
+                                        </div>
+<!--                                        <div class="col-md-6 col-xs-6 col-sm-6">
+                                            <div class="row">
+                                                <%= bonus.no_deposit_bonus %>
+                                            </div>
+                                            <div class="row">
+                                                <%= bonus.amount %>: <%= text.upto%> {{level.straight.bitcoin.amount|cryptovalue}} BTC
+                                            </div>
+                                            <div class="row">
+                                                <%= bonus.rollover_value %>: {{level.straight.bitcoin.rollover}} <%= text.x %>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <button class="btn btn-default" ng-click="requestBonus('straight')"><%= bonus.request_nodeposit_bonus%></button>
+                                            </div>
+                                        </div>-->
+                                    </div>
+                                    <div class="row">
+                                        <span class="color-red" ng-if="error">{{error}}</span>
+                                    </div>
+                                    <div ng-include src="'tpl/account/bonus-request-<%= fileSuffix %>.html'"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-show="activemenu == 'bonus_information'" ng-include src="'tpl/account/account-bonuses-faq-<%= fileSuffix %>.html'"></div>
+            </div>
+
+            <div class="tab-pane {{target === 'about'?'active':''}}" id="about">
+                <div ng-include src="'tpl/about-<%= fileSuffix %>.html'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="hidden-sm hidden-md hidden-lg col-xs-12 col-sm-4 pull-left">
+        <div class="game-links">
+            <ul id="game-nav" class="nav">
+                <% for (var game in games) { %>
+                <li>
+                    <a href="<%= httplink %><%= home[game + '_link'] %>" tooltip="<%= home[game + '_link_hover'] %>">
+                        <img alt="<%= home[game + '_alt'] %>" src="img/iconbar/<%=game%>44.png"><br/>
+                        <img alt="<%= home[game + '_alt'] %>" src="<%= home[game + '_word_image'] %>" class="word" />
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>

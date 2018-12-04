@@ -1,0 +1,17 @@
+<% if (locale === "zh_CN") { %>
+
+<p>亲爱的用户，</p>
+<p>您所申请的
+    <%= amount %> <%= currency %> 比特币取款由于账户可用余额不足而被取消。</p>
+<p>若您有任何有关您账户的
+    疑问情随事联系<a href="https://caishentang.com/support">我们客服</a>。</p>
+
+<% } else { %>
+
+<p>Dear <%= user.username %>,</p>
+<p>Your cashout request for <%= amount %> <%= currency %> has been cancelled due
+    to insufficient account funds.</p>
+<p>Please contact <a href="https://betcoin.tm/support">our support</a> if you
+    have any questions regarding your account.</p>
+
+<% } %>

@@ -1,0 +1,42 @@
+<div bc-page loading="isLoading">
+    <div class="row">
+        <div class="col-xs-12 col-md-4 logo-container"><img class="mainlogo" src="img/logo.png" title="<%= sitename %>"></div>
+        <div carousel class="hidden-xs hidden-sm col-md-8" interval="3000">
+            <div slide>
+                <a href="" title="<%= carousel.title1 %>"><img ng-src="img/carousel/1.png"></a>
+            </div>
+            <div slide>
+                <a href="" title="<%= carousel.title2 %>"><img ng-src="img/carousel/2.png"></a>
+            </div>
+            <div slide>
+                <a href="" title="<%= carousel.title3 %>"><img ng-src="img/carousel/3.png"></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div bc-submenu class="col-xs-12 col-md-3"></div>
+        <div class="col-xs-12 col-md-4 xs-fullwidth">
+            <div bc-box title="<%= whatIsBitcoin %>">
+                blabla
+            </div>
+            <div bc-box title="<%= latestWins %>">
+                <div class="list-grid">
+                    <div ng-repeat="win in latestWins">{{win.amount}} {{win.currency}} - {{win.game}} - {{win.username}}
+                        <!--@TODO link to game and stuff --></div>
+                </div>
+            </div>
+            <div bc-box title="<%= sportSpotlight %> - {{spotlightSport.sport.name}}">
+                <div bc-events-list data="spotlightSport.events"></div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-5 xs-fullwidth">
+            <div bc-box title="<%= hottestEvents %>">
+                <div bc-events-list data="hottestEvents"></div>
+            </div>
+            <div bc-box title="<%= upcomingEvents %>">
+                <div bc-events-list data="upcomingEvents"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

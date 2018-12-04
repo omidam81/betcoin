@@ -1,0 +1,19 @@
+    <range-chooser class="col-md-12" on-submit="rangeChanged(range)"></range-chooser>
+    <table class="table gamesTable">
+        <thead>
+            <tr>
+                <th><%= text.date %></th>
+                <th><%= text.amount_btc %></th>
+                <th><%= text.wager %></th>
+                <th><%= text.house_edge %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="tx in transactions.result">
+                <td>{{ tx.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td>{{ tx.currency | cryptosymbol }} {{ tx.credit | cryptovalue }}</td>
+                <td>{{ tx.currency | cryptosymbol }} {{ tx.meta.wager | cryptovalue }}</td>
+                <td>{{ tx.meta.houseEdge*100|number:2}}%</td>
+            </tr>
+        </tbody>
+    </table>

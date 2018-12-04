@@ -1,0 +1,42 @@
+{
+    "prod": "baccpo",
+    "meta": {
+        "title": "财神乐™ 财神三张牌扑克 - 绝对公平卡牌游戏"
+    },
+    "global": {
+        "logourl": "img/words/cn/baccpo.png"
+    },
+    "home": {
+        "title_image": "img/icons/baccpo280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/baccpo"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/le-dian"
+        }
+    },
+    "game": {
+        "winbet": "赢",
+        "tiebet": "平手",
+        "bonusbet": "奖励"
+    },
+    "buttons": {
+        "clear_bets": "取消所有下注",
+        "stand": "停止",
+        "hit": "出牌"
+    },
+    "baccpoCardRanks": [
+        "",
+        "Three three of spaces",
+        "Three suited threes",
+        "Three unsuited threes",
+        "Suited three of a kind",
+        "Three suited 0-point cards",
+        "Unsuited three of a kind",
+        "Three unsuited 0-poin cards",
+        "Three card flush",
+        ""
+    ]
+}

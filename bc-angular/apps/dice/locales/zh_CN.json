@@ -1,0 +1,142 @@
+{
+    "meta": {
+        "title": "财神灵™比特币骰子博彩游戏－赢大量比特币",
+        "meta_description": "财神灵™比特币骰子博彩游戏－瞬间成为千万富翁！全球最高的比特币奖金！"
+    },
+    "footer_description": "<p>欢迎光临财神堂™比特币博彩娱乐网 － 全球首家一站式比特币娱乐平台！由您随时随地享受高清比特币博彩游戏及比特币彩票。所有游戏均可用于手机等移动设备，几十款经典CASINO比特币游戏供您选择：21点，轮盘，老虎机，百家乐，扑克， 骰宝，牌九等。财神轮™ 是财神堂™ 特有的可验证公平的比特币轮盘游戏，瞬间支付的奖金可高达12,500比特币，属全球奖金最高的比特币博彩。财神灵™比特币骰子游戏可以让您赢得高达原投注金额64,000倍的回报，有27种不同的玩法。全球回报最高的比特币彩票财神奖™，天天有奖，每票只要0.001 BTC！</p>",
+    "minbetMsg": "最少投注 0.000003 个比特币",
+    "global": {
+        "logourl": "img/words/CN-DICE.png"
+    },
+    "home": {
+        "title_image": "img/icons/dice.png",
+        "promote_header_a": "一转就能赢得最高64000倍！",
+        "promote_header_d": "<h4>绝对公平、透明的系统 － 全球最低的赌场赢率 － 1.88%</h4>",
+        "classic": "玩经典的排列组合游戏"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/dice"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/ling"
+        }
+    },
+    "game": {
+        "target": "最高值",
+        "payout": "赔率",
+        "winchance": "赢率",
+        "spinmessage": "选择您的押注大小 - 开始旋转赢得最高64000倍赌注",
+        "classic": "玩经典的排列组合游戏"
+    },
+    "spins": {
+        "ProofDt5": "幸运号码"
+    },
+    "buttons": {
+        "roll": "开始转动"
+    },
+    "animation": {
+        "idleText": "正在等待投注",
+        "rolling": "正在掷骰子",
+        "forPlayer": "投注 玩家：",
+        "winner": "恭喜您赢了!!!",
+        "enable3d_title": "启用3D动画",
+        "enable3d_content": "三维动画目前无法启用。您可能调整了浏览器窗户尺寸，或者您浏览器的放大显示设置未设置成默认设置。请同时按\"ctrl\"与\"0\"按键或者\"command\"与\"0\"按键，以便重设浏览器放大显示设置。"
+    },
+    "bets": {
+        "game_wrap_th1": "游戏",
+        "game_wrap_th2": "游戏地址",
+        "game_wrap_th3": "赢注概率",
+        "game_wrap_th4": "奖金乘数",
+        "game_wrap_th5": "庄家百分比",
+        "game_wrap_th6": "预期回报",
+        "game_wrap_th7": "最小赌注",
+        "game_wrap_th8": "最大赌注"
+    },
+    "games": {
+        "recent": "近期投注",
+        "tabs_unconfirmed": "未经确认",
+        "tabs_big": "超大赢注",
+        "tabs_rare": "罕见赢注",
+        "games_wrap_th9": "详情",
+        "games_wrap_th10": "我的投注",
+        "games_wrap_th11": "游戏",
+        "games_wrap_th12": "投注交易",
+        "games_wrap_th13": "支付交易",
+        "games_wrap_th14": "地址",
+        "games_wrap_th15": "投注金额",
+        "games_wrap_th16": "投注结果",
+        "games_wrap_th17": "支付金额",
+        "games_wrap_th18": "幸运号码",
+        "games_wrap_div1": "",
+        "game_wrap_button": "详情",
+        "tr_header1": "交易",
+        "tr_li1": "处理时间",
+        "tr_li2": "秘钥日期",
+        "tr_li3": "投注",
+        "tr_li4": "投注交易",
+        "tr_li5": "支付交易",
+        "tr_li6": "支付交易状态: ",
+        "tr_li7": "投注金额",
+        "tr_li8": "投注结果",
+        "tr_li9": "支付交易",
+        "tr_li10": "地址",
+        "tr_li11": "幸运号码",
+        "tr_header2": "秘钥\"哈希\"",
+        "tr_header3": "验证",
+        "tr_p1": "下载及验证",
+        "tr_p2": "要了解更多有关秘钥的细节，请查看 ",
+        "hash_keys": "hashes.keys",
+        "secret_keys": "secret.keys"
+    },
+    "my_games": {
+        "txhash": "交易代码",
+        "title": "我的游戏",
+        "address_displayed": "所显示的钱包地址",
+        "add_address_search": "将此地址添加至我的游戏",
+        "remove_btn": "删除",
+        "loading": "加载中",
+        "table_hd1": "已处理",
+        "table_hd2": "游戏",
+        "table_hd3": "投注交易",
+        "table_hd4": "支付交易",
+        "table_hd5": "地址",
+        "table_hd6": "投注金额",
+        "table_hd7": "结果",
+        "table_hd8": "支付金额",
+        "table_hd9": "幸运号码",
+        "proof": "验证",
+        "add": "添加",
+        "payout": "支付交易",
+        "address_placeholder": "请输入您的比特币钱包地址",
+        "address_tip": "正在显示所有的投注。请添加您的钱包地址以便筛选并观看您的投注！",
+        "lookup_transaction": "以交易哈希查找投注",
+        "search": "搜索",
+        "searching": "搜索中...",
+        "nothing_found": "未查到任何结果. 您输入的",
+        "valid_transaction": " 是否为有效的交易哈希？",
+        "secret_key": "秘钥:",
+        "click_secret_hash": "点击此处以获取秘钥哈希",
+        "bet_address": "将比特币发至以下游戏地址",
+        "minimum_bet": "0.001比特币最小投注",
+        "copy": "复制",
+        "bet": "投注"
+    },
+    "bc_dropdown": {
+        "title": "请选择游戏:",
+        "send_title": "将比特币发至以下游戏地址",
+        "copy": "复制",
+        "click_bet": "投注点击此处"
+    },
+    "detail_modal": {
+        "secret_key": "游戏秘钥:",
+        "click_hash_key": "点击此处以获取秘钥哈希",
+        "loading": "加载中…"
+    },
+    "serverErrors": {
+        "173": "最少投注 0.000003 个比特币"
+    },
+    "nav":{
+        "howtoplay":"戏说明"
+    }
+}

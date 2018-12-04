@@ -1,0 +1,82 @@
+{
+    "prod": "coinflip",
+    "meta": {
+        "title": "财神翻转™比特币博彩娱乐场－赢大量比特币！",
+        "description": "财神堂™ - 最好的比特币博彩游戏: 彩票,扑克,轮盘,骰子,老虎机! 全球最高的比特币奖金!",
+        "keywords": "比特币博彩,财神堂,财神轮,才神灵,免费的比特币,财神骰子,比特币娱乐场, 比特币赌博, 骰子,比特币游戏,中本聪,比特币下注,比特币投注,比特币扑克, 比特币轮盘,比特币老虎机,块链,赌比特币,比特币彩票, 比特币21点, 比特币公平"
+    },
+    "isLocalized" : "true",
+    "minbetMsg": "最少投注 0.000001 个比特币",
+    "serverMsg": "无法链接服务器",
+    "minconfMsg": "至少有一个充值没有被确定，请等待",
+    "withdrawErrorMsg": "取款错误，请重试",
+    "global": {
+        "logourl": "img/words/fanzhuan.png",
+        "withdrawAddress": "取款地址"
+    },
+    "nav": {
+        "spins": "最近的下注",
+        "leaderboard": "高手排名榜",
+        "howtoplay": "游戏说明"
+    },
+    "home": {
+        "title_image": "img/icons/flip280.png",
+        "circle_promote_header_b": "极高安全的设计 － 帐户无法被盗用",
+        "circle_promote_header_c": "高额快速支付 － 博彩领域最高",
+        "circle_promote_header_d": "<h4>绝对公平、透明的系统 － 全球最低的赌场赢率 － 1.65%</h4>"
+    },
+    "text": {
+        "withdrawAddress": "输入您的比特币钱包地址",
+        "start_spin": "Bet"
+    },
+    "locales" : {
+        "en" : {
+            "url" : "https://www.betcoin.tm/coinflip"
+        },
+        "zh" : {
+            "url" : "https://www.caishentang.com/fanzhuan"
+        }
+    },
+    "game": {
+        "details" : "具体",
+        "target" : "目标",
+        "result": "结果",
+        "bet": "下注",
+        "return": "回报",
+        "time": "时间",
+        "CircleDiv2": "旋转总次数",
+        "CircleDiv3": "我的下注",
+        "CircleDiv4": "赌注",
+        "CircleDiv5": "存款",
+        "CircleDiv6": "存款地址",
+        "CircleButtonCashOut": "提款",
+        "cashoutConfirm": "请确认您要取款并退出游戏",
+        "returnToGame": "回到游戏中",
+        "SsHeader1": "设置种子",
+        "SsHeader2": "下一个游戏编号",
+        "SsHeader3": "设置下一次旋转的客户端种子",
+        "spinmessage": "选择投注大小",
+        "spinningmessage":"<a href=\"https://www.caishentang.com/jiang\" target=\"_blank\">全球最大的比特币彩票</a>",
+        "winmessage": "你赢了",
+        "autospin_text" : " 自动旋转",
+        "proof_text" : "证明"
+    },
+    "leaderboard": {
+        "topPlayers": "顶级高手",
+        "bronze": "青铜级",
+        "silver": "白银级",
+        "gold": "黄金级",
+        "platinum": "铂金级",
+        "diamond": "钻石级",
+        "alias": "别名",
+        "btcwagered": "投注比特币"
+    },
+    "spins": {
+        "global": "所有游戏",
+        "myspins": "我的下注",
+        "onecoin":"一个硬币",
+        "twocoin":"两个硬币",
+        "head":"头",
+        "tail":"尾"
+    }
+}

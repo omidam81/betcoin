@@ -1,0 +1,33 @@
+{
+    "prod": "oasis",
+    "meta": {
+        "title": "财神高™ 财神加勒比扑克 - 绝对公平卡牌游戏"
+    },
+    "global": {
+        "logourl": "img/words/CN-oasis.png"
+    },
+    "home": {
+        "title_image": "img/icons/oasis280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/oasis"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/oasis-puke"
+        }
+    },
+    "game": {
+        "holded": "HOLD",
+        "foldedmessage": "折叠",
+        "unqualifiedmessage": " - Dealer Doesn't Qualify"
+    },
+    "buttons": {
+        "draw": "Draw",
+        "raise": "募集",
+        "fold": "倍"
+    },
+    "text": {
+        "invalid_raise": "无效加薪"
+    }
+}

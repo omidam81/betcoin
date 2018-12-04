@@ -1,0 +1,8 @@
+{
+  "name": "BetCoin Circle",
+  "id": "tm.betcoin.circle",
+  "version": "1.0",
+  "author": "BetCoin",
+  "description": "Hive BetCoin Circle Game",
+  "icon": "hiveapp-icon.png"
+}

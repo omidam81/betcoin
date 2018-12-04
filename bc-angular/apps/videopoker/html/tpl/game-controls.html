@@ -1,0 +1,72 @@
+<div ng-controller="GameController" class="row noselect">
+
+    <div class="col-xs-12 col-sm-5 text-center col-sm-push-7">
+
+        <img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" />
+        <div id="gameControls">
+            <player-info></player-info>
+            <cashout-button player = "player" game="game"></cashout-button>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+            <div style="clear:both;position:relative;">
+                <autospin-button></autospin-button>
+                <proof-button></proof-button>
+            </div>
+            <div style="margin:10px auto;position:relative;">
+
+                <bc-client-seed style="" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-7 col-sm-pull-5">
+        <div id="gameContainer">
+            <div>
+                <div class="label label-danger"><%= game.player %></div>
+                <div class="row">
+                    <div class="col-xs-12" style="display:table;">
+                        <div class="cards-wrapper">
+                            <div class="cards" id="player-cards">
+                                <div ng-if="!playercards.cards" ng-repeat="i in [1,2,3,4,5]">
+                                    <div>&nbsp;</div>
+                                    <div><card flipped="true"></card></div>
+                                </div>
+                                <div ng-if="playercards.cards" ng-repeat="card in playercards.cards">
+                                    <div ng-show="(holds[$index] && (animateCardCount >= 5 || skipHoldedCards))"><%=game.holded%></div>
+                                    <div ng-show="!(holds[$index] && (animateCardCount >= 5 || skipHoldedCards))">&nbsp;</div>
+                                    <div class="livecard" ng-class="{picked:skipHoldedCards && holds[$index]}"><card data-card="card" ng-click="!dealingCard && pickCard($index)"></card></div>
+                                </div>
+                            </div>
+                            <div class="bet_results">
+                                <div ng-if="playercards.rank&&animateCardCount >= 5">
+                                    <% for (var i = 0; i < cardRanks.length; i++) {%>
+                                    <%if (Array.isArray(cardRanks[i])) {
+                                    for (var j = 0; j < cardRanks[i].length; j++) {%>
+                                    <span ng-if="playercards.rank === <%=i%>&&playercards.subRank === <%=j%>"><%=cardRanks[i][j]%></span>
+                                    <%  }
+                                    } else {%>
+                                    <span ng-if="playercards.rank === <%=i%>"><%=cardRanks[i]%></span>
+                                    <%  }
+                                    } %>
+                                    <span ng-if="playerWinLoseTie === 3&&!dealingCard"><%=game.winmessage%></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <spinmessage></spinmessage>
+            <div>
+                <div style="display:inline-block">
+                    <div><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+                </div>
+                <button ng-show="!isGameInProgress" ng-click="play();" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.bet %>
+                </button>
+                <button ng-show="isGameInProgress" ng-disabled="!playercards||dealingCard||newGame" ng-click="nextAction();" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;" bc-popover="{{holdsError != null}}" bc-popover-direction="top">
+                    <%= buttons.deal %>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

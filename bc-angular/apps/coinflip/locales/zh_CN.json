@@ -1,0 +1,43 @@
+{
+    "prod": "coinflip",
+    "meta": {
+        "title": "财神掷™ 比特币博彩娱乐场－赢大量比特币！"
+    },
+    "global": {
+        "logourl": "img/words/cn/flip.png"
+    },
+    "home": {
+        "title_image": "img/icons/flip280.png",
+        "circle_promote_header_b": "极高安全的设计 － 帐户无法被盗用",
+        "circle_promote_header_c": "高额快速支付 － 博彩领域最高",
+        "circle_promote_header_d": "<h4>绝对公平、透明的系统 － 全球最低的赌场赢率 － 1.65%</h4>"
+    },
+    "text": {
+        "start_spin": "Bet"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/coinflip"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/zhi"
+        }
+    },
+    "game": {
+        "details": "具体",
+        "target": "目标",
+        "result": "结果",
+        "bet": "下注",
+        "return": "回报",
+        "time": "时间",
+        "CircleDiv3": "我的下注",
+        "CircleButtonCashOut": "提款"
+    },
+    "spins": {
+        "myspins": "我的下注",
+        "onecoin": "一个硬币",
+        "twocoin": "两个硬币",
+        "head": "头",
+        "tail": "尾"
+    }
+}

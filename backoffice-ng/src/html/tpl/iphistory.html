@@ -1,0 +1,21 @@
+<div class="col-md-12">
+    <div class="row panel panel-default">
+        <div class="panel-heading">IP History</div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>IP</th>
+                        <th>Date Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(key, value) in ips">
+                        <td><a href="player/{{player._id}}/history/unplayed">{{key}}</a></td>
+                        <td>{{value|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

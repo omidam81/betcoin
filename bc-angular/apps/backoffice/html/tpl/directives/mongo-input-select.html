@@ -1,0 +1,6 @@
+<label for="q-{{field}}">{{label || field}}</label>
+<select id="q-{{field}}"
+        class="form-control"
+        ng-model="selectedOption"
+        ng-options="option.name for option in options">
+</select>

@@ -1,0 +1,161 @@
+<div class="game-header">
+    <div class='row'>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+            <form ng-submit="addAddress()" style="margin:20px 0px;height:100px;" class="form-horizontal" role='form'>
+
+                  <input type="text" style="height:46px;margin-bottom:10px;" placeholder="<%= my_games.address_placeholder %>" ng-model="newAddress" required class="form-control input-normal"  />
+                  <input style="width:100%;" type="submit" value="<%= my_games.add_address_search %>" class="btn btn-default pull-left btn-lg"  />
+            </form>
+
+            <h3 ng-show="addresses.length"><%= my_games.address_displayed %>:</h3>
+            <h4 ng-hide="addresses.length"><%= my_games.address_tip %></h4>
+            <div class="row">
+                <div ng-repeat="address in addresses track by $index" class="col-xs-4" style="border-radius:5px;background-color:#220000;padding:2px;">
+                    <button class="btn btn-primary btn-large" style="font-size:20px;" ng-click="removeAddress(address)">X<!-- <%= my_games.remove_btn %>--></button>&nbsp;<div style="font-size:11px;" blockchain-info="{{ address }}" chars="8"></div>
+                </div>
+            </div>
+
+            <div ng-show="myGamesLoading"><%= my_games.loading %></div>
+            <table class="table table-bordered gamesTable" ng-hide="myGamesLoading">
+                <thead>
+                    <tr>
+                        <th><%= my_games.proof %></th>
+                        <th><%= my_games.table_hd2 %></th>
+                        <th><%= my_games.table_hd9 %></th>
+                        <th ng-show="addresses.length === 0"><%= my_games.add %></th>
+                        <th><%= my_games.table_hd5 %></th>
+                        <th class="hidden-xs hidden-sm hidden-md"><%= my_games.table_hd6 %></th>
+                        <th class="hidden-xs hidden-sm hidden-md"><%= my_games.payout %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="dice in myGames track by $index">
+                        <td style="text-align:center">
+                            <a data-toggle="modal" style="cursor: pointer; font-size:25px;" class="glyphicon glyphicon-info-sign" data-target="#transactions{{dice._id.replace(':', '')}}"></a>
+                            <div style="text-align: left" ng-include="'tpl/detail-modal.html'"
+                                 id="transactions{{dice._id.replace(':', '')}}"
+                                 class="modal fade">
+                            </div>
+                        </td>
+                        <td>{{ dice.game }}
+                        <td>{{ dice.result }}</td>
+                        <td ng-show="addresses.length === 0">
+                            <img style="cursor: pointer;" width="30" height="30" ng-show="addresses.length === 0" ng-src="{{starGraphic(dice.player_id)}}" ng-click="toggleStar(dice.player_id)" bootstrap-tooltip="Add this address to my games">
+                        </td>
+                        </td>
+                        <td>
+                            <div blockchain-info="{{ dice.player_id }}" chars="6"></div>
+                        </td>
+                        <td class="hidden-xs hidden-sm hidden-md">{{ dice.wager | btc }}</td>
+                        <td class="hidden-xs hidden-sm hidden-md">{{ dice.winnings | btc }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3><%= my_games.lookup_transaction %></h3>
+            <form ng-submit="diceLookup()" class="form-inline">
+                <div class="form-group">
+                    <input id="dice-query" ng-model="diceQuery" type="text"  class="form-control" placeholder="<%= txhash %>">
+                </div>
+                <button type="submit" class="btn btn-default"><%= my_games.search %></button>
+            </form>
+            <div class="panel" ng-show="diceSearchLoading"><p><%= my_games.searching %></p></div>
+            <div class="panel" ng-show="diceSearchError">
+                <p><%= my_games.nothing_found %>{{ diceQuery }}<%= my_games.valid_transaction %></p>
+            </div>
+            <div class="panel" ng-show="diceSearchResult">
+                <dl class="dl-horizontal">
+                    <dt><%= games.tr_li1 %></dt><dd>{{ diceSearchResult.createdAt | date:"MM/dd/yy HH:mm:ss" }}</dd>
+                    <dt><%= games.tr_li2 %></dt><dd>{{ diceSearchResult.createdAt | date:"MM/dd/yy" }}</dd>
+                    <dt><%= games.tr_li3 %></dt><dd>&lt; {{ diceSearchResult.game }}</dd>
+                    <dt><%= games.tr_li4 %></dt><dd><div blockchain-info="{{ diceSearchResult.tx_in }}" chars="12"></div></dd>
+                    <dt><%= games.tr_li5 %></dt><dd><div blockchain-info="{{ diceSearchResult.tx_out }}" chars="12"></div></dd>
+                    <dt><%= games.tr_li6 %></dt><dd>{{ diceSearchResult.confirmed && "Confirmed" || "Unconfirmed" }}</dd>
+                    <dt><%= games.tr_li7 %></dt><dd>{{ diceSearchResult.wager | btc }}</dd>
+                    <dt><%= games.tr_li8 %></dt><dd>{{ diceSearchResult.winnings > diceSearchResult.wager && "<%= win %>" || "<%= lose %>" }}</dd>
+                    <dt><%= games.tr_li9 %></dt><dd>{{ diceSearchResult.winnings | btc }}</dd>
+                    <dt><%= games.tr_li10 %></dt><dd><div blockchain-info="{{ diceSearchResult.player_id }}" chars="12"></div></dd>
+                    <dt><%= games.tr_li11 %></dt><dd>{{ diceSearchResult.result }}</dd>
+                    <dt><%= my_games.secret_key %></dt>
+                    <dd>
+                        <span ng-hide="loadingSecret || secrets[diceSearchResult._id]"
+                              ng-click="loadSecret(diceSearchResult)"
+                              style="cursor: pointer;">
+                            <%= my_games.click_secret_hash %>
+                        </span>
+                        <span ng-show="loadingSecret"><%= my_games.loading %></span>
+                        <span style="word-wrap: break-word;" ng-show="secrets[diceSearchResult._id]">{{ secrets[diceSearchResult._id] }}</span>
+                    </dd>
+                </dl>
+            </div>
+
+
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 pull-right">
+
+            <h1><%= my_games.bet_address %></h1>
+            <h2><%= my_games.minimum_bet %></h2>
+            <div class="row">
+              <div ng-repeat="game in games track by $index" class="gamelist panel col-xs-6 col-lg-4">
+                <!-- @ifndef HIVEAPP -->
+                <div class="row">
+                    <div style="font-size:24px;" class="col-xs-12">&lt;{{ game.target }}</div>
+                    <div class="col-xs-12">
+                        <div class="text-center"  blockchain-info="{{ game.address }}" chars="14" style="font-size: 12px;"></div>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-success btn-sm" ng-click="clipboard(game.address)"><%= my_games.copy %></button>
+                    </div>
+                    <div class="col-xs-4">
+                        <a class="btn btn-sm btn-success"
+                           data-toggle="modal"
+                           data-target="#modal{{game.address}}"
+                           style="cursor:pointer;">
+                            <img style="width: 25px;" src="img/qr-mini.png"/>
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a class="btn btn-sm btn-success" style="cursor: pointer;" ng-click="sendBitcoins(game.address)">
+                            <img style="width: 25px;" src="img/multibit.png"/>
+                        </a>
+                    </div>
+                </div>
+                <!-- @endif -->
+                <!-- @ifdef HIVEAPP -->
+
+                <div style="font-size:24px;">&lt;{{ game.target }}</div>
+                <button class="btn btn-primary btn-lg" ng-click="sendBitcoins(game.address)"><%= my_games.bet %></button>
+
+                <!-- @endif -->
+
+                <!--<div style="font-family: monospace;font-size:9px;" >{{ game.address }}</div>   -->
+
+                <div><b><%= bets.game_wrap_th3 %></b>: {{ game.odds * 100 | number:4 }}%</div>
+                <div><b><%= bets.game_wrap_th4 %><b>: {{ game.multiplier | number:4 }}x</div>
+                <div><b><%= bets.game_wrap_th8 %></b>: {{ game.maxBet | btc }}</div>
+
+
+                <div id="modal{{game.address}}" class="qc-modal modal fade">
+                    <div class="modal-dialog qr-modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                <h3>{{ game.title }}</h3>
+                                <div><small>{{ game.address }}</small></div>
+                            </div>
+                            <div class="modal-body">
+                                <img ng-src="img/qr-codes/{{ game.address }}.png" />
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" data-dismiss="modal"><%= close %></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div><!-- end game-header -->

@@ -1,0 +1,109 @@
+<div ng-controller="GameController" class="row noselect">
+
+    <div class="col-xs-12 col-sm-5 text-center col-sm-push-7">
+
+        <img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" />
+        <div id="gameControls">
+            <player-info></player-info>
+            <cashout-button player = "player" game="game"></cashout-button>
+
+            <div id="betresult" class="panel panel-default">
+                <div class="panel-body">
+                    <div ng-if="betResult > 0">
+                        Bet:
+                        <span ng-if="currentBets.numberCompare === 'smaller'"><%= text.smaller %></span>
+                        <span ng-if="currentBets.numberCompare === 'bigger'"><%= text.bigger %></span>
+                        <span ng-if="currentBets.color === 'red'"><%= text.red %></span>
+                        <span ng-if="currentBets.color === 'black'"><%= text.black %></span>
+                        <span ng-if="betResult === 2"><%=game.winmessage%></span>
+                    </div>
+                </div>
+            </div>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+            <div style="clear:both;position:relative;">
+                <proof-button></proof-button>
+            </div>
+            <div style="margin:10px auto;position:relative;">
+
+                <bc-client-seed style="" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-7 col-sm-pull-5">
+        <div id="gameContainer">
+            <div class="table-background margin-top-10">
+                <div class="row">
+                    <div class="col-sm-12" style="white-space:nowrap;">
+                        <div class="cards-wrapper" style="width:150px;">
+                            <div class="label label-danger"><%= game.dealer %></div>
+                            <div class="cards" id="dealer-cards">
+                                <div ng-repeat="card in getFlippedCards() track by $index" class="{{selectedCardIndex == $index+1?'selected':''}}">
+                                    <card flipped="true"></card>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cards-wrapper" style="min-width: 150px;margin-left:10px;">
+                            <div class="label label-danger"><%= game.player %></div>
+                            <div class="cards" id="player-cards">
+                                <div ng-if="!playercards.cards || playercards.cards.length === 0">
+                                    <card flipped="true"></card>
+                                </div>
+                                <div class="livecard" ng-if="playercards.cards" ng-repeat="card in playercards.cards">
+                                    <card data-card="card"></card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row" id="bet-types">
+                        <div class="row">
+                            <%= text.guess_card %>:<br>
+                            <div class="btn-group">
+                                <button class="btn {{bets.numberCompare=='smaller'?'btn-danger':'btn-default'}}" ng-click="toggleNumberCompare('smaller')" ng-disabled="lastResultTmp.result.gameOdds.smaller == 0||lastResultTmp.result.gameOdds.smaller == 1"> <%= text.smaller %></button>
+                                <button class="btn {{bets.numberCompare=='bigger'?'btn-danger':'btn-default'}}" ng-click="toggleNumberCompare('bigger')" ng-true-value="bigger" ng-disabled="lastResultTmp.result.gameOdds.bigger == 0||lastResultTmp.result.gameOdds.bigger == 1"> <%= text.bigger%></button>
+                            </div>
+                            <div class="btn-group" style="margin-left:10px;">
+                                <button class="btn {{bets.color=='black'?'btn-danger':'btn-default'}}" ng-click="toggleColor('black')" ng-true-value="black" ng-disabled="lastResultTmp.result.gameOdds.black == 0||lastResultTmp.result.gameOdds.black == 1"> <%= text.black %></button>
+                                <button class="btn {{bets.color=='red'?'btn-danger':'btn-default'}}" ng-click="toggleColor('red')" ng-true-value="red" ng-disabled="lastResultTmp.result.gameOdds.red == 0||lastResultTmp.result.gameOdds.red == 1"> <%= text.red %></button>
+                            </div>
+                        </div>
+                        <div id="btcs" class="row">
+                            <p>
+                            <%= text.possible_payout %>: {{possiblePayout| cryptovalue}} BTC
+                            </p>
+                            <p>
+                            <%= text.current_winnings %>: {{lastResultTmp.winnings| cryptovalue}} BTC
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="display:inline-block">
+                            <div><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+                        </div>
+                        <button ng-disabled="!isGameInProgress || selectedCardIndex == null || (!bets.numberCompare && !bets.color)" ng-click="nextAction();" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                            <%= text.guess %>
+                        </button>
+                        <input type="button" class="btn btn-default" ng-click="startNewGame()" value="<%= text.start_newgame %>"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div ng-show="gOptions" style="display:inline-block">
+                <button ng-click="nextAction(true);" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.go_to_war %>
+                </button>
+                <button ng-click="nextAction(false);" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.surrender %>
+                </button>
+            </div> -->
+            <!-- <div> -->
+                <!-- <button ng-disabled="isGameInProgress || selectedCardIndex == null" ng-click="play();" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.bet %>
+                </button> -->
+            <!-- </div> -->
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

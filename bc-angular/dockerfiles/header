@@ -1,0 +1,11 @@
+FROM docker.betcoin.tm/frontbase
+MAINTAINER atticus
+
+ADD ./package.json /app/
+RUN chown -R app:app /app
+RUN cd /app && /sbin/setuser app npm install
+ADD . /app
+
+RUN chown -R app:app /app
+
+

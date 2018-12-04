@@ -1,0 +1,18 @@
+FROM docker.betcoin.tm/baseimage:0.2.0
+MAINTAINER atticus
+
+ENV HOME /root
+
+RUN apt-get install -y build-essential git
+
+# make a user to run the app as
+RUN groupadd -g 1042 app
+RUN useradd -m -u 1042 -g 1042 app
+
+RUN mkdir /app
+
+ADD ./package.json /app/
+RUN rm -rf /app/node_modules && cd /app && npm install && npm install -g grunt-cli
+ADD ./ /app/
+RUN chown -R app:app /app
+

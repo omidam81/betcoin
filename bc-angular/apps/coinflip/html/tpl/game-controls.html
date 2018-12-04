@@ -1,0 +1,55 @@
+<div ng-controller="GameController" class="row noselect" id="gameContainer">
+    
+    <div class="col-xs-12 col-md-5 text-center col-md-push-7">
+        <div class="circle-game-sound-toggle-container">
+            <div class="soundToggle">
+                <img ng-click="soundToggle()" ng-src="{{ soundIcon }}" />
+            </div>
+        </div>
+        <img alt="BetCoin Circle Bitcoin Casino - Win Bitcoins!" src="<%= global.logourl %>" class="logo" />
+        <div ng-show="player._id">
+            <player-info></player-info>
+            <cashout-button player="player" game="game"></cashout-button>
+            <spinmessage></spinmessage>
+            <bet-panel wager="btcWager" player="player" currency-abbr="currencyAbbr"></bet-panel>
+            <autospin-button></autospin-button>
+            <proof-button></proof-button>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-7 game col-md-pull-5 padding-0" style="height:550px;">
+        <div class="btn-group" ng-init="coins=1" style="margin-top:20px">
+            <button class="btn {{coins==1?'btn-danger':'btn-default'}}" ng-click="coins=1;HideAnimation();" ng-disabled="(isGameInProgress && !animationsLoading) || animationsLoading"> <%= spins.onecoin %></button>
+            <button class="btn {{coins==2?'btn-danger':'btn-default'}}" ng-click="coins=2;bet.sides[1]=0;HideAnimation();" ng-disabled="(isGameInProgress && !animationsLoading) || animationsLoading"> <%= spins.twocoin%></button>
+        </div>
+        <div class="row" style="margin-top:20px;">
+            <div class="btn-group" ng-init="bet.sides=[];bet.sides[0]=0">
+                <button class="btn {{bet.sides[0]==0?'btn-danger':'btn-default'}}" ng-click="bet.sides[0]=0" ng-disabled="(isGameInProgress && !animationsLoading) || animationsLoading"> <%= spins.head %></button>
+                <button class="btn {{bet.sides[0]==1?'btn-danger':'btn-default'}}" ng-click="bet.sides[0]=1" ng-disabled="(isGameInProgress && !animationsLoading) || animationsLoading"> <%= spins.tail %></button>
+            </div>
+            <div class="btn-group" style="margin-left:10px;" ng-show="coins==2" ng-init="bet.sides[1]=0">
+                <button class="btn {{bet.sides[1]==0?'btn-danger':'btn-default'}}" ng-click="bet.sides[1]=0" ng-disabled="(isGameInProgress && !animationsLoading) || animationsLoading"> <%= spins.head %></button>
+                <button class="btn {{bet.sides[1]==1?'btn-danger':'btn-default'}}" ng-click="bet.sides[1]=1" ng-disabled="(isGameInProgress && !animationsLoading) || animationsLoading"> <%= spins.tail %></button>
+            </div>
+        </div>
+        <div class="row">
+            <button ng-disabled="(isGameInProgress && !animationsLoading) || animationsLoading" ng-click="spin();" class="btn btn-flashy btn-lg btn-spin margin-10 font-size-30">
+                <%= text.start_spin %>
+            </button>
+        </div>
+        <div id="aniPanel"><canvas id="gameCanvas" width="550" height="550"></canvas></div>
+        <div id="gameResult" ng-show="showResultFlag">
+            <div id="gamemessage" ng-show="!isGameInProgress"><%= game.winmessage %></div>
+            <div>
+                <span id="coinmsg1" class="{{coins==2?'coinmsg1':'coinmsg'}}" ng-show="!isGameInProgress">
+                </span>
+                <span id="coinmsg2" class="{{coins==2?'coinmsg2':''}}" ng-show="coins==2 && !isGameInProgress">
+                </span>
+            </div>
+            <span id="winmsg" style="display:none"><%= game.winmessage%></span>
+            
+            <span id="headsmsg" style="display:none"><%= spins.head%></span>
+            <span id="tailsmsg" style="display:none"><%= spins.tail%></span>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

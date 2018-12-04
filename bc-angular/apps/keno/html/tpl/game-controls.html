@@ -1,0 +1,64 @@
+<div ng-controller="GameController" class="row noselect keno-area" id="gameContainer">
+    <div class="col-xs-12 col-md-4 text-center col-md-push-8">
+
+        <div><img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" /></div>
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <div>
+            <spinmessage></spinmessage>
+            <div id="payout">
+                <button disabled class="btn btn-default btn-betodd" ng-class="{'active': _.intersection(bets, drawn).length == entry.count }" ng-repeat="entry in odds" ng-if="entry.odd !== 0">{{ entry.count }}: {{ entry.odd }}</button>
+            </div>
+            <div id="betresult" class="panel panel-default">
+                <div class="panel-body">
+                    <div ng-if="matchCount !== false">
+                        <%=game.match_count%>:
+                        <span>{{matchCount}}</span>
+                    </div>
+                </div>
+            </div>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+        </div>
+        <div class="clear-both position-relative">
+            <div class="keno-game-sound-toggle-container">
+                <div class="soundToggle"><img  ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+            </div>
+            <proof-button></proof-button>
+            <small class="display-none">
+                <dl class="dl-horizontal">
+                    <dt><%= game.SsHeader2 %></dt><dd>{{ nextGameId }}</dd>
+                    <dt>SHA256:</dt><dd class="allow-word-wrap-with-word-break">{{ sha256 }}</dd>
+                </dl>
+            </small>
+
+            <bc-client-seed class="seed-container" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+    </div>
+    <div id="game" class="col-xs-12 col-md-8 col-md-pull-4 padding-0">
+        <div id="g-keno">
+            <div class="number" betnumber data-bet="{{ number }}" ng-repeat="number in numberRange">{{ number }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12" style="min-height:130px;">
+                <div id="balls">
+                    <div class="number" ng-repeat="number in drawn">{{ number }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button ng-disabled="isGameInProgress || bets.length === 0" ng-click="draw();" class="btn btn-flashy btn-lg btn-draw margin-10 font-size-30">
+                    <%= buttons.start_draw %>
+                </button>
+                <autospin-button></autospin-button>
+                <button ng-click="clearBets();" class="btn btn-default btn-lg" bc-popover="{{clearBetsPopover}}" bc-popover-content="<%= buttons.clearbets_individual %>" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top" ng-disabled="isGameInProgress">
+                    <%= buttons.clearbets %>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="hide localizations">
+        <div id="localization-x"><span><%= game.x %></span></div>
+    </div>
+    <div class="clearfix"></div>
+</div>

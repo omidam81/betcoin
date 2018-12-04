@@ -1,0 +1,49 @@
+<div class="row">
+    <button class="btn btn-primary"
+            ng-hide="processing"
+            ng-click="processCashbacks()">Process Cashbacks</button>
+    <h1 ng-show="loading">Loading</h1>
+    <div ng-if="error">
+        <span class="label label-danger">{{error.error}} - {{error.message}}</span>
+    </div>
+    <h3 ng-if="cashbackData">
+        Cashbacks {{ cashbackData.start | date:DATE_FORMAT }} to {{ cashbackData.end | date:DATE_FORMAT }}
+    </h3>
+    <div ng-if="cashbackData">
+        <p>
+            {{ cashbackData.activeUsers | number }} active users
+        </p>
+    </div>
+    <h3 ng-if="cashbackData.paidAt">Paid at {{ cashbackData.paidAt | date:DATE_FORMAT }}</h3>
+    <button class="btn btn-primary"
+            ng-if="cashbackData.users && !cashbackData.paidAt"
+            ng-click="payCashbacks()">Pay Cashbacks</button>
+    <h3 ng-if="processing">Processing Cashbacks</h3>
+    <div ng-if="processing">
+        <p>
+            This can take several minutes. The page will auto update when the cashbacks have been processed
+        </p>
+    </div>
+    <table class="table"
+           ng-show="cashbackData.users">
+        <thead>
+            <th>User</th>
+            <th>Currency</th>
+            <th>Wagered (Life)</th>
+            <th>Profit</th>
+            <th>Cashback %</th>
+            <th>Amount</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="(index, cashback) in cashbackData.users"
+                ng-if="cashback.amount">
+                <td><a ng-href="user/{{cashback.userId}}">{{ cashback.username }}</a></td>
+                <td>{{ cashback.currency }}</td>
+                <td>{{ cashback.currency | cryptosymbol }} {{ cashback.wagered | cryptovalue }}</td>
+                <td>{{ cashback.currency | cryptosymbol }} {{ cashback.profit | cryptovalue }}</td>
+                <td>{{ cashback.cashbackPercent *100 | number:2 }}%</td>
+                <td>{{ cashback.currency | cryptosymbol }} {{ cashback.amount | cryptovalue }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,62 @@
+
+.cards > div {
+  margin-left: -3.4em;
+  margin-left-value: -3.4em;
+  margin-left-ltr-source: physical;
+  margin-left-rtl-source: physical;
+  float: none;
+  position: relative;
+  display: inline-block;
+  @media (max-width: 992px) {
+    -ms-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    margin-left: -4.2em;
+  }
+  @media (max-width: 768px) {
+    -ms-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    margin-left: -4.2em;
+  }
+  @media (max-width: 568px) {
+    -ms-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -o-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    margin-left: -4.5em;
+  }
+  @media (max-width: 480px) {
+    -ms-transform: scale(0.58);
+    -moz-transform: scale(0.58);
+    -o-transform: scale(0.7);
+    -webkit-transform: scale(0.58);
+    transform: scale(0.58);
+    margin-left: -4.9em;
+  }
+}
+
+.cards > div:first-child {
+  /*float: left;*/
+  margin-left: 0px;
+  margin-left-value: 0px;
+  margin-left-ltr-source: physical;
+  margin-left-rtl-source: physical;
+}
+
+.picked .card {
+  position: relative;
+  top: -20px;
+}
+
+#dealer-cards, #player-cards {
+  zoom: 1;
+  position: relative;
+  margin: 20px auto 0;
+  height: 150px;
+}

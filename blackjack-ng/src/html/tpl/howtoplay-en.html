@@ -1,0 +1,84 @@
+<div class="tabcontent">
+  <h1>How to Play</h1>
+  <p class="ng-binding"><b class="ng-binding">BetCoin ™ Blackjack</b> is a classic card game that allows you to wager with the digital currency Bitcoin. It's an easy and fun way to play with and win more Bitcoins!</p>
+  <br>
+  <ol style="padding-left:40px;">
+    <li class="ng-binding"><b class="ng-binding">Login or Register</b>, or play anonymously with your BTC wallet address</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Fund</b> your playing balance with Bitcoins using the provided personal deposit address</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Select wager</b> amount by using either the slider, percentage of balance buttons, incremental buttons, or by clicking on the wager box.  The maximum wager value is adjusted dynamically.</li>
+    <br>
+    <li class="ng-binding">Check your progress and follow players around the world using the in-game Leaderboard and Recent Plays tabs located below the playing screen.</li>
+    <br>
+    <li class="ng-binding">If you play anonymously, your balance will automatically be returned to you after 30 minutes of inactivity or upon closing your browser.</li>
+    <br>
+  </ol>
+
+<!-- <h4>Pay Table</h4>
+
+<div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+  <h4>Playing Casino Blackjack</h4>
+  <ol>
+  <li><p>
+  Blackjack is played with eight decks of 52-card decks.
+  </p></li>
+  <li><p>
+  Aces may be counted as 1 or 11 points, 2 to 9 according to pip value, and tens and face cards count as ten points.
+  </p></li>
+  <li><p>
+  The value of a hand is the sum of the point values of the individual cards. Except, a "blackjack" is the highest hand, consisting of an ace and any 10-point card, and it outranks all other 21-point hands.
+  </p></li>
+  <li><p>
+  If the dealer has a blackjack, then all wagers will lose, unless the player also has a blackjack, which will result in a push. 
+  </p></li>
+  <li><p>
+  If the player got 21 un-natural hand, it will push when the dealer got 21 un-natural hand as well, or it will lose the wager when dealer got a Blackjack.
+  </p></li>
+  <li><p>
+  After the player has finished his turn, the dealer will turn over his hole card. If the dealer has 16 or less, then he will draw another card. A special situation is when the dealer has an ace and any number of cards totaling six points (known as a "soft 17"). 
+  </p></li>
+  <li><p>
+  If the dealer goes over 21 points, then any player who didn't already bust will win.
+  </p></li>
+  <li><p>
+  If the dealer does not bust, then the higher point total between the player and dealer will win.
+  </p></li>
+  <li><p>
+  Winning wagers pay even money, except a winning player blackjack pays 3 to 2. 
+  </p></li>
+  </ol>
+  <h4>
+    Game Options:
+  </h4>
+  <ol>
+    <li><p>
+    <b>Stand:</b> Player stands pat with his cards.
+    </p></li>
+    <li><p>
+    <b>Hit:</b> Player draws another card (and more if he wishes). If this card causes the player's total points to exceed 21 (known as "breaking" or "busting") then he loses.
+    </p></li>
+    <li><p>
+    <b>Double:</b> Player with 10 or 11 total score, is eligible to double his bet and gets one, and only one, more card.
+    </p></li>
+    <li><p>
+    <b>Split:</b> If the player has a pair, or any two 10-point cards, then he may double his bet and separate his cards into two individual hands. The dealer will automatically give each card a second card. Then, the player may hit, stand. However, player can't split on Aces, and can't hit anymore when there is a split ace. Player can only split to two hands. 
+    </p></li>
+  </ol>
+  <h4 class="ng-binding">What is the expected return to player for BetCoin ™ Casino Blackjack?</h4>
+  <p class="ng-binding">The expected Return to Player is 98.75%</p>
+
+  <h4 class="ng-binding">Is there a minimum wager per hand?</h4>
+  <p class="ng-binding">The minimum bet is 0.000001 BTC</p><p></p>
+
+  <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+  <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+  <p><a target="_blank" href="./js/app/directives/provably-fair.js">Click here to view the code used to verify each game</a></p>
+  <!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+
+
+  <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

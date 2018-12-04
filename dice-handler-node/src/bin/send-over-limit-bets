@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+'use strict';
+var wallet = require('bitcoin-wallet');
+require('../lib/number-prototypes');
+
+var mongo = require('mongowrap').getConnection();
+
+var iAmSure = false;
+if (process.argv.length > 3 && process.argv[2] === 'for' && process.argv[3] === 'real') {
+    iAmSure = true;
+}
+
+var MONGO_DB_NAME = 'casinodb';
+var DICE_COLLECTION = 'dice';
+var MINIMUM_WINNINGS = 5460;
+
+mongo('casinodb', 'dice', function(err, collection) {
+    collection.find({
+        tx_out: { $exists: false },
+        tx_out_err: { $exists: true },
+        error: 'exceeds win limit'
+    }).toArray(function(err, games) {
+        games.forEach(function(rollData) {
+            if (rollData.winnings) {
+                // we can't send less than 5460 Satoshi
+                if (rollData.winnings < MINIMUM_WINNINGS) {
+                    rollData.winnings = MINIMUM_WINNINGS;
+                }
+                // use the original wager tx output as the reference
+                var referenceTransactions = {};
+                // POST a /send to the bitcoin server
+                var txData;
+                // set default fee of 0.0005 BTC
+                var fee = (0.0005).toSatoshi();
+                // if this is a consolation prize, adjust the tx fee down some
+                if (rollData.result > rollData.game) {
+                    if (rollData.winnings >= (1).toSatoshi()) {
+                        fee = (0.0005).toSatoshi();
+                    } else if (rollData.winnings >= (0.1).toSatoshi()) {
+                        fee = (0.0002).toSatoshi();
+                    } else {
+                        fee = (0.0001).toSatoshi();
+                    }
+                }
+                txData = {
+                    to: rollData.player_id,
+                    amount: rollData.winnings - rollData.wager,
+                    referenceTransactions: referenceTransactions,
+                    txfee: fee,
+                    referenceAddresses: [rollData.addr_in]
+                };
+                if (iAmSure) {
+                    console.log('sending', txData);
+                    wallet.send(txData, function(err, txid) {
+                        if (txData.err) {
+                            rollData.tx_out_err = txid;
+                            rollData.error = txData.err;
+                        } else {
+                            rollData.tx_out = txid;
+                        }
+                        mongo(MONGO_DB_NAME, DICE_COLLECTION, function(err, collection) {
+                            collection.save(rollData, function(err) {
+                                if (err) {
+                                    console.error(err.message);
+                                } else {
+                                    console.log('sent and saved %s', txid);
+                                }
+                            });
+                        });
+                    });
+                } else {
+                    console.log('would have sent ', txData);
+                }
+            }
+        });
+    });
+});

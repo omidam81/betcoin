@@ -1,0 +1,157 @@
+<div class="row"
+     ng-controller="PromotionsListController">
+    <form class="form">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text"
+                   ng-model="newPromo.name"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Landing Page</label>
+            <input type="text"
+                   ng-model="newPromo.landingPage"
+                   class="form-control">
+            <span class="help-block">
+                The landing page will be converted into a
+                case-insensative regular expression. To ensure yoiur
+                pattern matches exactly, prefix the pattern with a "^"
+                and postfix it with a "$", e.g ^/mylanding/$
+                <br>
+                When matching exactly, you must include a "/"
+                character at each end of the pattern.
+            </span>
+        </div>
+        <div class="form-group">
+            <label>Include Bonus?</label>
+            <input type="checkbox"
+                   class="form-control"
+                   ng-model="showBonusForm"
+                   ng-change="setupBonus()">
+        </div>
+        <ng-form ng-show="showBonusForm"
+                 class="form">
+            <div class="form-group">
+                <label>Default VIP Level</label>
+                <select class="form-control"
+                        ng-model="newPromo.bonus.startingVipLevel"
+                        ng-options="index as level._id for (index, level) in vipLevels"></select>
+            </div>
+            <div class="form-group"
+                 ng-repeat="(currency, _) in newPromo.bonus.welcomeBonus">
+                <label>{{currency}} Welcome Bonus</label>
+                <div class="input-group">
+                    <span class="input-group-addon">{{fiatSymbols[currency]}}</span>
+                    <input type="number"
+                           ng-model="newPromo.bonus.welcomeBonus[currency]"
+                           class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Match Rollover</label>
+                <input type="number"
+                       ng-model="newPromo.bonus.matchRollover"
+                       class="form-control">
+            </div>
+            <div class="form-group"
+                 ng-repeat="(index, _) in newPromo.bonus.matchMultipliers track by $index">
+                <label>Match Multiplier {{index + 1}}</label>
+                <div class="input-group">
+                    <input type="text"
+                           ng-model="newPromo.bonus.matchMultipliers[index]"
+                           class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"
+                                ng-click="newPromo.bonus.matchMultipliers.splice(index, 1)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <button class="btn btn-primary"
+                    ng-click="newPromo.bonus.matchMultipliers.push(1)">
+                <span class="glyphicon glyphicon-plus"
+                      style="cursor:pointer;" > Add Match Bonus</span>
+            </button>
+            <div class="form-group">
+                <label>Match Max</label>
+                <crypto-input model="newPromo.bonus.matchMax"
+                              currency="'bitcoin'"
+                              class="input-group"></crypto-input>
+            </div>
+        </ng-form>
+        <button class="btn btn-primary"
+                ng-click="savePromo(newPromo)">
+            Save
+        </button>
+    </form>
+
+    <table class="table">
+        <thead>
+            <th>Name</th>
+            <th>Landing Page</th>
+            <th>Visits</th>
+            <td>Signups</td>
+            <td>Verified</td>
+            <td>Deposited</td>
+            <td>Repeat Deposit</td>
+            <td>Promo Age</td>
+            <td>Deposits</td>
+            <td>Withdrawals</td>
+            <td>Profit</td>
+        </thead>
+        <tbody>
+            <tr ng-repeat="promo in promotions">
+                <td>
+                    <a ng-href="promotions/{{promo._id}}">{{promo.name}}</a>
+                    <hr>
+                    <a ng-href="search/user?q_meta.landingPage=__contains_{{promo.landingPage}}">User List</a>
+                </td>
+                <td>{{promo.landingPage}}</td>
+                <td ng-if="promo.visits">{{promo.visits}} ({{promo.uniqueVisits / promo.visits * 100 | number:2}}% unique)</td>
+                <td ng-if="!promo.visits">N/A</td>
+                <td ng-if="promo.signups">
+                    {{promo.signups}} <span ng-if="promo.visits">({{promo.signups / promo.uniqueVisits * 100 | number:2}}%)</span></td>
+                <td ng-if="!promo.signups">N/A</td>
+                <td ng-if="promo.verified">
+                    <div>{{promo.verified}}</div>
+                    <div ng-if="promo.visits">{{promo.verified / promo.uniqueVisits * 100 | number:2}}% view -> verify</div>
+                    <div>{{promo.verified / promo.signups * 100 | number:2}}% signup -> verify</div>
+                </td>
+                <td ng-if="!promo.verified">N/A</td>
+                <td ng-if="promo.deposited.once['bitcoin']">
+                    <div>{{promo.deposited.once['bitcoin']}}</div>
+                    <div ng-if="promo.visits">{{promo.deposited.once['bitcoin'] / promo.uniqueVisits * 100 | number:2}}% view ->deposit </div>
+                    <div>{{promo.deposited.once['bitcoin'] / promo.signups * 100 | number:2}}% signup -> deposit</div>
+                </td>
+                <td ng-if="!promo.deposited.once['bitcoin']">N/A</td>
+                <td ng-if="promo.deposited.moreThanOnce['bitcoin']">
+                    <div>{{promo.deposited.moreThanOnce['bitcoin']}}</div>
+                    <div ng-if="promo.visits">{{promo.deposited.moreThanOnce['bitcoin'] / promo.uniqueVisits * 100 | number:2}}% view -> 2nd deposit</div>
+                    <div>{{promo.deposited.moreThanOnce['bitcoin'] / promo.signups * 100 | number:2}}% signup -> 2nd deposit</div>
+                </td>
+                <td ng-if="!promo.deposited.moreThanOnce['bitcoin']">N/A</td>
+                <td><elapsed date="promo.createdAt"></elapsed></td>
+                <td>
+                    <div>Count: {{promo.totalDeposits['bitcoin']}}</div>
+                    <div>Total: {{'bitcoin' | cryptosymbol}}{{promo.totalDeposited['bitcoin'] | cryptovalue}}</div>
+                    <div>Average: {{'bitcoin' | cryptosymbol}}{{promo.totalDeposited['bitcoin'] / promo.totalDeposits['bitcoin'] | cryptovalue}}</div>
+                    <div ng-if="promo.visits">Per View: {{'bitcoin' | cryptosymbol}}{{promo.totalDeposited['bitcoin'] / promo.visits | cryptovalue}}</div>
+                    <div ng-if="promo.uniqueVisits">Per Unique View: {{'bitcoin' | cryptosymbol}}{{promo.totalDeposited['bitcoin'] / promo.uniqueVisits | cryptovalue}}</div>
+                </td>
+                <td>
+                    <div>Count: {{promo.totalWithdraws['bitcoin']}}</div>
+                    <div>Total: {{'bitcoin' | cryptosymbol}}{{promo.totalWithdrawed['bitcoin'] | cryptovalue}}</div>
+                    <div>Average: {{'bitcoin' | cryptosymbol}}{{promo.totalWithdrawed['bitcoin'] / promo.totalWithdraws['bitcoin'] | cryptovalue}}</div>
+                    <div ng-if="promo.visits">Per View: {{'bitcoin' | cryptosymbol}}{{promo.totalWithdrawed['bitcoin'] / promo.visits | cryptovalue}}</div>
+                    <div ng-if="promo.uniqueVisits">Per Unique View: {{'bitcoin' | cryptosymbol}}{{promo.totalWithdrawed['bitcoin'] / promo.uniqueVisits | cryptovalue}}</div>
+                </td>
+                <td>
+                    <div>Profit: {{'bitcoin' | cryptosymbol}}{{promo.totalDeposited['bitcoin'] - promo.totalWithdrawed['bitcoin'] | cryptovalue}}</div>
+                    <div ng-if="promo.visits">Per View: {{'bitcoin' | cryptosymbol}}{{(promo.totalDeposited['bitcoin'] - promo.totalWithdrawed['bitcoin']) / promo.visits | cryptovalue}}</div>
+                    <div ng-if="promo.uniqueVisits">Per Unique View: {{'bitcoin' | cryptosymbol}}{{(promo.totalDeposited['bitcoin'] - promo.totalWithdrawed['bitcoin']) / promo.uniqueVisits | cryptovalue}}</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

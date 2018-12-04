@@ -1,0 +1,154 @@
+/*Same size as .card*/
+.flip-container {
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+  -ms-transform: perspective(1000px);
+  -moz-transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+}
+.flipper {
+  -webkit-transition: 0.2s;
+  -webkit-transform-style: preserve-3d;
+  -ms-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -moz-transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transition: 0.2s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+.front-div, .back-div {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 0.2s;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: rotateY(0deg);
+  -moz-transition: 0.2s;
+  -moz-transform-style: preserve-3d;
+  -moz-transform: rotateY(0deg);
+  -o-transition: 0.2s;
+  -o-transform-style: preserve-3d;
+  -o-transform: rotateY(0deg);
+  -ms-transition: 0.2s;
+  -ms-transform-style: preserve-3d;
+  -ms-transform: rotateY(0deg);
+  transition: 0.2s;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.flip-container, .front-div, .back-div {
+  width: 7em;
+  height: 10em;
+}
+.front-div {
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  z-index: 2;
+}
+.back-div {
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+.flip-container.hover .front-div {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.flip-container.hover .back-div {
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+
+.cards > div {
+  margin-left: -3.4em;
+  margin-left-value: -3.4em;
+  margin-left-ltr-source: physical;
+  margin-left-rtl-source: physical;
+  float: none;
+  position: relative;
+  display: inline-block;
+  @media (max-width: 992px) {
+    -ms-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    margin-left: -4.2em;
+  }
+  @media (max-width: 768px) {
+    -ms-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    margin-left: -4.2em;
+  }
+  @media (max-width: 568px) {
+    -ms-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -o-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    margin-left: -4.5em;
+  }
+  @media (max-width: 480px) {
+    -ms-transform: scale(0.58);
+    -moz-transform: scale(0.58);
+    -o-transform: scale(0.7);
+    -webkit-transform: scale(0.58);
+    transform: scale(0.58);
+    margin-left: -4.9em;
+  }
+}
+
+.cards > div:first-child {
+  /*float: left;*/
+  margin-left: 0px;
+  margin-left-value: 0px;
+  margin-left-ltr-source: physical;
+  margin-left-rtl-source: physical;
+}
+
+.picked .card {
+  position: relative;
+  top: -20px;
+}
+
+#dealer-cards, #player-cards {
+  zoom: 1;
+  position: relative;
+  margin: 20px auto 0;
+  height: 150px;
+  text-align: left;
+  padding-left: 40px;
+}
+#dealer-cards.text-center {
+  text-align:center;
+  padding: 0;
+}
+#player-cards.text-center {
+  text-align:center;
+  padding: 0;
+}
+
+.dealt.livecard {
+  top: 0px;
+  left: 0px;
+  opacity: 1;
+}

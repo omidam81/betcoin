@@ -1,0 +1,134 @@
+{
+    "prod": "dice-classic",
+    "meta": {
+        "title": "BetCoin™ Dice Bitcoin Casino - Win Bitcoins!",
+        "meta_description": "With BetCoin ™ Dice you can bet in bitcoin and win up to 64 000 times your bet. Try the game today to hit a bitcoin jackpot!"
+    },
+    "win": "Win",
+    "lose": "Lose",
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/dice-classic"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/ling-jingdian"
+        }
+    },
+    "home": {
+        "logo_title_a": "Click here to play the NEW BetCoin™ Dice",
+        "logo_title_b": "Enjoy ZERO TX fees, Earn Bonuses!",
+        "logo_title_1": "Instantly Become A Millionaire",
+        "logo_title_2": "Watch Bets Live! ",
+        "logo_title_3": "ZERO Confirmations",
+        "column_left_div": "Bet Counter",
+        "column_right_div": "Bitcoins Won",
+        "betcoin_dice_img_alt": "BetCoin ™ Dice Bitcoin Casino Game",
+        "title_image": "img/logo.png"
+    },
+    "animation": {
+        "idleText": "Waiting for Bets",
+        "rolling": "Rolling",
+        "forPlayer": "For player",
+        "winner": "WINNER!!!",
+        "enable3d_title": "Enable 3D Animation",
+        "enable3d_content": "Animation is currently disabled because your window has been resized, or your browser's zoom setting is not set to the default. Set zoom by pressing ctrl+0 or command+0"
+    },
+    "bets": {
+        "game_wrap_th1": "Game",
+        "game_wrap_th2": "Bet Address",
+        "game_wrap_th3": "Win Odds",
+        "game_wrap_th4": "Prize Multiplier",
+        "game_wrap_th5": "House Percent",
+        "game_wrap_th6": "Expected Return",
+        "game_wrap_th7": "Min Bet",
+        "game_wrap_th8": "Max Bet"
+    },
+    "games": {
+        "recent": "Recent",
+        "tabs_unconfirmed": "Unconfirmed",
+        "tabs_big": "Big Wins",
+        "tabs_rare": "Rare Wins",
+        "games_wrap_th9": "Details",
+        "games_wrap_th10": "Mine",
+        "games_wrap_th11": "Game",
+        "games_wrap_th12": "Bet Tx",
+        "games_wrap_th13": "Pay Tx",
+        "games_wrap_th14": "Address",
+        "games_wrap_th15": "Bet Amount",
+        "games_wrap_th16": "Result",
+        "games_wrap_th17": "Payment Amount",
+        "games_wrap_th18": "Lucky",
+        "games_wrap_div1": "",
+        "game_wrap_button": "Details",
+        "tr_header1": "Transaction",
+        "tr_li1": "Processed at: ",
+        "tr_li2": "Key Date: ",
+        "tr_li3": "Bet: ",
+        "tr_li4": "Bet Tx: ",
+        "tr_li5": "Payment Tx: ",
+        "tr_li6": "Payment Tx Status: ",
+        "tr_li7": "Bet Amount: ",
+        "tr_li8": "Outcome: ",
+        "tr_li9": "Payment: ",
+        "tr_li10": "Address: ",
+        "tr_li11": "Lucky Number: ",
+        "tr_header2": "Secret Hashes",
+        "tr_header3": "Verify",
+        "tr_p1": "Download and verify ",
+        "tr_p2": "For more details on the secret keys see ",
+        "hash_keys": "hashes.keys",
+        "secret_keys": "secret.keys"
+    },
+    "leaderboard": {
+        "top_players": "Top Players",
+        "alias": "Alias",
+        "reward_points": "Reward Points",
+        "btc_won": "BTC Won",
+        "prizes_won": "Prizes Won",
+        "btc_wagered": "BTC Wagered",
+        "rewards": "Rewards"
+    },
+    "my_games": {
+        "txhash": "TX ID",
+        "title": "My Bets",
+        "address_displayed": "Addresses displayed",
+        "add_address_search": "Add This Address to My Games",
+        "remove_btn": "remove",
+        "loading": "Loading",
+        "table_hd2": "Game",
+        "table_hd3": "Bet Tx",
+        "table_hd4": "Pay Tx",
+        "table_hd5": "Address",
+        "table_hd6": "Bet Amount",
+        "table_hd7": "Result",
+        "table_hd8": "Payment Amount",
+        "table_hd9": "Lucky",
+        "proof": "Proof",
+        "add": "Add",
+        "payout": "Payout",
+        "address_placeholder": "Enter Your Bitcoin Wallet Address",
+        "address_tip": "Displaying all bets. Add your wallet address to watch your bets!",
+        "lookup_transaction": "Look up a game by transaction ID",
+        "search": "Search",
+        "searching": "Searching...",
+        "nothing_found": "Nothing found. Is ",
+        "valid_transaction": " a valid Bitcoin transaction ID?",
+        "secret_key": "Secret Key:",
+        "click_secret_hash": "CLICK TO GET SECRET HASH",
+        "bet_address": "Bet Addresses",
+        "minimum_bet": "0.001 BTC Minimum Bet",
+        "copy": "Copy",
+        "bet": "Bet"
+    },
+    "bc_dropdown": {
+        "title": "Select Game:",
+        "send_title": "Send Bitcoin to",
+        "copy": "Copy",
+        "click_bet": "Place Your Bet: "
+    },
+    "detail_modal": {
+        "secret_key": "Game Secret Key:",
+        "click_hash_key": "CLICK TO GET SECRET HASH",
+        "loading": "Loading..."
+    }
+}

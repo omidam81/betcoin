@@ -1,0 +1,19 @@
+<div class="container">
+<h2>{{aff.username}}</h2>
+<h3>{{aff.realName}}</h3>
+<h3>{{aff.email}}{{aff.pendingEmail}}</h3>
+<h4>{{aff.phone}}</h4>
+<p>{{aff.address}}</p>
+<p>{{aff.notes}}</p>
+<p><div ng-repeat="ser in aff.serials">{{ser}}</div></p>
+<p>{{ aff.commission*100 }} %</p>
+<h4>{{aff.totalEarnings}}</h4>
+<table>
+<tr>
+	<th>Serial #</th><th>Earnings</th><th>Last Earned</th><th>Last Activity</th>
+</tr>
+<tr ng-repeat="ass in aff.associates">
+	<td>{{ass.serial}}</td><td>{{ass.totalEarnings}}</td><td>{{ass.lastEarnings}}</td><td>{{ass.lastLogin}}</td>
+</tr>
+</table>
+</div>

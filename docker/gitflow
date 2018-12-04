@@ -1,0 +1,254 @@
+#!/usr/bin/env bash
+
+ROOTDIR=$PWD
+
+FAIL () {
+    echo $1
+    [[ -n "$2" ]] && CODE=$2 || CODE=1
+    exit $CODE
+}
+
+DIRTY=$(git status | grep "nothing to commit")
+[[ -z "$DIRTY" ]] && FAIL "Dirty work tree, commit and run again"
+
+[[ -n "$DEV_BRANCH" ]] || DEV_BRANCH=dev
+MASTER_BRANCH=master
+
+[[ ! -d ./.git ]] && FAIL "Not a git directory!"
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+ACTION="release"
+
+case $CURRENT_BRANCH in
+    dev*)
+        echo "On dev, creating release branch"
+        ACTION="release";;
+    master*)
+        echo "On master, creating hotfix branch"
+        ACTION="hotfix";;
+    release*)
+        echo "On release, preparing to merge to master"
+        ACTION="finish-release";;
+    hotfix*)
+        echo "On hotfix, preparing to merge to master"
+        ACTION="finish-hotfix";;
+    *)
+        FAIL "Get on the \`$DEV_BRANCH' or \`$MASTER_BRANCH' branch  or a release/hotfix branch before running this" 4;;
+esac
+
+git fetch > /dev/null \
+    || FAIL "Fetch failed, aborting"
+
+if [[ "$CURRENT_BRANCH" = "$DEV_BRANCH" ]] \
+    || [[ "$CURRENT_BRANCH" = "$MASTER_BRANCH" ]]
+then
+    git pull --ff-only > /dev/null \
+        || FAIL "Pull failed, aborting. If you have made commits that are not on origin/$CURRENT_BRANCH, try running \`git rebase origin/$CURRENT_BRANCH'"
+fi
+
+[[ $CURRENT_BRANCH = $MASTER_BRANCH ]] \
+    || git branch -f $MASTER_BRANCH origin/$MASTER_BRANCH > /dev/null \
+    || FAIL "Failed to update local $MASTER_BRANCH branch"
+[[ $CURRENT_BRANCH = $DEV_BRANCH ]] \
+    || git branch -f $DEV_BRANCH origin/$DEV_BRANCH > /dev/null \
+    || FAIL "Failed to update local $DEV_BRANCH branch"
+
+GIT_VER=$(git describe --tags $MASTER_BRANCH)
+GIT_VER=${GIT_VER%%-*}
+CURRENT_VERSION=${GIT_VER#v}
+CURRENT_COMMIT=$(git rev-parse HEAD)
+echo "Current version: $GIT_VER"
+echo "Current branch: $CURRENT_BRANCH"
+
+get-new-version () {
+    PATCH_VERSION=${CURRENT_VERSION##*.}
+    remaining=${CURRENT_VERSION%.$PATCH_VERSION}
+    MINOR_VERSION=${remaining##*.}
+    MAJOR_VERSION=${CURRENT_VERSION%.$MINOR_VERSION.$PATCH_VERSION}
+
+    if [[ "$ACTION" = "hotfix" ]]
+    then
+        # a hotfix is always a patch update
+        SELECTION="3"
+    else
+        echo "1) Major"
+        echo "2) Minor"
+        echo "3) Patch"
+        echo -n "Increment which version number? "
+        read SELECTION
+    fi
+
+    case $SELECTION in
+        1*)
+            MAJOR_VERSION=$[ $MAJOR_VERSION + 1 ]
+            MINOR_VERSION=0
+            PATCH_VERSION=0;;
+        2*)
+            MINOR_VERSION=$[ $MINOR_VERSION + 1 ]
+            PATCH_VERSION=0;;
+        3*)
+            PATCH_VERSION=$[ $PATCH_VERSION + 1 ];;
+    esac
+
+    echo "New version: v$MAJOR_VERSION.$MINOR_VERSION.$PATCH_VERSION"
+    echo -n "Is this correct (Y/n) "
+    read SELECTION
+
+    case $SELECTION in
+        [Nn]*) FAIL "Aborting" 3;;
+    esac
+
+    NEW_VERSION="$MAJOR_VERSION.$MINOR_VERSION.$PATCH_VERSION"
+}
+
+
+update-package-file () {
+    if [[ -f ./package.json ]]
+    then
+        sed -i -r 's/"version": "[0-9.-]+"/"version": "'$NEW_VERSION'"/' ./package.json
+        echo "package.json updated"
+        git commit -am "package bump to $NEW_VERSION"
+    else
+        echo "no package.json!"
+    fi
+
+}
+
+releasenotes() {
+    RELEASE_HEADER="release v$1\n\n" 
+    TMPFILE="/tmp/tagmessage-$1-$(basename $ROOTDIR)"
+    echo -e "$RELEASE_HEADER" > "$TMPFILE"
+    echo -e "\n---------------------------------------------"
+    echo -e   "-      Release Notes (^M-^D when done)      -"
+    echo -e   "---------------------------------------------\n"
+    echo -e "$RELEASE_HEADER"
+    cat >> "$TMPFILE"
+}
+
+gittag () {
+    TMPFILE="/tmp/tagmessage-$1-$(basename $ROOTDIR)"
+    [[ -f "$TMPFILE" ]] || releasenotes $1
+    git tag -a v$1 -F "$TMPFILE" ${2:-master} \
+        || FAIL "git tag failed" 3
+}
+
+gitpush () {
+    echo "---------------------------------------------"
+    echo "-      Review git log before pushing        -"
+    echo "---------------------------------------------"
+    git --no-pager log --decorate --oneline --graph --all -n 15
+    echo "---------------------------------------------"
+    echo "-  Make sure it looks right before pushing  -"
+    echo "---------------------------------------------"
+    echo -n "Push? (Y/n) "
+    read SELECTION
+    case $SELECTION in
+        [Nn]*)
+            echo "Finished";;
+        *)
+            git push origin $DEV_BRANCH
+            git push origin $MASTER_BRANCH
+            git push --tags
+            echo "Finished"
+    esac
+}
+
+gitbranch () {
+    echo "creating branch $1";
+    git checkout -b $1 \
+        || FAIL "error creating $1 branch" 3
+}
+
+gitmerge () {
+    git checkout $2
+    git pull origin $2
+    if [[ -n "$3" ]]
+    then
+        git merge --no-edit --no-ff -m "$3" $1 \
+            || FAIL "error merging $1 into $2" 3
+    else
+        git merge --no-edit --no-ff $1 \
+            || FAIL "error merging $1 into $2" 3
+    fi
+}
+
+release () {
+    get-new-version
+    gitbranch "release-$NEW_VERSION"
+    update-package-file
+    echo "Do tests, make any last minute changes for this feature freeze. Then run \`gitflow' again"
+}
+
+finish-release () {
+    NEW_VERSION=${CURRENT_BRANCH#release-}
+    echo "Applying release branch for v$NEW_VERSION"
+    TMPFILE="/tmp/tagmessage-$NEW_VERSION-$(basename $ROOTDIR)"
+    releasenotes $NEW_VERSION
+    gitmerge $CURRENT_BRANCH $MASTER_BRANCH "$(cat $TMPFILE)"
+    gittag $NEW_VERSION $MASTER_BRANCH
+    gitmerge $MASTER_BRANCH $DEV_BRANCH
+    gitpush
+}
+
+hotfix () {
+    get-new-version
+    gitbranch "hotfix-$NEW_VERSION"
+    update-package-file
+    echo "Do tests, make any last minute changes for this feature freeze. Then run \`gitflow' again"
+}
+
+finish-hotfix () {
+    NEW_VERSION=${CURRENT_BRANCH#hotfix-}
+    echo "Applying hotfix branch for v$NEW_VERSION"
+    TMPFILE="/tmp/tagmessage-$NEW_VERSION-$(basename $ROOTDIR)"
+    releasenotes $NEW_VERSION
+    gitmerge $CURRENT_BRANCH $MASTER_BRANCH "$(cat $TMPFILE)"
+    gittag $NEW_VERSION $MASTER_BRANCH
+    gitmerge $MASTER_BRANCH $DEV_BRANCH
+    gitpush
+}
+
+if [[ -f $ROOTDIR/Makefile ]]
+then
+    make test || FAIL "Failed or missing test command" 9
+elif [[ -f $ROOTDIR/Gruntfile.js ]]
+then
+    grunt test || FAIL "Failed or missing test command" 9
+fi
+
+echo -n "Running $ACTION action. Is this correct? (Y/n) "
+read SELECTION
+
+case $SELECTION in
+    [Nn]*)
+        echo FAIL "Aborting" 3;;
+    *)
+        $ACTION
+        if [[ "${ACTION%%-*}" = "finish" ]] 
+        then
+            if [[ -f ./Dockerfile ]] && [[ -f ./Makefile ]]
+            then
+                echo -n "Build docker container? (Y/n) "
+                read SELECTION
+                MAKETASK=all
+                if [[ -z "$(grep '^all:' ./Makefile)" ]]
+                then
+                    MAKETASK=container
+                fi
+                case $SELECTION in
+                    [Nn]*)
+                        exit;;
+                    *)
+                        git checkout v$NEW_VERSION
+                        while ! make VERSION=$NEW_VERSION $MAKETASK push taglatest
+                        do
+                            echo "Build failed, trying again"
+                        done
+                        make push
+                        git checkout $DEV_BRANCH
+                        exit;;
+            esac
+        fi
+    fi
+esac
+

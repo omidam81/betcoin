@@ -1,0 +1,14 @@
+
+RUN apt-get update
+
+RUN apt-get install -y libdb5.1-dev libdb5.1++-dev libboost-all-dev autoconf bsdmainutils pkg-config openssl libcurl4-openssl-dev libssl-dev
+
+# install litecoind
+RUN git clone https://github.com/dogecoin/dogecoin && cd dogecoin && git checkout v1.8.0
+
+RUN cd dogecoin && ./autogen.sh && ./configure --without-gui && make
+RUN cd dogecoin && make install
+
+RUN mkdir /etc/service/dogecoind
+ADD runit/dogecoind /etc/service/dogecoind/run
+

@@ -1,0 +1,53 @@
+<div>
+    <div id="modal-{{ game.id || game._id }}" class="game-proof">
+        <h3><%= spins.ProofHeader1 %></h3>
+
+        <dl class="dl-horizontal">
+            <div class="cards" id="dealer-cards">
+                <div class="animate" ng-repeat="card in game.banker_hand.cards">
+                    <card data-card="card"></card>
+                </div>
+            </div>
+            <div class="cards" id="player-cards">
+                <div class="animate" ng-repeat="card in game.player_hand.cards">
+                    <card data-card="card"></card>
+                </div>
+            </div>
+        </dl>
+
+        <dl class="dl-horizontal">
+            <dt style="width: 100px">
+            <%= spins.CircleTh1 %></dt><dd style="margin-left: 120px">{{ game.id || game._id }}
+            </dd>
+            <dt  style="width: 100px">
+            <%= username %></dt><dd style="margin-left: 120px">{{ game.player_alias }}
+            </dd>
+            <dt style="width: 100px">
+            <%= spins.CircleTh3 %></dt><dd style="margin-left: 120px">{{ game | winnings }}<%= reels.x %>
+            </dd>
+            <dt style="width: 100px">
+            <%= spins.CircleTh4 %></dt><dd style="margin-left: 120px">{{ game.wager | btc }}
+            </dd>
+            <dt style="width: 100px">
+            <%= spins.CircleTh5 %></dt><dd style="margin-left: 120px">{{ game.winnings | btc }}
+            </dd>
+            <dt style="width: 100px">
+            <%= spins.CircleTh7 %></dt><dd style="margin-left: 120px">{{ game.createdAt | date:"MM/dd HH:mm:ss" }}
+            </dd>
+            <dt style="width: 100px"><%= spins.ProofDt1 %></dt>
+            <dd style="margin-left: 120px">{{ game.server_seed }}</dd>
+            <dt style="width: 100px"><%= spins.ProofDt3 %></dt>
+            <dd style="margin-left: 120px">{{ game.seed_hash }}</dd>
+            <dt style="width: 100px"><%= spins.ProofDt4 %></dt>
+            <dd style="margin-left: 120px">{{ game.client_seed }}</dd>
+            <dt style="width: 100px"><%= spins.ProofDt5 %></dt>
+            <dd style="margin-left: 120px">{{ game.final_array }}</dd>
+        </dl>
+
+        <provably-fair server-seed="{{game.server_seed}}" client-seed="{{game.client_seed}}" init-array="game.init_array"></provably-fair>
+    </div>
+
+    <button class="btn btn-default btn-lg" ng-click="backToList()"><%= gameDetails.returnToList %></button>
+
+</div>
+

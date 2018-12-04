@@ -1,0 +1,47 @@
+{
+  "name": "circle-ng",
+  "version": "0.3.14",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "latest",
+    "common-ng": "git+ssh://git@bitbucket.org:betcn/common-ng",
+    "deep-extend": "^0.2.8",
+    "grunt": "^0.4.5",
+    "grunt-angular-templates": "^0.5.1",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-compress": "^0.7.0",
+    "grunt-contrib-concat": "^0.3.0",
+    "grunt-contrib-connect": "^0.1.2",
+    "grunt-contrib-copy": "^0.4.1",
+    "grunt-contrib-cssmin": "^0.9.0",
+    "grunt-contrib-jshint": "^0.7.1",
+    "grunt-contrib-less": "^0.8.1",
+    "grunt-contrib-uglify": "^0.2.4",
+    "grunt-contrib-watch": "^0.5.3",
+    "grunt-i18n": "^0.3.0",
+    "grunt-include-source": "^0.3.3",
+    "grunt-karma": "^0.6.2",
+    "grunt-preprocess": "^4.0.0",
+    "karma": "^0.10.2",
+    "karma-phantomjs-launcher": "^0.1.0",
+    "karma-mocha": "0.1.3",
+    "karma-ng-scenario": "0.1.0",
+    "grunt-karma": "^0.6.2",
+    "chai": "latest",
+    "ng-midway-tester": "latest",
+    "grunt-preprocess": "^4.0.0",
+    "grunt-contrib-compress": "^0.7.0",
+    "deep-extend": "^0.2.8",
+    "common-ng": "git+ssh://git@bitbucket.org:betcn/common-ng"
+  },
+  "dependencies": {
+    "optimist": "^0.6.1",
+    "send": "^0.2.0"
+  }
+}

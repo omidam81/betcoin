@@ -1,0 +1,2 @@
+MONGO_USER=<mongo user here>
+MONGO_PASSWORD=<mongo password here>

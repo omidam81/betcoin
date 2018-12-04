@@ -1,0 +1,19 @@
+
+    <table class="table gamesTable">
+        <thead>
+            <tr>
+                <th><%= text.alias %></th>
+                <th><%= text.date_joined %></th>
+                <td ng-repeat="(currency, total) in associates.result[0].totals">Earnings ({{ currency | cryptosymbol }})</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="associate in associates.result">
+                <td>{{ associate.username }}</td>
+                <td>{{ associate.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td ng-repeat="(currency, total) in associate.totals">
+                    {{ currency | cryptosymbol }} {{ associate.totals[currency] | cryptovalue }}
+                </td>
+            </tr>
+        </tbody>
+    </table>

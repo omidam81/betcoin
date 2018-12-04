@@ -1,0 +1,100 @@
+{
+    "prod": "war",
+    "meta": {
+        "title": "财神战™ 比特币赌场 - 玩绝对公平的比特币战争扑克游戏",
+        "description": "财神战™ 是绝对公平的比特币扑克战争游戏。 马上翻倍您的比特币，或则赢一局批对，赢十倍投注！",
+        "keywords": "比特币, 赌场, 赌博, 骰子, 游戏, Satoshi, 投注, 转轮, 老虎机, Blockchain, 比特币投注,  扑克, 21点, 几率平等"
+    },
+    "isLocalized" : "true",
+    "minbetMsg": "最少投注 0.000001 个比特币",
+    "serverMsg": "无法链接服务器",
+    "minconfMsg": "至少有一个充值没有被确定，请等待",
+    "withdrawErrorMsg": "取款错误，请重试",
+    "global": {
+        "logourl": "img/words/CN-WAR.png",
+        "withdrawAddress": "取款地址"
+    },
+    "nav": {
+        "spins": "近期游戏",
+        "leaderboard": "高手排名榜",
+        "howtoplay": "游戏说明"
+    },
+    "home": {
+        "title_image": "img/icons/casino.png"
+    },
+    "reels": {
+        "x": "倍",
+        "symbol": "图案",
+        "multiplier": "赔率"
+    },
+    "text": {
+        "withdrawAddress": "输入您的比特币钱包地址"
+    },
+    "locales" : {
+        "en" : {
+            "url" : "https://www.betcoin.tm/war"
+        },
+        "zh" : {
+            "url" : "https://www.caishentang.com/zhan"
+        }
+    },
+    "game": {
+        "dealer" : "庄家",
+        "player" : "玩家",
+        "details": "详细",
+        "CircleDiv2": "所有游戏",
+        "CircleDiv3": "我的游戏",
+        "CircleDiv4": "下注:",
+        "CircleDiv5": "余额:",
+        "CircleDiv6": "充值地址:",
+        "CircleButtonCashOut": "取款",
+        "cashoutConfirm": "请确定您要取款",
+        "returnToGame": "回到游戏",
+        "SsHeader1": "设置种子",
+        "SsHeader2": "下一个游戏ID:",
+        "SsHeader3": "设置客户端种子",
+        "spinmessage": "选择投注大小－批对下注 10倍赔率",
+        "spinningmessage":"<a href=\"https://www.caishentang.com/jiang\" target=\"_blank\">全球最大的比特币彩票</a>",
+        "winmessage": "你赢了",
+        "autospin_text" : "自动下注",
+        "proof_text" : "证明"
+    },
+    "leaderboard": {
+        "topPlayers": "排名前列对玩家",
+        "bronze": "tong jiang",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum",
+        "diamond": "Diamond",
+        "alias": "用户名",
+        "btcwagered": "投注比特币"
+    },
+    "spins": {
+        "global": "所有游戏",
+        "mybets": "我的投注",
+        "CircleTh1": "编号",
+        "CircleTh2": "别名",
+        "CircleTh3": "结果",
+        "CircleTh4": "赌注",
+        "CircleTh5": "返回",
+        "CircleTh6": "证明",
+        "CircleTh7": "时间",
+        "CircleTh8": "圆盘",
+        "ProofHeader1": "证明",
+        "ProofDt1": "服务端种子",
+        "ProofDt2": "初始排列",
+        "ProofDt3": "初始哈希",
+        "ProofDt4": "客户端种子",
+        "ProofDt5": "最终排列"
+    },
+    "buttons" : {
+        "auto_war_text_on" : "自动战争: 关闭",
+        "auto_war_text_off" : "自动战争: 打开",
+        "auto_surrender_text_on" : "自动投降: 关闭",
+        "auto_surrender_text_off" : "自动投降: 打开",
+        "bet": "下注",
+        "tiebet": "批对下注",
+        "go_to_war": "战争",
+        "surrender": "投降"
+    }
+}

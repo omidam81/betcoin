@@ -1,0 +1,43 @@
+{
+    "prod": "letitride",
+    "meta": {
+        "title": "Betcoin™ Let It Ride Poker - Provably Fair - Win Bitcoin!",
+        "keywords": "Bitcoin, Casino, Gambling, free bitcoin, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-letitride.png"
+    },
+    "home": {
+        "title_image": "img/icons/letitride280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/letitride"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/jialebi-puke"
+        }
+    },
+    "game": {
+        "community_cards": "Community Cards",
+        "player": "Player",
+        "winmessage": "WINNER",
+        "seed" : "Seed",
+        "first": "1",
+        "second": "2",
+        "three": "3-Card",
+        "five": "5-Card"
+    },
+    "spins": {
+        "CircleTh4": "Bet",
+        "ProofDt5": "Final Array"
+    },
+    "buttons": {
+        "let_it_ride": "Let It Ride",
+        "pull": "Pull",
+        "clear_bets": "Clear Bets"
+    },
+    "text": {
+        "invalid_raise": "Invalid raise"
+    }
+}

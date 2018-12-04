@@ -1,0 +1,64 @@
+<div class="hidden-xs">
+	<div class="col-sm-9">
+		<div class="panel panel-default main-container">
+			<div class="panel-heading">
+				<div ng-show="type=='pending-tickets'">Pending Tickets</div>
+				<div ng-show="type=='closed-tickets'">Closed Tickets</div>
+				<div ng-show="type=='open-tickets'">Open Tickets</div>
+				<div ng-show="type=='flagged-tickets'">Flagged Tickets</div>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Subject</th>
+                        <th>VIP</th>
+						<th>Requester</th>
+						<th>Requested</th>
+						<th>Type</th>
+						<th>Priority</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="ticket in tickets.data">
+						<td><span>{{ticket.subject}}</span></td>
+                        <td><span class="glyphicon" ng-class="ticket.anonymous && 'glyphicon-remove' || 'glyphicon-ok'"></span></td>
+						<td>{{ticket.owner}}</td>
+						<td>{{ticket.dateCreated | date:'medium'}}</td>
+						<td>{{ticket.type | type }}</td>
+						<td>{{ticket.priority | priority }}</td>
+						<td><a href="support/detail/{{ticket._id}}" class="btn btn-primary btn-xs">View</a></td>
+					</tr>					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="visible-xs">
+	<div class="panel panel-default main-container">
+		<div class="panel-heading">Pending Tickets</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Subject</th>
+					<th>Requester</th>
+					<th>Requested</th>
+					<th>Type</th>
+					<th>Priority</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="ticket in tickets.data">
+					<td><span>{{ticket.subject}}</span></td>
+					<td>{{ticket.owner}}</td>
+					<td>{{ticket.dateCreated | date:'medium'}}</td>
+					<td>{{ticket.type | type }}</td>
+					<td>{{ticket.priority | priority }}</td>
+					<td><a href="support/detail/{{ticket._id}}" class="btn btn-primary btn-xs">View</a></td>
+				</tr>					
+			</tbody>
+		</table>
+	</div>
+</div>

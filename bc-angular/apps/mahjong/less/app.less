@@ -1,0 +1,497 @@
+@gold: #ffd479;
+@golddark: #D6AE58;
+@goldvolume: rgb(173, 150, 95);
+
+#gameContainer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  padding-top: 10px;
+  @media (max-width: 1200px) {
+    height: 490px;
+  }
+  @media (max-width: 992px) {
+    height: 610px;
+  }
+  @media (max-width: 768px) {
+    height: 520px;
+  }
+  @media (max-width: 668px) {
+    height: 460px;
+    #options {
+      width: 400px;
+      margin-left: -200px;
+    }
+  }
+  @media (max-width: 568px) {
+    height: 350px;
+    #options {
+      width: 300px;
+      margin-left: -150px;
+      #btn-play {
+        font-size: 15px;
+      }
+    }
+  }
+  @media (max-width: 480px) {
+    height: 310px;
+    #options {
+      width: 260px;
+      margin-left: -130px;
+      #btn-play {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+#mahjongPanel {
+  width:653px;
+  height:530px;
+  margin: 0 auto;
+  transform-origin:50% 0;
+  -ms-transform-origin:50% 0;
+  -moz-transform-origin:50% 0;
+  -o-transform-origin:50% 0;
+  -webkit-transform-origin:50% 0;
+  .col-xs-1,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-10,.col-xs-11,.col-xs-12 {
+    padding: 0;
+  }
+  @media (max-width: 1200px) {
+    -ms-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    height: 710px;
+    margin-bottom: -150px;
+  }
+  @media (max-width: 992px) {
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    height: 710px;
+    margin-bottom: 0px;
+  }
+  @media (max-width: 768px) {
+    -ms-transform: scale(0.85);
+    -moz-transform: scale(0.85);
+    -o-transform: scale(0.85);
+    -webkit-transform: scale(0.85);
+    transform: scale(0.85);
+    height: 710px;
+    margin-bottom: -300px;
+  }
+  @media (max-width: 668px) {
+    -ms-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    -o-transform: scale(0.75);
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
+    height: 710px;
+    margin-bottom: -300px;
+    transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    position: absolute;
+    left: 50%;
+    margin-left: -250px;
+  }
+  @media (max-width: 568px) {
+    -ms-transform: scale(0.57);
+    -moz-transform: scale(0.57);
+    -o-transform: scale(0.57);
+    -webkit-transform: scale(0.57);
+    transform: scale(0.57);
+    height: 710px;
+    margin-bottom: -300px;
+    transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    position: absolute;
+    left: 50%;
+    margin-left: -190px;
+  }
+  @media (max-width: 480px) {
+    -ms-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    height: 710px;
+    margin-bottom: -350px;
+    transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    position: absolute;
+    left: 50%;
+    margin-left: -170px;
+  }
+}
+
+.game-controller {
+
+}
+
+#spinmessage {
+  font-size: 12pt;
+  margin:0px auto;
+  height: auto !important;
+}
+
+.bet_results {
+  height: 20px;
+  margin: 10px auto;
+}
+
+.result-message {
+
+}
+
+.cards-wrapper {
+  display: table-cell;
+}
+#gameCanvas {
+  width:230px;
+  height:70px;
+  margin:0 auto;
+}
+#top-player {
+  .cards {
+    height:50px;
+    line-height:50px;
+    & > div:not(.cards) {
+      -ms-transform: rotate(180deg) scale(0.8);
+      -webkit-transform: rotate(180deg) scale(0.8);
+      transform: rotate(180deg) scale(0.8);
+      -moz-transform: rotate(180deg) scale(0.8);
+      -o-transform: rotate(180deg) scale(0.8);
+    }
+    & > div {
+      margin-left: -6px;
+    }
+  }
+  .cards.meld {
+    margin: 0 0 0 10px;
+  }
+}
+#top-player, #bottom-player {
+  height: 55px;
+  display: table;
+}
+#bottom-player {
+  .cards {
+    height: 67px;
+  }
+  .cards.bonuses {
+    height: 50px;
+    margin-right: 13px;
+    & > div {
+      &:hover {
+        -ms-transform: scale(0.8) !important;
+        -webkit-transform: scale(0.8) !important;
+        transform: scale(0.8) !important;
+        -moz-transform: scale(0.8) !important;
+        -o-transform: scale(0.8) !important;
+        z-index: 80;
+      }
+      margin-right: -13px;
+      -ms-transform: scale(0.6) !important;
+      -webkit-transform: scale(0.6) !important;
+      transform: scale(0.6) !important;
+      -moz-transform: scale(0.6) !important;
+      -o-transform: scale(0.6) !important;
+    }
+  }
+}
+
+#left-player .cards.bonuses > div{
+  -ms-transform: rotate(90deg) scale(0.6) !important;
+  -webkit-transform: rotate(90deg) scale(0.6) !important;
+  transform: rotate(90deg) scale(0.6) !important;
+  -moz-transform: rotate(90deg) scale(0.6) !important;
+  -o-transform: rotate(90deg) scale(0.6) !important;
+  margin-bottom:-6px;
+  &:hover {
+    -ms-transform: rotate(90deg) scale(0.8) !important;
+    -webkit-transform: rotate(90deg) scale(0.8) !important;
+    transform: rotate(90deg) scale(0.8) !important;
+    -moz-transform: rotate(90deg) scale(0.8) !important;
+    -o-transform: rotate(90deg) scale(0.8) !important;
+    z-index: 80;
+  }
+}
+
+#right-player .cards.bonuses > div{
+  -ms-transform: rotate(-90deg) scale(0.6) !important;
+  -webkit-transform: rotate(-90deg) scale(0.6) !important;
+  transform: rotate(-90deg) scale(0.6) !important;
+  -moz-transform: rotate(-90deg) scale(0.6) !important;
+  -o-transform: rotate(-90deg) scale(0.6) !important;
+  margin-bottom:-6px;
+  &:hover {
+    -ms-transform: rotate(-90deg) scale(0.8) !important;
+    -webkit-transform: rotate(-90deg) scale(0.8) !important;
+    transform: rotate(-90deg) scale(0.8) !important;
+    -moz-transform: rotate(-90deg) scale(0.8) !important;
+    -o-transform: rotate(-90deg) scale(0.8) !important;
+    z-index: 80;
+  }
+}
+
+#top-player .cards.bonuses > div{
+  -ms-transform: rotate(180deg) scale(0.6) !important;
+  -webkit-transform: rotate(180deg) scale(0.6) !important;
+  transform: rotate(180deg) scale(0.6) !important;
+  -moz-transform: rotate(180deg) scale(0.6) !important;
+  -o-transform: rotate(180deg) scale(0.6) !important;
+  margin-left:-12px;
+  &:hover {
+    -ms-transform: rotate(180deg) scale(0.8) !important;
+    -webkit-transform: rotate(180deg) scale(0.8) !important;
+    transform: rotate(180deg) scale(0.8) !important;
+    -moz-transform: rotate(180deg) scale(0.8) !important;
+    -o-transform: rotate(180deg) scale(0.8) !important;
+    z-index: 80;
+  }
+}
+
+#player-hand {
+  .livecard {
+    margin-top: 13px;
+    height: 50px;
+    &.highlight {
+      &:hover {
+        cursor:pointer;
+        margin-top: 0px;
+        height: 63px;
+      }
+    }
+  }
+}
+#right-player {
+  display: table;
+  width: 55px;
+  .cards-wrapper {
+    vertical-align:middle;
+    height:400px;
+  }
+  .cards {
+    width:50px;
+    float:right;
+    clear: none;
+    &:first-child {
+      margin-left: 0px;
+      min-height: 10px;
+      text-align:right;
+      float: right;
+      width:60px;
+    }
+    & > div {
+      margin-top: -28px;
+    }
+  }
+  .cards > div:not(.cards) {
+    -ms-transform: rotate(-90deg) scale(0.8);
+    -webkit-transform: rotate(-90deg) scale(0.8);
+    transform: rotate(-90deg) scale(0.8);
+    -moz-transform: rotate(-90deg) scale(0.8);
+    -o-transform: rotate(-90deg) scale(0.8);
+  }
+  .cards.meld {
+    margin: 10px 0 0 0;
+    text-align:right;
+  }
+}
+#left-player{
+  display: table;
+  width: 55px;
+  .cards-wrapper {
+    vertical-align:middle;
+    height:400px;
+  }
+  .cards {
+    width:50px;
+    float:left;
+    clear: none;
+    &:first-child {
+      margin-right: 20px;
+      min-height: 10px;
+    }
+    & > div {
+      margin-top: -28px;
+    }
+  }
+  .cards > div:not(.cards) {
+    -ms-transform: rotate(90deg) scale(0.8);
+    -webkit-transform: rotate(90deg) scale(0.8);
+    transform: rotate(90deg) scale(0.8);
+    -moz-transform: rotate(90deg) scale(0.8);
+    -o-transform: rotate(90deg) scale(0.8);
+  }
+  .cards.meld {
+    margin: 0 0 10px 0;
+  }
+}
+#center {
+  width: 520px;
+  .cards-wrapper {
+    display:block;
+    height:400px;
+  }
+}
+#top-removed, #bottom-removed {
+  height:110px;
+  text-align:left;
+  margin-bottom:-20px;
+}
+#top-removed {
+  -ms-transform: rotate(180deg) scale(0.8);
+  -webkit-transform: rotate(180deg) scale(0.8);
+  transform: rotate(180deg) scale(0.8);
+  -moz-transform: rotate(180deg) scale(0.8);
+  -o-transform: rotate(180deg) scale(0.8);
+  margin-top:-20px;
+}
+#bottom-removed {
+  -ms-transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -o-transform: scale(0.8);
+}
+
+#removed-center {
+  width:100%;
+  height:220px;
+  position:relative;
+}
+#left-removed, #right-removed {
+  width:270px;
+  height:220px;
+  text-align:left;
+}
+#left-removed {
+  -ms-transform: rotate(90deg) scale(0.8);
+  -webkit-transform: rotate(90deg) scale(0.8);
+  transform: rotate(90deg) scale(0.8);
+  -moz-transform: rotate(90deg) scale(0.8);
+  -o-transform: rotate(90deg) scale(0.8);
+
+  -ms-transform-origin: 0 100%;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -moz-transform-origin: 0 100%;
+  -o-transform-origin: 0 100%;
+
+  position:absolute;
+  top:0;
+  left:0;
+  margin-top:-205px;
+}
+#right-removed {
+  -ms-transform: rotate(-90deg) scale(0.8);
+  -webkit-transform: rotate(-90deg) scale(0.8);
+  transform: rotate(-90deg) scale(0.8);
+  -moz-transform: rotate(-90deg) scale(0.8);
+  -o-transform: rotate(-90deg) scale(0.8);
+
+  transform-origin: 100% 0;
+  -ms-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  -o-transform-origin: 100% 0;
+  -webkit-transform-origin: 100% 0;
+  position:absolute;
+  top:10px;
+  right:170px;
+}
+#options {
+  /*position: absolute;
+  height: 85%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 20px;
+  z-index:90;*/
+
+  position: absolute;
+  height: 70%;
+  width: 453px;
+  top: 15%;
+  left: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  z-index: 90;
+  margin-left: -226px;
+  & > div {
+    display: table;
+    width: 100%;
+    height: 100%;
+    & > div {
+      display: table-cell;
+      vertical-align:middle;
+    }
+  }
+  .livecard {
+    transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -o-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+  }
+  button > span {
+    display:block;
+  }
+}
+.padding-10 {
+  padding: 10px;
+}
+.label.active {
+  font-size:18px !important;
+}
+.howtoplay{
+  table {
+    margin-left: 40px;
+    tr {
+      td, th{
+        padding: 5px;
+        border: 1px solid #ffd479 !important;
+        background-color: transparent;
+        min-width: 150px;
+      }
+    }
+  }
+}
+.meld-notify {
+  position: absolute;
+  background-color: rgba(0,0,0,0.6);
+  width: 150px;
+  height: 150px;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -65px;
+  z-index: 98;
+  padding-top: 63px;
+  border-radius: 20px;
+  .label-danger {
+    font-size: 18px !important;
+  }
+}
+#btn-play {
+  font-size: 24px;
+  margin-top: 5px;
+}
+.payout {
+  width: 50%;
+  float: left;
+}

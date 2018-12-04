@@ -1,0 +1,13 @@
+<div  style="margin:10px auto;" ng-show="player.anonymous">
+    <div ng-hide="withdrawPending">
+        <a ng-hide="player.email" style="cursor:pointer;" ng-click="initiateWithdraw()">
+            <button ng-disabled="isGameInProgress" class="btn btn-default btn-sm"><%= game.CircleButtonCashOut %></button>
+        </a>
+    </div>
+    <div ng-show="withdrawPending">
+        <b><%= game.cashoutConfirm %></b><br>
+        <b ng-show="error" class="color-red">{{error|error}}</b><br>
+        <button ng-disabled="isGameInProgress" ng-click="cashOut()" class="btn btn-default btn-sm"><%= game.CircleButtonCashOut %></button>
+        <button class="btn btn-default btn-sm" ng-click="withdrawPending = false"><%= game.returnToGame %></button>
+    </div>
+</div>

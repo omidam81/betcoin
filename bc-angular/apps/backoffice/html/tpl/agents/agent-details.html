@@ -1,0 +1,28 @@
+<p>{{agent._id}}</p>
+<h2>{{agent.username}}</h2>
+<h3>{{agent.realName}}</h3>
+<h3>{{agent.email}}{{agent.pendingEmail}}</h3>
+<h4>{{agent.phone}}</h4>
+<p>{{agent.address}}</p>
+<p>{{agent.notes}}</p>
+<p><div ng-repeat="ser in agent.serials">{{ser}}</div></p>
+<p>{{ agent.commission*100 }} %</p>
+<h4>{{agent.totalEarnings}}</h4>
+<table>
+<tr>
+    <th>Username</th><th>Email</th><th>Earnings</th><th>Last Earned</th><th>Last Activity</th>
+</tr>
+<tr ng-repeat="aff in agent.affiliates">
+    <td><a href="/backoffice/user/{{aff._id}}/affiliate">{{aff.username}}</a></td><td>{{aff.email}}{{aff.pendingEmail}}</td><td>{{aff.totalEarnings}}</td><td>{{aff.lastEarnings}}</td><td>{{aff.lastLogin}}</td>
+</tr>
+</table>
+<!--
+<table>
+<tr>
+	<th>Serial #</th><th>Earnings</th><th>Last Earned</th><th>Last Activity</th>
+</tr>
+<tr ng-repeat="ass in agent.affiliates">
+	<td>{{ass.serial}}</td><td>{{ass.totalEarnings}}</td><td>{{ass.lastEarnings}}</td><td>{{ass.lastLogin}}</td>
+</tr>
+</table>
+-->

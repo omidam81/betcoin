@@ -1,0 +1,12 @@
+<div bc-page loading="isLoading">
+    <div class="row">
+        <div bc-submenu class="col-sm-12 col-md-3"></div>
+        <div bc-leagues></div>
+
+        <div class="col-xs-12 col-md-9 xs-fullwidth">
+            <div bc-box  title="{{league.name}}: <%= leagueEvents %>">
+                <div bc-events-list data="leagueEvents" columns="2"></div>
+            </div>
+        </div>
+    </div>
+</div>

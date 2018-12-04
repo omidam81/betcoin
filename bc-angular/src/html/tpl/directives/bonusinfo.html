@@ -1,0 +1,46 @@
+<div class="panel">
+    <div class="margin-top-10">
+        <%= bonus.accepted %>: {{bonus.acceptedAt | date:'medium'}}
+    </div>
+    <div ng-show="bonus.unlockedAt">
+        <%= bonus.unlocked %>: {{ bonus.unlockedAt | date:'medium' }}
+    </div>
+    <div ng-show="bonus.exhaustedAt">
+        <%= bonus.unlocked %>: {{ bonus.exhaustedAt | date:'medium' }}
+    </div>
+    <div>
+        <%= bonus.expires %>: {{ bonus.expires | date:'medium' }}
+    </div>
+    <div ng-show="bonus.activatedAt && !bonus.unlockedAt && !bonus.exhaustedAt">
+        <div class="margin-top-10">
+            <%= bonus.amount %>: {{bonus.initialValue | cryptovalue}} <wallet-currency wallet="bonus"></wallet-currency>
+        </div>
+        <div>
+            <%= bonus.value %>: {{bonus.value | cryptovalue}} <wallet-currency wallet="bonus"></wallet-currency>
+        </div>
+        <div>
+            <%= bonus.unlockamount %>: {{bonus.rollover}}x {{bonus.initialValue | cryptovalue}} <wallet-currency wallet="bonus"></wallet-currency>
+            = {{bonus.rollover*bonus.initialValue | cryptovalue}} <wallet-currency wallet="bonus"></wallet-currency>
+        </div>
+        <div>
+            <%= bonus.wagered %>: {{bonus.wagered| cryptovalue}} <wallet-currency wallet="bonus"></wallet-currency>
+        </div>
+        <div class="form-control">
+            <%= bonus.unlockpercent %>: {{bonus | bonusUnlockedPercent }}%
+        </div>
+    </div>
+    <div ng-hide="bonus.activatedAt || (bonus.unlockedAt || bonus.exhaustedAt)">
+        <div class="margin-top-10">
+            <%= bonus.max %>: {{bonus.maxValue | cryptovalue}} <wallet-currency wallet="bonus"></wallet-currency>
+        </div>
+        <div>
+            <%= bonus.type %>: <span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> <%= bonus.bonus%>
+        </div>
+        <div class="margin-top-10" ng-show="activateMsg && bonus.type=='match'">
+            <%= bonus.deposit_to_unlock %>
+        </div>
+        <div class="margin-top-10" ng-hide="activateMsg">
+            <%= bonus.unlock_previous %>
+        </div>
+    </div>
+</div>

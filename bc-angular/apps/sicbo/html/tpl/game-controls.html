@@ -1,0 +1,186 @@
+<div ng-controller="GameController" class="row noselect sicbo-area" id="gameContainer">
+    <div class="col-xs-12 col-md-4 text-center col-md-push-8">
+
+        <div><img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" /></div>
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <div>
+            <spinmessage></spinmessage>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+        </div>
+        <div class="clear-both position-relative">
+              <div class="sicbo-game-sound-toggle-container">
+                  <div class="soundToggle"><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+              </div>
+              <proof-button></proof-button>
+              <small class="display-none">
+                  <dl class="dl-horizontal">
+                      <dt><%= game.SsHeader2 %></dt><dd>{{ nextGameId }}</dd>
+                      <dt>SHA256:</dt><dd class="allow-word-wrap-with-word-break">{{ sha256 }}</dd>
+                  </dl>
+              </small>
+
+              <bc-client-seed class="seed-container" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-8 game col-md-pull-4 padding-0">
+      <div id="g-sicbo" class="g-sicbo">
+          <div id="board" class="board">
+              
+              <div id="ratestr" style="display:none"><%= boards.ratestr%></div>
+              
+              
+              <div class="singleheader">
+                  <label><%= boards.singledicestr1%></label>
+                  <label><%= boards.singledicestr2%></label>
+                  <label><%= boards.singledicestr3%></label>
+              </div>
+
+              <div class="doubleheader1"><label>11 : 1</label></div>
+              <div class="doubleheader2"><label>11 : 1</label></div>
+              
+              <div class="tripleheader1"><label>180 : 1</label></div>
+              <div class="tripleheader2"><label>180 : 1</label></div>
+              
+              <div class="anytripleheader"><label>30 : 1</label></div>
+              
+              <div class="twodiceheader"><label><%= boards.twodicestr%></label></div>
+              
+
+              <div class="small" placebet data-bet='["small"]' class="number"><div class="chips"></div><p><%= boards.small%></p><%= boards.smallstr%></div>
+              
+              <div class="large" placebet data-bet='["big"]' class="number"><div class="chips"></div><p><%= boards.big%></p><%= boards.bigstr%></div>
+              
+              <div class="single_dice_1" placebet data-bet='["single_dice",1]' class="number"><div class="chips"></div><div class="single-dice-1"></div></div>
+              
+              <div class="single_dice_2" placebet data-bet='["single_dice",2]' class="number"><div class="chips"></div><div class="single-dice-2"></div></div>
+              
+              <div class="single_dice_3" placebet data-bet='["single_dice",3]' class="number"><div class="chips"></div><div class="single-dice-3"></div></div>
+              
+              <div class="single_dice_4" placebet data-bet='["single_dice",4]' class="number"><div class="chips"></div><div class="single-dice-4"></div></div>
+              
+              <div class="single_dice_5" placebet data-bet='["single_dice",5]' class="number"><div class="chips"></div><div class="single-dice-5"></div></div>
+              
+              <div class="single_dice_6" placebet data-bet='["single_dice",6]' class="number"><div class="chips"></div><div class="single-dice-6"></div></div>
+              
+              <div class="two_dice_1_2" placebet data-bet='["two_dice",1,2]' class="number"><div class="chips"></div><div class="two-dice-1-2"></div></div>
+              
+              <div class="two_dice_1_3" placebet data-bet='["two_dice",1,3]' class="number"><div class="chips"></div><div class="two-dice-1-3"></div></div>
+              
+              <div class="two_dice_1_4" placebet data-bet='["two_dice",1,4]' class="number"><div class="chips"></div><div class="two-dice-1-4"></div></div>
+              
+              <div class="two_dice_1_5" placebet data-bet='["two_dice",1,5]' class="number"><div class="chips"></div><div class="two-dice-1-5"></div></div>
+              
+              <div class="two_dice_1_6" placebet data-bet='["two_dice",1,6]' class="number"><div class="chips"></div><div class="two-dice-1-6"></div></div>
+              
+              <div class="two_dice_2_3" placebet data-bet='["two_dice",2,3]' class="number"><div class="chips"></div><div class="two-dice-2-3"></div></div>
+              
+              <div class="two_dice_2_4" placebet data-bet='["two_dice",2,4]' class="number"><div class="chips"></div><div class="two-dice-2-4"></div></div>
+              
+              <div class="two_dice_2_5" placebet data-bet='["two_dice",2,5]' class="number"><div class="chips"></div><div class="two-dice-2-5"></div></div>
+              
+              <div class="two_dice_2_6" placebet data-bet='["two_dice",2,6]' class="number"><div class="chips"></div><div class="two-dice-2-6"></div></div>
+              
+              <div class="two_dice_3_4" placebet data-bet='["two_dice",3,4]' class="number"><div class="chips"></div><div class="two-dice-3-4"></div></div>
+              
+              <div class="two_dice_3_5" placebet data-bet='["two_dice",3,5]' class="number"><div class="chips"></div><div class="two-dice-3-5"></div></div>
+              
+              <div class="two_dice_3_6" placebet data-bet='["two_dice",3,6]' class="number"><div class="chips"></div><div class="two-dice-3-6"></div></div>
+              
+              <div class="two_dice_4_5" placebet data-bet='["two_dice",4,5]' class="number"><div class="chips"></div><div class="two-dice-4-5"></div></div>
+              
+              <div class="two_dice_4_6" placebet data-bet='["two_dice",4,6]' class="number"><div class="chips"></div><div class="two-dice-4-6"></div></div>
+              
+              <div class="two_dice_5_6" placebet data-bet='["two_dice",5,6]' class="number"><div class="chips"></div><div class="two-dice-5-6"></div></div>
+              
+              <div class="total_4" placebet data-bet='["total",4]' class="number"><div class="chips"></div><p>4</p>60:1</div>
+              
+              <div class="total_5" placebet data-bet='["total",5]' class="number"><div class="chips"></div><p>5</p>20:1</div>
+              
+              <div class="total_6" placebet data-bet='["total",6]' class="number"><div class="chips"></div><p>6</p>18:1</div>
+              
+              <div class="total_7" placebet data-bet='["total",7]' class="number"><div class="chips"></div><p>7</p>12:1</div>
+              
+              <div class="total_8" placebet data-bet='["total",8]' class="number"><div class="chips"></div><p>8</p>8:1</div>
+              
+              <div class="total_9" placebet data-bet='["total",9]' class="number"><div class="chips"></div><p>9</p>6:1</div>
+              
+              <div class="total_10" placebet data-bet='["total",10]' class="number"><div class="chips"></div><p>10</p>6:1</div>
+              
+              <div class="total_11" placebet data-bet='["total",11]' class="number"><div class="chips"></div><p>11</p>6:1</div>
+              
+              <div class="total_12" placebet data-bet='["total",12]' class="number"><div class="chips"></div><p>12</p>6:1</div>
+              
+              <div class="total_13" placebet data-bet='["total",13]' class="number"><div class="chips"></div><p>13</p>8:1</div>
+              
+              <div class="total_14" placebet data-bet='["total",14]' class="number"><div class="chips"></div><p>14</p>12:1</div>
+              
+              <div class="total_15" placebet data-bet='["total",15]' class="number"><div class="chips"></div><p>15</p>18:1</div>
+              
+              <div class="total_16" placebet data-bet='["total",16]' class="number"><div class="chips"></div><p>16</p>20:1</div>
+              
+              <div class="total_17" placebet data-bet='["total",17]' class="number"><div class="chips"></div><p>17</p>60:1</div>
+              
+              <div class="double_1" placebet data-bet='["double",1]' class="number"><div class="chips"></div><div class="double-dice-1"></div></div>
+              
+              <div class="double_2" placebet data-bet='["double",2]' class="number"><div class="chips"></div><div class="double-dice-2"></div></div>
+              
+              <div class="double_3" placebet data-bet='["double",3]' class="number"><div class="chips"></div><div class="double-dice-3"></div></div>
+              
+              <div class="double_4" placebet data-bet='["double",4]' class="number"><div class="chips"></div><div class="double-dice-4"></div></div>
+              
+              <div class="double_5" placebet data-bet='["double",5]' class="number"><div class="chips"></div><div class="double-dice-5"></div></div>
+              
+              <div class="double_6" placebet data-bet='["double",6]' class="number"><div class="chips"></div><div class="double-dice-6"></div></div>
+              
+              <div class="any_triple" placebet data-bet='["any_triple"]' class="number"><div class="chips"></div><div class="any-triple-dice"></div></div>
+              
+              <div class="triple_1" placebet data-bet='["triple",1]' class="number"><div class="chips"></div><div class="triple-dice-1"></div></div>
+              
+              <div class="triple_2" placebet data-bet='["triple",2]' class="number"><div class="chips"></div><div class="triple-dice-2"></div></div>
+              
+              <div class="triple_3" placebet data-bet='["triple",3]' class="number"><div class="chips"></div><div class="triple-dice-3"></div></div>
+              
+              <div class="triple_4" placebet data-bet='["triple",4]' class="number"><div class="chips"></div><div class="triple-dice-4"></div></div>
+              
+              <div class="triple_5" placebet data-bet='["triple",5]' class="number"><div class="chips"></div><div class="triple-dice-5"></div></div>
+              
+              <div class="triple_6" placebet data-bet='["triple",6]' class="number"><div class="chips"></div><div class="triple-dice-6"></div></div>
+          </div>
+      </div>
+      <div class="row position-relative">
+        <div id="wheelhistory" class="col-xs-12">
+          <div class="history">
+            <bethistory ng-repeat="number in recentnumbers" data-color="{{number.color}}" data-number="{{number.number}}"></bethistory>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-6">            
+            <div class="btn-container btn margin-10">
+              <button ng-disabled="(isGameInProgress && !animationsLoading) || animationsLoading" ng-click="play();" class="btn-lg btn-flashy btn-spin font-size-30">                                  
+                  <%= buttons.start_roll %>                                          
+              </button>
+              <div class="flash-container">
+                <span class="flash"></span>
+              </div>                                         
+            </div>
+            <br />
+            <autospin-button></autospin-button>
+            <br />
+            <button ng-click="clearBets();" class="btn btn-default" bc-popover="{{clearBetsPopover}}" bc-popover-content="<%= buttons.clearbets_individual %>" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top" ng-disabled="isGameInProgress">
+                <%= buttons.clearbets %>
+            </button>
+          </div>
+          <div class="col-xs-6">
+            <div class="margin-top-10"><totalbets total="totalbet"></totalbets></div>
+            <div id="gameCanvas"></div>
+          </div>
+        </div>
+      
+    </div>
+    <div class="hide localizations">
+      <div id="localization-x"><span><%= game.x %></span></div>
+    </div>
+    <div class="clearfix"></div>
+</div>

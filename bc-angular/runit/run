@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+logfile=/var/log/app.log
+
+cd /app/node && exec /sbin/setuser app /usr/bin/node server --port 8443 --loc ${LOC:-en_US} >> $logfile 2>&1
+

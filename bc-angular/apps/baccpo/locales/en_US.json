@@ -1,0 +1,42 @@
+{
+    "prod": "baccpo",
+    "meta": {
+        "title": "Betcoin™ Baccpo Poker - Provably Fair - Win Bitcoin!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-baccpo.png"
+    },
+    "home": {
+        "title_image": "img/icons/baccpo280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/baccpo"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/le-dian"
+        }
+    },
+    "game": {
+        "winbet": "Win",
+        "tiebet": "Tie",
+        "bonusbet": "Bonus"
+    },
+    "buttons": {
+        "clear_bets": "Clear Bets",
+        "stand": "Stand",
+        "hit": "Hit"
+    },
+    "baccpoCardRanks": [
+        "",
+        "Three three of spaces",
+        "Three suited threes",
+        "Three unsuited threes",
+        "Suited three of a kind",
+        "Three suited 0-point cards",
+        "Unsuited three of a kind",
+        "Three unsuited 0-point cards",
+        "Three card flush",
+        ""
+    ]
+}

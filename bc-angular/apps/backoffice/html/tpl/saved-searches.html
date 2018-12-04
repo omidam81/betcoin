@@ -1,0 +1,133 @@
+<div class="row">
+    <div class="row"
+         ng-show="message.length">
+        <span class="alert alert-primary">{{message}}</span>
+    </div>
+    <div class="row"
+         ng-show="error.length">
+        <span class="alert alert-danger">{{error}}</span>
+    </div>
+    <div ng-show="editFormVisible"
+         class="row">
+        <form class="col-md-4">
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control"
+                       ng-model="searchParams.name">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           ng-model="searchParams.global"> Global?
+                </label>
+            </div>
+            <button class="btn btn-primary"
+                    ng-click="addQueryParam()">
+                Add Query Param
+            </button>
+            <div class="form-group panel"
+                 ng-repeat="(key, value) in searchParams.queryObj">
+                <label>
+                    {{key}}
+                    <span class="glyphicon glyphicon-remove"
+                          style="cursor: pointer;"
+                          ng-click="removeQueryParam(key)"></span>
+                </label>
+                <input class="form-control"
+                       ng-model="searchParams.queryObj[key]">
+            </div>
+        </form>
+        <form class="col-md-4">
+            <button class="btn btn-primary"
+                    ng-click="addField()">
+                Add Column
+            </button>
+            <div class="panel"
+                 ng-repeat="(index, field) in searchParams.fields">
+                <div class="form-group">
+                    <label>
+                        {{field.label}} Label
+                        <span class="glyphicon glyphicon-remove"
+                              style="cursor: pointer;"
+                              ng-click="removeField(index)"></span>
+                        <span class="glyphicon glyphicon-arrow-up"
+                              ng-if="!$first"
+                              style="cursor: pointer;"
+                              ng-click="promoteField(index)"></span>
+                        <span class="glyphicon glyphicon-arrow-down"
+                              ng-if="!$last"
+                              style="cursor: pointer;"
+                              ng-click="demoteField(index)"></span>
+                    </label>
+                    <input class="form-control"
+                           ng-model="searchParams.fields[index].label">
+                </div>
+                <div class="form-group">
+                    <label>{{field.label}} Field</label>
+                    <input class="form-control"
+                           ng-model="searchParams.fields[index].field">
+                </div>
+                <div class="form-group">
+                    <label>{{field.label}} Filter</label>
+                    <input class="form-control"
+                           ng-model="searchParams.fields[index].filter">
+                </div>
+            </div>
+
+        </form>
+        <form class="col-md-4">
+            <div class="form-group">
+                <label>Index</label>
+                <input class="form-control"
+                       type="number"
+                       ng-model="searchParams.index">
+            </div>
+            <div class="form-group">
+                <button class="form-control btn btn-primary"
+                        type="submit"
+                        ng-click="saveSearch()">Save</button>
+            </div>
+            <div class="form-group">
+                <button class="form-control btn btn-primary"
+                        type="submit"
+                        ng-click="cancelEdit()">Cancel</button>
+            </div>
+        </form>
+        <pre>{{searchParams|json}}</pre>
+    </div>
+    <div class="row">
+        <div>
+            <table class="table bc-backoffice-table">
+                <thead>
+                    <th>Name</th>
+                    <th>Global</th>
+                    <th>Admin</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                </thead>
+                <tbody ng-repeat="(index, search) in savedSearches">
+                    <tr>
+                        <td>{{index}}. {{search.name}}</td>
+                        <td>
+                            <span class="glyphicon"
+                                  ng-class="search.global? 'glyphicon-ok':'glyphicon-remove'"></span>
+                        </td>
+                        <td>{{search.admin}}</td>
+                        <td>{{search.createdAt | gmtdatetime}}</td>
+                        <td>{{search.updatedAt | gmtdatetime}}</td>
+                    </tr>
+                    <tr>
+                        <td style="word-wrap: break-word;"
+                            colspan="4">{{search.query}}</td>
+                        <td>
+                            <button ng-click="editSearch(index)"
+                                    class="btn btn-primary">Edit</button>
+                            <button ng-click="deleteSearch(search._id)"
+                                    class="btn btn-primary">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

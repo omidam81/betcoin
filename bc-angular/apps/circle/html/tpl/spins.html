@@ -1,0 +1,55 @@
+<div>
+    <ul class="nav nav-pills nav-justified">
+        <li ng-class="getRecentSpinsTabClass('global')"><a href="spins/global"><%= spins.global %></a></li>
+        <li ng-class="getRecentSpinsTabClass('player')"><a href="spins/player"><%= spins.myspins %></a></li>
+    </ul>
+    <table class="table table-bordered gamesTable">
+        <thead>
+            <tr>
+                <th class="hidden-xs" data-ng-click="setOrder('id')"><%= spins.CircleTh1 %></th>
+                <th class="" data-ng-click="setOrder('alias')"><%= spins.CircleTh2 %></th>
+                <th class="hidden-xs" data-ng-click="setOrder('payout_multiplier')"><%= spins.CircleTh3 %></th>
+                <th class="hidden-xs" data-ng-click="setOrder('currency')"><%= global.currency %></th>
+                <th class="hidden-xs" data-ng-click="setOrder('wager')"><%= spins.CircleTh4 %></th>
+                <th data-ng-click="setOrder('winnings')"><%= spins.CircleTh5 %></th>
+                <th><%= spins.CircleTh6 %></th>
+                <th class="" data-ng-click="setOrder('createdAt')"><%= spins.CircleTh7 %></th>
+                <th class="hidden-xs" data-ng-click="setOrder('game')"><%= spins.CircleTh8 %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="game in games | orderBy:orderby:reverse" ng-class="{ 'nonZeroColor': circle.payout_multiplier > 0,'zeroColor': circle.payout_multiplier == 0 }">
+                <td class="hidden-xs">
+                    {{ game.id || game._id }}
+                </td>
+                <td class="">
+                    {{ game.player_alias }}
+                </td>
+                <td class="hidden-xs">
+                    {{ game.payout_multiplier }}x
+                </td>
+                <td>
+                    {{ game.currency }}
+                </td>
+                <td class="hidden-xs">
+                    {{ game.wager | cryptovalue }}
+                </td>
+                <td>
+                    {{ game.winnings | cryptovalue }}
+                </td>
+                <td>
+                    <a href="history/details/{{game.id || game._id}}"
+                        style="font-size:25px;"
+                        class="glyphicon glyphicon-info-sign">
+                    </a>
+                </td>
+                <td class="">
+                    {{ game.createdAt | date:"MM/dd HH:mm:ss" }}
+                </td>
+                <td class="hidden-xs">
+                    <div>{{ gameNames[game.game] }}</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

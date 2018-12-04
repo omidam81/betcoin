@@ -1,0 +1,20 @@
+{
+  "name": "cryptod-npm",
+  "version": "0.0.0",
+  "description": "crypto-wallet interaction",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/betcn/crypto-npm"
+  },
+  "keywords": [
+    "bitcoind",
+    "dogecoind",
+    "litecoind"
+  ],
+  "author": "atticus",
+  "license": "ISC"
+}

@@ -1,0 +1,347 @@
+<ul class="nav nav-pills">
+    <li class="{{type=='playerDetails'?'active':''}}"><a ng-click="type='playerDetails'">Details</a>
+    </li>
+    <li class="{{type=='transaction'?'active':''}}"><a ng-click="type='transaction'">Transactions</a>
+    </li>
+    <li class="{{type=='game'?'active':''}}"><a ng-click="type='game'">Game History</a>
+    </li>
+    <li class="{{type=='message'?'active':''}}"><a ng-click="loadMessageHistory()">Message History</a>
+    </li>
+    <li class="{{type=='affiliates'?'active':''}}"><a ng-click="loadAffiliates()">Affiliates</a>
+    </li>
+    <li class="{{type=='unplayed'?'active':''}}"><a ng-click="loadUnplayedGames()">Unplayed Games</a>
+    </li>
+    <li class="{{type=='iphistory'?'active':''}}"><a ng-click="loadIPHistory()">IP History</a>
+    </li>
+</ul>
+<dl class="dl-horizontal">
+    <dt>User Balance</dt>
+    <dd>{{ player.balance.btc|btc }} BTC</dd>
+</dl>
+<div ng-switch on="type">
+    <div ng-switch-when="playerDetails">
+        <div ng-include="'tpl/player.html'" ng-controller="PlayerController"></div>
+    </div>
+    <div ng-switch-when="transaction">
+        <div ng-include="'tpl/cashflows.html'"></div>
+    </div>
+    <div ng-switch-when="game" ng-init="sort={datapoint:'transaction_date', order:-1}">
+        <filter-table data="data" page="page" total="total" sort='sort' size='500'>
+            <div class="table-responsive col-md-8">
+                <table class="table">
+                    <caption>Totals</caption>
+                    <thead>
+                        <tr>
+                            <th class="text-center">Total Wager</th>
+                            <th class="text-center">Total Winnings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">{{totals[0].transaction_game_wager_total|btc}}</td>
+                            <td class="text-center">{{totals[0].transaction_game_won_total|btc}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <caption>Game History</caption>
+                    <thead>
+                        <tr>
+                            <th class="col-md-2 text-center">Details</th>
+                            <th class="col-md-2 text-center">Id</th>
+                            <th class="col-md-1 text-center"><a sort-column sort-obj="sort" sort-field="transaction_amount" sort-func="filter()">Amount</a></th>
+                            <th class="col-md-2 text-center"><a sort-column sort-obj="sort" sort-field="transaction_date" sort-func="filter()">Datetime</a></th>
+                            <th class="col-md-1 text-center">Game</th>
+                            <th class="col-md-1 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" ng-repeat="game in data.return.results">
+                            <td>
+                                <a data-toggle="modal" style="cursor: pointer; font-size:25px;" class="glyphicon glyphicon-info-sign" data-target="#modal-{{game.transaction_game_type}}-game-details" ng-click="loadGameDetails(game.transaction_refId.split(':')[1], game.transaction_game_type)"></a>
+                            </td>
+                            <td>
+                                <div chars="12">{{game._id}}</div>
+                            </td>
+                            <td>{{game.transaction_amount|btc}}</td>
+                            <td>{{game.transaction_date|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td>{{game.transaction_game_type}}</td>
+                            <td>{{game.transaction_game_action}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination total-items="total" page="page" items-per-page="data.size" max-size="10" on-select-page="selectPage(page)" class="pagination-sm" boundary-links="true"></pagination>
+            </div>
+            <div class="col-md-4">
+                <div class="panel-group" id="filters-accordion" style="margin-bottom: 10px;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">Filters
+                            </h2>
+                        </div>
+                        <div id="filters-body" class="panel-body">
+                            <div class="form-group">
+                                <label for="game-type">Game Type</label>
+                                <div id="game-type">
+                                    <select class="form-control" name="game-type" ng-model="data.datapoints.transaction_game_type.lookup.value" ng-init="data.datapoints.transaction_game_type.lookup.value='any';data.datapoints.transaction_game_type.lookup.operator='contains'">
+                                        <option value="any">Any</option>
+                                        <option value="reel">Reels</option>
+                                        <option value="circle">Circle</option>
+                                        <option value="dice">Dice</option>
+                                        <option value="roulette">Roulette</option>
+                                        <option value="sicbo">Sicbo</option>
+                                        <option value="fortune">Fortune</option>
+                                        <option value="coinflip">Coinflip</option>
+                                        <option value="keno">Keno</option>
+                                        <option value="war">War</option>
+                                        <option value="hilo">HiLo</option>
+                                        <option value="bj">Blackjack</option>
+                                        <option value="baccarat">Baccarat</option>
+                                        <option value="paigow">Paigow</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="game-action">Action</label>
+                                <div id="game-action">
+                                    <select class="form-control" name="game-action" ng-model="data.datapoints.transaction_game_action.lookup.value" ng-init="data.datapoints.transaction_game_action.lookup.value='any';data.datapoints.transaction_game_action.lookup.operator='contains'">
+                                        <option value="any">Any</option>
+                                        <option value="wager">Wager</option>
+                                        <option value="winnings">Winnings</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="page-size">Page Size</label>
+                                <input id="page-size" type="number" class="form-control" ng-model="data.size">
+                                <!-- <button class="btn btn-default" ng-click="filter()">Filter</button> -->
+                                <!-- <button class="btn btn-default" ng-click="clearFilters()">Clear Filters</button> -->
+                            </div>
+                            <div class="form-group">
+                                <h5>Date Range</h5>
+                                <range-display since="range.start" until="range.end"></range-display>
+                                <range-chooser on-submit="totalsInDateRange(range);filter()"></range-chooser>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </filter-table>
+        <div id="modal-reel-game-details" class="game-proof modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Reels Game Details</h3>
+                    </div>
+                    <div class="modal-body">
+                        <dl class="dl-horizontal">
+                            <dt style="width: 100px">
+                                Game Id</dt>
+                            <dd style="margin-left: 120px">{{ gameDetails.id || gameDetails._id }}
+                            </dd>
+                            <dt style="width: 100px">
+                                Username</dt>
+                            <dd style="margin-left: 120px">{{ gameDetails.player_alias }}
+                            </dd>
+                            <dt style="width: 100px">
+                                Result</dt>
+                            <dd style="margin-left: 120px">{{ gameDetails | winnings }}X
+                            </dd>
+                            <dt style="width: 100px">
+                                Bet</dt>
+                            <dd style="margin-left: 120px">{{ gameDetails.wager | btc }}
+                            </dd>
+                            <dt style="width: 100px">
+                                Return</dt>
+                            <dd style="margin-left: 120px">{{ gameDetails.winnings | btc }}
+                            </dd>
+                            <dt style="width: 100px">
+                                Time</dt>
+                            <dd style="margin-left: 120px">{{ gameDetails.createdAt | date:"MM/dd HH:mm:ss" }}
+                            </dd>
+                            <dt style="width: 100px">Sever Seed</dt>
+                            <dd style="margin-left: 120px">{{ gameDetails.server_seed }}</dd>
+                            <dt style="width: 100px">Initial Hash</dt>
+                            <dd style="margin-left: 120px">{{ gameDetails.seed_hash }}</dd>
+                            <dt style="width: 100px">Client Seed</dt>
+                            <dd style="margin-left: 120px">{{ gameDetails.client_seed }}</dd>
+                            <dt style="width: 100px">Finanl Array</dt>
+                            <dd style="margin-left: 120px">{{ gameDetails.result }}</dd>
+                        </dl>
+                        <table style="margin:10px auto;" ng-if="gameDetails.result[0][0] != null">
+                            <tr>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[0][0]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[0][1]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[0][2]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[0][3]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[0][4]}}.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[1][0]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[1][1]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[1][2]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[1][3]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[1][4]}}.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[2][0]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[2][1]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[2][2]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[2][3]}}.png" />
+                                </td>
+                                <td>
+                                    <img ng-src="./img/sprites/{{gameDetails.result[2][4]}}.png" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-circle-game-details" class="circle-proof modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Circle Game Details</h3>
+                    </div>
+                    <div class="modal-body">
+                        <dl class="dl-horizontal">
+                            <dt>Server Seed</dt>
+                            <dd>{{ gameDetails.server_seed }}</dd>
+                            <dt>Initial Array</dt>
+                            <dd>{{ gameDetails.init_array }}</dd>
+                            <dt>Initial Hash</dt>
+                            <dd style='word-break: break-word'>{{ gameDetails.initial_hash }}</dd>
+                            <dt>Client Seed</dt>
+                            <dd>{{ gameDetails.client_seed }}</dd>
+                            <dt>Final Array</dt>
+                            <dd>{{ gameDetails.final_array }}</dd>
+                        </dl>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-switch-when="message">
+        <div class="panel-group" id="message-accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                    <div ng-repeat="message in messages|orderBy:'datetime':true">
+                        <a data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}">
+                        {{message.datetime | date:'yyyy-MM-dd HH:mm:ss'}} - {{message.subject}}
+                    </a>
+                        <div id="{{message.id}}" class="panel panel-{{message.hasRead === true?'default':'info'}} panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="message-body" ng-switch on="message.type">
+                                    <div ng-switch-when="deposit">
+                                        <p>Deposit Datetime: {{message.datetime | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                                        <p>Amount: {{message.data.amtIn|btc}}</p>
+                                        <p><a href="https://blockchain.info/tx/{{message.data.meta.txid}}" target="_blank">Transaction Id:{{message.data.meta.txid}}</a>
+                                        </p>
+                                    </div>
+                                    <div ng-switch-when="withdraw">
+                                        <p>Withdraw Datetime: {{message.datetime | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                                        <p>Amount: {{message.data.amtOut|btc}}</p>
+                                        <p><a href="https://blockchain.info/tx/{{message.data.meta.txid}}" target="_blank">Transaction Id:{{message.data.meta.txid}}</a>
+                                        </p>
+                                    </div>
+                                    <div ng-switch-default>
+                                        {{message.message}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-switch-when="affiliates">
+        <table class="table">
+            <caption>ASSOCIATES</caption>
+            <thead>
+                <tr>
+                    <th>Player Id</th>
+                    <th>Total Earnings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="associate in associates|orderBy:'earnings':true">
+                    <td><a href="player/{{associate._id}}/history">{{associate._id}}</a></td>
+                    <td>{{associate.earnings|btc}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-switch-when="unplayed">
+        <table class="table">
+            <caption>UNPLAYED GAMES</caption>
+            <thead>
+                <tr>
+                    <th>Game</th>
+                    <th># of Unplayed Games</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(key, value) in unplayedGames">
+                    <td>{{key.toUpperCase()}}</td>
+                    <td>{{value}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-switch-when="iphistory">
+        <div ng-repeat="(game, value) in ips" class="{{hasProperty(value)?'col-md-3':''}}" ng-show="hasProperty(value)">
+            <table class="table">
+                <caption>{{game.toUpperCase()}}</caption>
+                <thead>
+                    <tr>
+                        <th class="col-md-6">IP</th>
+                        <th class="col-md-6">Date Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(ip, time) in value">
+                        <td class="col-md-6">{{ip}}</td>
+                        <td class="col-md-6">{{time|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

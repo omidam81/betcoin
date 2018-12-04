@@ -1,0 +1,28 @@
+<table class="table">
+    <thead>
+        <th>Serial Number</th>
+        <th>Bonus Code</th>
+        <th>Rep Id</th>
+        <th>User Id</th>
+        <th>Agent Income</th>
+        <th>Rep Income</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="welcomePack in welcomePacks">
+            <td>{{welcomePack.serialNumber}}</td>
+            <td>{{welcomePack.bonusCode}}</td>
+            <td>{{welcomePack.repId || "N/A"}}</td>
+            <td>{{welcomePack.userId || "N/A"}}</td>
+            <td>
+                <div ng-repeat="(currency, income) in welcomePack.agentIncome">
+                    {{currency | cryptosymbol}}{{income | cryptovalue}}
+                </div>
+            </td>
+            <td>
+                <div ng-repeat="(currency, income) in welcomePack.repIncome">
+                    {{currency | cryptosymbol}}{{income | cryptovalue}}
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

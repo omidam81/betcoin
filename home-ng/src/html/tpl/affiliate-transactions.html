@@ -1,0 +1,19 @@
+    <range-chooser class="col-md-12" on-submit="rangeChanged(range)"></range-chooser>
+    <table class="table gamesTable">
+        <thead>
+            <tr>
+                <th><%= text.date %></th>
+                <th><%= text.amount_btc %></th>
+                <th><%= text.wager %></th>
+                <th><%= text.house_edge %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="tx in affiliateStats.transactions">
+                <td>{{ tx.date | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td>{{ tx.amtIn | btc }}</td>
+                <td>{{ tx.meta.wager | btc }}</td>
+                <td>{{ tx.meta.houseEdge*100|number:2}}%</td>
+            </tr>
+        </tbody>
+    </table>

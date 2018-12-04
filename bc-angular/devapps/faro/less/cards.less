@@ -1,0 +1,336 @@
+@font-face{
+font-family:'cardcharacters-regular';
+src:url("/fonts/cardcharacters-regular.eot");
+src:url("/fonts/cardcharacters-regular.eot?#iefix") format('embedded-opentype'),url("/fonts/cardcharacters-regular.woff") format('woff'),url("/fonts/cardcharacters-regular.ttf") format('truetype');
+font-weight:normal;
+font-style:normal;
+}
+.cards {
+    clear:both;
+    text-align:center;
+
+}
+.livecard {
+        top:2em;
+        left:-240px;
+        opacity:0;
+}
+#dealer-cards.cards > div:first-child, #turn-cards.cards > div:first-child {
+  margin-left: 0px;
+}
+#dealer-cards.cards>div {
+  margin-left: -6.6em;
+}
+#turn-cards.cards>div {
+  margin-left: 5em;
+}
+.cards>div
+{
+    margin-left: -3.2em;
+    margin-left-value: -4.6em;
+    margin-left-ltr-source: physical;
+    margin-left-rtl-source: physical;
+    float: none;
+    position:relative;
+    display:inline-block;
+}
+.cards>div:first-child
+{
+    /*float: left;*/
+    margin-left: 0px;
+    margin-left-value: 0px;
+    margin-left-ltr-source: physical;
+    margin-left-rtl-source: physical;
+}
+#dealer-cards, #player-cards, #turn-cards {
+zoom: 1;
+position: relative;
+margin:20px auto;
+height:180px;
+}
+#player-cards {
+  .livecard:last-child {
+    z-index: 2;
+  }
+}
+#dealer-cards>div{
+    &.selected{
+        margin-bottom: -2em;
+    }
+}
+#player-cards span.label-danger{
+  margin-top: 10px;
+  display: inline-block;
+}
+#loser-cards {
+  display: inline-block;
+  margin-right: 80px;
+  &>div:first-child {
+    margin-left: 0px;
+  }
+  &>div {
+    margin-left: -6.6em;
+  }
+}
+#winner-cards {
+  display: inline-block;
+  &>div:first-child {
+    margin-left: 0px;
+  }
+  &>div {
+    margin-left: -6.6em;
+  }
+}
+#bet-cards .card{
+  height: 6em;
+}
+.livelosercard, .livewinnercard {
+  top: -240px;
+  left: -75px;
+  opacity: 0;
+}
+.liveturncard{
+    top: 0px;
+    left: -75px;
+    opacity: 0;
+}
+.card.lost
+{
+opacity:.5;
+-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+filter:alpha(opacity=50);
+-webkit-transition:opacity 0.5s ease-out;
+-moz-transition:opacity 0.5s ease-out;
+-o-transition:opacity 0.5s ease-out;
+-ms-transition:opacity 0.5s ease-out;
+transition:opacity 0.5s ease-out;
+}
+.card.lost .back
+{
+display:none
+}
+/*.card:first-child
+{
+margin-left:0
+}*/
+.card
+{
+/*margin-left:-5em;
+display:inline-block;
+position:relative;*/
+width:7em;
+height:10em;
+-webkit-box-shadow:0 0 3px #000,inset 0 1px 0 #fff;
+box-shadow:0 0 3px #000,inset 0 1px 0 #fff;
+-webkit-border-radius:5px;
+border-radius:5px;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+}
+.front,.back
+{
+border:1px solid #330000;
+background-color:#ffffcc;
+float:none;
+position:absolute;
+left:0;
+top:0;
+width:inherit;
+height:inherit
+}
+.front
+{
+font-family:'cardcharacters-regular';
+-webkit-border-radius:5px;
+border-radius:5px;
+text-align:left;
+z-index:1;
+}
+.front:before
+{
+position:absolute;
+bottom:.05em;
+right:.1em;
+font-size:4.5em
+}
+.back
+{
+    background: url(/img/cards/cardbg.png) no-repeat center center;
+    webkit-background-size: contain;
+    moz-background-size: contain;
+    o-background-size: contain;
+    background-size: contain;
+
+
+-webkit-border-radius:5px;
+border-radius:5px;
+z-index:0;
+
+
+}
+
+.back:before
+{
+content:"";
+position:absolute;
+border:7px solid #ffd479;
+-webkit-border-radius:5px;
+border-radius:5px;
+top:0;
+left:0;
+bottom:0;
+right:0
+}
+.flipped .front
+{
+z-index:0;
+display:none;
+}
+.flipped .back
+{
+z-index:1;
+-webkit-transform:none;
+-moz-transform:none;
+-o-transform:none;
+-ms-transform:none;
+transform:none
+}
+.turn .front
+{
+z-index:2
+}
+.suit-S:before
+{
+content:'♠'
+}
+.suit-C:before
+{
+content:'♣'
+}
+.suit-H:before
+{
+content:'♥'
+}
+.suit-D:before
+{
+content:'♦'
+}
+.rank-face,.suit-S.rank-J:before,.suit-C.rank-J:before,.suit-S.rank-Q:before,.suit-C.rank-Q:before,.suit-S.rank-K:before,.suit-C.rank-K:before,.suit-H.rank-J:before,.suit-D.rank-J:before,.suit-H.rank-Q:before,.suit-D.rank-Q:before,.suit-H.rank-K:before,.suit-D.rank-K:before
+{
+content:"";
+bottom:.071em;
+right:.07em;
+left:0;
+top:0;
+background-repeat:no-repeat;
+-webkit-background-size:85%;
+-moz-background-size:85%;
+background-size:85%;
+background-position:right bottom;
+-webkit-border-radius:.1em;
+border-radius:.1em
+}
+.suit-S.rank-J:before,.suit-C.rank-J:before
+{
+background-image:url("/img/cards/jack-black.svg");
+
+}
+.no-svg .suit-S.rank-J:before,.no-svg .suit-C.rank-J:before
+{
+background-image:url("/img/cards/jack-black.png")
+}
+.suit-S.rank-Q:before,.suit-C.rank-Q:before
+{
+background-image:url("/img/cards/queen-black.svg");
+
+}
+.no-svg .suit-S.rank-Q:before,.no-svg .suit-C.rank-Q:before
+{
+background-image:url("/img/cards/queen-black.png")
+}
+.suit-S.rank-K:before,.suit-C.rank-K:before
+{
+background-image:url("/img/cards/king-black.svg");
+
+}
+.no-svg .suit-S.rank-K:before,.no-svg .suit-C.rank-K:before
+{
+background-image:url("/img/cards/king-black.png")
+}
+.suit-H.rank-J:before,.suit-D.rank-J:before
+{
+background-image:url("/img/cards/jack-red.svg");
+
+}
+.no-svg .suit-H.rank-J:before,.no-svg .suit-D.rank-J:before
+{
+background-image:url("/img/cards/jack-red.png")
+}
+.suit-H.rank-Q:before,.suit-D.rank-Q:before
+{
+background-image:url("/img/cards/queen-red.svg");
+
+}
+.no-svg .suit-H.rank-Q:before,.no-svg .suit-D.rank-Q:before
+{
+background-image:url("/img/cards/queen-red.png")
+}
+.suit-H.rank-K:before,.suit-D.rank-K:before
+{
+background-image:url("/img/cards/king-red.svg");
+
+}
+.no-svg .suit-H.rank-K:before,.no-svg .suit-D.rank-K:before
+{
+background-image:url("/img/cards/king-red.png")
+}
+.suit-color-S,.suit-color-C
+{
+color:#2f2c25 !important;
+
+}
+.suit-S,.suit-C
+{
+color:#2f2c25 !important;
+
+}
+.suit-S.colored,.suit-C.colored
+{
+color:#25950f
+}
+.suit-color-H,.suit-color-D
+{
+color:#ce1010 !important;
+
+}
+.suit-H,.suit-D
+{
+color:#ce1010 !important;
+
+}
+.suit-H.colored,.suit-D.colored
+{
+color:#163bc8
+}
+.suit-color-D {
+    font-size:110%;
+}
+.rank,.suit
+{
+display:block;
+position:relative
+}
+.rank
+{
+top:.176em;
+left:.176em;
+font-size:2.2em
+}
+.suit
+{
+left:.3em;
+top:.1em;
+font-size:1.8em
+}

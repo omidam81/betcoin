@@ -1,0 +1,52 @@
+{
+    "prod": "sicbo",
+    "meta": {
+        "title": "财神宝 ™ 比特币轮盘赌场 - 赢比特币!",
+        "meta_description": "在财神宝 ™ 轮盘赌，您可以用比特币玩经典轮盘赌游戏。开始游戏，赢取大量比特币!",
+        "meta_keywords": "财神灵™,财神堂™,比特币博彩, 比特币游戏, 比特币骰子, 比特币块链, 中本聪,比特币色字"
+    },
+    "global": {
+        "logourl": "img/words/bao.png"
+    },
+    "home": {
+        "title_image": "img/icons/sicbo280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/sicbo"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/bao"
+        }
+    },
+    "game": {
+        "x": "倍",
+        "symbol": "图案",
+        "multiplier": "赔率",
+        "details": "详情",
+        "win": "赢",
+        "lose": "输",
+        "my_games": "我的游戏",
+        "tabs_recent": "全球游戏",
+        "tabs_leaderboard": "高手排名榜",
+        "tabs_howtoplay": "游戏说明"
+    },
+    "spins": {
+        "myspins": "我的游戏",
+        "CircleTh9": "赌注"
+    },
+    "buttons": {
+        "start_roll": "滚动"
+    },
+    "boards": {
+        "ratestr": "倍",
+        "small": "小",
+        "big": "大",
+        "smallstr": "4 到 10<br/>1 : 1<br/>任何豹子<br/>出现都当输",
+        "bigstr": "11 到 17<br/>1 : 1<br/>任何豹子<br/>出现都当输",
+        "twodicestr": "雙骰<br/>粗合<br/>6 : 1",
+        "singledicestr1": "1 : 1 一个单骰",
+        "singledicestr2": "2 : 1 两个单骰",
+        "singledicestr3": "3 : 1 三个单骰"
+    }
+}

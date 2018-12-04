@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" />
+        <div class="label label-danger"><%= username %>: {{ player.username }}</div>
+        <spinmessage></spinmessage>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <div class="panel panel-default player-info-panel">
+            <h4 class="display-inline-block"><%= game.CircleDiv6 %></h4>
+            <bc-bitcoin-icons class="display-inline-block" data-btc-address="{{BCSession.user.wallets[BCSession.currency].depositAddress}}" data-currency="BCSession.currency"></bc-bitcoin-icons>
+            <div class="selectable margin-top-5 margin-bottom-5 margin-right-left-auto">
+                <!-- @ifndef HIVEAPP -->
+                <a class="bitcoin-address" target="_blank" ng-href="{{BCSession.currency}}:{{BCSession.user.wallets[BCSession.currency].depositAddress}}">
+                    {{ BCSession.user.wallets[BCSession.currency].depositAddress }}
+                </a>
+                <!-- @endif -->
+                <!-- @ifdef HIVEAPP -->
+                <a class="bitcoin-address" ng-click="sendBitcoins(BCSession.user.wallets[BCSession.currency].depositAddress)">
+                    {{ BCSession.user.wallets[BCSession.currency].depositAddress }}
+                </a>
+                <!-- @endif -->
+            </div>
+        </div>
+    </div>
+</div>

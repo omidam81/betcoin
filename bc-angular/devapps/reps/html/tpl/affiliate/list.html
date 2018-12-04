@@ -1,0 +1,19 @@
+
+<div ng-controller="AffiliateListController" class="container">
+    <table class="table">
+        <thead>
+            <th>Username</th>
+            <th>Income</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="affiliate in affiliates">
+                <td><a ng-href="affiliate/{{affiliate._id}}">{{affiliate.username}}</a></td>
+                <td>
+                    <div ng-repeat="(currency, income) in affiliate.income">
+                        {{currency | cryptosymbol}}{{income | cryptovalue}}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

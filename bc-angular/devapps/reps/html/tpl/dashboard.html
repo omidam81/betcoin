@@ -1,0 +1,17 @@
+<div class="container">
+<div class="row">
+    <div class="panel-body">
+        <h1>Dashboard</h1>
+        <h2>{{rep.username}}</h2>
+        <h3>{{rep.email}}</h3>
+        <p><%= rep.dashboard.earningLevel %> {{ rep.earningLevel * 100 | number:2 }}%</p>
+        <p><%= rep.dashboard.repToken %> {{ rep.repToken }}</p>
+        <p><%= rep.dashboard.balances %></p>
+        <p ng-repeat="wallet in rep.wallets">
+            {{ wallet.currency | cryptosymbol }}{{ wallet.balance | cryptovalue }}
+        </p>
+    </div>
+    <div welcome-pack-table="welcomePacks"></div>
+</div>
+
+</div>

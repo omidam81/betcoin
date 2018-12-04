@@ -1,0 +1,23 @@
+<% if (locale === "zh_CN") { %>
+
+<h1>请确认您的财神堂 VIP  邮件地址</h1>
+<p>
+    感谢您在财神堂创建帐户。 请 {<a href="https://www.caishentang.com/confirm/<%= user.emailToken %>">点击此处</a>}来确认该邮箱地址。或 用浏览器打开以下网址。
+
+    https://www.caishentang.com/confirm/<%= user.emailToken %>
+</p>
+<p>https://www.caishentang.com/confirm/<%= user.emailToken %></p>
+
+
+<% } else { %>
+
+<h1>Confirm your BetCoin VIP Email</h1>
+<p>
+    Thank you for creating an account with BetCoin VIP. Please confirm
+    your email address by clicking <a href="https://<%= WEB_URL %>/confirm/<%= user.emailToken %>">here</a>. or
+    by pasting the following link in your browser.
+</p>
+<p>https://<%= WEB_URL %>/confirm/<%= user.emailToken %></p>
+
+
+<% } %>

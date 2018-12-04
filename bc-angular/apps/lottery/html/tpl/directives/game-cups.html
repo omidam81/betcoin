@@ -1,0 +1,30 @@
+<div>
+	<div class="row">
+		<label class="cup-title">
+			<!-- <span ng-show="timeframe">
+				<span ng-show="type&&type.indexOf('d') != -1"><%= game.jackpots %>:</span>
+	            <span ng-show="type&&type.indexOf('h') != -1"><%= game.raffles %>:</span>
+	            <span ng-show="type&&type.indexOf('m') != -1"><%= game.battles %>:</span>
+			</span> -->
+			<span><nobr>
+				{{type=='5m'?'<%=game.bronze%>':''}}
+		        {{type=='1h'?'<%=game.silver%>':''}}
+		        {{type=='8h'?'<%=game.gold%>':''}}
+		        {{type=='1d'?'<%=game.platinum%>':''}}
+		        {{type=='8d'?'<%=game.diamond%>':''}}
+				<label class="glyphicon glyphicon-star" ng-show="confirm"></label>
+			</nobr></span>
+		</label>
+	</div>
+	<div class="row" ng-hide="hidecup">
+		<div ng-show="!winner.player_alias">&nbsp;</div>
+		<div class="winner-name" ng-show="winner.player_alias" title="{{winner.player_alias}}">{{winner.player_alias.length>6?winner.player_alias.substring(0, 6)+'...':winner.player_alias}}</div>
+	</div>
+	<div class="row" ng-hide="hidecup">
+		<img class="col-md-12" ng-if="type=='5m'" ng-src="./img/betcoin_prize_bronze_trophy.png">
+		<img class="col-md-12" ng-if="type=='1h'" ng-src="./img/betcoin_prize_silver_trophy.png">
+		<img class="col-md-12" ng-if="type=='8h'" ng-src="./img/betcoin_prize_gold_trophy.png">
+		<img class="col-md-12" ng-if="type=='1d'" ng-src="./img/betcoin_prize_platinum_trophy.png">
+		<img class="col-md-12" ng-if="type=='8d'" ng-src="./img/betcoin_prize_diamond_trophy.png">
+	</div>
+</div>

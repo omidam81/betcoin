@@ -1,0 +1,44 @@
+<pre>
+var verifyGame = function(gameData, secret) {
+    var vout = gameData.output_number;
+    var txid = gameData.tx_in;
+    var hash = gameData.secret_hash;
+
+    var sha = crypto.createHash('sha256');
+    sha.update(secret);
+
+    var hashedSecret = sha.digest('hex');
+
+    if (hashedSecret === hash) {
+        console.log("secret key OK");
+        console.log('sha256(%s) = %s == %s <- hash provided', secret, hashedSecret, hash);
+    } else {
+        console.error("ERROR: secret key FAILED");
+        console.error('sha256(%s) = %s != %s <- hash proveded', secret, hashedSecret, hash);
+        process.exit(2);
+    }
+
+    var hmac = crypto.createHmac('sha512', secret);
+    hmac.update(txid + ":" + vout);
+    var hmacHash = hmac.digest('hex');
+    console.log('hmac512(%s, %s:%d) = %s', secret, txid, vout, hmacHash);
+    console.log('hmac hash : %s', hmacHash);
+    console.log('saved hmac: %s', gameData.hmachash);
+
+    var rawRoll = hmacHash.substring(0, 4);
+    console.log('hash partial: %s', rawRoll);
+    console.log('roll: %d', parseInt(rawRoll, 16));
+    console.log('saved roll: %d', gameData.result);
+    if (parseInt(rawRoll, 16) !== gameData.result) {
+        console.error('game does not check out!!! _id: %s', gameData._id);
+        process.exit(3);
+    }
+}
+var gameData = {
+  output_number:0,
+  txid: "{{ dice.tx_in }}",
+  secret_hash: "{{ dice.secret_hash }}"
+};
+var result = verifyGame(gameData, "{{ secrets[dice._id] || "game secret key" }}");
+console.log(result);
+</pre>

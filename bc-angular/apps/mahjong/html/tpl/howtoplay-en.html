@@ -1,0 +1,298 @@
+<div class="tabcontent howtoplay">
+    <h1>How to Play</h1>
+
+    <p class="ng-binding"><b class="ng-binding">BetCoin ™ Mahjong </b> is one of the oldest casino games. You can
+        wager with the digital currency Bitcoin. It's an easy and fun way to play with and win more Bitcoins!</p>
+    <br>
+    <ol style="padding-left:40px;">
+        <li class="ng-binding"><b class="ng-binding">Login or Register</b>, or play anonymously with your BTC wallet
+            address
+        </li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">Fund</b> your playing balance with Bitcoins using the provided
+            personal deposit address
+        </li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">Select wager</b> amount by using either the slider, percentage of
+            balance buttons, incremental buttons, or by clicking on the wager box. The maximum wager value is adjusted
+            dynamically.
+        </li>
+        <br>
+        <li class="ng-binding">Check your progress and follow players around the world using the in-game Leaderboard and
+            Recent Plays tabs located below the playing screen.
+        </li>
+        <br>
+        <li class="ng-binding">If you play anonymously, your balance will automatically be returned to you after 30
+            minutes of inactivity or upon closing your browser.
+        </li>
+        <br>
+    </ol>
+
+    <!-- <h4>Pay Table</h4>
+
+    <div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+    <h2>Playing Mahjong</h2>
+    <h5>Read from <a href="http://en.wikipedia.org/wiki/Mahjong">Wikipedia</a></h5>
+    <h3>Rules</h3>
+    <p>Each player takes a turn picking up a tile from the wall and then discarding a tile by throwing it into the center and, if desired, announcing out loud what the piece is. Play continues this way until one player has a legal winning hand and calls out mahjong while revealing their hand. There are four different ways that this order of play can be interrupted.</p>
+    <p>During play, the number of tiles maintained by each player should always be thirteen tiles (meaning in each turn a tile must be picked up and another discarded). Not included in the count of thirteen tiles are flowers and seasons set to the side and the fourth added piece of a kong. If a player is seen to have more or less than thirteen tiles in their hand outside of their turn they are penalised.</p>
+        <h4>Legal hand</h4>
+        <p>A winning hand consists of fourteen tiles (the thirteen tiles in the hand plus the additional tile picked up from the wall or stolen when a player discards a tile needed to complete a hand). The first is called winning from the wall, the second is called winning by a discard.</p>
+        <p>The winning hand is made of four melds (a specific pattern of three pieces) and the eyes (a pair of two identical pieces). The exception to this rule are the special hands listed below.</p>
+        <p>A winning hand must score a minimum number of points (Three).</p>
+        <h4>Melds</h4>
+        <ol>
+            <li><p>
+                <b>Pong</b> is a set of three identical tiles. For example:<br/>
+                <card data-card="{val:17}"></card>
+                <card data-card="{val:17}"></card>
+                <card data-card="{val:17}"></card><br/>
+                <card data-card="{val:20}"></card>
+                <card data-card="{val:20}"></card>
+                <card data-card="{val:20}"></card><br/>
+            </p><p>
+                You can form a pong with any tile (except flowers as they are bonus tiles set to the side when drawn from the wall). The tiles must be identical (you cannot mix suits).
+            </p></li>
+            <li><p>
+                <b>Kong</b> is a set of four identical tiles. For example:<br/>
+                <card data-card="{val:31}"></card>
+                <card data-card="{val:31}"></card>
+                <card data-card="{val:31}"></card>
+                <card data-card="{val:31}"></card><br/>
+                <card data-card="{val:24}"></card>
+                <card data-card="{val:24}"></card>
+                <card data-card="{val:24}"></card>
+                <card data-card="{val:24}"></card><br/>
+            </p><p>
+                Consider a Kong the same as a Pong/ Pung with an additional tile to make a set of four. There are three ways to form a Kong.
+            </p><p>
+                <ul>
+                <li><p>
+                    Consider a Kong the same as a Pong/ Pung with an additional tile to make a set of four. There are three ways to form a Kong.
+                </p></li>
+                <li><p>
+                    If a player can use a discarded tile to complement three matching tiles in their hand, they can take the piece and reveal a "kong by discard" or "melded Kong". The player reveals his three pieces face up and places the stolen discard on top of the middle tile.
+                </p></li>
+                <li><p>
+                    If a player has already stolen (melded) a piece to make a pong and then later in the game draws the fourth piece from the wall, he or she may announce (then or later in the game) a kong by placing the fourth tile on top of the middle piece of the melded pong. If a pong/pung has been melded a player cannot steal the fourth piece if another player discards it.
+                </p></li>
+                </ul>
+            </p><p>
+                    In any case, whenever a Kong is formed, the player must draw an extra tile from the end of the wall and then discard a tile. The fourth piece of the kong (not flowers/seasons) is not considered as one of the 13 tiles a player must always have in their hand. Kongs are worth collecting to score more points and/or deprive opponents of obtaining a specific tile.
+            </p></li>
+            <li><p>
+                <b>Chow</b> is a meld of three suited tiles in sequence. For example:<br/>
+                <card data-card="{val:18}"></card>
+                <card data-card="{val:19}"></card>
+                <card data-card="{val:20}"></card><br/>
+                <card data-card="{val:20}"></card>
+                <card data-card="{val:21}"></card>
+                <card data-card="{val:22}"></card><br/>
+            </p><p>
+                The meld must be in absolute numerical sequence. There is no skipping of numbers, nor does 9 loop around to 1. The sequence must be in the same suit. Honours, flowers and seasons cannot be used to make chows. A player can steal a discard to form a chow from the player prior to them in order if no one else needs the tile to make pongs/ pungs or kongs or win (go mahjong).
+            </p></li>
+            <li><p>
+                <b>Eyes</b> also known as a pair, are two identical tiles which are an essential part of a legal winning hand. A piece cannot be stolen (melded) to form the eyes unless the player simultaneously completes a legal winning hand. For example:<br/>
+                <card data-card="{val:30}"></card>
+                <card data-card="{val:30}"></card><br/>
+                <card data-card="{val:22}"></card>
+                <card data-card="{val:22}"></card><br/>
+            </p></li>
+        </ol>
+        <h4>Flower or season</h4>
+        <p>Whenever a player draws a flower or season, it is announced and then placed to the side (it is not considered as a part of the hand but can earn a bonus points if part of the winning hand) and the last tile of the wall is drawn as a replacement tile so that the player has the fourteen pieces needed before their discard. This may happen successively in a player's turn.</p>
+        <h4>Melding another player's discard</h4>
+        <p>When a player discards a tile, any other player may steal the tile to complete a meld. Stealing tiles has both advantages (quickly forming a winning hand and scoring extra points) and disadvantages such as revealing part of ones hand to other players and not being able to change the meld once declared.</p>
+        <p>When a meld (Pong, Kong or Chow) is declared through a discard, the player must state the type of meld to be declared and place the meld face up. The player must then discard a tile, and play continues to the right. If the player who melds a discard is not directly after the discarder (in order of play), one or two players essentially miss their turn as play continues to the player after the one who declared the meld.</p>
+        <p>When two or more players call for a discarded tile, a player taking the tile to win the hand has precedence over all others. Otherwise a player who can form a Pong or Kong takes precedence over a player who claims a Chow.</p>
+        <h4>Going mahjong</h4>
+        <p>If at any point in the game a player can use another player's discard to complete a legal hand (and with the agreed minimum points), they yell out Mahjong, take the piece and reveal their hand, with the way of calling it out depending on variations. This ends the hand, and scoring commences. If two or three players need the piece to win, there are two ways to resolve the issue depending on agreed table rules: Either the players compete to see who would have a better hand in terms of scoring, or simply the player closest to the discarder in order of turn wins the game.</p>
+        <h4>Robbing a kong</h4>
+        <p>A rarely occurring and high scoring feature of Mahjong is a move called robbing the kong. If a player declares a kong (by melding it or adding a fourth piece to a pong to form a kong or declaring a concealed kong) and another player(s) can use that piece to complete a hand (which by logic could not be used to form a pong or kong as two players cannot make a pong out of the same tile) a player may steal that piece from that player when declaring the kong and go mahjong (win the hand).</p>
+    <h3>Scoring</h3>
+        <h4>Basic fan value</h4>
+        <p>A winning hand must include an agreed minimum amount of fan value (Three)</p>
+        <table>
+            <tbody><tr>
+                <td>Item</td>
+                <td>Fan Value</td>
+            </tr>
+            <tr>
+                <td>A pong/kong of Dragons</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>A pong/kong of Seat wind or Round wind</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>All simples</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>All chows and a pair of simples</td>
+                <td>1 point more</td>
+            </tr>
+            <tr>
+                <td>Only pongs/kongs and any pair (pong hand)</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Only bamboos with honours, only circles with honours or only characters with honours (clean hand)</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Three unmelded (hidden) pongs/kongs</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Three kongs</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Seven pairs (special pattern)</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Pure hand (of only one suit and no honours: pure circles, pure bamboos or pure characters)</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>Little Dragons (two pongs of dragons and a pair of the 3rd dragon)</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>Little Winds (three pongs of winds and a pair of the 4th wind)</td>
+                <td>12</td>
+            </tr>
+        </tbody></table><br/>
+        <table><tbody>
+            <tr>
+                <td>Winning from the wall</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Robbing the kong</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Winning on the last tile from the wall or its subsequent discard</td>
+                <td>1</td>
+            </tr>
+        </tbody></table>
+
+        <h4>Bonus fan</h4>
+        <table>
+            <tbody><tr>
+                <th>Item</th>
+                <th>Points</th>
+            </tr>
+            <tr>
+                <td>No flowers or seasons tiles in hand</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Having Own flower (seat flower)</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Having Own season (seat season)</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>All four flowers</td>
+                <td>4 points extra</td>
+            </tr>
+            <tr>
+                <td>All four seasons</td>
+                <td>4 points extra</td>
+            </tr>
+            <tr>
+                <td>All 8 flowers and seasons (exceedingly rare)</td>
+                <td>Automatic win with maximum payment</td>
+            </tr>
+        </tbody></table>
+        <p>A player only scores a bonus fan for flowers or seasons if it is their own flower or season (East=1, South=2, West=3 and North=4) or if the player has all four flowers or all four seasons (scoring five fan in total).</p>
+        <h4>Payment</h4>
+        <p>The fan value of a hand is converted into base points which are then used to calculate the money (or "points") the losers pay the winner.</p>
+        <table>
+            <tbody><tr>
+                <th>Points</th>
+                <th>Base Payment</th>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>12+</td>
+                <td>16</td>
+            </tr>
+        </tbody></table>
+        <p>If a player has three fan then his hand is worth one base point. A winning hand with nine fan is worth four base points. The base points are doubled for the following (if two criteria apply, the base payment is doubled and then redoubled):</p>
+        <ul>
+            <li><p>
+                If the winner wins from the wall the base payment is doubled.
+            </p></li>
+            <li><p>
+                If the hand was won by discard, the discarder doubles the amount he owes the winner
+            </p></li>
+            <li><p>
+                If the winner is east he or she receives double the payment from each player. If east player is not the winner, he pays double the points to the winner.
+            </p></li>
+        </ul>
+
+    <h4 class="ng-binding">Is there a maximum wager per round?</h4>
+
+    <p class="ng-binding">The maximum bet is 1/64 of your balance.</p>
+
+    <h4 class="ng-binding">Is there a minimum wager per round?</h4>
+
+    <p class="ng-binding">The minimum bet is 0.000001 BTC</p>
+
+    <p></p>
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">Click here to view the code used to verify each
+        game</a></p>
+    <!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+
+
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

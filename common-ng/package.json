@@ -1,0 +1,12 @@
+{
+  "name": "common-ng",
+  "version": "1.0.0",
+  "scripts": {
+    "install": "make"
+  },
+  "dependencies": {
+    "yargs": "^1.2.1",
+    "send": "^0.2.0",
+    "npm": "^1.4.6"
+  }
+}

@@ -1,0 +1,152 @@
+<div ng-controller="GameController" class="row noselect">
+
+    <div class="col-xs-12 col-sm-5 text-center col-sm-push-7">
+
+        <img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" />
+        <div id="gameControls">
+            <player-info></player-info>
+            <cashout-button player = "player" game="game"></cashout-button>
+
+            <div id="betresult" class="panel panel-default">
+                <div class="panel-body">
+                    <div ng-if="betResult > 0">
+                        Bet:
+                        <span ng-if="betResult === 2"><%=game.winmessage%></span>
+                    </div>
+                </div>
+            </div>
+            <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+            <div style="clear:both;position:relative;">
+                <proof-button></proof-button>
+            </div>
+            <div style="margin:10px auto;position:relative;">
+
+                <bc-client-seed style="" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-7 col-sm-pull-5">
+        <div id="gameContainer">
+            <div class="table-background margin-top-10">
+                <div class="row">
+                    <div class="col-sm-12" style="white-space:nowrap;">
+                        <div class="cards-wrapper" style="min-width:350px;">
+                            <div class="label label-danger"><%= game.dealer %></div>
+                            <div class="cards" id="dealer-cards" ng-hide="turnCards.length > 0">
+                                <div ng-repeat="card in getFlippedCards() track by $index" class="{{selectedCardIndex == $index+1?'selected':''}}">
+                                    <card flipped="true"></card>
+                                </div>
+                            </div>
+                            <div class="cards" id="turn-cards" ng-show="turnCards.length > 0">
+                                <div class="liveturncard" ng-repeat="card in turnCards">
+                                    <card data-card="card"></card>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cards-wrapper" style="min-width: 250px;margin-left:20px;">
+                            <div class="label label-danger"><%= game.player %></div>
+                            <div id="player-cards">
+                                <div class="cards"  id="loser-cards">
+                                    <div ng-if="!losercards.cards || losercards.cards.length === 0">
+                                        <card flipped="true"></card>
+                                    </div>
+                                    <div class="livelosercard" ng-if="losercards.cards" ng-repeat="card in losercards.cards">
+                                        <card data-card="card"></card>
+                                    </div>
+                                    <br>
+                                    <span class="label label-danger"><%= game.loser %></span>
+                                </div>
+                                <div class="cards" id="winner-cards" >
+                                    <div ng-if="!winnercards.cards || winnercards.cards.length === 0">
+                                        <card flipped="true"></card>
+                                    </div>
+                                    <div class="livewinnercard" ng-if="winnercards.cards" ng-repeat="card in winnercards.cards">
+                                        <card data-card="card"></card>
+                                    </div>
+                                    <br>
+                                    <span class="label label-danger"><%= game.winner %></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row" id="bet-types">
+                        <div class="row">
+                            <div class="betLayout" ng-show="turnCardsArray.length > 0">
+                                <div class="radio">
+                                    <label ng-repeat="turnCards in turnCardsArray">
+                                        <input type="radio" ng-model="$parent.turnIndex" ng-value="$index"/> {{turnCards.title}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="betLayout">
+                                <div class="bets-circle btn btn-flashy" placebet bet="high" ng-disabled="selectedCardIndex == 3" ><div class="chips ">{{bets.high}}</div> High</div>
+                                <div class="bets-circle btn btn-flashy" placebet bet="even" ng-disabled="selectedCardIndex == 3" ><div class="chips">{{bets.even}}</div> Even</div>
+                                <div class="bets-circle btn btn-flashy" placebet bet="odd" ng-disabled="selectedCardIndex == 3" ><div class="chips">{{bets.odd}}</div> Odd</div>
+                                <!--
+                                <button class="btn {{(bets.high)?'btn-danger':'btn-default'}}" ng-click="toggleBets('high')" ng-disabled="selectedCardIndex == 3" ng-true-value="high" > High</button>
+                                <button class="btn {{(bets.even)?'btn-danger':'btn-default'}}" ng-click="toggleBets('even')" ng-disabled="selectedCardIndex == 3" ng-true-value="even" > Even</button>
+                                <button class="btn {{(bets.odd)?'btn-danger':'btn-default'}}" ng-click="toggleBets('odd')" ng-disabled="selectedCardIndex == 3" ng-true-value="odd"> Odd</button>
+                                -->
+                            </div>
+                            <div class="betLayout">
+                                <div class="betCard" id="bet-cards" ng-repeat="card in betCards.cards">
+                                    <!--
+                                    <div class="card" bc-popover="{{flatBetsPopover}}" bc-popover-content="You can't bet with {{card.rank}}" ng-mouseover="(card.cnt === 4) ? flatBetsPopover=true : flatBetsPopover=false" ng-mouseout="flatBetsPopover=false" bc-popover-direction="top">
+                                    -->
+                                    <div class="card">
+                                        <div class="flat-chips" ng-show="card.type > 0">{{card.type}}</div>
+                                        <div class="front">
+                                            <span class="rank suit-color-S">{{card.rank}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="drawn">{{card.cnt}}</div>
+                                    <button class="betLoser" ng-click="addFlatBet(card, 2)" ng-disabled="selectedCardIndex == 3" >Lose</button>
+                                    <button class="betWinner" ng-click="addFlatBet(card, 1)" ng-disabled="selectedCardIndex == 3"> Win</button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div id="btcs" class="row">
+                            <p>
+                            <%= text.possible_payout %>: {{possiblePayout| cryptovalue}} BTC
+                            </p>
+                            <p>
+                            <%= text.current_winnings %>: {{lastResultTmp.winnings| cryptovalue}} BTC
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div style="display:inline-block">
+                            <div><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+                        </div>
+                        <button ng-disabled="isGameInProgress || selectedCardIndex == null || ((!bets.high && !bets.odd && !bets.even && !bets.flat) && turnIndex == null)" ng-click="nextAction();" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                            <%= text.guess %>
+                        </button>
+                        <input type="button" class="btn btn-default" ng-click="startNewGame()" value="<%= text.start_newgame %>"/>
+                        <button ng-click="clearBets();" class="btn btn-default" bc-popover="{{clearBetsPopover}}" bc-popover-content="<%= buttons.clearbets_individual %>" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top" ng-disabled="isGameInProgress">
+                            <%= buttons.clearbets %>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div ng-show="gOptions" style="display:inline-block">
+                <button ng-click="nextAction(true);" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.go_to_war %>
+                </button>
+                <button ng-click="nextAction(false);" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.surrender %>
+                </button>
+            </div> -->
+            <!-- <div> -->
+                <!-- <button ng-disabled="isGameInProgress || selectedCardIndex == null" ng-click="play();" class="btn btn-flashy btn-lg btn-roll" style="margin:10px;font-size:30px;">
+                    <%= buttons.bet %>
+                </button> -->
+            <!-- </div> -->
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

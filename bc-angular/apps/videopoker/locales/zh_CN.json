@@ -1,0 +1,29 @@
+{
+    "prod": "videopoker",
+    "meta": {
+        "title": "财神冠™ 财神视频扑克 - 绝对公平卡牌游戏"
+    },
+    "global": {
+        "logourl": "img/words/cn/videopoker.png"
+    },
+    "home": {
+        "title_image": "img/icons/videopoker280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/videopoker"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/guan"
+        }
+    },
+    "game": {
+        "holded": "HOLD"
+    },
+    "buttons": {
+        "deal": "经销"
+    },
+    "text": {
+        "invalid_holds": "Invalid param"
+    }
+}

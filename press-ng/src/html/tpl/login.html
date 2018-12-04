@@ -1,0 +1,8 @@
+<div class="container">
+	<form class="form-signin" role="form">
+		<h2 class="form-signin-heading">Please sign in<img ng-show="loading" src="img/loader.gif" alt="" class="loading-mask"/></h2>
+		<input type="text" class="form-control" placeholder="username" ng-model="login.username" autofocus>
+		<input type="password" class="form-control" placeholder="password" ng-model="login.password">
+		<button class="btn btn-lg btn-primary btn-block" ng-click="login()">Sign in</button>
+	</form>
+</div>

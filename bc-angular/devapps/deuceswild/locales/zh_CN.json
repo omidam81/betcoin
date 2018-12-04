@@ -1,0 +1,31 @@
+{
+    "prod": "videopoker",
+    "meta": {
+        "title": "财神高™ 财神视频扑克 - 绝对公平卡牌游戏"
+    },
+    "global": {
+        "logourl": "img/words/CN-videopoker.png"
+    },
+    "home": {
+        "title_image": "img/icons/videopoker280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/videopoker"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/shipin-puke"
+        }
+    },
+    "game": {
+        "winmessage": "赢家",
+        "tiemessage": "抵",
+        "holded": "HOLD"
+    },
+    "buttons": {
+        "deal": "经销"
+    },
+    "text": {
+        "invalid_holds": "Invalid param"
+    }
+}

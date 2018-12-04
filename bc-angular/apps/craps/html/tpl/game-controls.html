@@ -1,0 +1,398 @@
+<div ng-controller="GameController" class="row noselect craps-area" id="gameContainer">
+    <div class="col-xs-12 col-md-4 text-center col-md-push-8">
+
+        <div><img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" /></div>
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <div>
+            <bet-panel-fixed>
+                <div>
+                    <div class="clear-both width-90-pcnt margin-right-left-auto margin-top-0 margin-bottom-0">
+                        <div class="balance">
+                            <div><%=game.CircleDiv4 %></div>
+                            <div class="numbers numbersWager">{{ currencyAbbr }}<input btc-wager class="btcWager form-control" ng-model="btcWager"/>
+                            </div>
+                        </div>
+                        <div class="balance">
+                            <div><%=game.CircleDiv5 %></div>
+                            <div class="numbers numbersBalance">{{ currencyAbbr }} {{ BCSession.user.wallets[BCSession.currency].balance | cryptovalue }}</div>
+                        </div>
+                    </div>
+                    <percent-slider data-bar-el="betBar" data-container-el="betCont" data-button-el="betButt" max="{{BCSession.user.wallets[BCSession.currency].balance}}" step="1" min="0" percent-slider-value="btcWager"></percent-slider>
+
+                    <div class="wagers hidden-sm hidden-xs">
+                        <button class="btn btn-default btn-sm btn-bet" id="bet1p" ng-click="btcWager=betPercent(.01)">1%</button>
+                        <button class="btn btn-default btn-sm btn-bet" id="bet10p" ng-click="btcWager=betPercent(.1)">10%</button>
+                        <button class="btn btn-default btn-sm btn-bet" id="bet25p" ng-click="btcWager=betPercent(.25)">25%</button>
+                        <button class="btn btn-default btn-sm btn-bet" id="bet50p" ng-click="btcWager=betPercent(.5)">50%</button>
+                        <button class="btn btn-default btn-sm btn-bet" id="betmax" ng-click="btcWager=betPercent(1)">
+                            <%=maxbet %>
+                        </button>
+                        <button class="btn btn-default btn-sm btn-bet" id="betreset" ng-click="btcWager=0">
+                            <%=reset %>
+                        </button>
+                    </div>
+                    <div class="wagers hidden-sm hidden-xs">
+                        <button class="btn btn-default btn-sm btn-bet" id="bet.001" ng-click="btcWager=setBet(.001)">{{ currencyAbbr }} .001</button>
+                        <button class="btn btn-default btn-sm btn-bet" id="bet.01" ng-click="btcWager=setBet(.01)">{{ currencyAbbr }} .01</button>
+                        <button class="btn btn-default btn-sm btn-bet" id="bet.1" ng-click="btcWager=setBet(.1)">{{ currencyAbbr }} .1</button>
+                        <button class="btn btn-default btn-sm btn-bet" id="bet1" ng-click="btcWager=setBet(1)">{{ currencyAbbr }} 1</button>
+                        <button class="btn btn-default btn-sm btn-bet" id="bet10" ng-click="btcWager=setBet(10)">{{ currencyAbbr }} 10</button>
+                        <button class="btn btn-default btn-sm btn-bet" id="bet100" ng-click="btcWager=setBet(100)">{{ currencyAbbr }} 100</button>
+                    </div>
+                </div>
+            </bet-panel-fixed>
+        </div>
+        <div class="clear-both position-relative">
+              <div class="craps-game-sound-toggle-container">
+                  <div class="soundToggle"><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+              </div>
+              <proof-button></proof-button>
+              <small class="display-none">
+                  <dl class="dl-horizontal">
+                      <dt><%= game.SsHeader2 %></dt><dd>{{ nextGameId }}</dd>
+                      <dt>SHA256:</dt><dd class="allow-word-wrap-with-word-break">{{ sha256 }}</dd>
+                  </dl>
+              </small>
+
+              <bc-client-seed class="seed-container" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-8 game col-md-pull-4 padding-0">
+      <div id="option-buttons" class="pull-right">
+          <button ng-click="leaveWinningsBetsUp=!leaveWinningsBetsUp" class="btn btn-default" style="display:inline-block;margin:10px auto;" ng-disabled="animating">
+              <span class="glyphicon glyphicon-thumbs-up" ng-class="{'glyphicon-thumbs-up':leaveWinningsBetsUp, 'glyphicon-thumbs-down':!leaveWinningsBetsUp}"></span>
+              <span ng-if="leaveWinningsBetsUp"><%= buttons.leave_winnings_bets_up_on %></span>
+              <span ng-if="!leaveWinningsBetsUp"><%= buttons.leave_winnings_bets_up_off %></span>
+          </button>
+          <button ng-click="offerPress=!offerPress" class="btn btn-default" style="display:inline-block;margin:10px auto;" ng-disabled="animating">
+              <span class="glyphicon glyphicon-thumbs-up" ng-class="{'glyphicon-thumbs-up':offerPress, 'glyphicon-thumbs-down':!offerPress}"></span>
+              <span ng-if="offerPress"><%= buttons.offer_me_to_press_my_bets_yes %></span>
+              <span ng-if="!offerPress"><%= buttons.offer_me_to_press_my_bets_no %></span>
+          </button>
+      </div>
+      <div id="g-craps">
+          <div id="board" class="board">
+              <div class="thepoint">
+                  <span ng-if="!thepoint"><%=labels.off%></span>
+                  <span ng-if="thepoint"><%=labels.on%></span>
+              </div>
+              <div id="panel_pass_odds" placebet bet="passodds" class="number L-shaped" ng-class="{inactive:!options.passodds}">
+                  <div class="chips" style="top:437px">{{bets.passodds}}</div>
+                  <div class="vertical"></div>
+                  <div class="horizontal"></div>
+                  <p class="txtpassodds"><%= labels.passodds_title%></p>
+              </div>
+              <div id="panel_pass_line" placebet bet="pass" class="number L-shaped" ng-class="{inactive:!options.pass}">
+                  <div class="chips" style="top:397px">{{bets.pass}}</div>
+                  <div class="vertical"></div>
+                  <div class="horizontal"></div>
+                  <p class="txtpassline"><%= labels.passline_title%></p>
+              </div>
+              <div id="panel_dont_pass_odds" placebet bet="dontpassodds" class="number L-shaped" ng-class="{inactive:!options.dontpassodds}">
+                  <div class="chips" style="top:357px">{{bets.dontpassodds}}</div>
+                  <div class="vertical"></div>
+                  <div class="horizontal"></div>
+                  <p class="txtdontpassodds"><%= labels.dontpassodds_title%></p>
+              </div>
+              <div id="panel_dont_pass" placebet bet="dontpass" class="number L-shaped" ng-class="{inactive:!options.dontpass}">
+                  <div class="chips" style="top:320px">{{bets.dontpass}}</div>
+                  <div class="vertical"></div>
+                  <div class="horizontal"></div>
+                  <p class="txtdontpass"><%= labels.dontpass_title%></p>
+                  <div id="imgdice6_6" style="position:absolute;top:300px;left:370px"></div>
+              </div>
+              <div id="panel_come" placebet bet="come" class="number" ng-class="{inactive:!options.come}">
+                  <div class="chips">{{bets.come}}</div>
+                  <p class="come"><%= labels.come_title%></p>
+              </div>
+              <div id="panel_field" placebet bet="field" class="number" ng-class="{inactive:!options.field}">
+                  <div class="chips">{{bets.field}}</div>
+                  <div id="imgfield2_12"></div>
+                  <p class="come" style="font-size:24px;line-height:32px"><%= labels.field_title%></p>
+              </div>
+              <div id="panel_dont_come" placebet bet="dontcome" class="number" ng-class="{inactive:!options.dontcome}">
+                  <div class="chips">{{bets.dontcome}}</div>
+                  <p style="font-size:16px"><%= labels.dontcome_title%></p>
+                  <div id="imgdice6_6"></div>
+              </div>
+              <div placebet bet="lay4" class="panel_lay_4 number" ng-class="{inactive:!options.lay4}">
+                  <div class="chips">{{bets.lay4}}</div>
+              </div>
+              <div placebet bet="lay5" class="panel_lay_5 number" ng-class="{inactive:!options.lay5}">
+                  <div class="chips">{{bets.lay5}}</div>
+              </div>
+              <div placebet bet="lay6" class="panel_lay_6 number" ng-class="{inactive:!options.lay6}">
+                  <div class="chips">{{bets.lay6}}</div>
+              </div>
+              <div placebet bet="lay8" class="panel_lay_8 number" ng-class="{inactive:!options.lay8}">
+                  <div class="chips">{{bets.lay8}}</div>
+              </div>
+              <div placebet bet="lay9" class="panel_lay_9 number" ng-class="{inactive:!options.lay9}">
+                  <div class="chips">{{bets.lay9}}</div>
+              </div>
+              <div placebet bet="lay10" class="panel_lay_10 number" ng-class="{inactive:!options.lay10}">
+                  <div class="chips">{{bets.lay10}}</div>
+              </div>
+              <div id="panel_buy_4" placebet bet="buy4" class="number" ng-class="{inactive:!options.buy4}">
+                  <div class="chips">{{bets.buy4}}</div>
+              </div>
+              <div id="panel_place_5" placebet bet="place5" class="number" ng-class="{inactive:!options.place5}">
+                  <div class="chips">{{bets.place5}}</div>
+              </div>
+              <div id="panel_place_6" placebet bet="place6" class="number" ng-class="{inactive:!options.place6}">
+                  <div class="chips">{{bets.place6}}</div>
+              </div>
+              <div id="panel_place_8" placebet bet="place8" class="number" ng-class="{inactive:!options.place8}">
+                  <div class="chips">{{bets.place8}}</div>
+              </div>
+              <div id="panel_place_9" placebet bet="place9" class="number" ng-class="{inactive:!options.place9}">
+                  <div class="chips">{{bets.place9}}</div>
+              </div>
+              <div id="panel_buy_10" placebet bet="buy10" class="number" ng-class="{inactive:!options.buy10}">
+                  <div class="chips">{{bets.buy10}}</div>
+              </div>
+              <div id="panel_4" class="number split">
+                  <div placebet bet="notodds4" class="notodds" ng-class="{inactive:!options.notodds4}">
+                      <div class="chips">{{bets.notodds4}}</div>
+                  </div>
+                  <div class="notodds bg"></div>
+                  <div placebet bet="dontcome4" class="dontcome" ng-class="{inactive:!options.dontcome4}">
+                      <div class="chips">{{bets.dontcome4}}</div>
+                  </div>
+                  <div class="dontcome bg"></div>
+                  <div placebet bet="come4" class="come" ng-class="{inactive:!options.come4}">
+                    <div class="chips">{{bets.come4}}</div>
+                  </div>
+                  <div class="come bg"></div>
+                  <div placebet bet="takeodds4" class="takeodds" ng-class="{inactive:!options.takeodds4}">
+                      <div class="chips">{{bets.takeodds4}}</div>
+                  </div>
+                  <div class="takeodds bg"></div>
+                  <p class="boardnumber">4</p>
+              </div>
+              <div id="panel_5" class="number split">
+                  <div placebet bet="notodds5" class="notodds" ng-class="{inactive:!options.notodds5}">
+                      <div class="chips">{{bets.notodds5}}</div>
+                  </div>
+                  <div class="notodds bg"></div>
+                  <div placebet bet="dontcome5" class="dontcome" ng-class="{inactive:!options.dontcome5}">
+                      <div class="chips">{{bets.dontcome5}}</div>
+                  </div>
+                  <div class="dontcome bg"></div>
+                  <div placebet bet="come5" class="come" ng-class="{inactive:!options.come5}">
+                      <div class="chips">{{bets.come5}}</div>
+                  </div>
+                  <div class="come bg"></div>
+                  <div placebet bet="takeodds5" class="takeodds" ng-class="{inactive:!options.takeodds5}">
+                      <div class="chips">{{bets.takeodds5}}</div>
+                  </div>
+                  <div class="takeodds bg"></div>
+                  <p class="boardnumber">5</p>
+              </div>
+              <div id="panel_6" class="number split">
+                  <div placebet bet="notodds6" class="notodds" ng-class="{inactive:!options.notodds6}">
+                      <div class="chips">{{bets.notodds6}}</div>
+                  </div>
+                  <div class="notodds bg"></div>
+                  <div placebet bet="dontcome6" class="dontcome" ng-class="{inactive:!options.dontcome6}">
+                      <div class="chips">{{bets.dontcome6}}</div>
+                  </div>
+                  <div class="dontcome bg"></div>
+                  <div placebet bet="come6" class="come" ng-class="{inactive:!options.come6}">
+                      <div class="chips">{{bets.come6}}</div>
+                  </div>
+                  <div class="come bg"></div>
+                  <div placebet bet="takeodds6" class="takeodds" ng-class="{inactive:!options.takeodds6}">
+                      <div class="chips">{{bets.takeodds6}}</div>
+                  </div>
+                  <div class="takeodds bg"></div>
+                  <p class="boardnumber"><%= labels.six_title%></p>
+              </div>
+              <div id="panel_8" class="number split">
+                  <div placebet bet="notodds8" class="notodds" ng-class="{inactive:!options.notodds8}">
+                      <div class="chips">{{bets.notodds8}}</div>
+                  </div>
+                  <div class="notodds bg"></div>
+                  <div placebet bet="dontcome8" class="dontcome" ng-class="{inactive:!options.dontcome8}">
+                      <div class="chips">{{bets.dontcome8}}</div>
+                  </div>
+                  <div class="dontcome bg"></div>
+                  <div placebet bet="come8" class="come" ng-class="{inactive:!options.come8}">
+                      <div class="chips">{{bets.come8}}</div>
+                  </div>
+                  <div class="come bg"></div>
+                  <div placebet bet="takeodds8" class="takeodds" ng-class="{inactive:!options.takeodds8}">
+                      <div class="chips">{{bets.takeodds8}}</div>
+                  </div>
+                  <div class="takeodds bg"></div>
+                  <p class="boardnumber">8</p>
+              </div>
+              <div id="panel_9" class="number split">
+                  <div placebet bet="notodds9" class="notodds" ng-class="{inactive:!options.notodds9}">
+                      <div class="chips">{{bets.notodds9}}</div>
+                  </div>
+                  <div class="notodds bg"></div>
+                  <div placebet bet="dontcome9" class="dontcome" ng-class="{inactive:!options.dontcome9}">
+                      <div class="chips">{{bets.dontcome9}}</div>
+                  </div>
+                  <div class="dontcome bg"></div>
+                  <div placebet bet="come9" class="come" ng-class="{inactive:!options.come9}">
+                      <div class="chips">{{bets.come9}}</div>
+                  </div>
+                  <div class="come bg"></div>
+                  <div placebet bet="takeodds9" class="takeodds" ng-class="{inactive:!options.takeodds9}">
+                      <div class="chips">{{bets.takeodds9}}</div>
+                  </div>
+                  <div class="takeodds bg"></div>
+                  <p class="boardnumber"><%= labels.nine_title%></p>
+              </div>
+              <div id="panel_10" class="number split">
+                  <div placebet bet="notodds10" class="notodds" ng-class="{inactive:!options.notodds10}">
+                      <div class="chips">{{bets.notodds10}}</div>
+                  </div>
+                  <div class="notodds bg"></div>
+                  <div placebet bet="dontcome10" class="dontcome" ng-class="{inactive:!options.dontcome10}">
+                      <div class="chips">{{bets.dontcome10}}</div>
+                  </div>
+                  <div class="dontcome bg"></div>
+                  <div placebet bet="come10" class="come" ng-class="{inactive:!options.come10}">
+                      <div class="chips">{{bets.come10}}</div>
+                  </div>
+                  <div class="come bg"></div>
+                  <div placebet bet="takeodds10" class="takeodds" ng-class="{inactive:!options.takeodds10}">
+                      <div class="chips">{{bets.takeodds10}}</div>
+                  </div>
+                  <div class="takeodds bg"></div>
+                  <p class="boardnumber">10</p>
+              </div>
+              
+              <div id="panel_seven" placebet bet="seven" class="number" ng-class="{inactive:!options.seven}">
+                  <div class="chips">{{bets.seven}}</div>
+                  <p><%= labels.seven_title%></p>
+                  4 <%=labels.to%> 1
+              </div>
+              <div id="panel_anycraps" placebet bet="anycraps" class="number" ng-class="{inactive:!options.anycraps}">
+                  <div class="chips">{{bets.anycraps}}</div>
+                  <p><%= labels.anycraps_title%></p>
+                  7 <%=labels.to%> 1
+              </div>
+              <div id="panel_sub1" placebet bet="hard4" class="number" ng-class="{inactive:!options.hard4}">
+                  <div class="chips">{{bets.hard4}}</div>
+                  <div id="imgdice2_2"></div>
+              </div>
+              <div id="panel_sub2" placebet bet="hard10" class="number" ng-class="{inactive:!options.hard10}">
+                  <div class="chips">{{bets.hard10}}</div>
+                  <div id="imgdice5_5"></div>
+              </div>
+              <div id="panel_sub3" placebet bet="hard6" class="number" ng-class="{inactive:!options.hard6}">
+                  <div class="chips">{{bets.hard6}}</div>
+                  <div id="imgdice3_3"></div>
+              </div>
+              <div id="panel_sub4" placebet bet="hard8" class="number" ng-class="{inactive:!options.hard8}">
+                  <div class="chips">{{bets.hard8}}</div>
+                  <div id="imgdice4_4"></div>
+              </div>
+              <div id="panel_sub5" placebet bet="three" class="number" ng-class="{inactive:!options.three}">
+                  <div class="chips">{{bets.three}}</div>
+                  <div id="imgdice1_2"></div>
+              </div>
+              <div id="panel_sub6" placebet bet="eleven" class="number" ng-class="{inactive:!options.eleven}">
+                  <div class="chips">{{bets.eleven}}</div>
+                  <div id="imgdice5_6"></div>
+              </div>
+              <div id="panel_sub7" placebet bet="two" class="number" ng-class="{inactive:!options.two}">
+                  <div class="chips">{{bets.two}}</div>
+                  <div id="imgdice1_1"></div>
+              </div>
+              <div id="panel_sub8" placebet bet="twelve" class="number" ng-class="{inactive:!options.twelve}">
+                  <div class="chips">{{bets.twelve}}</div>
+                  <div id="imgdice6_6"></div>
+              </div>
+              
+          </div>
+      </div><div class="row">
+          <div class="col-xs-12">
+              <div id="current-bet">
+                  <%for(var i in boards) {%>
+                  <div ng-if="currentBetPanel === '<%=i%>'">
+                      <%= boards[i]%> (<%=labels.current_bet%>: {{getBetAmount(currentBetPanel, false) | cryptovalue}}
+                      <span ng-if="max[currentBetPanel]">, <%=labels.max_bet%>: {{max[currentBetPanel] | cryptovalue}}</span>)
+                  </div>
+                  <%}%>
+              </div>
+              <spinmessage></spinmessage>
+          </div>
+      </div>
+      <div class="row position-relative">
+        <div id="wheelhistory" class="col-xs-12">
+          <div class="history">
+            <bethistory ng-repeat="number in recentnumbers" data-color="{{number.color}}" data-number="{{number.number}}"></bethistory>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-6">
+            <button ng-disabled="isGameInProgress || animationsLoading || animating || (!bets.pass && !bets.dontpass && !thepoint)" ng-click="play();" class="btn btn-flashy btn-lg btn-spin margin-10 font-size-30">
+                <%= buttons.start_roll %>
+            </button>
+            <br />
+            <autospin-button></autospin-button>
+            <br />
+            <button ng-click="clearBets();" class="btn btn-default" bc-popover="{{clearBetsPopover}}" bc-popover-content="<%= buttons.clearbets_individual %>" ng-mouseover="clearBetsPopover=true" ng-mouseout="clearBetsPopover=false" bc-popover-direction="top" ng-disabled="isGameInProgress">
+                <%= buttons.clearbets %>
+            </button>
+          </div>
+          <div class="col-xs-6">
+            <div class="margin-top-10"><%= home.totalbet %> {{totalbet | cryptovalue}} <span ng-show="BCSession.currency=='bitcoin'">BTC</span><span ng-show="BCSession.currency=='dogecoin'">XDG</span><span ng-show="BCSession.currency=='litecoin'">LTC</span></div>
+            <div id="gameCanvas"></div>
+          </div>
+        </div>
+      
+    </div>
+    <div class="hide localizations">
+      <div id="localization-x"><span><%= game.x %></span></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<script type="text/ng-template" id="pressModalContent.html">
+    <div class="modal-header">
+        <span class="cursor pull-right" ng-click="close()">
+            <i class="glyphicon glyphicon-remove"></i>
+        </span>
+        <h3 class="modal-title">
+            PRESS
+        </h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <%for(var i in boards) {%>
+                <div ng-if="offerNum === '<%=i%>'" class="margin-bottom-10"><%= press.you_won_on%> <%=boards[i]%>.</div>
+                <%}%>
+                <div class="row">
+                    <div ng-class="{'col-sm-6':!multiplePressable, 'col-sm-3': multiplePressable}">
+                        <button ng-click="press('press');" class="btn btn-default btn-block">
+                            <%= buttons.press %>
+                        </button>
+                    </div>
+                    <div class="col-sm-3" ng-if="multiplePressable">
+                        <button ng-click="press('press_in');" class="btn btn-default btn-block">
+                            <%= buttons.press_inside %>
+                        </button>
+                    </div>
+                    <div class="col-sm-3" ng-if="multiplePressable">
+                        <button ng-click="press('press_out');" class="btn btn-default btn-block">
+                            <%= buttons.press_outside %>
+                        </button>
+                    </div>
+                    <div ng-class="{'col-sm-6':!multiplePressable, 'col-sm-3': multiplePressable}">
+                        <button ng-click="close();" class="btn btn-default btn-block">
+                            <%= buttons.dont_press %>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

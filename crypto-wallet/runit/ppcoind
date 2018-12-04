@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+chown -R app:app /home/app/.ppcoin
+chmod 600 /home/app/.ppcoin/ppcoin.conf
+
+exec /sbin/setuser app ppcoind -datadir=/home/app/.ppcoin >> /var/log/ppcoind.log 2>&1

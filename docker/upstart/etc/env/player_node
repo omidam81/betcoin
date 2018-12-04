@@ -1,0 +1,10 @@
+MONGO_USER=admin
+MONGO_PASSWORD=admin
+RPCUSER=apidevmain
+RPCPASSWORD=RhoncoapayshymNo
+MANDRILL_KEY='MGfi-zRR1EKavpVh5LSQOQ'
+NODE_ENV=production
+
+VIRTUAL_HOST=apidev.betcoin.tm
+PROXY_PORT=441
+UPSTREAM=player-node

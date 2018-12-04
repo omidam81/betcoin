@@ -1,0 +1,54 @@
+<div class="col-sm-9">
+    <div class="panel panel-default main-container">
+        <div class="panel-heading">
+            Ticket #{{ticket._id}} by {{ticket.owner}}
+            <label>Status: {{ticket.status}}</label>
+        </div>
+        <div class="panel-footer">
+            <div class="media-body">
+                <div class="panel panel-dark">
+                    <div class="reply">Name: {{ticket.thread[0].username}}</div>
+                    <div class="reply">Email: {{ticket.email}}</div>
+                    <div class="reply">VIP: <span class="glyphicon" ng-class="ticket.anonymous && 'glyphicon-remove' || 'glyphicon-ok'"></span></div>
+                    <div class="reply">Subject: {{ticket.subject}}</div>
+                    <div class="reply">Referring Url: {{ticket.referUrl}}</div>
+                    <div class="text-muted date"> {{ticket.createdAt | date:'medium'}}</div>
+                </div>
+            </div>
+            <div>
+                <div ng-repeat="(index, comment) in ticket.thread" class="media">
+                    <div class="media-body">
+                        <div class="panel panel-dark">
+                            <div class="reply">{{index+1}}. {{index == 0 ? "Message" : "Reply"}} from {{comment.username}}</div>
+                            <div class="panel-body"><p>{{comment.message}}</p> </div>
+                            <div class="text-muted date"> {{comment.createdAt | date:'medium'}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="form-horizontal" name="replyForm">
+                <div class="form-group">
+                    <label class="control-label indent-label">Send a reply</label>
+                    <textarea placeholder="Reply to the comment here"
+                              rows="5" cols="50"
+                              class="form-control"
+                              ng-model="newMessage"></textarea>
+                </div>
+                <div class="form-group">
+                    <select class="form-control"
+                            ng-model="newStatus"
+                            ng-options="status for status in newStatusOptions"></select>
+                </div>
+                <div ng-show="newStatus=='flagged'" class="form-group">
+                    <select class="form-control"
+                            ng-model="flaggedFor"
+                            ng-options="admin.username for admin in admins"></select>
+                </div>
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-click="comment()"
+                        ng-disabled="replyForm.$invalid">Reply</button>
+            </form>
+        </div>
+    </div>
+</div>

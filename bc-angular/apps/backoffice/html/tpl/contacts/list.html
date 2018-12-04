@@ -1,0 +1,76 @@
+<div class="row"
+     ng-controller="ContactListListController">
+    <form class="form col-md-4">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text"
+                   ng-model="newList.name"
+                   class="form-control"
+                   required>
+        </div>
+        <div class="form-group">
+            <label>Promo</label>
+            <select class="form-control"
+                    ng-model="selectedPromo"
+                    ng-change="addPromo()"
+                    ng-options="index as promo.name for (index, promo) in promotions"></select>
+        </div>
+        <div ng-repeat="promo in pendingPromos">
+            {{promo.name}} <button class="btc btn-primary"
+                                   ng-click="promotions.push(pendingPromos.splice($index, 1)[0])">X</button>
+        </div>
+        <div class="form-group">
+            <label>Days w/o Deposit (optional)</label>
+            <input type="text"
+                   ng-model="newList.noDepositDays"
+                   class="form-control">
+            <span class="help-block">
+                Use -1 to get users with no deposits only, blank for
+                no requirement
+            </span>
+        </div>
+        <div class="form-group">
+            <label>VIP Level (optional)</label>
+            <select class="form-control"
+                    ng-model="newList.vipLevel"
+                    ng-options="index as level._id for (index, level) in vipLevels"></select>
+        </div>
+        <div class="form-group">
+            <label>Locale (optional)</label>
+            <select class="form-control"
+                    ng-model="newList.locale"
+                    ng-options="value for value in LOCALES"></select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary"
+                    ng-click="saveNewList(newList)">Save</button>
+        </div>
+    </form>
+    <table class="table col-md-7">
+        <thead>
+            <th>List</th>
+            <th>Criteria</th>
+            <th>Users</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="list in lists">
+                <td><a ng-href="contacts/{{list._id}}">{{list.name}}</a></td>
+                <td>
+                    <span ng-if="list.noDepositDays != undefined">{{list.noDepositDays}} days | </span>
+                    <span ng-if="list.vipLevel != undefined">{{vipLevels[list.vipLevel]._id}}  | </span>
+                    <span ng-if="list.locale != undefined">{{list.locale}} | </span>
+                    <span ng-repeat="promoId in list.promos">
+                        <a ng-href="promotions/{{promoId}}">{{promoMap[promoId]}}</a>
+                        <span ng-if="!$last">, </span>
+                    </span>
+                </td>
+                <td>ummm</td>
+                <td>
+                    <button class="btn btn-sm btn-primary"
+                            ng-click="deleteList($index, list)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

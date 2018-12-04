@@ -1,0 +1,44 @@
+{
+    "prod": "letitride",
+    "meta": {
+        "title": "财神高™ 财神加勒比扑克 - 绝对公平卡牌游戏",
+        "description": "财神堂™ - 最好的比特币博彩游戏: 彩票,扑克,轮盘,骰子,老虎机! 全球最高的比特币奖金!",
+        "keywords": "比特币博彩,财神堂,财神轮,才神灵,免费的比特币,财神骰子,比特币娱乐场, 比特币赌博, 骰子,比特币游戏,中本聪,比特币下注,比特币投注,比特币扑克, 比特币轮盘,比特币老虎机,块链,赌比特币,比特币彩票, 比特币21点, 比特币公平"
+    },
+    "global": {
+        "logourl": "img/words/CN-letitride.png"
+    },
+    "home": {
+        "title_image": "img/icons/letitride280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/letitride"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/jialebi-puke"
+        }
+    },
+    "game": {
+        "community_cards": "Community Cards",
+        "player": "Player",
+        "winmessage": "赢家",
+        "seed" : "Seed",
+        "first": "1",
+        "second": "2",
+        "three": "3-Card",
+        "five": "5-Card"
+    },
+    "spins": {
+        "CircleTh4": "赌注",
+        "ProofDt5": "最终排列"
+    },
+    "buttons": {
+        "let_it_ride": "Let It Ride",
+        "pull": "Pull",
+        "clear_bets": "取消所有下注"
+    },
+    "text": {
+        "invalid_raise": "无效加薪"
+    }
+}

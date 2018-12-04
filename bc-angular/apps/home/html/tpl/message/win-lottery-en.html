@@ -1,0 +1,22 @@
+<a data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}" ng-click="markRead()">
+    {{message.datetime | date:'yyyy-MM-dd HH:mm:ss'}} -
+    <b><%= text.win_lottery %></b>
+</a>
+<div bindonce="message" id="{{message.id}}" class="panel panel-default panel-collapse collapse" bo-class="{'in':!message.hasRead}">
+    <div class="panel-body">
+        <div>
+            <p> Congratulations! You have won the lottery, 
+            <span ng-show="message.interval.indexOf('m')!=-1">Battles</span>
+            <span ng-show="message.interval.indexOf('h')!=-1">Raffles</span>
+            <span ng-show="message.interval.indexOf('d')!=-1">Jackpots</span>,
+            <span ng-show="message.interval.indexOf('1')!=-1">Bronze Cup</span>
+            <span ng-show="message.interval.indexOf('3')!=-1">Silver Cup</span>
+            <span ng-show="message.interval.indexOf('7')!=-1">Gold Cup</span>
+            <span ng-show="message.interval.indexOf('9')!=-1">Platinum Cup</span>
+            <span ng-show="message.interval.indexOf('15')!=-1">Diamond Cup</span>, {{message.jackpot.toBitcoin()}} BTC
+        </div>
+        <button class="btn btn-primary btn-block" ng-click="markRead()" data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}">
+            <%=buttons.dismiss_message %>
+        </button>
+    </div>
+</div>

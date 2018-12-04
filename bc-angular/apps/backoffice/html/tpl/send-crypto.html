@@ -1,0 +1,82 @@
+<div class="row"
+     ng-show="message.length">
+    <span class="alert alert-primary">{{message}}</span>
+</div>
+<div class="row"
+     ng-show="error.length">
+    <span class="alert alert-danger">{{error}}</span>
+</div>
+<div class="row">
+    <form class="form col-md-4"
+          ng-if="BCAdminSession.user.accessLevel == 0">
+        <h3>Send Crypto</h3>
+        <div class="form-group">
+            <select class="form-control"
+                    ng-model="formData.currency"
+                    ng-options="currency for currency in currencyOptions"></select>
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <input class="form-control"
+                   type="text"
+                   ng-model="formData.address">
+        </div>
+        <div class="form-group">
+            <label>Amount</label>
+            <input class="form-control"
+                   type="text"
+                   ng-model="formData.amountDecimal">
+        </div>
+        <div class="form-group">
+            <label>Reason</label>
+            <input class="form-control"
+                   type="text"
+                   ng-model="formData.reason"
+                   ng-pattern="/[a-zA-Z_-]+/">
+        </div>
+        <div class="form-group">
+            <label>Memo</label>
+            <input class="form-control"
+                   type="text"
+                   ng-model="formData.memo"
+                   ng-minlength="10">
+        </div>
+        <div class="form-group">
+            <button class="form-control btn btn-primary"
+                    type="submit"
+                    ng-click="sendCrypto()">Do it. Yeah.</button>
+        </div>
+        <div class="form-group"
+             ng-if="error">
+            <span class="label label-danger">{{error.error}} - {{error.message}}</span>
+        </div>
+    </form>
+    <div class="col-md-8">
+        <h1 ng-show="loading">Loading</h1>
+        <table class="table bc-multi-table"
+               ng-hide="loading">
+            <thead>
+                <th>To</th>
+                <th>Admin</th>
+                <th>Currency</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Message</th>
+                <th>TXID</th>
+                <th>Date</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tx in listData.result">
+                    <td>{{ tx.to }}</td>
+                    <td>{{ tx.admin }}</td>
+                    <td>{{ tx.currency }}</td>
+                    <td>{{ tx.currency | cryptosymbol }} {{ tx.amount | cryptovalue }}</td>
+                    <td>{{ tx.type }}</td>
+                    <td>{{ tx.message }}</td>
+                    <td>{{ tx.refId }}</td>
+                    <td>{{ tx.createdAt | date:DATE_FORMAT }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

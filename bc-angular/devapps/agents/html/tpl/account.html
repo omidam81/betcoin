@@ -1,0 +1,275 @@
+<div class="container">
+<div class="row">
+    <div class="panel panel-default col-xs-12 col-sm-6 col-sm-push-3">
+        <div class="panel-body">
+            <div class=""><h1 class=""><%= text.edit_account%></h1></div>
+            <form role="form" name="editDetailsForm">
+                <div class="form-group">
+                    <div class="row row-line">
+                        <label for="" class="col-xs-4 control-label"><%= text.new_alias %></label>
+                        <div class="col-xs-8">
+                            <input type="text" autocorrect="off"
+                                   autocapitalize="off" class="form-control"
+                                   ng-model="userEditData.username" name="username"
+                                   bc-popover="{{editDetailsForm.username.$invalid}}"
+                                   required>
+                            <div class="errors hide">
+                                <span class="error"><%= text.require_alias %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row row-line">
+                        <label for="" class="col-xs-4 control-label"><%= text.new_password %></label>
+                        <div class="col-xs-8">
+                            <input type="password" class="form-control"
+                                   ng-model="userEditData.password" name="password"
+                                   ng-minlength="10" ng-maxlength="64"
+                                   bc-popover="{{editDetailsForm.password.$invalid && editDetailsForm.password.$dirty}}"
+                                   ng-required="user.anonymous==true">
+                            <div class="errors hide">
+                                <span class="error"
+                                      ng-show="editDetailsForm.password.$error.minlength">
+                                    <%= text.password_min_length %>
+                                </span>
+                                <span class="error"
+                                      ng-show="editDetailsForm.password.$error.maxlength">
+                                    <%= text.password_max_length %>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row row-line">
+                        <label for="" class="col-xs-4 control-label"><%= text.confirm_new_password %></label>
+                        <div class="col-xs-8">
+                            <input type="password" class="form-control"
+                                   ng-model="userEditData.passwordConfirm"
+                                   name="confirmPassword" ng-minlength="10"
+                                   ng-maxlength="64"
+                                   bc-popover="{{(editDetailsForm.confirmPassword.$invalid && editDetailsForm.confirmPassword.$dirty)||(userEditData.password && userEditData.password !== userEditData.passwordConfirm)}}"
+                                   ng-required="user.anonymous==true">
+                            <div class="errors hide">
+                                <span class="error"
+                                      ng-show="editDetailsForm.confirmPassword.$error.minlength">
+                                    <%= text.password_min_length %>
+                                </span>
+                                <span class="error"
+                                      ng-show="editDetailsForm.confirmPassword.$error.maxlength">
+                                    <%= text.password_max_length %>
+                                </span>
+                                <span class="error"
+                                      ng-show="userEditData.password && userEditData.password !== userEditData.passwordConfirm">
+                                    <%= text.password_validation %>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row row-line">
+                        <label for="" class="col-xs-4 control-label"><%= text.email_address %></label>
+                        <div class="col-xs-8">
+                            <input type="email" class="form-control"
+                                   name="email" ng-model="userEditData.email"
+                                   bc-popover="{{editDetailsForm.email.$invalid}}">
+                            <div class="errors hide">
+                                <span class="error"><%= email.required %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h4><%= global.withdrawAddress %>: {{ user.wallets.bitcoin.withdrawAddress  }}</h4>
+                    <div class="row row-line">
+                        <label for="" class="col-xs-4 control-label"><%= text.main_bitcoin_address %></label>
+                        <div class="col-xs-8">
+                            <input type="text" autocorrect="off"
+                                   autocapitalize="off" class="form-control"
+                                   name="withdrawAddress" ng-model="userEditData.wallets.bitcoin.withdrawAddress"
+                                   bc-popover="{{editDetailsForm.wallets.bitcoin.withdrawAddress.$invalid}}" required>
+                            <div class="errors hide">
+                                <span class="error"><%= text.invalid_withdraw_address %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row row-line">
+                        <label for="" class="col-xs-4 control-label"><%= text.backup_btc_address %></label>
+                        <div class="col-xs-8">
+                            <input type="text" autocorrect="off"
+                                   autocapitalize="off" class="in-line form-control"
+                                   name="backupAddress" ng-model="userEditData.wallets.bitcoin.withdrawBackup">
+
+                            <span class="question" ng-click="showhelpmodal();">?</span>
+
+                            <div class="modal fade" id="helpModal"
+                                 tabindex="-1" role="dialog"
+                                 aria-labelledby="helpModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center">
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal">
+                                                <span aria-hidden="true">&times;</span>
+                                                <span class="sr-only">Close</span>
+                                            </button>
+                                            <p><%= text.wallet_backup_info %></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="error"
+                                  ng-show="userEditData.wallets.bitcoin.withdrawAddress === userEditData.wallets.bitcoin.withdrawBackup">
+                                <%= text.same_backup_withdraw_address %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row row-line">
+                        <label for="" class="col-xs-4 control-label"><%= global.litecoinAddress %></label>
+                        <div class="col-xs-8">
+                            <input type="text" autocorrect="off" autocapitalize="off"
+                                   class="form-control" name="ltcWithdrawAddress"
+                                   ng-model="userEditData.wallets.litecoin.withdrawAddress">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row row-line">
+                        <label for="" class="col-xs-4 control-label"><%= global.dogecoinAddress %></label>
+                        <div class="col-xs-8">
+                            <input type="text" autocorrect="off"
+                                   autocapitalize="off" class="form-control"
+                                   name="xdgWithdrawAddress"
+                                   ng-model="userEditData.wallets.dogecoin.withdrawAddress">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row row-line">
+                        <label for="" class="col-xs-4 control-label"><%= global.ppcoinAddress %></label>
+                        <div class="col-xs-8">
+                            <input type="text" autocorrect="off"
+                                   autocapitalize="off" class="form-control"
+                                   name="ppWithdrawAddress"
+                                   ng-model="userEditData.wallets.ppcoin.withdrawAddress">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row row-line">
+                        <label for="" class="col-xs-4 control-label"><%= global.namecoinAddress %></label>
+                        <div class="col-xs-8">
+                            <input type="text" autocorrect="off"
+                                   autocapitalize="off" class="form-control"
+                                   name="nameWithdrawAddress"
+                                   ng-model="userEditData.wallets.namecoin.withdrawAddress">
+                        </div>
+                    </div>
+                </div>
+
+                <h1><%= text.edit_verify %></h1>
+                <p><%= text.verify_header %></p>
+                <p><a ng-click="showVerifyInfo=true;"><%= text.read_more %></a></p>
+                <div ng-show="showVerifyInfo">
+                    <p><%= text.verify_info_a %></p>
+                    <p><%= text.verify_info_b %></p>
+                    <p><%= text.verify_info_c %></p>
+                </div>
+                <h4><%= text.verify_wallet_list %></h4>
+                <p><a href="https://multibit.org/en/help/v0.5/help_signAndVerifyMessage.html" target="_blank">MultiBit</a></p>
+                <p><a href="https://blockchain.info/wallet/wallet-faq" target="_blank">Blockchain.info</a></p>
+                <p><a href="https://bsidebtc.com/sign-verify-message-electrum/" target="_blank">Electrum</a></p>
+
+                <!-- @if LOC="en_US" -->
+                <div>
+                    <iframe src="//player.vimeo.com/video/117449844"
+                            width="500" height="281" frameborder="0"
+                            webkitallowfullscreen mozallowfullscreen
+                            allowfullscreen></iframe>
+                </div>
+                <!-- @endif -->
+                <!-- @if LOC="zh_CN" -->
+                <div>
+                    <iframe src="//player.vimeo.com/video/117449841"
+                            width="500" height="281" frameborder="0"
+                            webkitallowfullscreen mozallowfullscreen
+                            allowfullscreen></iframe>
+                </div>
+
+                <!-- @endif -->
+
+                <h4><%= text.verify_wallet_info %></h4>
+                <ol>
+                    <li><%= text.verify_p1 %></li>
+                    <li><%= text.verify_p2 %>{{userEditData.wallets.bitcoin.withdrawAddress}}</li>
+                    <li><%= text.verify_p3 %>{{challenge}}</li>
+                    <li><%= text.verify_p4 %></li>
+                    <li><%= text.verify_p5 %></li>
+                    <li><%= text.verify_p6 %></li>
+                </ol>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="" class="control-label"><%=text.message_sign%></label>
+                        <div class="input-group">
+                            <div class="form-control">{{ challenge }}</div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary input-group-custom-btn"
+                                        ng-click="copyDialog(challenge)">
+                                    <%= buttons.copy %>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         ng-show="(user.wallets.bitcoin.withdrawAddress && user.wallets.bitcoin.withdrawAddress !== userEditData.wallets.bitcoin.withdrawAddress)">
+                        <label for="" class="control-label">
+                            <%=text.signed_message_old_address%> ( {{user.wallets.bitcoin.withdrawAddress}} )
+                        </label>
+                        <input type="text" autocorrect="off"
+                               autocapitalize="off" class="form-control"
+                               name="signature_old" ng-model="userEditData.signature_old"
+                               bc-popover="{{editDetailsForm.signature_old.$dirty&&editDetailsForm.signature_old.$invalid}}">
+                        <div class="errors hide">
+                            <div class="error">
+                                <span class="error"><%= wallet.invalid_signature %></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label">
+                            <%=text.signed_message%> ( {{userEditData.wallets.bitcoin.withdrawAddress}} )
+                        </label>
+                        <input type="text" autocorrect="off"
+                               autocapitalize="off" class="form-control"
+                               name="signature" ng-model="userEditData.signature"
+                               bc-popover="{{editDetailsForm.signature.$dirty&&editDetailsForm.signature.$invalid}}"
+                               required>
+                        <div class="errors hide">
+                            <div class="error">
+                                <span class="error"><%= wallet.invalid_signature %></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block"
+                                ng-click="update()"
+                                ng-disabled="editDetailsForm.$invalid || (userEditData.password && userEditData.password !== userEditData.passwordConfirm) || (userEditData.anonymous && !editDetailsForm.password)" bc-popover="{{error !== null && error !== undefined}}" bc-popover-direction="bottom"><%=buttons.edit_submit%>
+                        </button>
+                        <div class="errors hide">
+                            <span class="error">{{error|error}}</span>
+                        </div>
+                        <span class="error text-center" ng-show="updated"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>

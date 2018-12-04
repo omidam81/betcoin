@@ -1,0 +1,66 @@
+{
+    "prod": "lottery",
+    "meta": {
+        "title": "BetCoin ™ Lottery is the provably fair lottery game for bitcoin. Win Bitcoins!",
+        "description": "BetCoin ™ Lottery is the provably fair lottery game for bitcoin. Win Bitcoins!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-lottery.png"
+    },
+    "home": {
+        "title_image": "img/icons/prize.png"
+    },
+    "text": {
+        "buy_tickets_intro": "Buy tickets for 0.00001 wager amount. Select a wager and Place Bets. <br>The more you wager, the higher your chance to win!",
+        "current_win_intro": "You are the current winner of this lottery. <br>Watch the jackpot grow, and compete with other players.",
+        "current_nowin_intro": "You are not the current winner of this lottery. <br>Watch the game, and see if new bets by the others change your fortune to win, or place more bets to compete.",
+        "win_chance": "Win",
+        "time_left": "Time Left",
+        "buy_tickets": "Buy Tickets",
+        "buy": "Buy",
+        "tickets": "Tickets",
+        "confirm": "Confirm",
+        "current_winner": "Current Winner",
+        "winner": "Winner",
+        "cuttime": "Cutoff",
+        "my_live_bets": "My Live Bets",
+        "my_next_drawing": "My Next Drawing",
+        "mine": "Mine",
+        "all_bets_this_game": "All Bets on this game",
+        "minutes": "Minutes",
+        "hours": "Hours",
+        "days": "Days"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/lottery"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/letou"
+        }
+    },
+    "game": {
+        "type": "Type",
+        "spinmessage": "",
+        "spinningmessage": "",
+        "winmessage": "Winner",
+        "bronze": "Bronze",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum",
+        "diamond": "Diamond",
+        "jackpots": "Long",
+        "raffles": "Medium",
+        "battles": "Short",
+        "returnbet": "The bet has been returned.",
+        "place_bet": "Place Bet"
+    },
+    "spins": {
+        "lotteries": "Lotteries",
+        "jackpot": "Jackpot",
+        "total_wagered": "Total Wagered"
+    },
+    "buttons": {
+        "play_now": "Play Now"
+    }
+}

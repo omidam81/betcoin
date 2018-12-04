@@ -1,0 +1,40 @@
+{
+    "prod": "circle",
+    "meta": {
+        "title": "财神轮™比特币博彩娱乐场－赢大量比特币！",
+        "description": "财神轮™ 是几率平等的比特币老虎机游戏. 开始游戏，瞬间翻倍翻倍比特币！",
+        "keywords": "比特币, 赌场, 赌博, 骰子, 游戏, 免费的比特币, Satoshi, 投注, 转轮, 老虎机, Blockchain, 比特币投注,  扑克, 21点, 几率平等"
+    },
+    "global": {
+        "logourl": "img/CN-CIRCLE.png"
+    },
+    "home": {
+        "title_image": "img/CN-CIRCLE.png",
+        "circle_promote_header_a": "转动财神轮<br/>一转就能赢得25倍",
+        "circle_promote_header_b": "极高安全的设计 － 帐户无法被盗用",
+        "circle_promote_header_c": "高额快速支付 － 博彩领域最高",
+        "circle_promote_header_d": "<h4>绝对公平、透明的系统 － 全球最低的赌场赢率 － 1.65%</h4>"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/circle"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/lun"
+        }
+    },
+    "game": {
+        "CircleButtonCashOut": "提款",
+        "spinmessage": "请按下比特币中间处以旋转财神轮"
+    },
+    "spins": {
+        "details": "详情",
+        "CloseButton": "关闭",
+        "ProofButton": "证明",
+        "match": "匹对正确",
+        "nomatch": "不匹对"
+    },
+    "nav":{
+        "howtoplay":"游戏说明"
+    }
+}

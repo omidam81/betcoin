@@ -1,0 +1,16 @@
+[user]
+    name = betcoin
+    email = webadmin@betcoin.tm
+[core]
+    editor = vi
+    autocrlf = input
+[color]
+    ui = auto
+[alias]
+    ls = log --decorate --oneline --graph
+    ll = log --decorate --graph --dirstat
+    la = log --decorate --oneline --graph --all
+    lla = log --decorate --graph --all --dirstat
+    co = checkout
+[push]
+    default = current

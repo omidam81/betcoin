@@ -1,0 +1,71 @@
+<div class="panel panel-default indent-text">
+    <h4><%= text.login_success %></h4>
+    <p><%= text.ready_to_play %></p>
+</div>
+<div class="panel panel-default indent-text">
+    <p class="well"><%= text.fund_account %></p>
+    <form>
+        <div class="form-group">
+            <p class="text-center text-underline">{{btcAddress}}</p>
+            <p class="error text-center" ng-show="copied"><%= text.copied %></p>
+            <button type="button" class="btn btn-primary btn-block" clip-copy="getTextToCopy()" clip-click="showTooltip()"><%= buttons.copy_address %></button>
+            <!-- <button class="btn btn-primary btn-block" clip-copy="getTextToCopy()" ng-click="copy()"><%= buttons.copy_address %></button> -->
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="thumbnail">
+            <a href="https://betcoin.tm/circle" class="">
+                <img src="img/icons/circle.png" alt="" class="img-responsive">
+                <div class="caption">
+                    <img src="img/words/circle.png" alt="" class="img-responsive">
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="thumbnail">
+            <a href="https://betcoin.tm/dice" class="">
+                <img src="img/icons/dice.png" alt="" class="img-responsive">
+                <div class="caption">
+                    <img src="img/words/dice.png" alt="" class="img-responsive">
+                </div>
+            </a>                            
+        </div>
+    </div>                    
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="thumbnail">
+            <a href="https://betcoin.tm/prize" class="">
+                <img src="img/icons/prize.png" alt="" class="img-responsive">
+                <div class="caption">
+                    <img src="img/words/prize.png" alt="" class="img-responsive">
+                </div> 
+            </a>                             
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="thumbnail">
+            <a href="https://betcoin.tm/reels" class="">
+                <img src="img/icons/reels.png" alt="" class="img-responsive">
+                <div class="caption">
+                    <img src="img/words/reels.png" alt="" class="img-responsive">
+                </div>
+            </a>                     
+        </div>
+    </div>                    
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="thumbnail">
+            <a href="https://betcoin.tm/casino" class="">
+                <img src="img/icons/casino.png" alt="" class="img-responsive">
+                <div class="caption">
+                    <img src="img/words/casino.png" alt="" class="img-responsive">
+                </div>
+            </a>                            
+        </div>
+    </div>                  
+</div> 

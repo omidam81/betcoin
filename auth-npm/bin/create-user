@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var argv = require('optimist')
+    .demand(["username"])
+    .argv;
+var bcrypt = require('bcrypt');
+var crypto = require('crypto');
+var mongo = require('mongowrap').getConnection({
+    url: "MONGO_PRIMARY_URL"
+});
+
+var username = argv.username;
+var password = argv.password || crypto.randomBytes(12).toString('hex');
+console.log("creating %s:%s", username, password);
+
+mongo.getCollection('officedb', 'users', function(err, Users) {
+    if (err) throw err;
+    bcrypt.hash(password, 10, function(err, passHash) {
+        if (err) throw err;
+        Users.insert({username: username, password: passHash}, function(err) {
+            if (err) throw err;
+            console.log("%s:%s", username, password);
+            process.exit();
+        });
+    });
+});

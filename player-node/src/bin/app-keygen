@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var bcrypt = require('bcrypt');
+var crypto = require('crypto');
+var argv = require('optimist')
+        .demand(["app"])
+        .argv;
+var mongowrap = require('mongowrap');
+var mongo = mongowrap.getConnection();
+
+var key = crypto.randomBytes(32).toString('base64').replace(/=$/, '');
+
+bcrypt.genSalt(10, function(err, salt) {
+    if (err) {
+        console.error(err.message);
+        process.exit(1);
+    }
+    bcrypt.hash(key, salt, function(err, hash) {
+        if (err) {
+            console.error(err.message);
+            process.exit(1);
+        }
+        var playerJson = {
+            _id: argv.app,
+            hash: hash
+        };
+        mongo.getCollection('playerdb', 'appkeys', function(err, collection) {
+            if (err) {
+                console.error(err.message);
+                process.exit(1);
+            }
+            collection.insert(playerJson, function(err) {
+                if (err) {
+                    console.error(err.message);
+                    process.exit(1);
+                }
+                console.log("app env variable: ` export APP_KEY='%s:%s' '", argv.app, key);
+                process.exit();
+            });
+        });
+    });
+});

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+[[ -d /data/arbitor/db ]] || mkdir /data/arbitor/db
+chown -R mongodb:65535 /data
+exec /sbin/setuser mongodb /usr/bin/mongod -f /data/arbitor/mongod.conf >> /var/log/mongod.log 2>&1
+

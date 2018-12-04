@@ -1,0 +1,503 @@
+<ul class="nav nav-pills">
+    <li class="{{type=='users'?'active':''}}"><a href="" ng-click="type='users'">Search Users</a>
+    </li>
+    <li class="{{type=='search'?'active':''}}"><a href="" ng-click="showSearch()">Search Transactions</a>
+    </li>
+    <li class="{{type=='totals'?'active':''}}"><a href="" ng-click="type='totals'">Totals</a>
+    </li>
+    <li class="{{type=='ips'?'active':''}}"><a href="" ng-click="type='ips'">Search IP</a>
+    </li>
+</ul>
+<dl class="dl-horizontal">
+    <dt># of Registered</dt>
+    <dd>{{ totalRegistered.count }}</dd>
+    <dt># of Partially Registered</dt>
+    <dd>{{ totalNotVerified.count }}</dd>
+    <dt># of Anonymous</dt>
+    <dd>{{ totalAnonymous.count }}</dd>
+    <dt><a ng-click="loadOnlineUsers()"># of Online</a></dt>
+    <dd>{{ totalOnline.count }}</dd>
+</dl>
+<h3 ng-show="loading">Loading...</h3>
+<div ng-switch on="type">
+    <div class="table-responsive" ng-switch-when="search">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <h3>Lifetime Criteria</h3>
+                <div class="form-group">
+                    <select class="form-control" ng-model="data.lifetimeField" ng-init="data.lifetimeField='deposited'">
+                        <option value="deposited">Deposits</option>
+                        <option value="withdrawn">Cashout</option>
+                        <option value="wager">Wagered</option>
+                        <option value="GGR">GGR (gross gaming revenue)</option>
+                        <option value="NGR">NGR (GGR-bonuses received)</option>
+                    </select>
+                    <select class="form-control" ng-model="data.lifetimeCompare" ng-init="data.lifetimeCompare='gte'">
+                        <option value="lte">Less than or Eqaul</option>
+                        <option value="eq">Equal</option>
+                        <option value="gte">Greater than or Equal</option>
+                    </select>
+                    <input type="number" class="form-control" ng-model="data.lifetimeValue" ng-init="data.lifetimeValue=0" placeholder="value" />
+                </div>
+            </div>
+            <hr class="col-md-12">
+            <div class="form-group col-md-12">
+                <h3>Range Criteria</h3>
+                <div class="form-group col-md-3">
+                    <select class="form-control" ng-model="data.rangeField" ng-init="data.rangeField='deposited'">
+                        <option value="deposited">Deposits</option>
+                        <option value="withdrawn">Cashout</option>
+                        <option value="wager">Wagered</option>
+                        <option value="GGR">GGR (gross gaming revenue)</option>
+                        <option value="NGR">NGR (GGR-bonuses received)</option>
+                    </select>
+                    <select class="form-control" ng-model="data.rangeCompare" ng-init="data.rangeCompare='gte'">
+                        <option value="lte" selected>Less than or Eqaul</option>
+                        <option value="eq">Equal</option>
+                        <option value="gte">Greater than or Equal</option>
+                    </select>
+                    <input type="number" class="form-control" ng-model="data.rangeValue" ng-init="data.rangeValue=0" placeholder="value" />
+                </div>
+                <range-chooser class="col-md-3" on-submit="searchTransactions(range)"></range-chooser>
+                <range-display class="col-md-6" since="range.start" until="range.end"></range-display>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Account ID</th>
+                    <th>Deposits (time range)</th>
+                    <th>Cashout (time range)</th>
+                    <th>Wagered (time range)</th>
+                    <th>GGR (time range)</th>
+                    <th>NGR (time range)</th>
+                    <th>Deposits (lifetime)</th>
+                    <th>Cashout (lifetime)</th>
+                    <th>Wagered (lifetime)</th>
+                    <th>GGR (lifetime)</th>
+                    <th>NGR (lifetime)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="player in playerList.users">
+                    <td><a data-toggle="modal" data-target="#player-stats" ng-click="getPlayerStats(player._id)">{{player._id}}</a>
+                    </td>
+                    <td>{{player.deposited|btc}}</td>
+                    <td>{{player.withdrawn|btc}}</td>
+                    <td>{{player.wager|btc}}</td>
+                    <td>{{player.GGR|btc}}</td>
+                    <td>{{player.NGR|btc}}</td>
+                    <td>{{player.lifetimeDeposited|btc}}</td>
+                    <td>{{player.lifetimeWithdrawn|btc}}</td>
+                    <td>{{player.lifetimeWager|btc}}</td>
+                    <td>{{player.lifetimeGGR|btc}}</td>
+                    <td>{{player.lifetimeNGR|btc}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination total-items="total" page="page" items-per-page="20" max-size="10" on-select-page="onSelectPage(page)" class="pagination-sm" boundary-links="true"></pagination>
+    </div>
+    <div class="table-responsive" ng-switch-when="users">
+        <div class="col-md-3">
+            <div class="panel-group" style="margin-bottom: 10px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title"><a>Filters</a>
+                        </h2>
+                    </div>
+                    <div id="filters-body" class="panel-body">
+                        <div class="form-group">
+                            <label for="user-status">Player Status</label>
+                            <div id="user-status">
+                                <select class="form-control" name="player-status" ng-model="data.datapoints.user_status.lookup.value" ng-init="data.datapoints.user_status.lookup.value='any'">
+                                    <option value="any">Any</option>
+                                    <option value="verified">Verified</option>
+                                    <option value="partial_verified">Partially Verified</option>
+                                    <option value="anonymous">Anonymous</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-username">Username</label>
+                            <br>
+                            <div id="user-username">
+                                <select class="form-control" ng-model="data.datapoints.username.lookup.operator" ng-init="data.datapoints.username.lookup.operator='eq'">
+                                    <option value="eq">Equals</option>
+                                    <option value="contains">Contains</option>
+                                    <option value="startwith">Starts with</option>
+                                    <option value="endwith">Ends with</option>
+                                </select>
+                                <input type="text" class="form-control" ng-model="data.datapoints.username.lookup.value">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-email">Email</label>
+                            <br>
+                            <div id="user-email">
+                                <select class="form-control" ng-model="data.datapoints.email.lookup.operator" ng-init="data.datapoints.email.lookup.operator='eq'">
+                                    <option value="eq">Equals</option>
+                                    <option value="contains">Contains</option>
+                                    <option value="startwith">Starts with</option>
+                                    <option value="endwith">Ends with</option>
+                                </select>
+                                <input type="text" class="form-control" name="user-email" id="user-email" ng-model="data.datapoints.email.lookup.value">
+                                <div class="checkbox">
+								    <label>
+		                                Is Verified<input type="checkbox" ng-model="data.datapoints.email_verified.lookup.value">
+								    </label>
+								</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-balance">Balance</label>
+                            <br>
+                            <select class="form-control" ng-model="data.datapoints.balance_btc.lookup.operator" ng-init="data.datapoints.balance_btc.lookup.operator='gte'">
+                                <option value="lte">Less than or Eqaul</option>
+                                <option value="eq">Equal</option>
+                                <option value="gte">Greater than or Equal</option>
+                            </select>
+                            <input type="number" class="form-control" name="user-balance" id="user-balance" ng-model="data.datapoints.balance_btc.lookup.value">
+                        </div>
+                        <div class="form-group">
+                            <label for="user-deposit-address">Deposit Address</label>
+                            <br>
+                            <div id="user-deposit-address">
+                                <select class="form-control" ng-model="data.datapoints.deposit_address.lookup.operator" ng-init="data.datapoints.deposit_address.lookup.operator='eq'">
+                                    <option value="eq">Equals</option>
+                                    <option value="contains">Contains</option>
+                                    <option value="startwith">Starts with</option>
+                                    <option value="endwith">Ends with</option>
+                                </select>
+                                <input type="text" class="form-control" name="user-deposit-address" id="user-deposit-address" ng-model="data.datapoints.deposit_address.lookup.value">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-withdraw-address">Withdraw Address</label>
+                            <br>
+                            <div id="user-withdraw-address">
+                                <select class="form-control" ng-model="data.datapoints.withdraw_address.lookup.operator" ng-init="data.datapoints.withdraw_address.lookup.operator='eq'">
+                                    <option value="eq">Equals</option>
+                                    <option value="contains">Contains</option>
+                                    <option value="startwith">Starts with</option>
+                                    <option value="endwith">Ends with</option>
+                                </select>
+                                <input type="text" class="form-control" name="user-withdraw-address" id="user-withdraw-address" ng-model="data.datapoints.withdraw_address.lookup.value">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-last-activity-time">Last Activity Time</label>
+                            <br>
+                            <input type="text" class="form-control" name="user-last-activity-time" id="user-last-activity-time" ng-model="data.datapoints.last_activity_time.lookup.value">
+                            <span>days ago</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-isonline">Is Online</label>
+                            <div id="user-isonline">
+                                <select class="form-control" name="player-isonline" ng-model="data.datapoints.is_online.lookup.value" ng-init="data.datapoints.is_online.lookup.value='any'">
+                                    <option value="any">Any</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-isonline">Is Omitted</label>
+                            <div id="user-isonline">
+                                <select class="form-control" name="player-isonline" ng-model="data.datapoints.is_omitted.lookup.value">
+                                    <option value="any">Any</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                        	<label for="page-size">Page Size</label>
+                        	<input id="page-size" type="number" class="form-control" ng-model="data.size">
+                            <button class="btn btn-default" ng-click="filter()">Filter</button>
+                            <button class="btn btn-default" ng-click="clearFilters()">Clear Filters</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel-group" id="accordion" style="margin-bottom: 10px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#message-body">Send Message - For the selected players</a>
+                        </h2>
+                    </div>
+                    <div id="message-body" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form role="form" name="messageForm">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="" class="control-label">Subject</label>
+                                        <input type="text" class="form-control" ng-model="data.notification.subject" name="subject" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="control-label">Message</label>
+                                        <textarea name="message" id="message" cols="30" rows="10" class="form-control" ng-model="data.notification.message" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="send-email" class="control-label">Also Send Email</label>
+                                        <input id="send-email" type="checkbox" ng-model="data.notification.sendEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary btn-block" ng-click="sendMessage()" ng-disabled="messageForm.$invalid == true || getSelectedUserIds().length == 0">Send</button>
+                                        <span ng-show="sendMessageError">Error: {{sendMessageError}}</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group" id="accordion" style="margin-bottom: 10px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#bonus-form">Give Bonus - For the selected players</a>
+                        </h2>
+                    </div>
+                    <div id="bonus-form" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form role="form" name="bonusForm">
+                                <div class="row">
+                                    <!-- <div class="form-group">
+                                        <select class="form-control" name="bonus-type" ng-model="bonus.type">
+                                            <option value="match">Match Bonus</option>
+                                            <option value="straight">Straight Bonus</option>
+                                        </select>
+                                    </div> -->
+                                    <div class="form-group" ng-show="bonus.type=='straight'">
+                                        <label for="" class="control-label">Amount</label>
+                                        <input type="text" class="form-control" ng-model="bonus.initial">
+                                    </div>
+                                    <div class="form-group" ng-show="bonus.type=='match'">
+                                        <label for="" class="control-label">Max</label>
+                                        <input type="text" class="form-control" ng-model="bonus.max" name="max">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary btn-block"
+                                                ng-click="sendBonus()"
+                                                ng-disabled="bonusForm.$invalid == true || getSelectedUserIds().length == 0 || sendingBonus">
+                                            Give
+                                        </button>
+                                        <span ng-show="sendBonusError">Error: {{sendBonusError}}</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <filter-table data="data" page="page" total="total" sort='sort' size='500'>
+                <div class="table-responsive">
+                    <table class="table">
+                        <caption>
+                            <div>Total Results: {{total}}</div>
+                            <div>Selected: {{getSelectedUserIds().length}}</div>
+                            <div><a class="btn btn-default" data-toggle="modal" data-target="#export-modal" ng-disabled="getSelectedUserIds().length==0">Export</a></div>
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th>Stats</th>
+                                <th><input type="checkbox" class="form-control" ng-click='toggleSelection()' ng-model="data.allSelection">Select</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th><a sort-column sort-obj="sort" sort-field="balance_btc" sort-func="filter()">Account Balance</a>
+                                </th>
+                                <th>Deposit/Withdraw Address</th>
+                                <th><a sort-column sort-obj="sort" sort-field="last_activity_time" sort-func="filter()">Last Activity Time<a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="player in data.return.results">
+                                <td style="text-align:center"><a data-toggle="modal" style="cursor:pointer;font-size:25px;" class="glyphicon glyphicon-info-sign" data-target="#player-stats" ng-click="getPlayerStats(player._id)"></a>
+                                </td>
+                                <td><input type="checkbox" class="form-control" ng-model='player.selected'></td>
+                                <td>
+                                    <span style="background-color:#ff0000;" ng-show="player.user_status!='anonymous'">VIP</span>
+                                    <span style="background-color:#ffd479;color:#000;" ng-show="player.user_status=='anonymous'">?</span>
+                                    <span class="glyphicon glyphicon-arrow-up" ng-show="player.anonymous_upgraded_datetime">({{player.anonymous_upgraded_datetime|date:'yyyy-MM-dd'}})</span>
+                                    <span ng-show="player.signin_num!=null">({{player.signin_num}})</span>
+                                    <br>
+                                    <a href="player/{{player._id}}/history" target="_blank">
+                                        {{player.username}}
+                                    </a>
+                                </td>
+                                <td>{{player.email}} <input type="checkbox" ng-checked="player.email_verified" disabled></td>
+                                <td>{{player.balance_btc|btc}}</td>
+                                <td>{{player.deposit_address}}
+                                    <hr>
+                                    <span>{{player.withdraw_address}}</span>
+                                </td>
+                                <td>
+                                    {{player.last_activity_time|date:'MM/dd HH:mm:ss'}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination total-items="total" page="page" items-per-page="data.size" max-size="10" on-select-page="selectPage(page)" class="pagination-sm" boundary-links="true"></pagination>
+                </div>
+            </filter-table>
+        </div>
+
+    </div>
+    <div class="table-responsive" ng-switch-when="totals">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title"><a>Filters</a>
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="user-status">Player Status</label>
+                        <div id="user-status">
+                            <select class="form-control" name="player-status" ng-model="totalsData.datapoints[0].user_status.lookup.value" ng-init="totalsData.datapoints[0].user_status.lookup.value='any'">
+                                <option value="any">Any</option>
+                                <option value="verified">Verified</option>
+                                <option value="partial_verified">Partially Verified</option>
+                                <option value="anonymous">Anonymous</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h5>Date Range</h5>
+                        <range-display since="range.start" until="range.end"></range-display>
+                        <range-chooser on-submit="totalsInDateRange(range)"></range-chooser>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Account ID</th>
+                        <th><a sort-column sort-obj="totalsSort" sort-field="transaction_deposited_total" sort-func="totalsInDateRange(range)">Total Deposited Amount</a></th>
+                        <th><a sort-column sort-obj="totalsSort" sort-field="transaction_game_wager_total" sort-func="totalsInDateRange(range)">Total Wagered</a></th>
+                        <th><a sort-column sort-obj="totalsSort" sort-field="NGR" sort-func="totalsInDateRange(range)">NGR</a></th>
+                        <th><a sort-column sort-obj="totalsSort" sort-field="GGR" sort-func="totalsInDateRange(range)">GGR</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="player in totals">
+                        <td><a data-toggle="modal" data-target="#player-stats" ng-click="getPlayerStats(player._id)">{{player._id}}</a>
+                        </td>
+                        <td>{{player.transaction_deposited_total|btc}}</td>
+                        <td>{{player.transaction_game_wager_total|btc}}</td>
+                        <td>{{player.NGR|btc}}</td>
+                        <td>{{player.GGR|btc}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="table-responsive" ng-switch-when="ips">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title"><a>Search IP</a>
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="user-ip">IP</label>
+                        <div id="user-ip">
+                            <input class="input" type="text" ng-model="ipToSearch" placeholder="IP Address"/>
+                            <button class="btn btn-default" ng-click="searchUsersByIP(ipToSearch)">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div ng-repeat="(game,value) in playersByIp" class="{{hasProperty(value)?'col-md-6':''}}" ng-show="hasProperty(value)">
+                <table class="table">
+                    <caption>{{game.toUpperCase()}}</caption>
+                    <thead>
+                        <tr>
+                            <th>Player ID</th>
+                            <th>Date Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(playerId, time) in value">
+                            <td><a href="player/{{playerId}}/history/iphistory">{{playerId}}</a></td>
+                            <td>{{time|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive" ng-switch-default>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Stats</th>
+                    <th>Username</th>
+                    <th ng-hide="type=='anonymous'">Email</th>
+                    <th ng-hide="type=='notverified'">Account Balance</th>
+                    <th ng-hide="type=='notverified'">Deposit/Withdraw Address</th>
+                    <th ng-show="type=='notverified'">Deposit Address</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="player in playerList.users">
+                    <td style="text-align:center">
+                        <a data-toggle="modal" style="cursor:pointer;font-size:25px;" class="glyphicon glyphicon-info-sign" data-target="#player-stats" ng-click="getPlayerStats(player._id)"></a>
+                    </td>
+                    <td>{{player.alias}}</td>
+                    <td ng-hide="type=='anonymous'">{{player.email}}</td>
+                    <td ng-hide="type=='notverified'">{{player.balance.btc|btc}}</td>
+                    <td>{{player.deposit.btc.address}}
+                        <hr ng-hide="type=='notverified'">
+                        <span ng-hide="type=='notverified'">{{player.withdraw.btc.address}}</span>
+                    </td>
+                    <td>
+                        <a class="btn btn-default" href="player/{{player._id}}/history">
+	                        Transactions
+	                    </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination total-items="total" page="page" items-per-page="20" max-size="10" on-select-page="onSelectPage(page)" class="pagination-sm" boundary-links="true"></pagination>
+    </div>
+</div>
+<div id="export-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Export to CSV file</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group" ng-repeat="(key, value) in data.datapoints">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="value.display" ng-init="value.display=true">{{value.name}}
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" ng-click="export()" ng-disabled="loadingCSV">
+                    Export<span ng-show="loadingCSV">ing</span>
+                </a>
+                <button class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<player-details player-stats="playerStats" />

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+chown -R app:app /home/app/.bitcoin
+chmod 600 /home/app/.bitcoin/bitcoin.conf
+
+exec /sbin/setuser app bitcoind -datadir=/home/app/.bitcoin >> /var/log/bitcoind.log 2>&1

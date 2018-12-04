@@ -1,0 +1,51 @@
+<div ng-controller="GameController" class="row noselect" id="gameContainer">
+    <div class="col-xs-12 col-md-5 text-center col-md-push-7">
+
+        <div><img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" /></div>
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>
+
+    </div>
+    <div class="col-xs-12 col-md-7 col-md-pull-5">
+        <spinmessage></spinmessage>
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <percent-slider max="64000" step="1" min="1" no-reset="true" on-slider-value-change="onSliderValueChanged(newValue)" percent-slider-value="gameTarget"></percent-slider>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div><%= game.target %></div>
+                <span class="dice-game-target-text"><nobr>&lt<input maxlength="5" gameTarget class="gameTarget" ng-model="gameTarget" /></nobr></span>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div><%= game.payout %></div>
+                <span class="dice-game-readout-text">{{ payout | decimals:4 }}<%= game.x %></span>
+            </div>
+            <div class="col-xs-6 col-sm-3"><div><%= game.winchance %></div><span class="dice-game-readout-text">{{ winOdds | decimals:4 }}%</span></div>
+        </div>
+        <div id="gameCanvasWrapper">
+            <div id="gameCanvas"></div>
+        </div>
+        <div class="clear-both position-relative game-withdraw">
+            <autospin-button></autospin-button>
+            <button ng-disabled="isGameInProgress || animationsLoading" ng-click="play();" class="btn btn-flashy btn-lg btn-roll  margin-10 dice-game-roll-text">
+                <%= buttons.roll %>
+            </button>
+            <proof-button></proof-button>
+            <small class="display-none">
+                <dl class="dl-horizontal">
+                    <dt><%= game.SsHeader2 %></dt><dd>{{ nextGameId }}</dd>
+                    <dt>SHA256:</dt><dd class="allow-word-wrap-with-break-word">{{ sha256 }}</dd>
+                </dl>
+            </small>
+        </div>
+        <div class="margin-top-10 margin-bottom-10 margin-right-left-auto position-relative">
+            <div class="dice-game-sound-toggle-container">
+                <div class="soundToggle"><img ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+            </div>
+            <bc-client-seed reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</div>

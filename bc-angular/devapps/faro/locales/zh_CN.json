@@ -1,0 +1,44 @@
+{
+    "prod": "hilo",
+    "meta": {
+        "title": "财神高™ - 绝对公平卡牌游戏",
+        "meta_description": "财神堂™ - 最好的比特币博彩游戏: 彩票,扑克,轮盘,骰子,老虎机! 全球最高的比特币奖金!",
+        "meta_keywords": "比特币博彩,财神堂,财神轮,才神灵,免费的比特币,财神骰子,比特币娱乐场, 比特币赌博, 骰子,比特币游戏,中本聪,比特币下注,比特币投注,比特币扑克, 比特币轮盘,比特币老虎机,块链,赌比特币,比特币彩票, 比特币21点, 比特币公平"
+    },
+    "global": {
+        "logourl": "img/words/gao.png"
+    },
+    "home": {
+        "title_image": "img/icons/faro280.png"
+    },
+    "text": {
+        "guess_card": "猜下一张牌是",
+        "bigger": "大于",
+        "smaller": "小于",
+        "black": "黑牌",
+        "red": "红牌",
+        "possible_payout": "可能赢取金额",
+        "current_winnings": "当前赢取的金额",
+        "start_newgame": "新游戏",
+        "guess": "猜下张牌"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/faro"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/gao"
+        }
+    },
+    "game": {
+        "spinmessage": "",
+        "winmessage": "你赢了"
+    },
+    "leaderboard": {
+        "bronze": "tong jiang",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum",
+        "diamond": "Diamond"
+    }
+}

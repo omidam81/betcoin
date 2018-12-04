@@ -1,0 +1,18 @@
+<!-- Modal -->
+<div class="modal fade" id="supportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+	            <h3><%= text.new_ticket_title %></h3>
+	            <p>
+	            <%= text.new_ticket_help %></p>
+	            <p>
+	            <strong><%= text.new_ticket_note %></strong></p>
+			</div>
+		</div>
+		<div class="modal-body">
+			<div ng-include src="'tpl/support/supportform.html'"></div>
+		</div>
+	</div>
+</div>
+</div>

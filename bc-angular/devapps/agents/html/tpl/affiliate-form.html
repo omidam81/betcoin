@@ -1,0 +1,113 @@
+<div class="container">
+<form class="form-horizontal" name="affForm" id="affForm" ng-submit="signup()">
+<fieldset>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="affRealName">First / Last Name</label>  
+  <div class="col-md-5">
+  <input id="affRealName" name="affRealName" type="text" ng-model="affData.realName" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="affUsername">Username</label>  
+  <div class="col-md-5">
+  <input id="affUsername" name="username" type="text" ng-model="affData.username" class="form-control input-md" required="" ng-blur="checkAlias()" ng-minlength="1" ng-maxlength="32" bc-popover="{{usernamePopup}}" autocorrect="off" autocapitalize="off" no-timeout="true" />
+      <div class="errors hide">
+          <span class="error hide username-taken"><%= text.alias_taken %></span>
+          <span class="error" ng-show="affForm.username.$error.required"><%= text.enter_username %></span>
+          <span class="error" ng-show="affForm.username.$error.maxlength"><%= text.username_max_length %></span>
+      </div>
+  
+  </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label"><%= text.choose_password %></label>
+    <div class="col-md-5">
+      <input type="password" class="form-control" placeholder="" ng-model="affData.password" ng-keyup="validatePassword()" ng-minlength="10" ng-maxlength="64" name="password" id="affPassword" bc-popover="{{passwordPopup}}" no-timeout="true" required/>
+      <div class="errors hide">
+          <span class="error" ng-show="affForm.password.$error.minlength"><%= text.password_min_length %></span>
+          <span class="error" ng-show="affForm.password.$error.maxlength"><%= text.password_max_length %></span>
+          <span class="error" ng-show="affForm.password.$error.required"><%= text.enterpassword %></span>
+      </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-4 control-label"><%= text.confirm_password %></label>
+    <div class="col-md-5">
+      <input type="password" class="form-control" placeholder="" ng-model="affData.passwordConfirm" ng-keyup="validatePassword()" ng-minlength="10" ng-maxlength="64" id="affPasswordConfirm" name="passwordConfirm" bc-popover="{{confirmPasswordPopup}}" no-timeout="true" required/>
+      <div class="errors hide">
+          <span class="error" ng-show="invalidPassword"><%= text.invalid_password %></span>
+          <span class="error hide password-notmatch"><%= text.password_validation %></span>
+      </div>
+    </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="affEmail">Email Address</label>  
+  <div class="col-md-5">
+  <input id="affEmail" name="email" type="text" ng-model="affData.email" bc-popover="{{emailPopup}}"  no-timeout="true" class="form-control input-md" required="">
+
+        <div class="errors hide">
+            <span class="error"><%= email.enter_valid %></span>
+        </div>    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="affPhone">Phone Number</label>  
+  <div class="col-md-5">
+  <input id="affPhone" name="affPhone" type="text" ng-model="affData.phone" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="affAddress">Mailing Address</label>
+  <div class="col-md-5">                     
+    <textarea class="form-control" id="affAddress" ng-model="affData.address" name="affAddress"></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="affNotes">Notes/Comments</label>
+  <div class="col-md-5">                     
+    <textarea class="form-control" id="affNotes" ng-model="affData.notes" name="affNotes"></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="affSerials">Serial Numbers</label>
+  <div class="col-md-5">                     
+    <textarea class="form-control" id="affSerials" ng-model="affData.serials" bc-popover="{{badSerialsPopup}}" name="affSerials" no-timeout="true"></textarea>
+          <div class="errors hide">
+            <span class="error">At least 1 serial number is invalid</span>
+        </div>  
+  </div>
+
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="affAddButton"></label>
+  <div class="col-md-5">
+    <button type="submit" ladda="registering" id="affAddButton" name="affAddButton" class="btn btn-default" bc-popover="{{error!=null}}" ng-disabled="affForm.$invalid || errorVisible.usernameExist || errorVisible.isNotEqual || invalidPassword || errorVisible.badSerials">Add New Affiliate</button>
+        <div class="errors hide">
+            <span class="error">{{error|error}}</span>
+        </div>
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div>

@@ -1,0 +1,5 @@
+<div>
+	<span class="smallfont"><%= game.SsHeader3 %>:</span>
+    <input type="text" autocomplete="off"  class="seed text-seed" autocorrect="off" data-ng-model="initSeedValue" id="circleSeed" required/>
+    <span class="glyphicon glyphicon-question-sign" bc-popover="{{displaySeedMessage}}" ng-click="displaySeedMessage=!displaySeedMessage" ng-init="displaySeedMessage=false" bc-popover-content="<%= game.client_seed_info %>"></span>
+</div>

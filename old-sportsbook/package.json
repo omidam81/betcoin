@@ -1,0 +1,30 @@
+{
+  "name": "olympia-client",
+  "version": "0.0.2",
+  "locale": "en_US",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-less": "~0.8.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-i18n": "~0.3.0",
+    "grunt-contrib-jshint": "~0.7.1"
+  },
+  "dependencies": {
+      "send": "~0.1.4",
+      "optimist": "~0.6.0",
+      "socket.io": "0.9.16",
+      "moment": "~2.5.0",
+      "node-rest-client": "0.7.9",
+      "validator": "3.2.0",
+      "jsonwebtoken": "0.1.0",
+      "libxmljs": "~0.8.1",
+      "async":  "~0.2.10",
+      "slug": "~0.4.0",
+      "pg": "~2.11.0",
+      "sequelize": "~1.7.0"
+  }
+}

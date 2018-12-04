@@ -1,0 +1,99 @@
+<div class="tabcontent">
+    <h1>
+        <%= nav.howtoplay %>
+    </h1>
+    <p class="ng-binding"><b class="ng-binding">财神盘是</b>b>一种圆盘博彩游戏，允许您用电子货币比特币下注。这种游戏玩起来既简单又有趣，可以赢更多比特币！</p>
+    <ol class="padding-left-40">
+        <li class="ng-binding"><b class="ng-binding">登入或注册</b>b>，或则用您的比特币钱包来进行匿名游戏</li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">充值比特币</b>b>到游戏为您设定的专用比特币存款地址</li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">用滑块、余额百分比按钮、增量按钮或在下注框上单击并输入金额</b>b>，选择下注金额</li>
+        <br>
+        <li class="ng-binding">检查您的进度，用游戏屏幕下方的游戏“高手排名榜”和“近期游戏”标签，可以跟踪全球的玩家</li>
+        <br>
+        <li class="ng-binding">如果您匿名游戏，静止 30 分钟后或关闭浏览器后，您的余额会自动返还给您</li>
+        <br>
+    </ol>
+    <p>一个轮盘有37个数字，从0到36，随机旋转，最终得到一个数字。</p>
+    <p>玩家可以选择一个数字或多个数字，红或黑，或则单数或双数。</p>
+    <p>玩家会得到所有猜中的下注奖金。</p>
+
+    <h4>赔率</h4>
+    <table>
+        <tbody>
+            <tr>
+                <th>下注类型</th>
+                <th>赔率</th>
+            </tr>
+            <tr>
+                <td>一个数字</td>
+                <td>35 赔 1</td>
+            </tr>
+            <tr>
+                <td>两个数字</td>
+                <td>17 赔 1</td>
+            </tr>
+            <tr>
+                <td>三个数字</td>
+                <td>11 赔 1</td>
+            </tr>
+            <tr>
+                <td>四个数字</td>
+                <td>8 赔 1</td>
+            </tr>
+            <tr>
+                <td>六个数字</td>
+                <td>5 赔 1</td>
+            </tr>
+            <tr>
+                <td>列</td>
+                <td>2 赔 1</td>
+            </tr>
+            <tr>
+                <td>十二数字列</td>
+                <td>2 赔 1</td>
+            </tr>
+            <tr>
+                <td>低 (1至18)</td>
+                <td>1 赔 1</td>
+            </tr>
+            <tr>
+                <td>高 (19至36)</td>
+                <td>1 赔 1</td>
+            </tr>
+            <tr>
+                <td>偶数</td>
+                <td>1 赔 1</td>
+            </tr>
+            <tr>
+                <td>奇数</td>
+                <td>1 赔 1</td>
+            </tr>
+            <tr>
+                <td>红色</td>
+                <td>1 赔 1</td>
+            </tr>
+            <tr>
+                <td>黑色</td>
+                <td>1 赔 1</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>的庄家赔率是多少？</h4>
+    <p>答：庄家优势是 2.7%</p>
+    <h4>每次旋转有最低赌注吗？</h4>
+    <p>最少投注 0.000001 个比特币</p>
+
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair></provably-fair>
+
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">点击显示验证游戏公平性的代码</a>
+    </p>
+
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+
+</div>

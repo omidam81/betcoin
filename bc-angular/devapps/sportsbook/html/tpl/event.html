@@ -1,0 +1,54 @@
+<div bc-page class="event-page" loading="isLoading">
+    <div class="row">
+        <div bc-submenu class="col-sm-12 col-md-3"></div>
+        <div bc-leagues></div>
+
+        <div class="col-sm-12 col-md-9 xs-fullwidth">
+            <div bc-box title="{{ event.sport.name }} {{ event.sportsLeague.name }} <%= event %>">
+                <div class="col-xs-12 col-lg-12 info">
+                    <div>
+                        <div class="col-xs-12 col-sm-2 date">{{event.starts_at | date: 'dd/MM h:mm' }}</div>
+                        <div class="col-xs-12 col-sm-10 participants">
+                            <div class="participant col-xs-12 col-sm-5">
+                                {{ getSideParticipantName('home',event) }}
+                            </div>
+                            <div class="col-xs-12 col-sm-2">
+                                vs
+                            </div>
+                            <div class="participant col-xs-12 col-sm-5">
+                                {{ getSideParticipantName('visiting',event) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="olympia-event-bet col-xs-12 col-lg-6 row" ng-repeat="betOdd in event.sportsBetOdds">
+                    <h4>
+                        {{ (betOdd.type === "moneyline") ? getParticipantName(betOdd.participant_id, event) : "" }}
+                        {{ (betOdd.type === "total") ? betOdd.total_side : "" | capitalize }}
+                        {{ (betOdd.type === "spread") ? getParticipantName(betOdd.participant_id, event) : "" }}
+                    </h4>
+                    <div class="values">
+                        <div class="outcome">
+                            {{ (betOdd.type === "moneyline") ? "ML" : "" }}
+                            {{ (betOdd.type === "total") ? betOdd.total_points : (betOdd.type === "spread") ? betOdd.spread : "" | stripEndingZeroes }}
+                        </div>
+                        <div class="odds">{{ betOdd.payout | stripEndingZeroes }}x / {{ betOdd.favor }}</div>
+                    </div>
+
+                    <div class="bet">
+                        <form name="bet-odd-form-{{betOdd.id}}">
+                            <input class="button" name="submit" type="submit" value="<%= bet %>">
+
+                            <div>
+                                <div class="currency">{{getCurrencyCode(currentCurrency)}}</div>
+                                <input class="value" name="value-{{betOdd.id}}" type="text" ng-model="betValues[betOdd.id]" ng-pattern="/^\d+(.\d+)?$/" required placeholder="<%= betValueDescription %>">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>

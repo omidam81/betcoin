@@ -1,0 +1,16 @@
+{
+	
+	"_comments": [
+		"copy this to your nodemon.json and then just run with: nodemon [ENTER]",
+		"app:* instead of * if you don't want to see express router output",
+		"app:*,-app:Unit.Dir would turn off output from app:Unit.Dir but keep the rest"
+	],
+
+	"watch":	["server.js","lib"],
+	"ext": "js,json",
+	"exec": "node server --hot --api dev",
+	"env": {
+		"DEBUG":	"*"  
+	}
+	
+}

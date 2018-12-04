@@ -1,0 +1,71 @@
+<div class="tabcontent">
+  <h1>如何游戏</h1>
+  <p class="ng-binding"><b>财神高™</b> 是一个流行的猜扑克游戏，允许您用比特币下注。非常简单、有趣，并能赢更多的比特币！</p>
+  <br>
+  <ol style="padding-left:40px;">
+    <li class="ng-binding"><b class="ng-binding">登入或注册</b>，或则用您的比特币钱包来进行匿名游戏</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">充值比特币</b>到游戏为您设定的专用比特币存款地址</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">用滑块、余额百分比按钮、增量按钮或在下注框上单击并输入金额</b>，选择下注金额</li>
+    <br>
+    <li class="ng-binding">检查您的进度，用游戏屏幕下方的游戏“高手排名榜”和“近期游戏”标签，可以跟踪全球的玩家</li>
+    <br>
+    <li class="ng-binding">静止 30 分钟后或关闭浏览器后，您的余额会自动返还给您</li>
+    <br>
+  </ol>
+
+<!-- <h4>Pay Table</h4>
+
+<div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+  <h4>玩财神高™游戏</h4>
+  <ol>
+  <li><p>庄家手上会拿着12张牌。卡牌的大小以'2' 到 'A'为顺序，每张牌的面额只会在游戏中出现一次。因为有13张牌会被洗牌，其中12张会被用于游戏，所以有一张牌不会被使用，它可能是'2' 至 'A'的其中一张。12张牌中会有6张是红牌，6张是黑牌。</p></li>
+  <li><p>基本上财神高主要的游戏规则在于猜下一张牌，比前一张牌高或低，是红色或黑色。</p></li>
+  <li><p>玩家可以在猜牌前决定下注额度的大小。</p></li>
+  <li><p>赔率是根据游戏的进展以及玩家的选项进行动态计算。</p></li>
+  </ol>
+  <h4>游戏选项</h4>
+  <ol>
+    <li><p>
+      <b>大于:</b> 猜下一张牌将大于前一张牌
+    </p></li>
+    <li><p>
+      <b>小于:</b> 猜下一张牌小于前一张牌
+    </p></li>
+    <li><p>
+      <b>黑牌:</b> 猜下一张牌为黑牌
+    </p></li>
+    <li><p>
+      <b>红牌:</b> 猜下一张牌为红牌
+    </p></li>
+    <li><p>
+      <b>大小与颜色的组合</b>
+    </p></li>
+  </ol>
+  <h4>赔率</h4>
+  <ol>
+    <li><p>
+      如果玩家正确的猜中下一张牌，获奖金额会即时汇款到玩家到比特币账户，即使是在游戏中！
+    </p></li>
+    <li><p>
+      赔率到额度是根据游戏的不同选项动态计算。它是基于下注额度的大小，98.35的玩家回报率以及不同选项在游戏中不同阶段的胜率来计算。基本上，低胜率选项会对应的高回报。
+    </p></li>
+  </ol>
+
+  <h4 class="ng-binding">财神高™ 的玩家回报率是多少？</h4>
+  <h4 class="ng-binding">玩家回报率是 98.35%</h4>
+  <h4 class="ng-binding">每盘游戏有没有最低赌注限制？</h4>
+  <p class="ng-binding">最低赌注为0.000001 个比特币</p><p></p>
+
+  <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+  <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+  <p><a target="_blank" href="./js/app/directives/provably-fair.js">点击这里显示用来验证游戏公平性的代码</a></p>
+  <!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+
+
+  <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

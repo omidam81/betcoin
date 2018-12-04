@@ -1,0 +1,27 @@
+{
+    "prod": "paigow",
+    "meta": {
+        "title": "Betcoin™ Paigow - Provably Fair - Win Bitcoin!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-paigow.png"
+    },
+    "home": {
+        "title_image": "img/icons/paigow280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/paigow"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/jiu"
+        }
+    },
+    "buttons": {
+        "split": "Split",
+        "house_way": "House Way"
+    },
+    "text": {
+        "invalid_split": "Two cards hand should not be higher than Five cards hand"
+    }
+}

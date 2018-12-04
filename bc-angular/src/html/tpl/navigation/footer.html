@@ -1,0 +1,45 @@
+
+    <div class="row">
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default">
+        <a href="<%= home.betcoin_link %>"><img src="<%= nav_logo %>" class="logo" alt="<%= home. main_page %>"/></a>
+        </div>
+        <!-- @if LOC="en_US" -->
+		<div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default">
+            <a href="https://www.facebook.com/pages/Betcoin-Entertainment/704812019529889" target="_blank">
+                <img src="img/social_icons/facebook.png" alt="" height="26" width="26"/>
+            </a>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default">
+            <a href="http://www.twitter.com/Bet_Coin" target="_blank">
+                <img src="img/social_icons/twitter.png" alt="" height="26" width="26"/>
+            </a>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default">
+            <a href="https://plus.google.com/100635322944350118832/posts" target="_blank">
+                <img src="img/social_icons/google_plus.png" alt="" height="26" width="26"/>
+            </a>
+		</div>
+        <!-- @endif -->
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default">
+            <a  data-toggle="modal" data-target="#aboutModal">  
+                <%= accountmenu.about_betcoin %>
+            </a>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default"><a href="<%= httplink %>/terms-conditions"><%= home.terms_header %></a>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default"><a href="<%= httplink %>/affiliates"><%= buttons.affiliate %></a>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default"><a data-target="#supportModal" data-toggle="modal"><%= home.support %></a>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default"><a href="<%= httplink %>/responsible-gaming"><%= home.responsible_gaming %></a>
+        </div>            
+            <!-- @if LOC="en_US" -->
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default"><a href="<%= httplink %>/blog"><%= home.blog %></a>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default"><a href="<%= httplink %>/press"><%= home.press %></a>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-lg-2 panel panel-default"><a href="<%= httplink %>/wiki"><%= home.wiki %></a></div>
+            <!-- @endif -->
+    </div>
+
+

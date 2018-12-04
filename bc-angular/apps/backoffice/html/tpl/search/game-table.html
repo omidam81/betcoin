@@ -1,0 +1,42 @@
+<div ng-show="currentJson">
+    <pre>{{currentJson | json}}</pre>
+    <button class="btn btn-primary"
+            ng-click="hideJson()">Hide JSON</button>
+</div>
+<table class="table bc-backoffice-table"
+       ng-init="showUserDetails = {}"
+       ng-hide="loading">
+    <thead>
+        <th>User</th>
+        <th>Wager</th>
+        <th>Winnings</th>
+        <th>House Profit</th>
+        <th>Time</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="data in listData.result">
+            <td>
+                <form class="form">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"
+                                   ng-model="data.user.selected"
+                                   ng-change="toggleUserSelect(data.user._id)">
+                            <a ng-href="user/{{data.user._id}}">{{data.user.username }}</a>
+                        </label>
+                    </div>
+                </form>
+            </td>
+            <td>{{data.currency | cryptosymbol}} {{data.wager | cryptovalue}}</td>
+            <td>{{data.currency | cryptosymbol}} {{data.winnings | cryptovalue}}</td>
+            <td>{{data.currency | cryptosymbol}} {{data.wager - data.winnings | cryptovalue}}</td>
+            <td>{{data.createdAt | gmtdatetime}}</td>
+            <td>
+                <a ng-click="showJson(data)">Show JSON</a><br>
+                <a ng-href="/{{gameName}}/history/details/{{data._id}}"
+                   target="_blank">Game Proof</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,5 @@
+<div class="row">
+    <h2><%= accountmenu.welcome %> {{ user.username }} <%= accountmenu.welcome_b %></h2>
+    <h3><%= account.your_balance_is %> {{"bitcoin"|cryptosymbol}}{{ wallets.bitcoin.balance | cryptovalue}}
+        ({{wallets.bitcoin.balance | exchangeTo:fiat | currency:currencySymbol(fiat)}})</h3>
+</div>

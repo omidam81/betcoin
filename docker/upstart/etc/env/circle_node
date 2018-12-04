@@ -1,0 +1,9 @@
+MONGO_USER=circleapi
+MONGO_PASSWORD=123
+APP_KEY=circle:OuhV2CdudgcrRvWYPRO69uBFm9xUHsy+s6eI2AFYcZs
+
+
+VIRTUAL_HOST=apidev.betcoin.tm
+PROXY_PORT=8443
+UPSTREAM=circle-node
+

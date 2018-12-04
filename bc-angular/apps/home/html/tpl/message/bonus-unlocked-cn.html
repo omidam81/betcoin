@@ -1,0 +1,14 @@
+<a data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}" ng-click="markRead()">
+    {{message.datetime | date:'yyyy-MM-dd HH:mm:ss'}} -
+    <b><span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> 奖励已经被解锁</b>
+</a>
+<div bindonce="message" id="{{message.id}}" class="panel panel-default panel-collapse collapse" bo-class="{'in':!message.hasRead}">
+    <div class="panel-body">
+        <div>
+            <p>恭喜! 您的 <span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> 奖励额度已经被解锁，{{message.finalValue}} 个比特币已经允许被提取！</p>
+        </div>
+        <button class="btn btn-primary btn-block" ng-click="markRead()" data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}">
+            <%=buttons.dismiss_message %>
+        </button>
+    </div>
+</div>

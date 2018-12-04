@@ -1,0 +1,178 @@
+<div class="tabcontent howtoplay">
+    <h1>How to Play</h1>
+
+    <p class="ng-binding"><b class="ng-binding">BetCoin ™ Pai Gow Tiles </b> is one of the oldest casino games. You can
+        wager with the digital currency Bitcoin. It's an easy and fun way to play with and win more Bitcoins!</p>
+    <br>
+    <ol style="padding-left:40px;">
+        <li class="ng-binding"><b class="ng-binding">Login or Register</b>, or play anonymously with your BTC wallet
+            address
+        </li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">Fund</b> your playing balance with Bitcoins using the provided
+            personal deposit address
+        </li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">Select wager</b> amount by using either the slider, percentage of
+            balance buttons, incremental buttons, or by clicking on the wager box. The maximum wager value is adjusted
+            dynamically.
+        </li>
+        <br>
+        <li class="ng-binding">Check your progress and follow players around the world using the in-game Leaderboard and
+            Recent Plays tabs located below the playing screen.
+        </li>
+        <br>
+        <li class="ng-binding">If you play anonymously, your balance will automatically be returned to you after 30
+            minutes of inactivity or upon closing your browser.
+        </li>
+        <br>
+    </ol>
+
+    <!-- <h4>Pay Table</h4>
+
+    <div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+    <h4>Playing Paigow Tiles</h4>
+    <ol>
+        <li><p>
+            Pai gow is played with a set of 32 dominoes displayed below.<br/>
+            <card data-card="{red:1, white:2}"></card>
+            <card data-card="{red:4, white:2}"></card>
+            <card data-card="{red:6, white:6}"></card>
+            <card data-card="{red:6, white:6}"></card>
+            <card data-card="{red:2, white:0}"></card>
+            <card data-card="{red:2, white:0}"></card>
+            <card data-card="{red:8, white:0}"></card>
+            <card data-card="{red:8, white:0}"></card>
+            <card data-card="{red:1, white:3}"></card>
+            <card data-card="{red:1, white:3}"></card>
+            <card data-card="{red:0, white:10}"></card>
+            <card data-card="{red:0, white:10}"></card>
+            <card data-card="{red:0, white:6}"></card>
+            <card data-card="{red:0, white:6}"></card>
+            <card data-card="{red:0, white:4}"></card>
+            <card data-card="{red:0, white:4}"></card>
+            <card data-card="{red:0, white:11}"></card>
+            <card data-card="{red:0, white:11}"></card>
+            <card data-card="{red:4, white:6}"></card>
+            <card data-card="{red:4, white:6}"></card>
+            <card data-card="{red:1, white:6}"></card>
+            <card data-card="{red:1, white:6}"></card>
+            <card data-card="{red:1, white:5}"></card>
+            <card data-card="{red:1, white:5}"></card>
+            <card data-card="{red:4, white:5}"></card>
+            <card data-card="{red:0, white:9}"></card>
+            <card data-card="{red:0, white:8}"></card>
+            <card data-card="{red:0, white:8, other: true}"></card>
+            <card data-card="{red:0, white:7}"></card>
+            <card data-card="{red:4, white:3}"></card>
+            <card data-card="{red:0, white:5}"></card>
+            <card data-card="{red:5, white:0}"></card>
+        </p></li>
+        <li><p>
+            Player and dealer will each receive 4 (four) tiles.
+        </p></li>
+        <li><p>
+            The player will separate his tiles into low and high hands. The player does not need to specify which is higher, as this will be obvious.
+        </p></li>
+        <li><p>
+            Each pair of tiles will have a ranking order as follows:
+            <ul>
+            <li><p>
+                Pair: There are 16 pairs, as shown in the image above. The tiles are pictures in rank order, starting at the upper left, and reading like a page to the bottom right.
+            </p></li>
+            <li><p>
+                Wong: This is a 2 or 12 tile with any 9 tile.
+                <div>
+                    <card data-card="{red:6, white:6}"></card>
+                    <card data-card="{red:0, white:9}"></card>
+                </div>
+                <div>
+                    <card data-card="{red:6, white:6}"></card>
+                    <card data-card="{red:4, white:5}"></card>
+                </div>
+                <div>
+                    <card data-card="{red:2, white:0}"></card>
+                    <card data-card="{red:0, white:9}"></card>
+                </div>
+                <div>
+                    <card data-card="{red:2, white:0}"></card>
+                    <card data-card="{red:4, white:5}"></card>
+                </div>
+            </p></li>
+            <li><p>
+                Gong: This is a 2 or 12 tile with any 8 tile.
+                <div>
+                    <card data-card="{red:6, white:6}"></card>
+                    <card data-card="{red:8, white:0}"></card>
+                </div>
+                <div>
+                    <card data-card="{red:6, white:6}"></card>
+                    <card data-card="{red:0, white:8}"></card>
+                </div>
+                <div>
+                    <card data-card="{red:6, white:6}"></card>
+                    <card data-card="{red:0, white:8, other:true}"></card>
+                </div>
+                <div>
+                    <card data-card="{red:2, white:0}"></card>
+                    <card data-card="{red:8, white:0}"></card>
+                </div>
+                <div>
+                    <card data-card="{red:2, white:0}"></card>
+                    <card data-card="{red:0, white:8}"></card>
+                </div>
+                <div>
+                    <card data-card="{red:2, white:0}"></card>
+                    <card data-card="{red:0, white:8, other:true}"></card>
+                </div>
+            </p></li>
+            <li><p>
+                9 to 0 points (the more the better): For all other 2-tile hands, the total number of dots will be taken, and the terminal digit is used to determine the number of points (as in baccarat). For example, a 10 and 9 tile is worth 9 points; a 4 and 7 tile is worth 1 point.
+            </p></li>
+
+            </ul>
+        </p></li>
+        <li><p>
+            An exception to the above rule is that the two tiles in the highest ranking "Gee Joon" pair are semi-wild and are worth either 3 or 6 points, whichever results in a higher total. For example, when combined with a 4-point tile, a Gee Joon tile counts as 3 points to make a 7-point hand, instead of counting as 6 points to make a 0-point hand.
+        </p></li>
+        <li><p>
+            The player's high hand will be compared to the dealer's high hand, and the player's low hand compared to the dealer's low hand (as in pai gow poker).
+        </p></li>
+        <li><p>
+            If both player and dealer have a Wong, Gong, or 1 to 9 points, the tie will be broken according to which hand has the higher-ranked high tile.
+        </p></li>
+        <li><p>
+            If the high tile does not break the tie then the win will go to the banker.
+        </p></li>
+        <li><p>
+            A 0-0 tie always goes to the banker.
+        </p></li>
+        <li><p>
+            When using high tiles to break a tie, the rank order is the same as the pair order (see picture above), except the two tiles in the highest "gee joon" pair are ranked lowest individually and will therefore never be a hand's high tile.
+        </p></li>
+        <li><p>
+            If the player wins both hands he will win even money, less a 5% commission. If the player wins one and loses one then his wager will push. If the dealer wins both then the player will lose his wager.
+        </p></li>
+    </ol>
+    <h4 class="ng-binding">What is the expected return to player for BetCoin ™ Casino Tiles Poker?</h4>
+
+    <p class="ng-binding">The expected Return to Player is 98.50%</p>
+
+    <h4 class="ng-binding">Is there a minimum wager per hand?</h4>
+
+    <p class="ng-binding">The minimum bet is 0.000001 BTC</p>
+
+    <p></p>
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">Click here to view the code used to verify each
+        game</a></p>
+    <!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+
+
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

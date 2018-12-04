@@ -1,0 +1,116 @@
+{
+    "prod": "craps",
+    "meta": {
+        "title": "财神骰 ™ 比特币轮盘赌场 - 赢比特币!",
+        "meta_description": "在财神宝 ™ 轮盘赌，您可以用比特币玩经典轮盘赌游戏。开始游戏，赢取大量比特币!"
+    },
+    "global": {
+        "logourl": "img/words/cn/craps.png"
+    },
+    "home": {
+        "title_image": "img/icons/craps280.png",
+        "promote_header_a":"玩绝对公平的经典轮盘赌游戏"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/craps"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/che"
+        }
+    },
+    "game": {
+        "dices": "骰子"
+    },
+    "spins": {
+        "CircleTh4": "新赌注",
+        "CircleTh10": "关联赌注"
+    },
+    "buttons": {
+        "start_roll": "转动",
+        "offer_me_to_press_my_bets_yes": "提醒叠加赌注: 是",
+        "offer_me_to_press_my_bets_no": "提醒叠加赌注: 不",
+        "leave_winnings_bets_up_on": "重新下注赢注: 开",
+        "leave_winnings_bets_up_off": "重新下注赢注: 关",
+        "press": "叠加原始赌注",
+        "press_inside": "叠加内部",
+        "press_outside": "叠加外部",
+        "dont_press": "不叠加"
+    },
+    "boards": {
+        "field": "区域",
+        "pass": "通关",
+        "dontpass": "不通关",
+        "passodds": "加注通关",
+        "dontpassodds": "加注不通关",
+        "come": "押来",
+        "dontcome": "押不来",
+        "lay4": "押置输 4",
+        "lay5": "押置输 5",
+        "lay6": "押置输 6",
+        "lay8": "押置输 8",
+        "lay9": "押置输 9",
+        "lay10": "押置输 10",
+        "buy4": "押置赢 4",
+        "buy10": "押置赢 10",
+        "place5": "押置赢 5",
+        "place6": "押置赢 6",
+        "place8": "押置赢 8",
+        "place9": "押置赢 9",
+        "come4": "押来 4",
+        "come5": "押来 5",
+        "come6": "押来 6",
+        "come8": "押来 8",
+        "come9": "押来 9",
+        "come10": "押来 10",
+        "takeodds4": "押来 4 加注",
+        "takeodds5": "押来 5 加注",
+        "takeodds6": "押来 6 加注",
+        "takeodds8": "押来 8 加注",
+        "takeodds9": "押来 9 加注",
+        "takeodds10": "押来 10 加注",
+        "dontcome4": "押不来 4",
+        "dontcome5": "押不来 5",
+        "dontcome6": "押不来 6",
+        "dontcome8": "押不来 8",
+        "dontcome9": "押不来 9",
+        "dontcome10": "押不来 10",
+        "notodds4": "押不来 4 加注",
+        "notodds5": "押不来 5 加注",
+        "notodds6": "押不来 6 加注",
+        "notodds8": "押不来 8 加注",
+        "notodds9": "押不来 9 加注",
+        "notodds10": "押不来 10 加注",
+        "two": "二",
+        "three": "三",
+        "seven": "七",
+        "eleven": "十一",
+        "twelve": "十二",
+        "anycraps": "押随意",
+        "hard4": "押难 4",
+        "hard6": "押难 6",
+        "hard8": "押难 8",
+        "hard10": "押难 10"
+    },
+    "labels": {
+        "six_title": "六",
+        "seven_title": "任意七",
+        "nine_title": "九",
+        "come_title": "押来",
+        "passline_title": "通关",
+        "dontpass_title": "不通关",
+        "field_title": "区域",
+        "dontcome_title": "押不来",
+        "anycraps_title": "押随意",
+        "on": "打开",
+        "off": "关闭",
+        "to": "to",
+        "current_bet": "当前下注",
+        "max_bet": "最大下注",
+        "passodds_title": "加注通关",
+        "dontpassodds_title": "加注不通关"
+    },
+    "press": {
+        "you_won_on": "您赢得了"
+    }
+}

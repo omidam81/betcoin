@@ -1,0 +1,143 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <img  class="center-block" src="/img/words/CN-betcoin.png" />
+
+      <h1>118,888 RMB Bonus USPs</h1>
+      <h2>Etc</h2>
+      <h3>And so on</h3>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+
+      <h1>CLAIM YOUR BONUS</h1>
+      <form name="signUpForm" data-ng-controller="SignupController" ng-submit="signup()">
+          <div class="form-group">
+              <label class="control-label"><%= text.desired_username %></label>
+              <input type="text"
+                     name="username"
+                     class="form-control"
+                     placeholder=""
+                     ng-model="userdata.username"
+                     ng-blur="checkAlias()"
+                     ng-minlength="1"
+                     ng-maxlength="32"
+                     bc-popover="{{usernamePopup}}"
+                     autocorrect="off"
+                     autocapitalize="off"
+                     no-timeout="true"
+                     required>
+              <div class="errors hide">
+                  <span class="error hide username-taken"><%= text.alias_taken %></span>
+                  <span class="error" ng-show="signUpForm.username.$error.required"><%= text.enter_username %></span>
+                  <span class="error" ng-show="signUpForm.username.$error.maxlength"><%= text.username_max_length %></span>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label"><%= text.choose_password %></label>
+              <input type="password"
+                     class="form-control"
+                     placeholder=""
+                     ng-model="userdata.password"
+                     ng-keyup="validatePassword()"
+                     ng-minlength="10"
+                     ng-maxlength="64"
+                     name="password"
+                     bc-popover="{{passwordPopup}}"
+                     no-timeout="true"
+                     required>
+              <div class="errors hide">
+                  <span class="error" ng-show="signUpForm.password.$error.minlength"><%= text.password_min_length %></span>
+                  <span class="error" ng-show="signUpForm.password.$error.maxlength"><%= text.password_max_length %></span>
+                  <span class="error" ng-show="signUpForm.password.$error.required"><%= text.enterpassword %></span>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label"><%= text.confirm_password %></label>
+              <input type="password"
+                     class="form-control"
+                     placeholder=""
+                     ng-model="userdata.passwordConfirm"
+                     ng-keyup="validatePassword()"
+                     ng-minlength="10"
+                     ng-maxlength="64"
+                     name="passwordConfirm"
+                     bc-popover="{{confirmPasswordPopup}}"
+                     no-timeout="true"
+                     required>
+              <div class="errors hide">
+                  <span class="error" ng-show="invalidPassword"><%= text.invalid_password %></span>
+                  <span class="error hide password-notmatch"><%= text.password_validation %></span>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label"><%= text.your_email_address %></label>
+              <input type="email"
+                     class="form-control"
+                     placeholder=""
+                     ng-model="userdata.email"
+                     name="email"
+                     bc-popover="{{emailPopup}}"
+                     no-timeout="true"
+                     required>
+              <div class="errors hide">
+                  <span class="error"><%= email.enter_valid %></span>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="control-label"><%= text.serial_number %></label>
+              <input type="text"
+                     class="form-control"
+                     placeholder=""
+                     ng-model="userdata.serialNumber"
+                     name="email"
+                     no-timeout="true"
+                     required>
+          </div>
+
+          <div class="form-group">
+              <label class="control-label"><%= text.bonus_code%></label>
+              <input type="text"
+                     class="form-control"
+                     placeholder=""
+                     ng-model="userdata.bonusCode"
+                     name="email"
+                     no-timeout="true"
+                     required>
+          </div>
+
+          <div class="form-group">
+              <input type="checkbox"
+                     ng-model="termscheckbox"
+                     class="checkbox-font"
+                     name="termscheckbox"
+                     id="termscheckbox">
+              <%= i_agree_to_the %> <a target="_blank" href="/terms-conditions"><%= home.terms_header %></a>
+          </div>
+          <div class="form-group">
+              <input type="checkbox"
+                     ng-model="legalcheckbox"
+                     class="checkbox-font"
+                     name="legalcheckbox"
+                     id="legalcheckbox">
+              <%= confirm_access %>
+          </div>
+          <div ng-show="termsError"><h4><%= you_must_agree %></h4></div>
+
+          <div class="form-group">
+              <button type="submit"
+                      ladda="registering"
+                      class="btn createNewAccount btn-flashy"
+                      value="<%= buttons.create_new_account %>"
+                      bc-popover="{{error!=null}}"
+                      ng-disabled="signUpForm.$invalid || errorVisible.usernameExist || errorVisible.isNotEqual || invalidPassword">
+                  <%= buttons.create_new_account %>
+              </button>
+              <div class="errors hide">
+                  <span class="error">{{error|error}}</span>
+              </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

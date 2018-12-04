@@ -1,0 +1,83 @@
+<div class="tabcontent">
+  <h1>游戏说明</h1>
+  <p class="ng-binding"><b class="ng-binding">财神点 ™</b> 是一个经典的扑克游戏，允许您用比特币下注。非常简单、有趣，并能赢更多的比特币！</p>
+  <br>
+  <ol style="padding-left:40px;">
+    <li class="ng-binding"><b class="ng-binding">登入或注册</b>，或者用您的比特币钱包来进行匿名游戏</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">充值比特币</b>到游戏为您设定的专用比特币存款地址</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">用滑块、余额百分比按钮、增量按钮或在下注框上单击并输入金额</b>，选择下注金额</li>
+    <br>
+    <li class="ng-binding">检查您的进度，用游戏屏幕下方的游戏“高手排名榜”和“近期游戏”标签，可以跟踪全球的玩家</li>
+    <br>
+    <li class="ng-binding">静止 30 分钟后或关闭浏览器后，您的余额会自动返还给您</li>
+    <br>
+  </ol>
+
+<!-- <h4>Pay Table</h4>
+
+<div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+  <h4>财神点™</h4>
+  <ol>
+  <li><p>
+  财神点™ 需要通过用八副52张的扑克牌来玩。
+  </p></li>
+  <li><p>
+  A可以倍当作 1点 也可以被当作 11点, 其它的数字牌（2-10）直接代表其数值，人面牌（J,Q,K）当作 10点.
+  </p></li>
+  <li><p>
+  手上牌的分数是所有牌的数值加起来的总和。"blackjack" 是最高分的组合，包含一个A 和 10 分牌，它比其它 21 点组合牌还大。
+  </p></li>
+  <li><p>
+  如果庄家有 blackjack，除非玩家也有 blackjack 来打成平局，否则就输掉该场下注。
+  </p></li>
+  <li><p>
+  如果玩家手上两张以上的牌组合起来有 21 点，庄家也有两张以上牌组合起来有 21 点，将打成平局。或者庄家有Blackjack，那么玩家将输掉此局，即使有 21 点的组合牌。
+  </p></li>
+  <li><p>
+  在玩家完成手上的分牌后，庄家将会翻开他的第二张牌。如果玩家手上少于 16 点，或者手上有A牌并且组合为17点，他将会再添加其它牌。
+  </p></li>
+  <li><p>
+  如果庄家超过21点，那么没有超过21点玩家将赢得此局。
+  </p></li>
+  <li><p>
+  如果庄家和玩家都没有超过21点，那么点数高的一方赢得此局。
+  </p></li>
+  <li><p>
+  普通赔率为 2 : 1 ，玩家通过 Blackjack 赢得下注有 3 : 2 赔率。
+  </p></li>
+  </ol>
+  <h4>
+    游戏决策:
+  </h4>
+  <ol>
+    <li><p>
+    <b>停留:</b> 玩家选择停留后，将不再发牌给玩家。
+    </p></li>
+    <li><p>
+    <b>发牌:</b> 玩家将再那一张牌。 如果这张新牌导致点数超过 21 点， 那么玩家就输掉此局。
+    </p></li>
+    <li><p>
+    <b>双倍:</b> 玩家在手上有10点或11点点情况下，可以再等额下注一次，然后再最后那一张牌。
+    </p></li>
+    <li><p>
+    <b>分牌:</b> 游戏开始时，如果玩家手上有一个对，或者两张10点牌，那么他可以双倍下注，并把手上点牌分成两手。庄家会给各手发第二张牌。然后，玩家可以选择发牌或者停留。 但是，玩家不能对两张A进行分牌，并且在分牌后有A的情况下再多拿牌。玩家最多只能分成两手牌。 
+    </p></li>
+  </ol>
+
+  <h4 class="ng-binding">财神点™ 的玩家回报率是多少？</h4>
+  <p class="ng-binding">玩家回报率是98.75%</p>
+
+  <h4 class="ng-binding">每盘游戏有没有最低赌注限制？</h4>
+  <p class="ng-binding">最低赌注为0.000001 个比特币</p><p></p>
+
+  <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+  <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+  <p><a target="_blank" href="./js/app/directives/provably-fair.js">点击这里显示用来验证游戏公平性的代码</a></p>
+  <!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+  <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

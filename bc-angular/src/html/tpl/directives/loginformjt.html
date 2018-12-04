@@ -1,0 +1,16 @@
+<form role="form" class="form" name="loginForm">
+
+    <div class="form-group" ng-show="!requireOneTimePass">
+        <input name="password" type="password" class="form-control" ng-model="loginPassword" ng-required="!requireOneTimePass"/>
+    </div>
+    <div class="form-group" ng-show="requireOneTimePass">
+        <label for="" class="control-label"><%= text.one_time_pass %></label>
+        <input name="one-time-pass" type="text" class="form-control" ng-model="oneTimePass" ng-required="requireOneTimePass"/>
+    </div>
+    <div class="form-group">
+        <button ng-click="login()" class="btn btn-primary btn-lg btn-block" ng-disabled="loginForm.$invalid" bc-popover="{{error != null}}" bc-popover-direction="top">OK</button>
+        <div class="errors hide">
+            <span class="error">{{error|error}}</span>
+        </div>
+    </div>
+</form>

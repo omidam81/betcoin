@@ -1,0 +1,267 @@
+<nav class="navbar navbar-default" role="navigation" data-ng-controller="BCAccountController">
+    <div class="navbar-custom">
+        <div class="toolbar-icons">
+            <!-- @ifndef HIVEAPP -->
+                <div class="homelink">
+                    <a href="<%= httplink %>">
+                        <img src="<%= nav_logo %>" class="logo" alt="<%= home. main_page %>"/></a>
+                </div>
+                <div class="gamelink">
+                    <a class="sprite" href="<%= httplink %><%= home.circle_link %>">
+                        <img alt="<%= home.circle_link_title %>" src="img/iconbar/circle44.png">
+                        <span><%= home.circle_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a class="sprite" href="<%= httplink %><%= home.dice_link %>">
+                        <img alt="<%= home.dice_link_title %>" src="img/iconbar/dice44.png">
+                        <span><%= home.dice_link_short %></span>
+                    </a>
+                </div>
+                <div class="gamelink">
+                    <a class="sprite" href="<%= httplink %><%= home.prize_link %>">
+                        <img alt="<%= home.prize_link_title %>" src="img/iconbar/prize44.png">
+                        <span><%= home.prize_link_short %></span>
+                    </a>
+                </div>
+                <div class="localelink">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="exclusive-menu">
+                        <img alt="<%= home.exclusive_link_title %>" src="img/iconbar/exclusive44.png" />
+                        <span><%= home.exclusive_link_short %></span>
+                    </a>
+                    <ul class="dropdown-menu" id="exclusive-menu">
+                        <li>
+                            <a class="local-dropdown" href="<%= httplink %><%= home.keno_link %>">
+                                <img alt="<%= home.keno_link_title %>" src="img/iconbar/keno44.png">
+                                <span><%= home.keno_link_short %></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="local-dropdown" href="<%= httplink %><%= home.sicbo_link %>">
+                                <img alt="<%= home.sicbo_link_title %>" src="img/iconbar/sicbo44.png" />
+                                <span><%= home.sicbo_link_short %></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="local-dropdown" href="<%= httplink %><%= home.fortune_link %>">
+                                <img alt="<%= home.fortune_link_title %>" src="img/iconbar/fortune44.png" />
+                                <span><%= home.fortune_link_short %></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="local-dropdown" href="<%= httplink %><%= home.flip_link%>">
+                                <img alt="<%= home.flip_link_title %>" src="img/iconbar/flip44.png"/>
+                                <span><%= home.flip_link_short %></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="localelink">
+                    <a class="dropdown-toggle sprite" data-toggle="dropdown" data-target="cards-menu">
+                        <img src="img/iconbar/cards44.png" alt="<%= home.cards_title %>" >
+                        <span><%= home.cards_title %></span>
+                    </a>
+                    <ul class="dropdown-menu" id="cards-menu">
+                        <li>
+                            <a class="local-dropdown" href="<%= httplink %><%= home.baccarat_link %>">
+                                <img alt="<%= home.baccarat_link_title %>" src="img/iconbar/baccarat44.png" />
+                                <span><%= home.baccarat_link_short %></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="local-dropdown" href="<%= httplink %><%= home.paigow_link %>">
+                                <img alt="<%= home.paigow_link_title %>" src="img/iconbar/paigow44.png" />
+                                <span><%= home.paigow_link_short %></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="local-dropdown" href="<%= httplink %><%= home.blackjack_link %>">
+                                <img alt="<%= home.blackjack_link_title %>" src="img/iconbar/blackjack44.png" />
+                                <span><%= home.blackjack_link_short %></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="local-dropdown" href="<%= httplink %><%= home.war_link %>" tabindex="-1">
+                                <img alt="<%= home.war_link_title %>" src="img/iconbar/war44.png" />
+                                <span><%= home.war_link_short %></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="local-dropdown" href="<%= httplink %><%= home.hilo_link %>">
+                                <img alt="<%= home.hilo_link_title %>" src="img/iconbar/hilo44.png" />
+                                <span><%= home.hilo_link_short %></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="localelink">
+                    <a class="dropdown-toggle sprite" data-toggle="dropdown" data-target="table-menu">
+                        <img src="img/iconbar/table44.png" alt="<%= home.table_title %>" >
+                        <span><%= home.table_title %></span>
+                    </a>
+                    <ul class="dropdown-menu" id="table-menu">
+                        <li>
+                            <a class="local-dropdown" href="<%= httplink %><%= home.roulette_link %>">
+                                <img alt="<%= home.roulette_link_title %>" src="img/iconbar/roulette44.png" />
+                                <span><%= home.roulette_link_short %></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            <div class="localelink">
+                <a class="dropdown-toggle sprite" data-toggle="dropdown" data-target="slot-menu">
+                    <img src="img/iconbar/slot44.png" alt="<%= home.slot_title %>" >
+                    <span><%= home.slot_title %></span>
+                </a>
+                <ul class="dropdown-menu" id="slot-menu">
+                    <li>
+                        <a class="local-dropdown" href="<%= httplink %><%= home.reels_link %>">
+                            <img alt="<%= home.reels_link_title %>" src="img/iconbar/reels44.png">
+                            <span><%= home.reels_link_short %></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+                <div class="infolink">
+                    <a class="sprite" href="<%= httplink %>/new-to-bitcoin">
+                        <img alt="<%= home.newtobitcoin %>" src="img/toolbar/bitcoin44.png"/>
+                        <span><%= home.newtobitcoin %></span>
+                    </a>
+                </div>
+                <div class="infolink">
+                    <a class="sprite" href="<%= httplink %><%= home.support_link %>">
+                        <img alt="<%= home.support_alt %>" src="img/toolbar/question44.png"/>
+                        <span><%= home.support %></span>
+                    </a>
+                </div>
+                <div class="gamelink" style="padding-right:5px;">
+                    <a href="<%= home.affiliate_link %>">
+                        <img alt="<%= buttons.affiliate %>" src="img/iconbar/affiliates44.png" />
+                        <span style="padding-top:2px!important;"><%= buttons.affiliate %></span>
+                    </a>
+                </div>
+                <div class="infolink">
+                    <a class="sprite" href="<%= home.message_link %>"><bc-unread></bc-unread>
+                        <img alt="<%= home.message_alt %>" src="img/toolbar/messages44.png"/>
+                        <span><%= home.message %></span>
+                    </a>
+                </div>
+                <div class="infolink">
+                    <a class="sprite" href="<%= home.account_link %>">
+                        <img alt="<%= home.account_alt %>" src="img/toolbar/account44.png"/>
+                        <span><%= home.account %></span>
+                    </a>
+                </div>
+                <div class="infolink">
+                    <a class="sprite" ng-show="user" ng-click="logout()">
+                        <img alt="<%= home.signin_alt %>" src="img/toolbar/power44.png"/>
+                        <span><%= home.logout %></span>
+                    </a>
+                    <a class="sprite" ng-hide="user" href="/login">
+                        <img alt="<%= home.signin_alt %>" src="img/toolbar/power44.png"/>
+                        <span><%= home.signin %></span>
+                    </a>
+                </div>
+                <div class="localelink" ng-show="<%= isLocalized %>">
+                    <a class="dropdown-toggle sprite" data-toggle="dropdown" data-target="locale-menu">
+                        <img src="<%= locale.image %>" alt="<%= locale.title %>" >
+                        <span><%= locale.title %></span>
+                    </a>
+                    <ul class="dropdown-menu" id="locale-menu">
+                        <li>
+                            <a class="local-dropdown sprite" tabindex="-1" data-target="#modal-lang-en" data-toggle="modal">
+                                <img src="<%= locales.en.image %>" alt="<%= locales.en.title %>">
+                                <span><%= locales.en.title %></span>
+                            </a>
+                    </li>
+                    <li>
+                        <a class="local-dropdown sprite" href="<%= locales.zh.url %>" tabindex="-1" data-target="#modal-lang-zh" data-toggle="modal">
+                            <img src="<%= locales.zh.image %>" alt="<%= locales.zh.title %>">
+                            <span><%= locales.zh.title %></span>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            <!-- @endif -->
+            <!-- @ifdef HIVEAPP -->
+                <div class="homelink">
+                    <a target="_blank" href="<%= httplink %>"><img src="<%= nav_logo %>" class="logo" alt="<%= home. main_page %>"/><span></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= httplink %><%= home.circle_link %>/"><img alt="<%= home.circle_link_title %>" src="img/iconbar/circle44.png"><span><%= home.circle_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= httplink %><%= home.dice_link %>/"><img alt="<%= home.dice_link_title %>" src="img/iconbar/dice44.png"><span><%= home.dice_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= httplink %><%= home.prize_link %>/"><img alt="<%= home.prize_link_title %>" src="img/iconbar/prize44.png"><span><%= home.prize_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= httplink %><%= home.reels_link %>"><img alt="<%= home.reels_link_title %>" src="img/iconbar/reels44.png"><span><%= home.reels_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= httplink %><%= home.roulette_link %>"><img alt="<%= home.roulette_link_title %>" src="img/iconbar/roulette44.png"><span><%= home.roulette_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= home.casino_link %>"><img alt="<%= home.casino_link_title %>" src="img/iconbar/casino44.png"><span><%= home.casino_link_short %></span></a>
+                </div>
+                <div class="infolink">
+                    <a target="_blank" href="<%= httplink %>/new-to-bitcoin">
+                        <img alt="<%= home.newtobitcoin %>" src="img/toolbar/bitcoin44.png"/><span><%= home.newtobitcoin %></span></a>
+                </div>
+                <div class="infolink">
+                    <a target="_blank" href="<%= httplink %><%= home.support_link %>">
+                        <img alt="<%= home.support_alt %>" src="img/toolbar/question44.png"/><span><%= home.support %></span></a>
+                </div>
+                <div class="localelink" ng-show="<%= isLocalized %>">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="locale-menu">
+                        <img src="<%= locale.image %>" alt="<%= locale.title %>" >
+                        <span><%= locale.title %></span>
+                    </a>
+                    <ul class="dropdown-menu" id="locale-menu">
+                        <li>
+                            <a data-target="#modal-lang-en" data-toggle="modal" tabindex="-1">
+                                <img src="<%= locales.en.image %>" alt="<%= locales.en.title %>"><span><%= locales.en.title %></span>
+                            </a>
+                    </li>
+                    <li>
+                        <a tabindex="-1" data-target="#modal-lang-zh" data-toggle="modal">
+                            <img src="<%= locales.zh.image %>" alt="<%= locales.zh.title %>"><span><%= locales.zh.title %></span>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            <!-- @endif -->
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</nav>
+<div id="modal-lang-en" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h3><%= confirm.en.title %></h3>
+        </div>
+        <div class="modal-body">
+            <%= confirm.en.content %>
+        </div>
+        <div class="modal-footer">
+            <a href="<%= locales.en.url %>"><button class="btn btn-default" onclick=""><%= confirm.en.ok %></button></a>
+            <button class="btn btn-default" data-dismiss="modal"><%= confirm.en.cancel %></button>
+        </div>
+    </div>
+</div>
+<div id="modal-lang-zh" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h3><%= confirm.zh.title %></h3>
+        </div>
+        <div class="modal-body">
+            <%= confirm.zh.content %>
+        </div>
+        <div class="modal-footer">
+            <a href="<%= locales.zh.url %>"><button class="btn btn-default" onclick=""><%= confirm.zh.ok %></button></a>
+            <button class="btn btn-default" data-dismiss="modal"><%= confirm.zh.cancel %></button>
+        </div>
+    </div>
+</div>
+

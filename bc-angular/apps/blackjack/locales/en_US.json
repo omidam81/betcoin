@@ -1,0 +1,33 @@
+{
+    "prod": "war",
+    "meta": {
+        "title": "Betcoin™ Blackjack - Provably Fair Cards - Win Bitcoin!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-blackjack.png"
+    },
+    "home": {
+        "title_image": "img/icons/blackjack280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/blackjack"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/dian"
+        }
+    },
+    "game": {
+        "busted": "Bust",
+        "win": "Won",
+        "score": "Score:",
+        "push": "Push",
+        "blackjack": "Blackjack"
+    },
+    "buttons": {
+        "hit": "Hit",
+        "stand": "Stand",
+        "double": "Double",
+        "split": "Split"
+    }
+}

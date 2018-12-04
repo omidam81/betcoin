@@ -1,0 +1,23 @@
+<% if (locale === "zh_CN") { %>
+
+<p>尊敬的 <%= user.alias %>:</p>
+<br>
+<p>恭喜! 您的 <%if (params.data.type == "match"){ %>充值竞赛<% } if (params.data.type == "welcom") {%>欢迎<%} if (params.data.type == "straight"){%>立马<%}%> 奖励额度 <%= params.initial %> 个比特币 已经在您的帐号生效. 一旦您满足解锁要求, 您的奖励额度将可以被提款。</p>
+<br>
+<p>您的奖励额度解锁要求是 <%= params.unlockMultiplier %>倍. 那代表您必须下注的总额需要是奖励额度（加上充值额度）的 <%= params.unlockMultiplier %>倍(<%= params.unlockAmount %> 比特币)，从而能够取出奖励的额度。</p>
+<br>
+<p>如果您有任何疑问或则顾虑，请联系我们。谢谢！</p>
+<p>财神堂 ™ 客服</p>
+
+<% } else { %>
+
+<p>Dear <%= user.alias %>:</p>
+<br>
+<p>Congratulations! Your <%= params.data.type %> bonus for <%= params.initial %> BTC has been applied to your account. Once you have met the unlock requirement, your bonus will be available for withdrawal.</p>
+<br>
+<p>The unlock requirement for your bonus is <%= params.unlockMultiplier %>x. That means you'll need to wager <%= params.unlockMultiplier %>x the amount of your bonus plus deposit, or <%= params.unlockAmount %> to unlock the balance for withdrawal.</p>
+<br>
+<p>Please contact us if you have any questions or concerns. Thank you!</p>
+<p>BetCoin Customer Service</p>
+
+<% } %>

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+COMMAND="$1"
+
+[[ "$COMMAND" = "clean" ]] && docker rm $(docker ps -aq) 2> /dev/null
+[[ "$COMMAND" = "cleanimages" ]] && docker rmi $(docker images -a | grep '<none>' | awk '{print $3}') 2> /dev/null
+[[ "$COMMAND" = "stopall" ]] && docker stop $(docker ps -q) 2> /dev/null
+[[ "$COMMAND" = "removeall" ]] && docker rm -f $(docker ps -aq) 2> /dev/null
+[[ "$COMMAND" = "ip" ]] && docker inspect --format {{.NetworkSettings.IPAddress}} "$2"
+[[ "$COMMAND" = "running" ]] && docker ps | grep -Eo ' ?[a-z,/_-]+ +$' | grep -Eo '[, ][^/,]+[, ]' | tr -d ' ,' | sed '/^$/d'
+if [[ "$COMMAND" = "shell" ]] || [[ "$COMMAND" = "attach" ]]
+then
+    PID=$(docker inspect --format "{{.State.Pid}}" "$2")
+    if [[ -z "$PID" ]]
+    then
+        exit 1
+    fi
+    exec sudo nsenter --target $PID --mount --uts --ipc --net --pid -- /bin/su - root
+fi

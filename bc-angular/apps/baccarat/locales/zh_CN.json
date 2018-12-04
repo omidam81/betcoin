@@ -1,0 +1,30 @@
+{
+    "prod": "baccarat",
+    "meta": {
+        "title": "最精彩的千万级在线百家乐!"
+    },
+    "global": {
+        "logourl": "img/words/le.png"
+    },
+    "home": {
+        "title_image": "img/icons/baccarat280.png",
+        "promote_header_a":"最精彩的千万级在线百家乐"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/baccarat"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/le"
+        }
+    },
+    "game": {
+        "spinmessage": "选择投注大小－批对下注 8倍赔率",
+        "score": "比分",
+        "winner": "赢家",
+        "tie": "平局"
+    },
+    "buttons": {
+        "clear_bets": "取消所有下注"
+    }
+}

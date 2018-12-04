@@ -1,0 +1,12 @@
+<div ng-init="displayCurrency = 'bitcoin'" class="jackpots" ng-hide="!BCSession.user._id">
+    <span><%= account_balance %> {{displayCurrency|cryptosymbol}}{{ user.wallets[displayCurrency].balance | cryptovalue}}
+        ({{user.wallets[displayCurrency].fiatBalance | currency:fiatSymbols[fiat]}})</span>
+    <span>
+        <%= jackpots.vip %>: {{'bitcoin'|cryptosymbol}}{{ jackpots[0].wagered | cryptovalue:2}}/{{'bitcoin'|cryptosymbol}}{{ jackpots[0].value | cryptovalue:2}}
+        ({{fiat|fiatsymbol}}{{jackpots[0].fiatWagered | number:0}}/{{fiat|fiatsymbol}}{{jackpots[0].fiatValue | number:0}})<br />
+    </span>
+    <span>
+        <%= jackpots.jade %>: {{'bitcoin'|cryptosymbol}}{{ jackpots[1].wagered | cryptovalue:2}}/{{'bitcoin'|cryptosymbol}}{{ jackpots[1].value | cryptovalue:2}}
+        ({{fiat|fiatsymbol}}{{jackpots[1].fiatWagered | number:0}}/{{fiat|fiatsymbol}}{{jackpots[1].fiatValue | number:0}})<br />
+    </span>
+</div>

@@ -1,0 +1,44 @@
+<div>
+    <div id="modal-{{ game.id || game._id }}" class="game-proof">
+        <h3><%= draws.proofHeader %></h3>
+
+        <small><%= game.initial_hash_explain %></small>
+        <br>
+        <small><%= game.final_array_explain %></small>
+
+        <dl class="dl-horizontal">
+            <dt class="draws-dt-width"><%= draws.id %></dt>
+            <dd>{{ game.id || game._id }}</dd>
+            <dt  class="draws-dt-width"><%= username %></dt>
+            <dd>{{ game.player_alias }}</dd>
+            <dt class="draws-dt-width"><%= draws.result %></dt>
+            <dd>{{ game | winnings }}<%= game.x %></dd>
+            <dt class="draws-dt-width"><%= draws.bet %></dt>
+            <dd>{{ game.wager | cryptovalue }}</dd>
+            <dt class="draws-dt-width"><%= draws.return %></dt>
+            <dd>{{ game.winnings | cryptovalue }}</dd>
+            <dt class="draws-dt-width"><%= draws.time %></dt>
+            <dd>{{ game.createdAt | date:"MM/dd HH:mm:ss" }}</dd>
+            <dt class="draws-dt-width"><%= draws.serverSeed %></dt>
+            <dd class="wrap-word">{{ game.server_seed }}</dd>
+            <dt class="draws-dt-width"><%= draws.initialArray %></dt>
+            <dd class="wrap-word">{{ game.init_array }}</dd>
+            <dt class="draws-dt-width"><%= draws.initialHash %></dt>
+            <dd class="wrap-word">{{ game.initial_hash }}</dd>
+            <dt class="draws-dt-width"><%= draws.clientSeed %></dt>
+            <dd class="wrap-word">{{ game.client_seed }}</dd>
+            <dt class="draws-dt-width"><%= game.drawnNumbers %></dt>
+            <dd class="wrap-word">
+                <span ng-repeat="number in game.result">{{number}}{{$last ? '' : ', '}}</span>
+            </dd>
+            <dt class="draws-dt-width"><%= game.chosenNumbers %></dt>
+            <dd class="wrap-word">
+                <span ng-repeat="number in game.bets">{{number}}{{$last ? '' : ', '}}</span>
+            </dd>
+        </dl>
+
+        <provably-fair init-array="{{game.init_array}}" server-seed="{{game.server_seed}}" client-seed="{{game.client_seed}}"></provably-fair>
+    </div>
+
+    <button class="btn btn-default btn-lg" ng-click="backToList()"><%= gameDetails.returnToList %></button>
+</div>

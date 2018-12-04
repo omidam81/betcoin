@@ -1,0 +1,70 @@
+<div class="tab-content">
+	<div class="panel panel-default main-container">
+		<div class="panel-heading">New Ticket</div>
+		<div class="panel-footer">
+			<form action="" class="form-horizontal" name="ticketForm" novalidate>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="ticket.owner" placeholder="Your Name" required />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Email *</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" ng-model="ticket.email" placeholder="email@domain.com" required />
+					</div>
+				</div>							
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Subject</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" ng-model="ticket.subject" placeholder="Subject"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Description *</label>
+					<div class="col-sm-10">
+						<textarea placeholder="Type your ticket issue here." rows="5" cols="50" class="form-control" ng-model="ticket.description" required></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="firstname" class="col-sm-2 control-label">Priority *</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="language" ng-model="ticket.priority" required>
+							<option value="1">Low</option>
+							<option value="2">Normal</option>
+							<option value="3">High</option>
+							<option value="4">Urgent</option>
+						</select>		  			
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="firstname" class="col-sm-2 control-label">Type *</label>
+					<div class="col-sm-10">
+						<select class="form-control" name="language" ng-model="ticket.type" required>
+							<option value="1">Incident</option>
+							<option value="2">Question</option>
+							<option value="3">Problem</option>
+							<option value="3">Task</option>
+						</select>
+					</div>
+				</div>
+				<!-- <div class="form-group">
+									<label for="firstname" class="col-sm-2 control-label"></label>
+									<div class="col-sm-10">
+										<div vc-recaptcha tabindex="3" theme="red" ng-model="ticket.captcha" key="6Le2Ju0SAAAAABBbEogKpYTmIN_ww84RcVguWqAP"></div>
+									</div>
+								</div> -->				
+				<div class="form-group">
+					<label for="firstname" class="col-sm-2 control-label"></label>
+					<div class="col-sm-10">
+						<div class="btn-group">
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-click="createTicket()" ng-disabled="ticketForm.$invalid">Submit Ticket
+							</button>	
+						</div>
+					</div>
+				</div>											
+			</form>					
+		</div>	
+	</div>
+</div>

@@ -1,0 +1,9 @@
+
+# install bitcoind
+RUN add-apt-repository ppa:bitcoin/bitcoin
+RUN apt-get update
+RUN apt-get install -y bitcoind
+
+RUN mkdir /etc/service/bitcoind
+ADD runit/bitcoind /etc/service/bitcoind/run
+

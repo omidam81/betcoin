@@ -1,0 +1,30 @@
+{
+    "prod": "fortune",
+    "meta": {
+        "title": "财神运™ - 赢比特币!"
+    },
+    "global": {
+        "logourl": "img/words/yun.png"
+    },
+    "home": {
+        "title_image": "img/icons/fortune280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/fortune"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/yun"
+        }
+    },
+    "game": {
+        "spinmessage": "请按下比特币中间处以旋转财神轮",
+        "color": "颜色"
+    },
+    "spins": {
+        "CircleTh9": "赌注"
+    },
+    "buttons": {
+        "start_spin": "转动"
+    }
+}

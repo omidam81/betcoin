@@ -1,0 +1,126 @@
+<div class="tabcontent howtoplay">
+    <h1>How to Play</h1>
+
+    <p class="ng-binding"><b class="ng-binding">BetCoin ™ Tiger Dragon</b> is a classic card game that allows you to
+        wager with the digital currency Bitcoin. It's an easy and fun way to play with and win more Bitcoins!</p>
+    <br>
+    <ol style="padding-left:40px;">
+        <li class="ng-binding"><b class="ng-binding">Login or Register</b>, or play anonymously with your BTC wallet
+            address
+        </li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">Fund</b> your playing balance with Bitcoins using the provided
+            personal deposit address
+        </li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">Select wager</b> amount by using either the slider, percentage of
+            balance buttons, incremental buttons, or by clicking on the wager box. The maximum wager value is adjusted
+            dynamically.
+        </li>
+        <br>
+        <li class="ng-binding">Check your progress and follow players around the world using the in-game Leaderboard and
+            Recent Plays tabs located below the playing screen.
+        </li>
+        <br>
+        <li class="ng-binding">If you play anonymously, your balance will automatically be returned to you after 30
+            minutes of inactivity or upon closing your browser.
+        </li>
+        <br>
+    </ol>
+
+    <!-- <h4>Pay Table</h4>
+
+    <div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+    <h4>Playing Tiger Dragon</h4>
+    <ol style="padding-left:40px;">
+        <li>8 standard decks are used.</li>
+        <li>Cards are ranked as in poker, except aces are always low.</li>
+        <li>A single card is given to Dragon(Dealer) and Tiger(Player) hands.</li>
+        <li>The primary bets is on which hand will get the higher card.</li>
+        <li>Other proposition bets are available, as explained below.</li>
+    </ol>
+    <h4>Bets</h4>
+    <ol>
+        <li>
+            <h5>Dragon/Tiger</h5>
+            <p>The Dragon and Tiger bets will win if the chosen hand gets the higher card. Ties lose half. </p>
+            <table>
+                <thead>
+                    <tr><th>Event</th><th>Pays</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Win</td><td>1</td>
+                    <tr><td>Tie</td><td>-0.5</td>
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <h5>Tie</h5>
+            <p>The Tie bet will win if the Dragon and Tiger cards are equal in rank. Wins pay 8 to 1.</p>
+            <table>
+                <thead>
+                <tr><th>Event</th><th>Pays</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Win</td><td>8</td>
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <h5>Suited Tie</h5>
+            <p>The Suited Tie bet will win if the Dragon and Tiger cards are equal in both rank and suit. Wins pay 50 to 1.</p>
+            <table>
+                <thead>
+                <tr><th>Event</th><th>Pays</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Win</td><td>50</td>
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <h5>Big/Small</h5>
+            <p>The player may bet whether a particular card will be over or under seven. If the chosen card is exactly seven, then the wager will lose. Wins pay even money. </p>
+            <table>
+                <thead>
+                <tr><th>Event</th><th>Pays</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Win</td><td>1</td>
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <h5>Suit</h5>
+            <p>The player may bet on the suit of a particular card. Wins pay 3 to 1. However, if the chosen card is exactly seven, then the wager will automatically lose.</p>
+            <table>
+                <thead>
+                <tr><th>Event</th><th>Pays</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>Win</td><td>3</td>
+                </tbody>
+            </table>
+        </li>
+    </ol>
+
+
+    <h4 class="ng-binding">What is the expected return to player for BetCoin ™ Casino Tiger Dragon?</h4>
+
+    <p>Expected Return to Player: 96.27% for Dragon/Tiger bets, 67.23% for tie bets, 86.02% for suited tie, 92.31% for Big/Small bets and 92.31% for Suit bets.</p>
+    <h4 class="ng-binding">Is there a minimum wager per hand?</h4>
+
+    <p class="ng-binding">The minimum bet is 0.000001 BTC</p>
+
+    <p></p>
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">Click here to view the code used to verify each
+        game</a></p>
+
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

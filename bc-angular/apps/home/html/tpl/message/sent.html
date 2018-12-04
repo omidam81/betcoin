@@ -1,0 +1,12 @@
+<div class="row row-line">
+	<ul class="nav nav-tabs nav-justified">
+		<li class="active"><a href="messages/#inbox" data-toggle="tab"><%= buttons.your_inbox %> <span class="badge">{{inbox_messages.length}}</span></a></li>
+		<li><a href="messages/#outbox" data-toggle="tab"><%= buttons.your_outbox %></a></li>
+	</ul>
+</div>
+<div class="well">
+	<p><%= text.send_confirmation %></p>
+</div>
+<div class="row">
+	<a href="account" class="btn btn-primary btn-block"><%= buttons.back_to_homepage%></a>
+</div>

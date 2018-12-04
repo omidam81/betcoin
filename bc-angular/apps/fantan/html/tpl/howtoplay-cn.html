@@ -1,0 +1,73 @@
+<div class="tabcontent">
+    <h1>游戏说明</h1>
+    <p class="ng-binding"><b class="ng-binding">财神番摊™</b> 是其中一个最流行的抽奖游戏，允许您用比特币下注。非常简单、有趣，并能赢更多的比特币！</p>
+    <p>庄家会筛动三个骰子进行游戏。游戏的目的在于正确猜中三个骰子的最终组合。</p>
+    <br>
+	<ol style="padding-left:40px;">
+		<li class="ng-binding"><b class="ng-binding">登入或注册</b>，或者用您的比特币钱包来进行匿名游戏</li>
+		<br>
+		<li class="ng-binding"><b class="ng-binding">充值比特币</b>到游戏为您设定的专用比特币存款地址</li>
+		<br>
+		<li class="ng-binding"><b class="ng-binding">用滑块、余额百分比按钮、增量按钮或在下注框上单击并输入金额</b>，选择下注金额</li>
+		<br>
+		<li class="ng-binding">检查您的进度，用游戏屏幕下方的游戏“高手排名榜”和“近期游戏”标签，可以跟踪全球的玩家</li>
+		<br>
+		<li class="ng-binding">静止 30 分钟后或关闭浏览器后，您的余额会自动返还给您</li>
+		<br>
+	</ol>
+    <h4>玩财神番摊™</h4>
+    <ul>
+        <li><p>
+            <b>番:</b> 对一个数字下注。赔率为3比1，佣金之后为 2.85。
+        </p></li>
+        <li><p>
+            <b>念:</b> 对两个数字下注，其中一个标为平手。赢了的数字有2比1赔率，佣金之后为1.9。
+        </p></li>
+        <li><p>
+            <b>角:</b> 对两个数字下注，两个都赢。赢了的数字有1比1赔率，或者19比20赔率。
+        </p></li>
+        <li><p>
+            <b>丫摊:</b> 对三个数字下注，其中一个标为平手。赢了的数字有1比2赔率，或者佣金之后有 19 比 40 赔率.
+        </p></li>
+        <li><p>
+            <b>三门:</b> 对三个数字下注，全部赢. 赢了的数字有1比3赔率，或者佣金之后19比60赔率。
+        </p></li>
+    </ul>
+    <h4>赔率</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>下注</th>
+                <th>赔率</th>
+            </tr>
+            <tr>
+                <td>番</td>
+                <td>2.85</td>
+            </tr>
+            <tr>
+                <td>念</td>
+                <td>1.9</td>
+            </tr>
+            <tr>
+                <td>角</td>
+                <td>0.95</td>
+            </tr>
+            <tr>
+                <td>丫摊</td>
+                <td>0.475</td>
+            </tr>
+            <tr>
+                <td>三门</td>
+                <td>0.316667</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4 class="ng-binding">每盘游戏有没有最低赌注限制？</h4>
+	<p class="ng-binding">最低赌注为0.000001 个比特币</p><p></p>
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+	<provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+	<p><a target="_blank" href="./js/app/directives/provably-fair.js">点击这里显示用来验证游戏公平性的代码</a></p>
+	<!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+	<div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

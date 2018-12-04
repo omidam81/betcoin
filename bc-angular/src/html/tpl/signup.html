@@ -1,0 +1,20 @@
+<!-- Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only"><%= close %></span></button>
+                <h1><%= join_betcoin %></h1>
+                <h2><%= start_winning_now %></h2>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div ng-include src="'tpl/registration/signupform.html'"></div>
+            <div class="center-block margin-top-15">
+                <a data-toggle="modal" data-target="#loginModal" data-dismiss="modal"><%= buttons.existing_member_login %></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>

@@ -1,0 +1,83 @@
+.list-group-item{
+    background-color: #330000!important;
+    border: 1px solid #660000!important;
+    color:#d6ae58!important;
+}
+.panel .panel-body {
+	padding: 15px;
+}
+
+.checkbox {
+    input {
+        min-width: 0px !important;
+    }
+}
+
+input.form-control {
+    max-width: 100% !important;
+    margin: 0;
+}
+
+.input-group-addon {
+    color: #ffd479;
+    background-color: #660000;
+    background-image: none;
+    border: 1px solid #330000;
+    border-radius: 12px;
+}
+
+.form-inline .form-control {
+    width: auto;
+}
+
+.bc-backoffice-table {
+    table-layout: fixed;
+    tbody {
+        border: 1px solid black;
+        & + tbody {
+            border-top: 1px solid black;
+        }
+    }
+    tr.highlighted {
+        & > th {
+            background-color: @burgundy;
+        }
+    }
+    td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+    }
+}
+
+.bc-multi-table {
+    .bc-sub-table {
+        td, th {
+            background-color: @burgundy;
+        }
+    }
+    tbody {
+        border: 1px solid black;
+        & + tbody {
+            border-top: 3px solid black;
+        }
+    }
+    tr {
+        &:hover {
+            & > th {
+                background-color: @burgundy;
+            }
+        }
+    }
+    tr.highlighted {
+        & > th {
+            background-color: @burgundy;
+        }
+    }
+    td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipses;
+        word-wrap: break-word;
+    }
+}

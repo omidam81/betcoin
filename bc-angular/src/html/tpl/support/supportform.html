@@ -1,0 +1,35 @@
+<form ng-controller="SupportController" action="" class="form-horizontal" name="ticketForm" novalidate>
+    <div ng-hide="BCSession.user._id" class="form-group">
+        <label class="col-sm-2 control-label"><%= text.ticket_username %></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="ticket.owner" placeholder="<%= text.ticket_username %>" ng-required="!BCSession.user" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><%= text.ticket_email %></label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" ng-model="ticket.email" placeholder="email@domain.com" required/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><%= text.ticket_subject %></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="ticket.subject" placeholder="<%= text.ticket_subject %>"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><%= text.ticket_description %></label>
+        <div class="col-sm-10">
+            <textarea placeholder="<%= text.ticket_description_placeholder%>" rows="5" cols="50" class="form-control" ng-model="ticket.message" required></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="firstname" class="col-sm-2 control-label"></label>
+        <div class="col-sm-10">
+            <div class="btn-group">
+                <button type="button" ladda="creatingTicket" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-click="createTicket()" ng-disabled="ticketForm.$invalid||creatingTicket"><span ng-show="creatingTicket"><%= text.ticket_creating %></span><span ng-show="!creatingTicket"><%= text.ticket_submit %></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

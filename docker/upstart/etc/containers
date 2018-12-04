@@ -1,0 +1,16 @@
+mongod_mainnet: -v /mongo/mongo-mainnet:/data docker.betcoin.tm/mongod:latest
+mongo_amb_mainnet: --link mongod_mainnet:mongod --expose 27017 svendowideit/ambassador
+
+wait:5
+
+bitcoind_player_mainnet: -v /blockchains/mainnet/player:/home/bitcoind/.bitcoin --env-file /etc/docker/env/player_mainnet --link mongo_amb_mainnet:mongo -p 8333:8333 docker.betcoin.tm/bitcoind:latest
+bitcoind_amb_player_mainnet: --link bitcoind_player_mainnet:bitcoind --expose 1337 --expose 8332 svendowideit/ambassador
+
+wait:30
+
+player_node: --link mongo_amb_mainnet:mongo --link bitcoind_amb_player_mainnet:bitcoind --env-file /etc/docker/env/player_node docker.betcoin.tm/player-node:latest
+circle_node: --link mongo_amb_mainnet:mongo --link player_node:player_server --env-file /etc/docker/env/circle_node docker.betcoin.tm/circle-node:latest
+
+cache_node: --env-file /etc/docker/env/cache_node docker.betcoin.tm/cache-node:latest
+
+nginx_proxy: -p 441:441 -p 8443:8443 -p 8442:8442 -p 8441:8441 -p 9441:9441 -v /var/run/docker.sock:/docker.sock docker.betcoin.tm/docker-proxy:latest

@@ -1,0 +1,164 @@
+@gold: #ffd479;
+@golddark: #D6AE58;
+@goldvolume: rgb(173,150,95);
+
+.seed-container  {
+  display:inline-block;
+  .seed {
+    width:60px!important;
+    min-width:60px!important;
+  }
+}
+
+.transition() {
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -ms-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+#gameContainer {
+  margin: 15px 0;
+
+  #game {
+    text-align: center;
+
+    .btn-betodd {
+      color: @gold !important;
+      margin: 3px;
+
+      .transition();
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    #g-keno {
+      position: relative;
+      margin-top: 20px;
+      width: 500px;
+      display: inline-block;
+      overflow: hidden;
+
+      @media (max-width: @screen-md-min) {
+        margin: 10px auto 10px auto;
+      }
+
+      @media (max-width: 550px) {
+        width: 400px;
+      }
+
+      .number {
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        box-sizing:border-box;
+        line-height:40px;
+        height:40px;
+        text-align:center;
+        color: #ffffcc;
+        font-size:19px;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+        width:40px;
+        background: #300;
+        border-radius: 5px;
+        margin: 5px;
+        float: left;
+        box-shadow: 0 0 5px -1px #9B0000;
+        -webkit-box-shadow: 0 0 5px -1px #9B0000;
+        cursor: pointer;
+
+        .transition();
+
+
+
+        &.active {
+          color: @golddark;
+          -webkit-box-shadow: 0 0 4px 2px @golddark !important;
+          box-shadow: 0 0 4px 2px @golddark !important;
+        }
+
+        &.drawn {
+          background: @burgundy;
+
+          &.active {
+            background-image: -webkit-radial-gradient(#DA5535, @burgundy 66%);
+            background-image: -moz-radial-gradient(#DA5535, @burgundy 66%);
+            background-image: -o-radial-gradient(#DA5535, @burgundy 66%);
+            background-image: radial-gradient(#DA5535, @burgundy 66%);
+          }
+        }
+      }
+    }
+
+    #balls {
+      position: relative;
+      margin-top: 20px;
+      width: 500px;
+      display: inline-block;
+      overflow: hidden;
+      min-height:50px;
+
+      .number {
+
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        box-sizing:border-box;
+        line-height:35px;
+        height:40px;
+        text-align:center;
+        color: #000000;
+        font-size:28px;
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+        width:40px;
+        background-image: url(../img/b3x.png);
+        background-repeat: no-repeat;
+        border-radius: 5px;
+        margin: 5px;
+        float: left;
+        .transition();
+      }
+    }
+  }
+}
+
+
+
+.localizations {
+  font-size: 70%;
+}
+
+
+.keno-game-sound-toggle-container {
+display:inline-block;
+  div {
+    position:relative;top:-3px;
+  }
+}
+
+.how-to-play-tables td, .how-to-play-tables th {
+  text-align: center;
+  padding: 2px;
+}
+
+#betresult {
+  height:32px;
+  width: 90%;
+  font-size: 16px;
+  margin: 12px auto;
+  color:#ff0000;
+}
+#payout {
+  height:32px;
+  .btn {
+    margin-left:5px;
+    margin-right:5px;
+  }
+}

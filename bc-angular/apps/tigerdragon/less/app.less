@@ -1,0 +1,152 @@
+@gold: #ffd479;
+@golddark: #D6AE58;
+@goldvolume: rgb(173,150,95);
+
+#gameContainer {
+  padding-top: 30px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select:none;
+}
+.game-controller {
+
+
+}
+.stack-wrapper {
+  padding: 20px 0px;
+  &:first-child {
+    border-right:1px solid rgb(255, 212, 121);
+  }
+}
+#spinmessage {
+    font-size:12pt;
+    min-height:36px;
+    max-height:54px;
+    height:auto!important;
+}
+.table-background {
+
+}
+.btn-flashy.bets-circle {
+  border-radius: 50% !important;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  padding: 20px 0px;
+  line-height: 40px;
+  font-size: 20px;
+  position: relative;
+  margin: 10px;
+}
+.chips {
+  height: 30px;
+  min-width: 30px;
+  text-align: center;
+  line-height: 24px;
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: -5px;
+  margin-top: -15px;
+  margin-left: -15px;
+  -webkit-border-radius: 60px;
+  border-radius: 60px;
+  background: -webkit-linear-gradient(#ffec8a, #d9c56c);
+  background: -moz-linear-gradient(#ffec8a, #d9c56c);
+  background: -o-linear-gradient(#ffec8a, #d9c56c);
+  background: -ms-linear-gradient(#ffec8a, #d9c56c);
+  background: linear-gradient(#ffec8a, #d9c56c);
+  border: 1px solid #483704;
+  border-bottom: 2px solid #483704;
+  font-weight: 400;
+  color: #483704;
+  font-size: 16pt;
+  padding: 0 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: border 1s ease-in-out, font-size 1s ease-in-out;
+  -moz-transition: border 1s ease-in-out, font-size 1s ease-in-out;
+  -o-transition: border 1s ease-in-out, font-size 1s ease-in-out;
+  -ms-transition: border 1s ease-in-out, font-size 1s ease-in-out;
+  transition: border 1s ease-in-out, font-size 1s ease-in-out;
+}
+.scoreboard-wrapper {
+  height: 30px;
+  margin-bottom: 5px;
+  .scoreboard {
+    font-size: 16px;
+    color: #ffd373;
+  }
+}
+.howtoplay{
+  table {
+    margin-left: 40px;
+    tr {
+      td, th{
+        padding: 5px;
+        border: 1px solid #ffd479 !important;
+        background-color: transparent;
+        min-width: 150px;
+      }
+    }
+  }
+}
+#betpanel {
+  white-space: nowrap;
+  .tiger, .dragon {
+    display: inline-block;
+    min-width: 120px;
+    width: 40%;
+    height: 80px;
+    position: relative;
+    cursor: pointer;
+    font-size:24px;
+    padding: 20px 0;
+    cursor: pointer;
+    font-weight: bold;
+    .chips {
+      top: 50%;
+      left: 50%;
+      right: auto;
+    }
+  }
+  .suit-set {
+    display:inline-block;
+    min-width:120px;
+    height:60px;
+    width: 40%;
+
+    .suits, .suith, .suitc, .suitd {
+      position:relative;
+      min-width:30px;
+      width: 25%;
+      height:30px;
+      cursor: pointer;
+      display:inline-block;
+      font-size: 24px;
+      line-height: 30px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      padding: 0px;
+    }
+    .btn.bigsmall {
+      width: 48%;
+    }
+  }
+  .suitedtie {
+    width: 20%;
+    min-width:80px;
+    display:inline-block;
+    position: relative;
+  }
+  .btn {
+    position: relative;
+  }
+}

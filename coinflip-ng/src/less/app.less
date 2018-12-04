@@ -1,0 +1,218 @@
+.circleBg {
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  margin: 0px auto;
+  color: #000;
+  text-shadow: 0px 1px 0px #FFF;
+  text-align: center;
+  padding: 5px 0px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.wheelChoose {
+  z-index: 120;
+  margin: 14px 0px 0px 0px;
+  padding: 0;
+
+  & > div {
+    margin: 10px 0px;
+    text-align: center;
+    color: #ffd479;
+
+    @media (max-width: 1200px) {
+        display: inline-block;
+    }
+
+    @media screen and (max-width: 480px) {
+        display: inline-block;
+    }
+  }
+
+  & > div > img {
+    margin: 0px auto;
+    width: 40px;
+    cursor: pointer;
+  }
+}
+
+#wheelContainer {
+  padding:0px!important;
+  z-index: 1;
+
+  .wheelArrow {
+      margin : 0px auto 0px auto;
+      width : 45px;
+      height : 40px;
+
+      img {
+          width : 32px;
+          height : 38px;
+          margin : 0px auto;
+      }
+  }
+
+  .wheelWrap {
+    z-index: 1;
+
+    position:relative;
+
+    height:466px;
+    width:466px;
+    max-width:466px;
+    max-height:466px;
+    margin: 0 auto;
+
+    @media screen and (max-width: 1200px) {
+          height:466px;
+          width:466px;
+          max-width:466px;
+          max-height:466px;
+    }
+
+    @media screen and (max-width: 992px) {
+      height:360px;
+      width:360px;
+      max-width:360px;
+      max-height:360px;
+    }
+
+    @media screen and (max-width: 480px) {
+      height:320px;
+      width:320px;
+    }
+
+    @media screen and (max-width: 360px) {
+      height:260px;
+      width:260px;
+    }
+
+    .wheel {
+      position:relative;
+
+      #wheelHitbox {
+        z-index: 2000;
+        position: absolute;
+        width:80%;
+        height:80%;
+        top: 10%;
+        left: 10%;
+        cursor: pointer;
+        background: transparent;
+        border:none;
+        outline: none;
+      }
+
+      img {
+        margin: 0 auto;
+        height:466px;
+        width:466px;
+        max-width:466px;
+        max-height:466px;
+
+        @media screen and (max-width: 1200px) {
+              height:466px;
+              width:466px;
+              max-width:466px;
+              max-height:466px;
+        }
+
+        @media screen and (max-width: 992px) {
+          height:360px;
+          width:360px;
+          max-width:360px;
+          max-height:360px;
+        }
+
+        @media screen and (max-width: 480px) {
+          height:320px;
+          width:320px;
+        }
+
+        @media screen and (max-width: 360px) {
+          height:260px;
+          width:260px;
+        }
+      }
+
+      .wheelImage {
+        z-index: 0;
+      }
+
+      .circleCenter {
+        position:absolute;top:0;left:0;
+        z-index: 11;
+      }
+
+      .circleIcon {
+        position:absolute;left:12%;top:12%;
+        width:76%;
+        height:76%;
+        z-index:12;
+      }
+    }
+  }
+}
+
+#gameResult
+{
+    left:0px;
+    font-size:24px;
+    width:100%;
+    #gamemessage
+    {
+        margin-top:150px;
+        padding-bottom:20px;
+        @media (max-width: 991px) {
+          margin-top: 100px;
+        }
+    }
+    #coinmsg1, #coinmsg2
+    {
+        margin:0 75px 0 75px;
+    }
+}
+
+#aniPanel
+{
+    position:absolute;
+    z-index:-1;
+    top:0px;
+    left:20px;
+}
+
+// app specific styles extracted from html inline style tags
+
+.visible-sm-positioning {
+  z-index : 2;
+  position : relative;
+  top : -15px;
+}
+
+.hidden-sm-positioning {
+  z-index : 2;
+}
+
+.circle-game-sound-toggle-container {
+  z-index : 121;
+  position : absolute;
+  right : 5px;
+  top :5px;
+}
+
+.btn-group .btn{
+  font-size:20px;
+}
+.btn-group .btn.btn-danger{
+  color: #ffcccc;
+  border-color: #ffd479;
+  background-color: #aa0000;
+}
+.btn-group .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) !important;
+}
+.btn-group .btn-group .btn + .btn {
+  margin-left: 0px;
+}

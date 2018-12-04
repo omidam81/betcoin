@@ -1,0 +1,79 @@
+<h1>Send BTC to a <b>Game Address</b></h1>
+<h2>Our provably fair algorithm will select your <b>Lucky Number</b>, between 1 and 65536</h2>
+<h3>If the <b>Lucky Number</b> is less than or equal to the target value (Example: 32000) YOU WIN!</h3>            
+<ol>
+    <li><h4>Our system will process your bet as soon as it is received, and your winnings will be sent <b>immediately</b></h4></li>
+    <li><h4>Enter your wallet addresses or "Star" your bets to view yours or anyone else's bets in real-time on the "My Games" tab!</h4></li>
+    <li><h4>If you don't have a Bitcoin wallet, visit <a href="https://www.betcoin.tm/new-to-bitcoin">"What is Bitcoin?"</a></h4></li>
+</ol>
+<hr>
+<h2>Warning: Do not use shared wallets!</h2>
+<h4>
+    Only use wallets that allow you to receive Bitcoin from the same address you sent from. If you're not sure, test by sending a bet for the minimum amount. If you get nothing back, then your wallet is not compatible. Note that some bets may require one confirmation before the win/loss value is sent back.                
+</h4>
+
+<h4>If you win, your winnings equals your bet * the prize multiplier for your game, <b>minus applicable transaction fee of 0.0001 BTC to 0.0005 BTC</b></h4>
+
+<h4>Consolation Prize: Your bet * 0.005; minimum: 0.00005460 BTC</h4>
+
+<h4>Transaction Processing Time</h4>
+
+<p>A transaction fee of .0005 is recommended. Sometimes there is a delay in processing bets. Every bet uses the date that our system is first made aware of the bet, so that your lucky number doesn't change if our system cannot process your bet.</p>
+
+<h4>Need Help?</h4>
+
+<p>
+    <a href="https://betcoin.tm/support">
+        contact support</a></p>
+
+<h3>Min / Max Bets</h3>
+
+<p>Any bets less than the minimum bet (.001 BTC) or higher than the maximum bet (which is determined separately for each game) is considered an invalid bet, and will be returned, minus the transaction fee.</p>
+
+<hr>
+<h2>Advanced</h2>
+<h3>Multiple bets per transaction</h3>
+<p>To place multiple bets in one transaction, you can use your wallet to send to several different bet addresses at once. Each individual bet will have a different lucky number.</p>
+
+
+<h3>Custom withdrawal addresses</h3>
+<p>Normally, when you send a bet, the return payment is sent back to the same Bitcoin address you sent from. However, there is a way to have the return payment sent to a new, custom address.
+</p>
+<ul>
+    <li>
+        If you add an additional payment to your bet transaction, sending exactly 0.0051999 BTC to a separate address, the payout for the bet will go to that address.
+    </li>
+    <li>
+        -The first payment in the transaction must go to BetCoin Dice with your bet amount, and the second payment in the transaction must go to [yournewaddress] with the amount of 0.0051999. If you win, all the money will then be sent to [yournewaddress].
+    </li>
+</ul>
+
+<hr>
+<h2></h2>
+
+<h3>Secret Keys</h3>
+<p>
+    In order to ensure that there is no way for the system to change the outcome of a bet, the secret keys used are decided ahead of time. They are not released right away, since they could be used to submit selective transactions and win bets unfairly. However, the hash of the secrets is released. After the secrets are release users can verify that preceding bets were provably fair.
+</p>
+<br>
+<h3>Days</h3>
+<p>
+    Each bet transaction that comes in is assigned to the secret key of the current day when it is first processed. In most cases this will be as soon as the transaction is broadcast on the bitcoin network. However it could be later if the system has some problems processing or an outage. All times are in GMT
+</p>
+<br>
+<h3>Hash File</h3>
+<p>
+    The system has a file of all the hash keys for the next 10 years: <a href="https://api.betcoin.tm/hashes.keys">hashes.keys</a>
+    This file can be verified in several ways. The simplest is to simply download and keep a copy of that file.
+</p>
+<br>
+
+<h3>Secrets</h3>
+<p>
+    Every 24 hours the system will allow access to the previous day's secret. Then the code below can be used to verify each game was provably fair. A list of secrets for previous days can be found here:
+    <a href="https://api.betcoin.tm/secret.keys">secret.keys</a>
+</p>
+<h3>How is the lucky number calculated?</h3>
+<p>
+    The lucky number used to determine the winner of games is the first two bytes of crypto.createHmac('sha512', secret);
+</p>

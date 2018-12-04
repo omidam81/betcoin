@@ -1,0 +1,130 @@
+<div class="col-md-8">
+    <div class="row panel panel-default">
+        <div class="panel-heading">Accounts</div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CURRENCY</th>
+                        <th>DEPOSITS SUM</th>
+                        <th>CASHOUT SUM</th>
+                        <th>CASH BALANCE</th>
+                        <th>TOTAL HOUSE EDGE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{playerDetails._id}}</td>
+                        <td>BTC</td>
+                        <td>{{playerDetails.deposited|btc}}</td>
+                        <td>{{playerDetails.withdrawn|btc}}</td>
+                        <td>{{playerDetails.balance.btc|btc}}</td>
+                        <td>{{totalHouseEdge|number:6}}%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row panel panel-default">
+        <div class="panel-heading">Latest Payments</div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ACTION</th>
+                        <th>FINISHED AT</th>
+                        <th>AMOUNT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="transaction in transactions.results">
+                        <td>{{transaction._id}}</td>
+                        <td>{{transaction.transaction_type}}</td>
+                        <td>{{transaction.transaction_date|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td>{{transaction.transaction_amount|btc}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="player/{{playerDetails._id}}/history">All Payments</a>
+        </div>
+    </div>
+	<div class="row panel panel-default">
+	    <div class="panel-heading"></div>
+	    <div class="panel-body">
+	    	<table class="table">
+		        <thead>
+		            <tr>
+		                <th>GAME</th>
+		                <th>CURRENCY</th>
+		                <th>TOTAL WINNINGS</th>
+		                <th>TOTAL LOSS</th>
+		                <th>PROFIT</th>
+		                <th>PAYOUT</th>
+		                <th></th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr ng-repeat="stats in gameStats">
+		                <td>{{stats.type}}</td>
+		                <td>{{stats.data[0]._id.currency}}</td>
+		                <td>{{stats.data[0].winningAmountTotal|btc}}</td>
+		                <td>{{stats.data[0].lossAmountTotal|btc}}</td>
+		                <td>{{stats.data[0].lossAmountTotal - stats.data[0].winningAmountTotal|btc}}</td>
+		                <td>{{100*((stats.data[0].winningAmountTotal - stats.data[0].lossAmountTotal)/stats.data[0].lossAmountTotal)|number:6}}%</td>
+		                <td><a href="player/{{playerDetails._id}}/history/game">GAMES</a>
+		                </td>
+		            </tr>
+		        </tbody>
+	    	</table>
+	    </div>
+	</div>
+</div>
+</div>
+<div class="col-md-4">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <dt>DEPOSIT  ADDRESS</dt>
+                <dd>{{playerDetails.deposit.btc.address}}</dd>
+                <dt>MAIN BITCOIN ADDRESS</dt>
+                <dd>{{playerDetails.withdraw.btc.address}}</dd>
+                <dt ng-show="playerDetails.withdraw.btc.backup.address!=null">BACKUP BITCOIN ADDRESS</dt>
+                <dd>{{playerDetails.withdraw.btc.backup.address}}</dd>
+                <hr>
+                <dt>USERNAME</dt>
+                <dd>{{playerDetails.alias}}</dd>
+                <dt>EMAIL</dt>
+                <dd>{{playerDetails.email}}</dd>
+                <hr>
+                <dt>LAST ACTIVITY DATETIME</dt>
+                <dd>{{playerDetails.updated|date:'yyyy-MM-dd HH:mm:ss'}}</dd>
+                <dt>LAST IP</dt>
+                <dd>{{playerDetails.ip}}</dd>
+                <hr>
+                <a ng-click="lockUser()" class="btn btn-default" ng-show="playerDetails.lock!=true">Lock User</a>
+                <a ng-click="unlockUser()" class="btn btn-default" ng-show="playerDetails.lock==true">Unlock User</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    	<div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+            	<div>Omiting this user to ignore this user's stats in the global stats.</div>
+                <a ng-click="omitUser()" class="btn btn-default" ng-show="playerDetails.omitted!=true">Omit User</a>
+                <a ng-click="unomitUser()" class="btn btn-default" ng-show="playerDetails.omitted==true">Unomit User</a>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <div>TRUSTING this user will allow INSTANT cashout up to 1 BTC.</div>
+                <a ng-click="trustUser()" class="btn btn-default" ng-show="playerDetails.trusted!=true">Trust User</a>
+                <a ng-click="untrustUser()" class="btn btn-default" ng-show="playerDetails.trusted==true">UNTrust User</a>
+            </div>
+        </div>
+    </div>
+</div>

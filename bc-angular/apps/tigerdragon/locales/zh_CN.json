@@ -1,0 +1,40 @@
+{
+    "prod": "tigerdragon",
+    "meta": {
+        "title": "财神斗 ™ 比特币游戏 - 赢比特币!"
+    },
+    "global": {
+        "logourl": "img/words/cn/tigerdragon.png"
+    },
+    "home": {
+        "title_image": "img/icons/tigerdragon280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/tigerdragon"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/dou"
+        }
+    },
+    "game": {
+        "spinmessage": "选择投注大小－批对下注 8倍赔率",
+        "score": "比分",
+        "winner": "赢家",
+        "tie": "平局",
+        "suitedtie": "同花平局",
+        "big": "大",
+        "small": "小",
+        "suit": {
+            "c": "梅花",
+            "d": "方块",
+            "h": "红心",
+            "s": "黑桃"
+        },
+        "dragon": "龙",
+        "tiger": "虎"
+    },
+    "buttons": {
+        "clear_bets": "取消所有下注"
+    }
+}

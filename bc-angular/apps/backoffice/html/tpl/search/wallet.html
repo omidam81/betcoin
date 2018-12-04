@@ -1,0 +1,29 @@
+<form class="form">
+    <div mongo-input
+         query-object="query"
+         type="text"
+         field="withdrawAddress"
+         field-alias="depositAddress"
+         label="Any Address"
+         class="form-group"></div>
+    <div mongo-input
+         query-object="query"
+         type="text"
+         field="userId"
+         class="form-group"></div>
+    <!-- the toBitcoin and toSatoshi functions are on the backoffice
+    root scope (they should be in every root scope maybe) -->
+    <div mongo-input
+         query-object="query"
+         type="number"
+         transform="toSatoshi"
+         parse="toBitcoin"
+         field="balance"
+         class="form-group"></div>
+    <div mongo-input
+         query-object="query"
+         type="select"
+         field="currency"
+         options="currencyOptions"
+         class="form-group"></div>
+</form>

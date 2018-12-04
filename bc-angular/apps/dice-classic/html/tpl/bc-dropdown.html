@@ -1,0 +1,64 @@
+<div class="btn-group">
+  <button type="button" class="btn btn-default btn-lg dropdown-toggle bc-dropdown"  data-toggle="dropdown">
+    <div class="title"><%= bc_dropdown.title %></div>
+    <div class="gametitle" style="">{{currentSelectedGame.title}}</div>
+    <span class="odds">{{currentSelectedGame.odds * 100 | number:4}}</span>
+    <span class="percent">%</span>&nbsp;<span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" style="width:260px;font-size:22px;height: auto;max-height: 280px;overflow-x: hidden;">
+    <li ng-repeat="game in games"><a href="#" ng-click="select(game)" style="text-align:left;"><div style="display:inline-block;width:70px;font-size:14px;">{{game.title}}</div><span style="font-size:13px;"><%= bets.game_wrap_th3 %>: {{game.odds * 100 | number:4}}</span><span style="font-size:11px;">%</span></a></li>
+  </ul>
+</div>
+<div style="margin:10px 0px 0px 0px;">
+
+        <!-- @ifndef HIVEAPP -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 style="padding:0;margin:0;"><%= bc_dropdown.send_title %></h2>
+                    <div style="font-size:12px;margin:5px 0px;">{{currentSelectedGame.address}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 visible-sm visible-md visible-lg"></div>
+
+                <div class="col-xs-4 col-sm-2">
+                    <button class="btn btn-success btn-lg" ng-click="clipboard(currentSelectedGame.address)"><%= bc_dropdown.copy %></button>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a class="btn btn-sm btn-success"
+                       data-toggle="modal"
+                       data-target="#modal{{currentSelectedGame.address}}"
+                       style="cursor:pointer;">
+                        <img style="width: 30px;" src="img/qr-mini.png"/>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a class="btn btn-sm btn-success" style="cursor: pointer;" ng-click="sendBitcoins(currentSelectedGame.address)">
+                        <img style="width: 30px;" src="img/multibit.png"/>
+                    </a>
+                </div>
+                <div id="modal{{currentSelectedGame.address}}" class="qc-modal modal fade">
+                    <div class="modal-dialog qr-modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                                <h1>{{ currentSelectedGame.title }}</h1>
+                                <div><small>{{ currentSelectedGame.address }}</small></div>
+                            </div>
+                            <div class="modal-body">
+                                <img ng-src="img/qr-codes/{{ currentSelectedGame.address }}.png" />
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" data-dismiss="modal"><%= close %></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 visible-sm visible-md visible-lg"></div>
+            </div>
+        <!-- @endif -->
+        <!-- @ifdef HIVEAPP -->
+            <a class="btn btn-default btn-lg" style="font-size:22px;" ng-href="bitcoin:{{currentSelectedGame.address}}"><span style="font-size:14px;"><%=bc_dropdown.click_bet %></span><div style="display:inline-block;width:70px;text-align:left;">{{currentSelectedGame.title}}</div><span style="font-size:13px;">Odds: {{currentSelectedGame.odds * 100 | number:4}}</span><span style="font-size:11px;">%</span></a>
+        <!-- @endif -->
+
+</div>

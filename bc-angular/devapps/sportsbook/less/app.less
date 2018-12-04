@@ -1,0 +1,476 @@
+@gold: #ffd479;
+@golddark: #D6AE58;
+@goldvolume: rgb(173,150,95);
+
+
+.text-ellipsis () {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+body > .content {
+  padding-top: 0;
+}
+
+.box .olympia-grid {
+  .arrow {
+    display: inline-block;
+    height: 54px;
+    width: 39px;
+    padding: 17px 5px 5px 9px;
+    font-size: 16px;
+    float: right;
+    color: #AA0D0D;
+    &:hover {
+      color: #efefef;
+    }
+  }
+
+  .content {
+    margin: 0 39px 0 0;
+    color: #b58a2c;
+    overflow: hidden;
+
+    .content-home-visiting {
+      background: rgba(255, 210, 110, 0.1);
+      > div {
+        .text-ellipsis;
+      }
+    }
+
+    .content-home-visiting, .content-wrapper-draw {
+      padding: 10px;
+    }
+
+    &.content-can-draw .content-home-visiting {
+      width: 70%;
+    }
+
+    &.content-no-draw .content-wrapper-home,
+    &.content-no-draw .content-wrapper-visiting {
+    }
+
+    .content-wrapper-home {
+    }
+
+    .content-wrapper-visiting {
+    }
+
+    .content-wrapper-draw {
+      float: right;
+      width: 30%;
+      height: 54px;
+      padding-top: 19px;
+      background: rgba(230,10,10,0.1);
+    }
+
+    > div span {
+      float: right;
+      color: #e0bb6a;
+    }
+  }
+
+  .info {
+    float: left;
+    height: 54px;
+    padding: 10px 5px 5px 5px;
+    background: rgba(230,10,10,0.1);
+  }
+
+  .date {
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+    color: @golden;
+    white-space: pre-wrap;
+  }
+
+  .sport-icon {
+    float: left;
+  }
+}
+
+@icons: "freestyle-skiing",
+        "mixed-martial-arts",
+        "alpine-skiing",
+        "bandy",
+        "biathlon",
+        "bobsleigh",
+        "cricket",
+        "cross Country",
+        "curling",
+        "cycling",
+        "darts",
+        "e-sports",
+        "figure-skating",
+        "futsal",
+        "hockey",
+        "luge",
+        "nordic-combined",
+        "short-track",
+        "skeleton",
+        "ski-jumping",
+        "snow-boarding",
+        "speed-skating",
+        "soccer",
+        "basketball",
+        "volleyball",
+        "baseball",
+        "tennis",
+        "rugby-league",
+        "aussie-rules",
+        "rugby-union",
+        "football",
+        "badminton",
+        "snooker";
+
+@iterations: length(@icons);
+
+.olympia-sport-icon .icon {
+  height: 26px;
+  width: 26px;
+  display: inline-block;
+}
+
+.sport-icons-loop (@i, @z) when (@i > 0) {
+  @className: e("olympia-sport-@{z}");
+  .@{className} {
+    .icon {
+      @offset: ((@i - 1) * (-46));
+      background: url('../img/submenu-icons/sports.png') 0 ~"@{offset}px" no-repeat;
+
+    }
+
+    &.olympia-sport-icon-hover:hover .icon {
+      background-image: url('../img/submenu-icons/sports_active.png');
+    }
+  }
+  .sport-icons-loop(@i - 1, extract(@icons, @i - 1));
+}
+
+.sport-icons-loop (@iterations, extract(@icons, @iterations));
+
+.sport-leagues {
+  overflow: hidden;
+
+  > ul {
+
+    clear: both;
+    padding-top: 15px;
+    > li {
+      color: #ad965f;
+      > a {
+        color: #ad965f;
+
+      }
+      .text-ellipsis();
+    }
+  }
+}
+
+.leftbar .list-item {
+  .list-item:hover > a {
+    width: 90%;
+  }
+}
+
+.topbar {
+  margin: 47px 0 17px 0;
+}
+
+.mobile-leftbar {
+  padding-top: 5px;
+
+  > div {
+    float: left;
+    padding-left: 30px;
+  }
+
+  .back-button {
+    float: left;
+    display: inline-block;
+    padding: 12px 10px 0 20px;
+  }
+
+  .sports-picker, .league-picker {
+    width: 45%;
+    max-width: 321px;
+  }
+
+  select {
+    .basic-select;
+  }
+}
+
+.olympia-event-bet {
+  margin: 5px 0 5px 0;
+
+  h4 {
+    color: #b58a2c;
+    padding: 0 0 0 5px;
+  }
+
+  >div {
+    .regular-border();
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
+  .values {
+    float: left;
+    background: rgba(60, 0, 0, 0.6);
+    padding: 0 10px 0 10px;
+    text-align: center;
+
+    .outcome {
+      color: #b58a2c;
+      .text-ellipsis();
+    }
+
+    .odds {
+      color: #f1c671;
+      .text-ellipsis();
+    }
+  }
+
+  .bet {
+    float: right;
+    background: rgba(29, 23, 9, 0.6);;
+    position: relative;
+    overflow: hidden;
+
+    > form {
+      > div {
+        text-align: center;
+        padding-right: 50px;
+        margin: -1px 0 -1px 0;
+
+        .currency {
+          color: #9c0000;
+        }
+
+        .value {
+          width: 172px;
+          max-width: 100%;
+          color: #b58a2c;
+          text-align: center;
+          outline: none;
+          border: 0;
+          background: none;
+        }
+      }
+
+      .button {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        bottom: -1px;
+        margin: 0;
+        .regular-button();
+      }
+    }
+
+    > form.ng-invalid > div .value {
+      color: #f00;
+    }
+
+
+  }
+}
+
+.event-page .info {
+  padding: 0 15px 0 15px;
+
+  > div {
+    text-align: center;
+    .regular-border();
+    background: rgba(29, 23, 9, 0.6);
+    border-collapse: separate;
+    overflow: hidden;
+    padding: 5px;
+
+    .date {
+      float: left;
+      padding: 3px;
+      font-size: 16px;
+      color: #9c0000;
+    }
+
+    .participants {
+      float: right;
+      padding: 3px;
+
+      .participant {
+        font-size: 17px;
+      }
+    }
+  }
+}
+
+.sort-leagues-select select {
+  .basic-select;
+}
+
+.leagues-box .box-container {
+  padding: 5px;
+}
+
+@media (max-width: @screen-xs-max) {
+  .topbar .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .box .olympia-grid {
+    .content {
+      .content-home-visiting, .content-wrapper-draw {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+    }
+    .date {
+      width: 35px;
+    }
+
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+  .leftbar .list-item {
+    &:hover > .submenu {
+        display: none;
+    }
+  }
+}
+
+
+@media (max-width: @screen-xs-max) {
+  .mobile-leftbar {
+    > div {
+      padding-left: 10px;
+    }
+
+    .sports-picker, .league-picker {
+      width: 38%;
+    }
+  }
+}
+
+@media (device-width: @screen-sm) {
+  .box .olympia-grid {
+    .arrow {
+      margin-left:-39px;
+    }
+  }
+}
+
+
+@media (max-width: @screen-xs-max) {
+  .olympia-event-bet .values {
+    float: none;
+    overflow: hidden;
+    padding: 10px 20px;
+
+    .outcome {
+      float: left;
+    }
+
+    .odds {
+      float: right;
+    }
+  }
+
+  .olympia-event-bet .bet {
+    float: none;
+
+    .button {
+      padding: 0px 10px 0px 10px;
+    }
+  }
+}
+
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+  .olympia-event-bet .values {
+    width: 48%;
+  }
+
+  .olympia-event-bet .bet {
+    width: 48%;
+
+    .button {
+      padding: 0 20px 0 20px;
+    }
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .olympia-event-bet .values {
+    width: 36%;
+  }
+
+  .olympia-event-bet .bet {
+    width: 62%;
+
+    > div {
+      width: 85%;
+    }
+
+    .button {
+      padding: 0 20px 0 20px;
+    }
+  }
+
+  .leftbar .list-item {
+    &:hover > a {
+      width: 90%;
+    }
+
+    &.first:hover > a {
+      border-radius: 6px 0 0 0;
+    }
+
+    &.last:hover > a {
+      border-radius: 0 0 0 6px;
+    }
+  }
+
+  .md-sort-leagues-select {
+    margin-top: 15px;
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  .olympia-event-bet .bet .button {
+    padding: 0 10px 0 10px
+  }
+}
+
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+  .box .list-grid > div, .box .olympia-grid > div, .box .games-grid > div {
+    font-size: 11px;
+  }
+
+  .box .olympia-grid .content .content-home-visiting, .box .olympia-grid .content .content-wrapper-draw {
+    padding: 12px 6px 12px 6px;
+  }
+
+  .box .olympia-grid .content .content-wrapper-draw {
+    padding-top: 20px;
+  }
+
+  .box .olympia-grid .info {
+    padding: 15px 0 5px 5px;
+  }
+
+  .box .olympia-grid .arrow {
+    width: 30px;
+    padding: 17px 0 5px 5px;
+  }
+
+  .box .olympia-grid .content {
+    margin-right: 30px;
+  }
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title><%- meta.title %></title>
+        <meta name="description" content="<%- meta.description %>">
+        <meta name="keywords" content="<%- meta.keywords %>" />
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script>document.write('<base href="' + document.location.origin + '/" />');</script>
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="fragment" content="!">
+        <link rel="stylesheet" href="css/main.css">
+        <script data-main="/js/main.js" src="/js/vendor/require.js"></script>
+    </head>
+    <body>
+        <!-- <div ng-include="'/toast.html'"></div> -->
+        <!-- <div ng-include="'/ie-fixes.html'"></div> -->
+        <div ng-include="'/app/nav.html'"></div>
+        <div class="container">
+            <div ui-view>
+                <h1>Loading</h1>
+            </div>
+        </div>
+        <!-- <div ng-include="'/js-snippets.html'"></div> -->
+        <!-- <div ng-include="'/modals.html'"></div> -->
+    </body>
+</html>

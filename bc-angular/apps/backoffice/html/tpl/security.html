@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">
+            Security
+        </h2>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="active-btn" class="col-md-4 control-label">
+                        Google Authenticator
+                    </label>
+                    <div class="col-md-8">
+                        <button class="btn btn-default" ng-click="getTotpSecret()" ng-show="!totpSecret">
+                            Turn On
+                        </button>
+                        <button class="btn btn-default" ng-click="deactivateTotp()" ng-show="totpSecret">
+                            Turn Off
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="totpSecret">
+                    <label for="qr-image" class="col-md-4 control-label">QR Code</label>
+                    <div class="col-md-8">
+                        <img ng-src="{{qrcodeUrl}}" id="qr-image">
+                    </div>
+                </div>
+                <div class="form-group" ng-show="totpSecret && !totp">
+                    <div class="col-md-8 col-md-offset-4">
+                        <input id="oneTimePass" class="input" type="text" ng-model="oneTimePass" placeholder="One Time Password" autofocus/>
+                        <button class="btn btn-default" ng-click="activateTotp()" bc-popover="{{error!=null}}" ng-disabled="!oneTimePass">
+                            Verify
+                        </button>
+                        <div class="errors hide">
+                            <span class="error">Invalid One Time Password</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div ng-show="totp">
+                Google Authenticator has been setup
+            </div>
+            <div ng-show="!totp && totpSecret">
+                Please verify the TOTP secret
+            </div>
+        </div>
+    </div>
+</div>

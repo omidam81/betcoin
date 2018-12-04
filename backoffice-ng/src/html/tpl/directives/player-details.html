@@ -1,0 +1,44 @@
+<div id="player-stats" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Player detailed stats</h3>
+            </div>
+            <div class="modal-body">
+                <h3 ng-show="loading">Loading</h3>
+                <h3 ng-show="playerStats.deposits == null&&loading == false">No Player Stats Available</h3>
+                <dl class="dl-horizontal">
+                    <dt>ID</dt>
+                    <dd>{{playerStats._id}}</dd>
+                    <dt>Username</dt>
+                    <dd>{{playerStats.alias}}</dd>
+                    <dt>Email</dt>
+                    <dd>{{playerStats.email}}</dd>
+                    <dt>Created</dt>
+                    <dd>{{playerStats.user_created_datetime|date:'yyyy-MM-dd HH:mm:ss'}}</dd>
+                    <dt>Total # of Deposits</dt>
+                    <dd>{{ playerStats.deposits }}</dd>
+                    <dt>Total # of Withdraws</dt>
+                    <dd>{{ playerStats.withdraws }}</dd>
+                    <dt>Total Deposited</dt>
+                    <dd>{{ playerStats.deposited|btc }}</dd>
+                    <dt>Total Withdrawn</dt>
+                    <dd>{{ playerStats.withdrawn|btc }}</dd>
+                    <dt>Player Balance</dt>
+                    <dd>{{ playerStats.balance.btc|btc }}</dd>
+                    <dt>Player Profit</dt>
+                    <dd>{{ playerStats.profit|btc }}</dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" ng-click="showUserDetails()" data-dismiss="modal" ng-disabled="!playerStats._id">Details</a>
+                <a class="btn btn-default" ng-click="showUserTransactionHistory()" data-dismiss="modal" ng-disabled="!playerStats._id">
+                    Transactions
+                </a>
+                <button class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

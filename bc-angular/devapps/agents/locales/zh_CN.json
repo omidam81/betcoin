@@ -1,0 +1,12 @@
+{
+    "meta":{
+        "title": ""
+    },
+    "agent": {
+        "dashboard": {
+            "earningLevel":"Comission",
+            "agentToken":"Agent ID",
+            "balances":"Wallet Balances"
+        }
+    }
+}

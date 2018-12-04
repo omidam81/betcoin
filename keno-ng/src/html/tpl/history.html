@@ -1,0 +1,54 @@
+<div>
+    <ul class="nav nav-pills nav-justified">
+        <li ng-class="getRecentdrawsTabClass('global')"><a href="draws/global"><%= draws.global %></a></li>
+        <li ng-class="getRecentdrawsTabClass('player')"><a href="draws/player"><%= draws.mydraws %></a></li>
+    </ul>
+    <table class="table table-bordered gamesTable">
+        <thead>
+            <tr>
+                <th><%= game.details %></th>
+                <th><%= username %></th>
+                <th class="hidden-xs"><%= game.drawnNumbers %></th>
+                <th><%= game.betCount %></th>
+                <th><%= game.matchCount %></th>
+                <th class="hidden-xs"><%= draws.result %></th>
+                <th class="hidden-xs"><%= draws.bet %></th>
+                <th><%= draws.return %></th>
+                <th><%= draws.time %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="game in games | orderBy:orderby:reverse" ng-class="{ 'nonZeroColor': game.payout_multiplier > 0,'zeroColor': game.payout_multiplier == 0 }">
+                <td>
+                    <a href="history/details/{{game.id || game._id}}"
+                        style="font-size:25px;"
+                        class="glyphicon glyphicon-info-sign">
+                    </a>
+                </td>
+                <td>
+                    {{ game.player_alias }}
+                </td>
+                <td class="hidden-xs">
+                    <span ng-repeat="number in game.result">{{number}}{{$last ? '' : ', '}}</span>
+                </td>
+                <td>{{ game.bets.length }}</td>
+                <td>{{ _.intersection(game.bets, game.result).length }}</td>
+                <td class="hidden-xs">
+                    {{ game.payout_multiplier }}<%= game.x %>
+                </td>
+                <td class="hidden-xs">
+                    {{ game.wager | btc }}
+                </td>
+                <td>
+                    {{ game.winnings | btc }}
+                </td>
+                <td class="">
+                    {{ game.createdAt | date:"MM/dd HH:mm:ss" }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<small><%= draws.initial_hash_explain %></small>
+<br>
+<small><%= draws.final_array_explain %></small>

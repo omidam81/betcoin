@@ -1,0 +1,15 @@
+<div class="container">
+    <h3>Press</h3>
+    <div data-ng-repeat="press in presss" class="panel panel-default">
+        <div class="panel-heading"><a ng-href="read/{{press.slug}}"><h1 ng-bind-html="press.title"></h1></a></div>
+        <div class="panel-body">
+            <div>
+                <div class="row">
+                    <p ng-bind-html="press.summary" class="paragraph-content"></p>
+                </div>
+                <p><a ng-href="read/{{press.slug}}">Read more...</a></p>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

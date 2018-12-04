@@ -1,0 +1,120 @@
+{
+    "prod": "craps",
+    "meta": {
+        "title": "BetCoin ™ Craps Bitcoin Casino - Win Bitcoins!",
+        "meta_description": "With BetCoin ™ Craps you can bet in bitcoin and play the classic Craps. Try the game today to hit a bitcoin jackpot!",
+        "meta_keywords": "Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Craps, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-craps.png"
+    },
+    "home": {
+        "title_image": "img/icons/craps280.png",
+        "promote_header_a": "Play the Provably Fair Classic Craps"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/craps"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/che"
+        }
+    },
+    "game": {
+        "dices": "Dices",
+        "CircleDiv3": "My Bets"
+    },
+    "spins": {
+        "myspins": "My Bets",
+        "CircleTh4": "New Bet",
+        "CircleTh9": "Bets",
+        "CircleTh10": "Affected Wager"
+    },
+    "buttons": {
+        "start_roll": "ROLL",
+        "offer_me_to_press_my_bets_yes": "Offer me to press my bets: YES",
+        "offer_me_to_press_my_bets_no": "Offer me to press my bets: NO",
+        "leave_winnings_bets_up_on": "Leave winning bets up: ON",
+        "leave_winnings_bets_up_off": "Leave winning bets up: OFF",
+        "press": "PRESS",
+        "press_inside": "PRESS INSIDES",
+        "press_outside": "PRESS OUTSIDES",
+        "dont_press": "DO NOT PRESS"
+    },
+    "boards": {
+        "field": "Field",
+        "pass": "Pass Line",
+        "dontpass": "Don't Pass",
+        "passodds": "Pass Odds",
+        "dontpassodds": "Don't Pass Odds",
+        "come": "Come",
+        "dontcome": "Don't Come",
+        "lay4": "Lay 4",
+        "lay5": "Lay 5",
+        "lay6": "Lay 6",
+        "lay8": "Lay 8",
+        "lay9": "Lay 9",
+        "lay10": "Lay 10",
+        "buy4": "Place 4",
+        "buy10": "Place 10",
+        "place5": "Place 5",
+        "place6": "Place 6",
+        "place8": "Place 8",
+        "place9": "Place 9",
+        "come4": "Come 4",
+        "come5": "Come 5",
+        "come6": "Come 6",
+        "come8": "Come 8",
+        "come9": "Come 9",
+        "come10": "Come 10",
+        "takeodds4": "Come 4 Odds",
+        "takeodds5": "Come 5 Odds",
+        "takeodds6": "Come 6 Odds",
+        "takeodds8": "Come 8 Odds",
+        "takeodds9": "Come 9 Odds",
+        "takeodds10": "Come 10 Odds",
+        "dontcome4": "Don't Come 4",
+        "dontcome5": "Don't Come 5",
+        "dontcome6": "Don't Come 6",
+        "dontcome8": "Don't Come 8",
+        "dontcome9": "Don't Come 9",
+        "dontcome10": "Don't Come 10",
+        "notodds4": "Don't Come 4 Odds",
+        "notodds5": "Don't Come 5 Odds",
+        "notodds6": "Don't Come 6 Odds",
+        "notodds8": "Don't Come 8 Odds",
+        "notodds9": "Don't Come 9 Odds",
+        "notodds10": "Don't Come 10 Odds",
+        "two": "Two",
+        "three": "Three",
+        "seven": "Any Seven",
+        "eleven": "Eleven",
+        "twelve": "Twelve",
+        "anycraps": "Any Craps",
+        "hard4": "Hard 4",
+        "hard6": "Hard 6",
+        "hard8": "Hard 8",
+        "hard10": "Hard 10"
+    },
+    "labels": {
+        "six_title": "SIX",
+        "seven_title": "SEVEN",
+        "nine_title": "NINE",
+        "come_title": "COME",
+        "passline_title": "PASS LINE",
+        "dontpass_title": "DON'T PASS BAR",
+        "field_title": "FIELD",
+        "dontcome_title": "DON'T COME",
+        "anycraps_title": "ANY CRAPS",
+        "on": "On",
+        "off": "Off",
+        "to": "to",
+        "current_bet": "Current Bet",
+        "max_bet": "Max Bet",
+        "passodds_title": "PASS ODDS",
+        "dontpassodds_title": "DON'T PASS ODDS"
+    },
+    "press": {
+        "you_won_on": "You have won on"
+    }
+}

@@ -1,0 +1,134 @@
+<div class="tabcontent howtoplay">
+    <h1>玩法说明</h1>
+
+    <p class="ng-binding"><b class="ng-binding">财神乐点</b>是一个经典的纸牌游戏，允许您使用数字货币比特币下注。这是一个简单而有趣的，大家一起并赢得更多的比特币的玩的方式！</p>
+    <br>
+    <ol style="padding-left:40px;">
+        <li class="ng-binding">登录或注册, 或使用您的BTC钱包地址匿名游戏。</li>
+        <br>
+        <li class="ng-binding">使用所提供的个人存款地址与基金比特币的游戏余额。
+        </li>
+        <br>
+        <li class="ng-binding">通过使用滑块，平衡按钮，按钮的增量比例，或通过点击下注框选择下注金额。最高下注值可以动态调整。
+        </li>
+        <br>
+        <li class="ng-binding">检查你的进度，并使用位于播放屏幕下方的在游戏中排行榜和最新游戏跟进世界各地的玩家。
+        </li>
+        <br>
+        <li class="ng-binding">如果你是匿名玩家，您的余额会在闲置30分钟或在关闭浏览器后自动退还给您。
+        </li>
+        <br>
+    </ol>
+
+    <!-- <h4>Pay Table</h4>
+
+    <div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+    <h4>财神乐点</h4>
+    <ol>
+        <li><p>
+            扑克牌点数的算法与百家乐相同。玩法如下:
+        </p></li>
+        <li><p>
+            开始时玩家与庄家会收到两张牌。像在21点游戏，一张庄家卡牌会公开，另一张隐藏。
+        </p></li>
+        <li><p>
+            玩家可以选择停止或拿多一张卡。
+        </p></li>
+        <li><p>
+            在玩家开始下一步后，庄家会翻开另一张牌。然后庄家会拿第三张牌，如果他手上多牌小于等于5点，或两个三点.
+        </p></li>
+        <li><p>
+            卡牌的点数计算方法与百家乐相同，也就是两张牌的点数加起来取各位数。
+        </p></li>
+        <li><p>
+            当打成平局时，三张牌的一方赢两张牌的一方。否则，平局。
+        </p></li>
+        <li><p>
+            最高的牌手为3张3的牌，得到9分。
+        </p></li>
+        <li><p>
+            玩家只要有3-3-3的牌，那就会自动赢得这一局，并有3比1的赔率。
+        </p></li>
+        <li><p>
+            玩家以7点赢得游戏的，赔率为1比2.
+        </p></li>
+        <li><p>
+            其它点数赢得游戏的，1比1赔率。
+        </p></li>
+        <li><p>
+            任何9点和相同牌数的平局，玩家赢。 其它类型的平局，将打成平手（返还下注给玩家）。
+        </p></li>
+        <li><p>
+            如果庄家有比玩家大的牌，玩家输掉游戏。
+        </p></li>
+        <li><p>
+            在平局或者奖励下注时，可以添加额外赌注，规则如下。
+        </p></li>
+    </ol>
+    <h4>平局赔率</h4>
+    <table>
+        <tr>
+            <td>类型</td>
+            <td>赔率</td>
+        </tr>
+        <tr>
+            <td>平局</td>
+            <td>10</td>
+        </tr>
+    </table>
+    <h4>奖励下注赔率</h4>
+    <table>
+        <tr>
+            <td>3张3点黑桃</td>
+            <td>10000</td>
+        </tr>
+        <tr>
+            <td>三张同花3</td>
+            <td>1000</td>
+        </tr>
+        <tr>
+            <td>三张非同花3</td>
+            <td>200</td>
+        </tr>
+        <tr>
+            <td>三张同花同点牌 (A － 9, 除了3)</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>三张同花0点牌</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>三张非同花同点牌 (A － 9, 除了3)</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>三张非同花0点牌</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>同花</td>
+            <td>4</td>
+        </tr>
+    </table>
+    <h4 class="ng-binding">对玩家来说财神乐点扑克的预期收益是多少？ </h4>
+
+    <p class="ng-binding">预期收益为96.63％ </p>
+
+    <h4 class="ng-binding">每手最低下注是多少？</h4>
+
+    <p class="ng-binding">最低下注金额为0.000001 BTC</p>
+
+    <p></p>
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">点击此处查看用于验证每个游戏的代码</a></p>
+    <!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+
+
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

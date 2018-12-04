@@ -1,0 +1,36 @@
+{
+    "prod": "roulette",
+    "meta": {
+        "title": "BetCoin ™ Roulette Bitcoin Casino - Win Bitcoins!",
+        "meta_description": "With BetCoin ™ Roulette you can bet in bitcoin and play the classic Roulette wheel. Try the game today to hit a bitcoin jackpot!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-roulette.png"
+    },
+    "home": {
+        "title_image": "img/icons/roulette.png",
+        "promote_header_a": "Play the Provably Fair Classic Roulette"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/roulette"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/pan"
+        }
+    },
+    "game": {
+        "lose": "Lose"
+    },
+    "buttons" : {
+        "start_spin" : "SPIN",
+        "clearbets": "Clear Bets",
+        "clearbets_individual": "To clear an individual bet, press and hold a chip for 2 seconds, and then release",
+        "repeat_bets": "REPEAT bets"
+    },
+    "boards": {
+        "voisins": "JEU ZERO",
+        "orphelins": "Orphelins",
+        "tiers": "Tier"
+    }
+}

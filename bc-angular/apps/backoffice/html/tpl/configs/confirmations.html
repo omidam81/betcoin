@@ -1,0 +1,55 @@
+<div>
+    <div class="row">
+        <div ng-repeat="config in options"
+             ng-init="currency = config._id.replace('Confirmations', '')"
+             class="col-md-2">
+            <h3>{{currency}}</h3>
+            <form class="form">
+                <div class="form-group">
+                    <label>Min Fee</label>
+                    <crypto-input model="config.value.minfee"
+                                  currency="currency"
+                                  class="input-group"></crypto-input>
+                </div>
+                <div class="form-group">
+                    <label>Coinbase</label>
+                    <input type="number"
+                           ng-model="config.value.coinbase"
+                           class="form-control">
+                    <span class="help-block">
+                        The amount of confirmations required to
+                        deposit a coinbase transaction (not very
+                        common at all)
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label>Low Fee</label>
+                    <input type="number"
+                           ng-model="config.value.lowfee"
+                           class="form-control">
+                    <span class="help-block">
+                        The confirmations required when the fee for
+                        the transaction is below the min fee amount
+                        (above)
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label>Min Conf for Withdraw</label>
+                    <input type="number"
+                           ng-model="config.value.minconf"
+                           class="form-control">
+                    <span class="help-block">
+                        The confirmationws requirted for this currency
+                        to be withdrawn. All deposits active for the
+                        user since the last withdraw must have this
+                        many confirmations.
+                    </span>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary"
+                            ng-click="updateLimit(config)">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

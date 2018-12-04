@@ -1,0 +1,43 @@
+<div>
+	<table class="table">
+		<thead>
+			<th>Game</th>
+			<th>Max</th>
+			<th>Min</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="limit in options | orderBy:'_id'">
+				<td>
+				<span ng-show="limit._id">
+					{{limit._id.substring(0, limit._id.indexOf('BetLimit'))}}
+				</span>
+				<input ng-show="!limit._id" ng-model="limit.game" type="text" />
+				</td>
+				<td ng-if="limit._id!='diceBetLimits'"
+                    ng-repeat="prop in ['max', 'min']">
+                    <form class="form">
+					    <crypto-input model="config[prop]"
+                                      currency="currency"
+                                      class="input-group"
+                                      ng-repeat="(currency, config) in limit.value"></crypto-input>
+                    </form>
+				</td>
+				<td ng-if="limit._id=='diceBetLimits'">
+                    <form class="form"
+                        ng-repeat="conf in limit.value | orderObjectBy:'target'">
+                        <label>target &lt;= {{conf.target}}</label>
+					    <crypto-input model="limit.value[conf.target].max"
+                                      currency="'bitcoin'"
+                                      class="input-group"></crypto-input>
+                    </form>
+				</td>
+				<td>
+					<button class="btn btn-default" ng-click="updateLimit(limit)">Update</button>
+					<span>{{limit.status}}</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn btn-default" ng-click="addBetLimit()">Add Bet Limit</button>
+</div>

@@ -1,0 +1,114 @@
+<nav class="navbar navbar-default" role="navigation" data-ng-controller="NavController">
+    <div class="navbar-custom">
+        <div class="toolbar-icons">
+            <!-- @ifndef HIVEAPP -->
+                <div class="homelink">
+                    <a href="<%= httplink %>"><img src="<%= nav_logo %>" class="logo" alt="<%= home. main_page %>"/><span></span></a>
+                </div>
+                <div class="gamelink">
+                    <a href="<%= httplink %><%= home.circle_link %>/"><img alt="<%= home.circle_link_title %>" src="img/iconbar/circle44.png"><span><%= home.circle_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a href="<%= httplink %><%= home.dice_link %>/"><img alt="<%= home.dice_link_title %>" src="img/iconbar/dice44.png"><span><%= home.dice_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a href="<%= httplink %><%= home.prize_link %>/"><img alt="<%= home.prize_link_title %>" src="img/iconbar/prize44.png"><span><%= home.prize_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a href="<%= home.reels_link %>"><img alt="<%= home.reels_link_title %>" src="img/iconbar/reels44.png"><span><%= home.reels_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a href="<%= home.casino_link %>"><img alt="<%= home.casino_link_title %>" src="img/iconbar/casino44.png"><span><%= home.casino_link_short %></span></a>
+                </div>
+                <div class="infolink">
+                    <a href="<%= httplink %>/new-to-bitcoin">
+                        <img alt="<%= home.newtobitcoin %>" src="img/toolbar/bitcoin44.png"/><span><%= home.newtobitcoin %></span></a>
+                </div>
+                <div class="infolink">
+                    <a href="<%= httplink %><%= home.support_link %>">
+                        <img alt="<%= home.support_alt %>" src="img/toolbar/question44.png"/><span><%= home.support %></span></a>
+                </div>
+                <div class="infolink">
+                    <a href="<%= home.message_link %>"><bc-unread></bc-unread>
+                        <img alt="<%= home.message_alt %>" src="img/toolbar/messages44.png"/><span><%= home.message %></span></a>
+                </div>
+                <div class="infolink">
+                    <a href="<%= home.account_link %>">
+                        <img alt="<%= home.account_alt %>" src="img/toolbar/account44.png"/><span><%= home.account %></span></a>
+                </div>
+                <div class="infolink">
+                    <a ng-show="user" ng-click="logout()">
+                        <img alt="<%= home.signin_alt %>" src="img/toolbar/power44.png"/><span><%= home.logout %></span></a>
+                    <a ng-hide="user" href="/login">
+                        <img alt="<%= home.signin_alt %>" src="img/toolbar/power44.png"/><span><%= home.signin %></span></a>
+                </div>
+                <div class="localelink" ng-show="<%= isLocalized %>">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="locale-menu">
+                        <img src="<%= locale.image %>" alt="<%= locale.title %>" >
+                        <span><%= locale.title %></span>
+                    </a>
+                    <ul class="dropdown-menu" id="locale-menu">
+                        <li>
+                            <a href="<%= locales.en.url %>" tabindex="-1">
+                                <img src="<%= locales.en.image %>" alt="<%= locales.en.title %>"><span><%= locales.en.title %></span>
+                            </a>
+                    </li>
+                    <li>
+                        <a href="<%= locales.zh.url %>" tabindex="-1">
+                            <img src="<%= locales.zh.image %>" alt="<%= locales.zh.title %>"><span><%= locales.zh.title %></span>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            <!-- @endif -->
+            <!-- @ifdef HIVEAPP -->
+                <div class="homelink">
+                    <a target="_blank" href="<%= httplink %>"><img src="<%= nav_logo %>" class="logo" alt="<%= home. main_page %>"/><span></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= httplink %><%= home.circle_link %>/"><img alt="<%= home.circle_link_title %>" src="img/iconbar/circle44.png"><span><%= home.circle_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= httplink %><%= home.dice_link %>/"><img alt="<%= home.dice_link_title %>" src="img/iconbar/dice44.png"><span><%= home.dice_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= httplink %><%= home.prize_link %>/"><img alt="<%= home.prize_link_title %>" src="img/iconbar/prize44.png"><span><%= home.prize_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= home.reels_link %>"><img alt="<%= home.reels_link_title %>" src="img/iconbar/reels44.png"><span><%= home.reels_link_short %></span></a>
+                </div>
+                <div class="gamelink">
+                    <a target="_blank" href="<%= home.casino_link %>"><img alt="<%= home.casino_link_title %>" src="img/iconbar/casino44.png"><span><%= home.casino_link_short %></span></a>
+                </div>
+                <div class="infolink">
+                    <a target="_blank" href="<%= httplink %>/new-to-bitcoin">
+                        <img alt="<%= home.newtobitcoin %>" src="img/toolbar/bitcoin44.png"/><span><%= home.newtobitcoin %></span></a>
+                </div>
+                <div class="infolink">
+                    <a target="_blank" href="<%= httplink %><%= home.support_link %>">
+                        <img alt="<%= home.support_alt %>" src="img/toolbar/question44.png"/><span><%= home.support %></span></a>
+                </div>
+                <div class="localelink" ng-show="<%= isLocalized %>">
+                    <a class="dropdown-toggle" data-toggle="dropdown" data-target="locale-menu">
+                        <img src="<%= locale.image %>" alt="<%= locale.title %>" >
+                        <span><%= locale.title %></span>
+                    </a>
+                    <ul class="dropdown-menu" id="locale-menu">
+                        <li>
+                            <a target="_blank" href="<%= locales.en.url %>" tabindex="-1">
+                                <img src="<%= locales.en.image %>" alt="<%= locales.en.title %>"><span><%= locales.en.title %></span>
+                            </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="<%= locales.zh.url %>" tabindex="-1">
+                            <img src="<%= locales.zh.image %>" alt="<%= locales.zh.title %>"><span><%= locales.zh.title %></span>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            <!-- @endif -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</nav>
+

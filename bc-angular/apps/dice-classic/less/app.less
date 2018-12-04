@@ -1,0 +1,131 @@
+
+.game-container {
+  text-align:center;
+  padding:0px !important;
+  .dice-container {
+
+    padding-bottom:15px;
+  }
+  #spinmessage {
+    border-radius:12px;
+    height:85px;
+    overflow:hidden;
+    color:#ff0000;
+    h1 {
+        margin-top: 11px;
+        padding:0;
+      color:#ff0000;
+    }
+  }
+
+}
+
+.gamelist {
+  div {
+    margin:5px 0px;
+  }
+  .row {
+    div {
+      padding:0px!important;
+    }
+  }
+
+}
+.bc-dropdown {
+  padding:5px 0px;
+  div.title {
+    display:inline-block;width:70px;font-size:12px;padding-left:5px;
+  }
+  div.gametitle {
+    display:inline-block;width:80px;
+  }
+  span.odds {
+    font-size:13px;
+  }
+  span.percent {
+    font-size:11px;
+  }
+}
+ul.imagelist {
+  li {
+    list-style-type:none;
+    display:inline-block;
+  }
+}
+
+ul.addresslist {
+  margin:10px 0px;
+  padding:0px;
+  li {
+    list-style-type:none;
+    margin:5px 0px 5px 0px;
+  }
+}
+
+#dice-game-container {
+  text-shadow: 2px 1px 3px rgba(120,0,0, 1);
+  .hideAnimation {
+    margin-top:5px;
+    height:120px;
+    padding:10px;
+  }
+
+  .counter {
+    margin:10px auto 0px auto;
+    padding:7px 0px 0px 0px;
+    text-align:center;
+    height:100px;
+
+    h1,h2,h3 {
+      color:@gold;
+      padding:1px 0px;
+      margin:3px;
+      line-height:0.8em;
+    }
+    h6 {
+      color:@gold;
+        margin-top: 5px;
+    }
+    h2 {
+      color:@gold;
+      font-size:16px;
+    }
+    div {
+      padding:8px 0px;
+    }
+  }
+  .counter-middle {
+    background: url("@{cdnAppUrl}img/counter-middle-sm.png") no-repeat top center;
+  }
+  .counter-left {
+    background: url("@{cdnAppUrl}img/counter-left-sm.png") no-repeat top center;
+  }
+  .counter-right {
+    background: url("@{cdnAppUrl}img/counter-right-sm.png") no-repeat top center;
+  }
+
+}
+
+#winning-numbers-outer {
+  width: 500px;
+  height: 100px;
+  margin: 0 0 0 -250px;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+}
+
+.winning-number {
+  float: left;
+  width: 100px;
+  padding: 9px 0 0 0;
+  text-align: center;
+}
+
+.qr-modal {
+  width: 320px;
+}
+#gameCanvas {
+  width:650px;
+  height:140px;
+}

@@ -1,0 +1,120 @@
+<div class="tabcontent">
+  <h1>How to Play</h1>
+  <p class="ng-binding"><b class="ng-binding">BetCoin ™ Circle</b> is a casino style wheel game that allows you to wager with the digital currency Bitcoin. It is an easy and fun way to play with and win more Bitcoins!</p>
+  <br>
+  <ol class="padding-left-40">
+    <li class="ng-binding"><b class="ng-binding">Login or Register</b>, or play anonymously with your BTC wallet address</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Fund</b> your playing balance with Bitcoins using the provided personal deposit address</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Select wager</b> amount by using either the slider, percentage of balance buttons, incremental buttons, or by clicking on the wager box.  The maximum wager value is adjusted dynamically.</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Play</b> by clicking the Bitcoin in the middle of any of the wheels.</li>
+    <br>
+    <li class="ng-binding">Outcomes over 1.0x are winning spins and increase your balance, outcomes under 1.0x are losing spins and decrease your balance*.</li>
+    <br>
+    <li class="ng-binding">Check your progress and follow players around the world using the in-game Leaderboard and Recent Spins tabs located below the playing screen.</li>
+    <br>
+    <li class="ng-binding">If you play anonymously, your balance will automatically be returned to you after 30 minutes of inactivity or upon closing your browser.</li>
+    <br>
+  </ol>
+  <p class="ng-binding"><strong class="ng-binding">Outcome Return Calculation:</strong> Balance - Wager + (Wager x Outcome)</p>
+  <br>
+  <table class="table">
+    <tbody><tr>
+      <td class="ng-binding">Example:</td>
+      <td class="ng-binding">
+        Balance = 5<br>
+       Wager = 1<br>
+       Outcome = 2x<br><br>
+
+       5 - 1 + (1 x 2) = 6 <br><br>
+
+       New Balance = 6
+     </td>
+   </tr>
+   <tr>
+    <td class="ng-binding">Example:</td>
+    <td class="ng-binding">
+    Balance= 5<br>
+    Wager= 1<br>
+    Outcome= .75<br><br>
+
+    5 - 1 + (1 x .75) = 4.75<br><br>
+
+    New Balance= 4.75
+    </td>
+   </tr>
+
+  </tbody></table>
+  <h4 class="ng-binding">What are the house odds for BetCoin ™ Circle?</h4>
+  <p class="ng-binding">The house advantage is 1.65%. In comparison, the house edge for Roulette is 5.26%</p>
+
+  <h4 class="ng-binding">Is there a minimum wager per spin?</h4>
+  <p class="ng-binding">The minimum wager is 0.00000100 BTC</p>
+  <h4>Provably Fair Gaming</h4>
+  <p class="ng-binding"><b class="ng-binding">BetCoin ™</b> offers Provably Fair Gaming in that all spins are random, and immediately and independently verifiable.</p>
+
+  <h4 class="ng-binding">Process</h4>
+  <ol class="padding-left-40">
+   <li class="ng-binding">We create a server 'seed' to generate our random numbers.</li>
+   <br>
+   <li class="ng-binding">A random array of the 17 outcomes (or 26 outcomes for the 25x circle) of the circle is generated.</li>
+   <br>
+   <li class="ng-binding">The server then randomizes the initial array with a server generated seed. This is the server array.</li>
+   <br>
+   <li class="ng-binding">The initial array order is made public before the spin as an encrypted SHA256 hash of the server seed and the initial array.</li>
+   <br>
+   <li class="ng-binding">We use the Javascript in your browser to generate a random seed once the spin button is pressed. This seed directly affects the outcome of the spin.</li>
+   <br>
+   <li class="ng-binding">The server array is randomized with the client seed. The first item of the array is the outcome.</li>
+  </ol>
+
+  <pre class="data">var crypto = require('crypto')
+var checkGame = function(gameInit) {
+   console.log('checking hash');
+   console.log('init array: %s', gameInit.init_array);
+   console.log('server seed: %s', gameInit.server_seed);
+   var sha = crypto.createHash('sha256');
+   sha.update(JSON.stringify({
+       initialArray: gameInit.init_array,
+       serverSeed: gameInit.server_seed
+   }));
+   var checkHash = sha.digest('hex');
+   console.log('saved hash: %s', gameInit.initial_hash);
+   console.log('check hash: %s', checkHash);
+   var initArray = gameInit.init_array.split(',');
+
+   console.log('getting server shuffle');
+   var serverArray = seededShuffle(initArray, gameInit.server_seed);
+   console.log('server shuffle: %s', serverArray.join(','));
+
+   var finalArray = seededShuffle(serverArray, gameInit.client_seed);
+   console.log('final array: %s', finalArray.join(','));
+   console.log('saved final: %s', gameInit.final_array);
+};
+
+
+var seededShuffle = function(items, seed) {
+   var counter = items.length;
+   var partialDivisor = (parseInt('ffff', 16) + 1);
+   var spinMin = 0;
+   var spinMax = items.length - 1;
+   while (counter &gt; 0) {
+       var sha = crypto.createHash('sha256');
+       var partial = sha.update("" + counter + seed).digest('hex').substring(0, 4);
+       var rand = parseInt(partial, 16) / partialDivisor;
+       var randIndex = Math.floor(rand * (spinMax - spinMin + 1) + spinMin);
+       counter--;
+       var tmp = items[counter];
+       items[counter] = items[randIndex];
+       items[randIndex] = tmp;
+   }
+   return items;
+};
+  </pre>
+  <provably-fair server-seed="server seed" client-seed="client seed" init-array="" final-array="final array" initial-hash="initial hash"></provably-fair>
+
+
+  <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

@@ -1,0 +1,29 @@
+{
+    "prod": "war",
+    "meta": {
+        "title": "BetCoin ™ War Bitcoin Casino - Play Provably fair bitcoin casino war",
+        "description": "BetCoin ™ War is the provably fair casino war game for bitcoin. Double your money instantly or win 10x on a tie!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-war.png"
+    },
+    "home": {
+        "title_image": "img/icons/casino.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/war"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/zhan"
+        }
+    },
+    "game": {
+        "spinmessage": "Select your Bet Size－Tie Bet Pays 10 to 1"
+    },
+    "buttons": {
+        "tiebet": "Tie Bet",
+        "go_to_war": "Go to war",
+        "surrender": "Surrender"
+    }
+}

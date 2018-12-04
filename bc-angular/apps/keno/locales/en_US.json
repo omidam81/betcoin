@@ -1,0 +1,56 @@
+{
+    "prod": "keno",
+    "meta": {
+        "title": "BetCoin ™ Keno Bitcoin Casino - Win Bitcoins!",
+        "meta_description": "With BetCoin ™ Keno you can bet in bitcoin and play the classic Keno wheel. Try the game today to hit a bitcoin jackpot!",
+        "meta_keywords": "Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Keno, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, keno, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-keno.png"
+    },
+    "nav": {
+        "draws": "Recent Draws"
+    },
+    "home": {
+        "title_image": "img/icons/keno280.png",
+        "promote_header_a": "Play the Provably Fair Classic Keno"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/keno"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/nuo"
+        }
+    },
+    "game": {
+        "drawnNumbers": "Drawn numbers",
+        "chosenNumbers": "Chosen numbers",
+        "betCount": "Bet count",
+        "matchCount": "Match count",
+        "CircleDiv2": "Total Draws",
+        "CircleDiv3": "My Draws",
+        "autodraw_text": " Autobet",
+        "match_count": "Match count"
+    },
+    "draws": {
+        "global": "Global",
+        "mydraws": "My Draws",
+        "id": "ID",
+        "result": "Result",
+        "bet": "Bet",
+        "return": "Return",
+        "CircleTh6": "Proof",
+        "time": "Time",
+        "CircleTh8": "Circle",
+        "proofHeader": "Proof",
+        "serverSeed": "Server Seed",
+        "initialArray": "Initial Array",
+        "initialHash": "Initial Hash",
+        "clientSeed": "Client Seed",
+        "finalArray": "Final Array"
+    },
+    "buttons": {
+        "start_draw": "Draw"
+    }
+}

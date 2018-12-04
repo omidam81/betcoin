@@ -1,0 +1,142 @@
+<div class="row">
+    <h3>Range</h3>
+    <range-display-back class="col-md-4" since="range.start" until="range.end"></range-display-back>
+    <range-chooser-back class="col-md-4" on-submit="rangeChanged(range)"></range-chooser-back>
+</div>
+<div class="row">
+    <button class="btn"
+            ng-class="buttonClass('q_locale', 'zh_CN')"
+            ng-click="toggleSearch('q_locale', 'zh_CN')">Chinese Only</button>
+    <button class="btn"
+            ng-class="buttonClass('q_locale', 'en_US')"
+            ng-click="toggleSearch('q_locale', 'en_US')">English Only</button>
+</div>
+<div ng-show="warning.length">{{warning}}</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <th><a ng-click="listData=usersCreated">VIP Users Created</a></th>
+                    <td>{{ usersCreated.total | number }}</td>
+                </tr>
+                <tr>
+                    <th><a ng-click="listData=uniqueIps">Unique VIP IP Addresses</a></th>
+                    <td>{{ uniqueIps.total | number }}</td>
+                </tr>
+                <tr>
+                    <th><a ng-click="listData=newUsersWithDeposits">New VIP Users with Deposits</a></th>
+                    <td>{{ newUsersWithDeposits.total | number }}</td>
+                </tr>
+                <tr>
+                    <th><a ng-click="listData=usersVerified">VIP Emails Verified</a></th>
+                    <td>{{ usersVerified.total | number }}</td>
+                </tr>
+                <tr>
+                    <th><a ng-click="listData=usersWithDeposits">Users with Deposits</a></th>
+                    <td>{{ usersWithDeposits.total | number }}</td>
+                </tr>
+                <tr>
+                    <th><a ng-click="listData=verifiedWallets">Wallets Verified</a></th>
+                    <td>{{ verifiedWallets.total | number }}</td>
+                </tr>
+                <tr>
+                    <th><a ng-click="listData=anonymousUsersCreated">Anonymous Users Created</a></th>
+                    <td>{{ anonymousUsersCreated.total | number }}</td>
+                </tr>
+                <tr>
+                    <th><a ng-click="listData=anonymousUniqueIps">Unique Anonymous IP Addresses</a></th>
+                    <td>{{ anonymousUniqueIps.total | number }}</td>
+                </tr>
+                <tr>
+                    <th><a ng-click="listData=anonymousNewUsersWithDeposits">New Anonymous Users with Deposits</a></th>
+                    <td>{{ anonymousNewUsersWithDeposits.total | number }}</td>
+                </tr>
+                <tr>
+                    <th><a ng-click="listData=usersActive">VIP Users Active</a></th>
+                    <td>{{ usersActive.total | number }}</td>
+                </tr>
+                <tr>
+                    <th><a ng-click="listData=anonymousUsersActive">Anonymous Users Active</a></th>
+                    <td>{{ anonymousUsersActive.total | number }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="row"
+             collapse="!showRawResult">
+            <button ng-click="showRawResult = !showRawResult"
+                    class="btn btn-primary"
+                    ng-if="listData"
+                    ng-init="showRawResult=false">{{showRawResult?"Hide":"Show"}} Raw Result</button>
+            <pre>{{listData|json}}</pre>
+        </div>
+        <div class="row"
+             ng-show="listData">
+            <table class="table bc-multi-table"
+                   ng-init="showUserDetails = {}"
+                   ng-hide="loading">
+                <thead>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>User ID</th>
+                    <th>IP Address</th>
+                    <th>locale</th>
+                    <th>Last Updated</th>
+                </thead>
+                <tbody ng-repeat="user in listData.result">
+                    <tr ng-class="showUserDetails[user._id]?'highlighted':''">
+                        <td>
+                            {{ user.username || user._id }}<br>
+                            <span class="glyphicon glyphicon-globe" ng-if="user.token"></span>
+                            <span class="glyphicon glyphicon-certificate" ng-if="!user.anonymous"></span>
+                            <span class="glyphicon glyphicon-lock" ng-if="user.lock">({{user.lock}})</span>
+                            <span ng-click="showUserDetails[user._id]=!showUserDetails[user._id]"
+                                  class="glyphicon glyphicon-chevron-down"
+                                  style="cursor: pointer;">More
+                            </span>
+                        </td>
+                        <td>{{ user.email || user.pendingEmail }}</td>
+                        <td><a ng-href="user/{{user._id}}">{{ user._id }}</a></td>
+                        <td><a ng-href="search/user/q_ip={{user.ip}}">{{ user.ip }}</a></td>
+                        <td>{{ user.locale }}</td>
+                        <td>
+                            {{ user.updatedAt | gmtdatetime }}
+                        </td>
+                    </tr>
+                    <tr class="bc-sub-table"
+                        ng-show="showUserDetails[user._id]">
+                        <td colspan="2">
+                            <a href="search/wallet?q_userId={{user._id}}">Find Wallets</a>
+                        </td>
+                        <td colspan="2">
+                            <a href="search/transaction?q_userId={{user._id}}">Find Transactions</a>
+                        </td>
+                        <td colspan="2">
+                            <a href="search/transaction?q_userId={{user._id}}&q_type=__or_deposit||withdraw">
+                                Find Deposits/Withdrawals
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <th>Currency</th>
+                <th>Deposits</th>
+                <th>Withdrawals</th>
+                <th>House Profit</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(currency, data) in cashflow">
+                    <td>{{currency}}</td>
+                    <td>({{data.depositCount | number}}) {{currency | cryptosymbol}}{{data.deposited | cryptovalue}}</td>
+                    <td>({{data.withdrawCount | number}}) {{currency | cryptosymbol}}{{data.withdrawn | cryptovalue}}</td>
+                    <td>{{currency | cryptosymbol}}{{data.houseProfit | cryptovalue}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

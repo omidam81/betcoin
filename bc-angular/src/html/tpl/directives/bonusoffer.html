@@ -1,0 +1,33 @@
+<div class="panel panel-default" ng-if = "currentBonus || nextBonus">
+    <div class="panel-body">
+        <div ng-if="currentBonus">
+            <h4><%= bonus.bonus %></h4>
+            <dl class="dl-horizontal">
+                <div><%= bonus.value %>: {{currentBonus.currency | cryptosymbol}}{{currentBonus.value | cryptovalue}}</div>
+                <div><%= bonus.unlockpercent %>: {{(currentBonus.wagered / (currentBonus.initialValue * currentBonus.rollover)) *100 | number:4}}%</div>
+            </dl>
+        </div>
+        <div ng-if="nextBonus && (!currentBonus || nextBonus.meta.ftd)" ng-switch="nextBonus.type">
+            <div ng-switch-when="match">
+                <button class="btn btn-primary btn-large btn-flashy"
+                        ng-click="showmodal('ftdModal');"
+                        ng-if="nextBonus.meta.ftd">
+                    {{nextBonus.matchMultiplier * 100 | number}}% <%= first_deposit_bonus %>
+                </button>
+                <div ng-if="!nextBonus.meta.ftd">
+                    <h3>{{nextBonus.matchMultiplier * 100 | number}}% <%= deposit_bonus %></h3>
+                    <button class="btn btn-default btn-large btn-flashy" ng-click="acceptBonus(nextBonus)">
+                        <%= accept_new_bonus %>
+                    </button>
+                </div>
+            </div>
+            <div ng-switch-when="straight">
+                <h3>{{nextBonus.currency | cryptosymbol}}{{nextBonus.value | cryptovalue:0}} 
+                <%= bonus.no_deposit_bonus %></h3>
+                <button class="btn btn-default btn-large btn-flashy" ng-click="acceptBonus(nextBonus)">
+                    <%= accept_new_bonus %>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

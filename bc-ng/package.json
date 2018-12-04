@@ -1,0 +1,30 @@
+{
+  "name": "bc-ng",
+  "version": "1.0.0",
+  "description": "new workflow",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:betcn/bc-ng.git"
+  },
+  "author": "William Oney <flcoder@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.3.11",
+    "angular-animate": "^1.3.11",
+    "bootstrap": "^3.3.2",
+    "commander": "^2.6.0",
+    "concat-with-sourcemaps": "^1.0.0",
+    "debug": "^2.1.1",
+    "ejs": "^2.2.3",
+    "express": "^4.11.1",
+    "jquery": "^2.1.3",
+    "jquery-ui": "^1.10.5",
+    "less": "^2.3.1",
+    "tiny-lr": "^0.1.5"
+  }
+}

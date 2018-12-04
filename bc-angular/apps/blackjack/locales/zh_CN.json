@@ -1,0 +1,34 @@
+{
+    "prod": "war",
+    "meta": {
+        "title": "财神点™比特币博彩娱乐场－赢大量比特币！"
+    },
+    "global": {
+        "logourl": "img/words/dian.png"
+    },
+    "home": {
+        "title_image": "img/icons/blackjack280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/blackjack"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/dian"
+        }
+    },
+    "game": {
+        "busted": "超过21点",
+        "lose": "输了",
+        "win": "赢了",
+        "score": "点数:",
+        "push": "平手",
+        "blackjack": "Blackjack"
+    },
+    "buttons": {
+        "hit": "出牌",
+        "stand": "不出牌",
+        "double": "双倍",
+        "split": "分牌"
+    }
+}

@@ -1,0 +1,36 @@
+<div>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="server-seed" class="col-sm-3 control-label">
+                <%= spins.ProofDt1 %>
+            </label>
+            <div class="col-sm-9">
+                <input id="server-seed" type="text" class="form-control" ng-model="serverSeed">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="init-hash" class="col-sm-3 control-label">
+                <%= spins.ProofDt3 %>
+            </label>
+            <div class="col-sm-9" id="init-hash" style="margin-top:5px;">
+                {{lottery.seed_hash}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="final-array" class="col-sm-3 control-label">
+                <%= text.winner %>
+            </label>
+            <div class="col-sm-9" id="final-array" style="margin-top:5px;">
+            {{lottery.player_alias}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="verify-fair" class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+                <button id="verify-fair" class="btn btn-default" ng-click="verify()">
+                    <%= buttons.verify %>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,103 @@
+<div>
+    <h1>Game Totals</h1>
+    <div class="row">
+        <h3>Range</h3>
+        <div ng-show="rangeAlert">To pull data before April 1st, 2014, see administrator</div>
+        <range-display-back class="col-md-4" since="range.start" until="range.end"></range-display-back>
+        <range-chooser-back class="col-md-4" on-submit="rangeChanged(range)"></range-chooser-back>
+        <div class="col-md-4">
+            <currency-chooser-back currencies="currencies"></currency-chooser-back>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"
+                           ng-model="query.includeBonusWager"> Include Bonus Wagers
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn"
+                ng-class="buttonClass('q_locale', 'zh_CN')"
+                ng-click="toggleSearch('q_locale', 'zh_CN')">Chinese Only</button>
+        <button class="btn"
+                ng-class="buttonClass('q_locale', 'en_US')"
+                ng-click="toggleSearch('q_locale', 'en_US')">English Only</button>
+    </div>
+    <div class="row" ng-show="loading">
+        <h3>Loading</h3>
+        <h4>{{message}}</h4>
+        <div ng-if="toProcess"
+             class="progress">
+            <div class="progress-bar progress-bar-striped active"
+                 role="progressbar"
+                 aria-valuenow="{{percentCompleted}}"
+                 aria-valuemin="0"
+                 aria-valuemax="100"
+                 ng-style="{'width':percentCompleted+'%'}">
+                {{percentCompleted | number:2}}%
+            </div>
+        </div>
+        <div ng-if="toProcess">
+            <h4>{{processed|number}} of {{toProcess|number}} records processed</h4>
+        </div>
+    </div>
+    <div class="row"
+         ng-hide="loading">
+        <h3>Game totals report from {{ historyRange.start | gmtdatetime }} to {{ historyRange.end | gmtdatetime }}</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Currency</th>
+                    <th>Wagered</th>
+                    <th>Wager Count</th>
+                    <th>Average Wager</th>
+                    <th>Won</th>
+                    <th>Win Count</th>
+                    <th>Average Win</th>
+                    <th>Profit</th>
+                    <th>House Edge</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(currency, data) in profitHistory">
+                    <th>{{ currency }}</th>
+                    <td>{{ currency | cryptosymbol }} {{ data.all.wagered | cryptovalue }}</td>
+                    <td>{{ data.all.wagers }}</td>
+                    <td>{{ currency | cryptosymbol }} {{ data.all.averageWager | cryptovalue }}</td>
+                    <td>{{ currency | cryptosymbol }} {{ data.all.won | cryptovalue }}</td>
+                    <td>{{ data.all.wins }}</td>
+                    <td>{{ currency | cryptosymbol }} {{ data.all.averageWon | cryptovalue }}</td>
+                    <td>{{ currency | cryptosymbol }} {{ data.all.wagered - data.all.won | cryptovalue }}</td>
+                    <td>{{ ((data.all.wagered - data.all.won) / data.all.wagered) * 100 | number:4 }}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" >
+        <table class="table bc-backoffice-table">
+            <thead>
+                <th>Game</th>
+                <th>Currency</th>
+                <th>Bets</th>
+                <th>Wagered</th>
+                <th>Won</th>
+                <th>Profit</th>
+                <th>House Edge</th>
+                <th>Avg.Wager</th>
+            </thead>
+            <tbody ng-repeat="(game, data) in totalData">
+                <tr ng-repeat="(index, currency) in currencies">
+                    <th ng-if="index==0" rowspan="{{currencies.length}}">{{game}}</th>
+                    <th>{{ currency }} ({{currency | cryptosymbol }})</th>
+                    <td>{{ data[currency].count | number }}</td>
+                    <td>{{ currency | cryptosymbol }} {{ data[currency].wagered | cryptovalue }}</td>
+                    <td>{{ currency | cryptosymbol }} {{ data[currency].won | cryptovalue }}</td>
+                    <td>{{ currency | cryptosymbol }} {{ data[currency].houseProfit | cryptovalue }}</td>
+                    <td>{{ data[currency].houseEdge*100 | number:4 }}%</td>
+                    <td>{{ currency | cryptosymbol }} {{ data[currency].averageWager | cryptovalue }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <pre>{{ totalData | json }}</pre> -->
+    </div>
+</div>

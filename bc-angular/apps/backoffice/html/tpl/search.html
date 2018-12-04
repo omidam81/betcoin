@@ -1,0 +1,343 @@
+<div class="row">
+    <div class="col-xs-12">
+        <ul ng-controller="NavController" class="nav nav-pills">
+            <li><a href="search">Create a Search</a></li>
+            <li><a href="search/user">Users</a></li>
+            <li><a href="search/transaction">Transactions</a></li>
+            <li ng-repeat="search in savedSearches">
+                <a ng-href="{{search.query}}&searchName={{search.name}}">{{search.name}}</a>
+            </li>
+            <li><a href="saved-searches">Manage Saved Searches</a></li>
+        </ul>
+    </div>
+</div>
+<div class="row"
+     ng-show="showQueryBuilder">
+    <div class="col-md-8">
+        <form class="form"
+              ng-show="queryBuilderStep == 0">
+            <div class="form-group">
+                <label>Collection</label>
+                <input class="form-control"
+                       ng-model="collection">
+            </div>
+            <div class="form-group">
+                <label>Page Size</label>
+                <input type="number"
+                       class="form-control"
+                       ng-model="query.pageSize">
+            </div>
+            <button class="btn btn-primary btn-sm"
+                    ng-click="queryBuilderStep0()">Get Schema and Build Query</button>
+        </form>
+        <div ng-show="queryBuilderStep == 1">
+            <div class="col-md-6">
+                <form class="form">
+                    <div class="form-group">
+                        <label>Key</label>
+                        <input class="form-control"
+                               ng-model="qForm.key">
+                        <p class="help-block">
+                            The key must be prefixed with either 'q_' or 'or_q_' depending on how you want to use it.
+                        </p>
+                        <p class="help-block">
+                            You man also set a '__sort' option, the
+                            default is '__sort=updatedAt__desc' (Note
+                            that the game records do not have an
+                            updatedAt field, so if you are searching
+                            specifically for a game, you muist supply
+                            a __sort option)
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label>Value</label>
+                        <input class="form-control"
+                               ng-model="qForm.value">
+                    </div>
+                    <button class="btn btn-primary"
+                            ng-click="addQueryTerm()">Add query Item</button>
+                    <p class="help-block">
+                        You can just continue without specifying
+                        anything here and all records will be returned
+                        (unless they belong to an ignored user)
+                    </p>
+                </form>
+                <dl class="dl-horizontal">
+                    <dt ng-repeat-start="(key, value) in tmpQuery"><code>{{key}}</code></dt>
+                    <dd ng-repeat-end>
+                        <code>{{value}}</code>
+                        <span class="glyphicon glyphicon-remove"
+                              ng-click="removeQueryTerm(key)"></span>
+                    </dt>
+                </dl>
+                <button class="btn btn-primary btn-sm"
+                        ng-click="queryBuilderStep1()">Save Query and Select Display</button>
+            </div>
+            <pre class="col-md-6">{{ schema | json }}</pre>
+        </div>
+        <div ng-show="queryBuilderStep == 2">
+            <div class="col-md-6">
+                <form class="form">
+                    <div class="form-group">
+                        <label>Field Display Name</label>
+                        <input class="form-control"
+                               ng-model="tForm.label">
+                        <p class="help-block">
+                            Do not prefix these, the field prefix is handled by the code for you.
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label>Field Schema Name</label>
+                        <input class="form-control"
+                               ng-model="tForm.field">
+                        <p class="help-block">
+                            There is a special field name 'user' that
+                            when used (and the collection has a userId
+                            or player_id property) it will display the
+                            user's username instead of their mongo id
+                            and the username will link to the user's
+                            individual page.
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label>Filter (Optional)</label>
+                        <input class="form-control"
+                               ng-model="tForm.filter">
+                    </div>
+                    <button class="btn btn-primary"
+                            ng-click="addTableColumn()">Add table column</button>
+                    <p class="help-block">
+                        If you leave this section blank, the search
+                        will attempt to load a default table template
+                        for the collection in question. Games all try
+                        to load a game-agnostic template for their
+                        table. You can also spefiy fields in order to
+                        show the details you want.
+                    </p>
+                </form>
+                <dl class="dl-horizontal">
+                    <dt ng-repeat-start="(index, value) in fields"><code>{{value.label}}</code></dt>
+                    <dd ng-repeat-end>
+                        <code>{{value.field}} {{value.filter?'|':''}} {{value.filter}}</code>
+                        <span class="glyphicon glyphicon-remove"
+                              ng-click="removeTableColumn(index)"></span>
+                    </dt>
+                </dl>
+                <button class="btn btn-primary btn-sm"
+                        ng-click="queryBuilderStep2()">Save Display and Execute Search</button>
+            </div>
+            <pre class="col-md-6">{{ schema | json }}</pre>
+        </div>
+    </div>
+    <div class="col-md-4"><pre>{{collection}}</pre><pre>{{query || json}}</pre></div>
+</div>
+
+<div class="row"
+     ng-show="message.length">
+    <span class="alert alert-primary">{{message}}</span>
+</div>
+<div class="row"
+     ng-show="error.length">
+    <span class="alert alert-danger">{{error}}</span>
+</div>
+
+<div class="row"
+     ng-if="!showQueryBuilder">
+    <h2>{{searchName}}</h2>
+    <h3>Searching <code>{{collection}}</code></h3>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox"
+                   ng-model="query.showIgnored">Include Ignored Users
+        </label>
+    </div>
+    <div class="col-md-3">
+        <ng-include ng-if="searchTemplate" src="searchTemplate"></ng-include>
+        <button class="btn btn-primary" ng-click="submitSearch()">Search</button>
+        <button class="btn btn-primary" ng-click="reset()">Reset Fields</button>
+        <button ng-click="showRawQuery = !showRawQuery"
+                class="btn btn-primary"
+                ng-init="showRawQuery = true">{{showRawQuery?"Hide":"Show"}} Raw Query</button>
+        <div class="row"
+             collapse="!showRawQuery">
+            <pre>Query
+{{query|json}}</pre>
+            <pre>Parsed Table Columns
+{{fields|json}}</pre>
+        </div>
+    </div>
+    <div ng-class="{'col-md-9': searchTemplate}">
+        <pagination ng-model="currentPage"
+                    ng-hide="loading"
+                    max-size="5"
+                    class="row"
+                    ng-change="pageChange(currentPage)"
+                    items-per-page="listData.pageSize"
+                    total-items="listData.total"></pagination>
+        <div class="row">
+            <div class="col-md-4">
+                <form class="form"
+                      ng-show="alertFormVisible">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input class="form-control"
+                               ng-model="emailAlert.name">
+                    </div>
+                    <div class="form-group">
+                        <label>Interval</label>
+                        <input class="form-control"
+                               ng-model="emailAlert.interval">
+                    </div>
+                    <div class="form-group">
+                        <label>Condition</label>
+                        <select class="form-control"
+                                ng-model="emailAlert.condition"
+                                ng-options="condition for condition in ['is empty', 'has results']"></select>
+                    </div>
+                </form>
+                <button class="btn btn-primary btn-sm"
+                        ng-click="saveEmailAlert()">Save email alert</button>
+                <button class="btn btn-primary btn-sm"
+                        ng-show="alertFormVisible"
+                        ng-click="resetEmailAlert()">Cancel</button>
+            </div>
+            <div class="col-md-4">
+                <form class="form"
+                      ng-show="saveFormVisible">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input class="form-control"
+                               ng-model="searchParams.name">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"
+                                   ng-model="searchParams.global"> Global?
+                        </label>
+                    </div>
+                </form>
+                <button class="btn btn-primary btn-sm"
+                        ng-click="saveSearch()">Save search</button>
+                <button class="btn btn-primary btn-sm"
+                        ng-show="saveFormVisible"
+                        ng-click="resetSearchForm()">Cancel</button>
+            </div>
+        </div>
+        <div class="row"
+             ng-show="selectedUsers.length">
+            <h3>{{ selectedUsers.length }} user(s) selected</h3>
+            <div class="col-md-4">
+                <form class="form"
+                      ng-show="messageFormVisible">
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input class="form-control"
+                               ng-model="messageForm.subject">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea class="form-control"
+                                  ng-model="messageForm.message"
+                                  rows="3"></textarea>
+                    </div>
+                    <p class="help-block">
+                        This text will all be put on one line when the user sees it, so keep that in
+                        mind.
+                    </p>
+                    <div class="checkbox">
+                        <label><input type="checkbox" ng-model="messageForm.sendEmail">Send Email?</label>
+                    </div>
+                </form>
+                <button class="btn btn-primary btn-sm"
+                        ng-click="sendMessage()">Send Message</button>
+                <button class="btn btn-primary btn-sm"
+                        ng-show="saveFormVisible"
+                        ng-click="cancelMessage()">Cancel</button>
+            </div>
+        </div>
+        <button ng-click="showRawResult = !showRawResult"
+                class="btn btn-primary"
+                ng-init="showRawResult=false">{{showRawResult?"Hide":"Show"}} Raw Result</button>
+        <div class="row"
+             collapse="!showRawResult">
+            <pre>{{listData|json}}</pre>
+        </div>
+        <div class="row">
+            <form class="form col-md-6">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               ng-model="selectAll"
+                               ng-change="toggleSelectAll()">Select All
+                    </label>
+                </div>
+            </form>
+            <form class="form form-inline form-horizontal col-md-6">
+                <div class="form-group">
+                    <label>Sort</label>
+                </div>
+                    <div class="form-group">
+                        <select class="form-control"
+                                ng-model="sortForm.field"
+                                ng-change="updateSort()"
+                                ng-options="fieldName for fieldName  in sortOptions"></select>
+
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control"
+                                ng-model="sortForm.direction"
+                                ng-change="updateSort()"
+                                ng-options="dir for dir in ['asc', 'desc']"></select>
+                    </div>
+            </form>
+        </div>
+        <ng-include ng-if="hasTableTemplate" src="tableTemplate"></ng-include>
+        <table ng-if="!hasTableTemplate"
+               class="row table">
+            <thead>
+                <th ng-repeat="column in  fields">
+                    {{column.label}}
+                </th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(index, data) in listData.result">
+                    <td ng-repeat="column in  fields">
+                        <form ng-if="column.field == 'user'"
+                              class="form">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"
+                                           ng-model="data.user.selected"
+                                           ng-change="toggleUserSelect(data.user._id)">
+                                    <a ng-if="column.field == 'user'"
+                                       ng-href="user/{{data.user._id}}">{{data.user.username }}</a>
+                                </label>
+                            </div>
+                        </form>
+                        <span ng-if="column.field != 'user'">{{data[column.field] | useFilter:column.filter }}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+          <pagination ng-model="currentPage"
+                    ng-hide="loading"
+                    max-size="5"
+                    class="row"
+                    ng-change="pageChange(currentPage)"
+                    items-per-page="listData.pageSize"
+                    total-items="listData.total"></pagination>
+    </div>
+</div>
+
+
+<div class="row" ng-if="!searchTemplate">
+    <div class="col-xs-12">
+        <h3>Example searches</h3>
+        <p><a href="search/transaction?q_type=__or_deposit||withdraw">Recent Deposits/Withdraws</a></p>
+        <p><a href="search/wallet?__sort=balance__desc">Highest Value Wallets</a></p>
+        <p><a href="search/user?q_token=__exists_true">Logged in Users</a></p>
+        <p><a href="search/admin_transaction?q_type=coldstorage">Cold Storage Transactions</a></p>
+        <p><a href="search/transaction?q_type=__startswith_admin">Manual Credits</a></p>
+        <p><a href="search/transaction?q_type=__cashback">Cashbacks</a></p>
+    </div>
+</div>

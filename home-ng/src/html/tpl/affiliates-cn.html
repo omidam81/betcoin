@@ -1,0 +1,104 @@
+    <h3>介绍其他人来加入 财神堂™， 您将会得到38%的所有庄家赢率。</h3>
+    <h3>所有收入将会马上转账到您的帐户！</h3>
+    <h3>所介绍帐户将会永久地为您产生收入，并且您的收入额度不会有任何上限！</h3>
+    <p>每个游戏的庄家胜率会有所不同。对于某些游戏，会根据游戏下注类型的赢率或者庄家赢旅，付给您的介绍费用所占的赌注比例有所不同。</p>
+    <h5>您是个有特别需求的大型加盟机构吗？您有任何问题或者顾虑吗？<a href="/support">联系我们</a>。</h5>
+
+    <h4>介绍奖励付款规则</h4>
+    <p>您的介绍奖励会是基于您的介绍所有产生的收入。介绍产生的收入越多，您所得到的奖励会越高。</p>
+    <table class="table gamesTable">
+        <thead>
+            <tr>
+                <th>等级</th>
+                <th>收入额度要求</th>
+                <th>庄家收入比率</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>白银会员</td>
+                <td>所有收入 &lt; 0.01 比特币</td>
+                <td>8% 的庄家收入</td>
+            </tr>
+            <tr>
+                <td>黄金会员</td>
+                <td>所有收入 0.01 - 0.1 比特币</td>
+                <td>18% 的庄家收入</td>
+            </tr>
+            <tr>
+                <td>白金会员</td>
+                <td>所有收入 0.1 - 1 比特币</td>
+                <td>28% 的庄家收入</td>
+            </tr>
+            <tr>
+                <td>钻石会员</td>
+                <td>所有收入 &gt;= 1 比特币</td>
+                <td>38% 的庄家收入</td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>财神堂™游戏 － 最低庄家胜率</h4>
+    <table class="table gamesTable">
+        <thead><tr><th>游戏名称</th><th>庄家胜率</th></tr></thead>
+        <tbody>
+            <tr><td>财神轮™</td><td>1.65%</td></tr>
+            <tr><td>财神卷™</td><td>1.65%</td></tr>
+            <tr><td>财神灵™</td><td>1.88%</td></tr>
+            <tr><td>财神盘™</td><td>2.7%</td></tr>
+            <tr><td>财神战™</td><td>2.88%</td></tr>
+            <tr><td>Blackjack</td><td>1.1%</td></tr>
+        </tbody>
+    </table>
+    <h4>CPA 每取得成本 (Cost Per Acquisition) 介绍费支付方案</h4>
+    <p>如果您对CPA 每取得成本 (Cost Per Acquisition) 介绍费支付方案，并准备按照此方案进行加盟，请 <a href="/support"> 与我们联系</a>。</p>
+
+    <div ng-show="affiliateData.token">
+
+        <h4>我的加盟介绍链接</h4>
+        <div class="panel"><div class="panel-body"><h4><%= httpslink %>/?r={{ affiliateData.token }}</h4></div></div>
+
+        <p>介绍其他人访问上面的链接，就能开始赚取奖励。您能直接粘贴上面的链接，可以利用我们提供的广告图片，或则甚至可以创建一个您自己的广告。</p>
+        <!-- IMPORTANT: DURING TRANSLATION, OMIT THIS BANNER DOWNLOAD AREA FOR OTHER LANGUAGES... FOR NOW -->
+        <p>要下载财神堂™为加盟朋友所准备的广告，请<a href="/banners.zip">（点击此处下载）</a></p>
+        <!-- END OMISSION -->
+
+        <h4>我的所有加盟介绍收入</h4>
+        <div class="panel">
+            <div class="panel-body">
+                <h1>{{ affiliateData.income.btc | btc }} 比特币</h1>
+                当前等级: 
+                <div class="btn-group">
+                    <button class="btn btn-default" ng-disabled="levelInfo.level!=1">白银会员</button>
+                    <button class="btn btn-default" ng-disabled="levelInfo.level!=2">黄金会员</button>
+                    <button class="btn btn-default" ng-disabled="levelInfo.level!=3">白金会员</button>
+                    <button class="btn btn-default" ng-disabled="levelInfo.level!=4">钻石会员</button>
+                </div>
+                <br>
+                <!-- Next Tier:
+                <button class="btn btn-default" ng-show="levelInfo.level==1">Gold</button>
+                <button class="btn btn-default" ng-show="levelInfo.level==2">Platinum</button>
+                <button class="btn btn-default" ng-show="levelInfo.level==3">Diamond</button> -->
+                <br>
+                <table class="table" ng-show="levelInfo.level!=4">
+                    <tbody>
+                        <tr>
+                            <td>下个等级需要额度</td>
+                            <td>{{levelInfo.nextLevelAmount|btc}} BTC</td>
+                        </tr>
+                        <tr>
+                            <td>还需要赚取的额度</td>
+                            <td>{{(levelInfo.nextLevelAmount - levelInfo.currentAmount)|btc}} BTC</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <percent-slider ng-show="levelInfo.level!=4" min="{{levelInfo.currentMinAmount}}" max="{{levelInfo.nextLevelAmount}}" step="1" percent-slider-value="levelInfo.currentAmount" disabled>
+            </div>
+        </div>
+
+        <h4>我所介绍的玩家</h4>
+        <p>每个玩家只能被您介绍一次，之后您就可以通过他们的下注赚取收入。</p>
+        <div data-ng-include data-src="'tpl/affiliate-associates.html'"></div>
+        <h4>历史记录 <span class="smallfont">({{ range.start | date:'yyyy-MM-dd HH:mm:ss' }} - {{ range.end | date:'yyyy-MM-dd HH:mm:ss' }})</span></h4>
+        <div data-ng-include data-src="'tpl/affiliate-transactions.html'"></div>
+    </div>
+

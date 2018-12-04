@@ -1,0 +1,28 @@
+{
+    "prod": "fortunenew",
+    "meta": {
+        "title": "BetCoin ™ Fortune Bitcoin Casino - Win Bitcoins!",
+        "meta_description": "BetCoin ™ is your one-stop shop for bitcoin gambling. Play dozens of bitcoin games and hit a bitcoin jackpot today!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-fortune.png"
+    },
+    "home": {
+        "title_image": "img/icons/fortune280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/fortune"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/yun"
+        }
+    },
+    "game": {
+        "spinmessage": "Spin the circle by pressing the Bitcoin in the middle",
+        "color": "Color"
+    },
+    "spins": {
+        "CircleTh9": "Bets"
+    }
+}

@@ -1,0 +1,39 @@
+<div class="tabcontent">
+  <h1><%= nav.howtoplay %></h1>
+  <p class="ng-binding"><b class="ng-binding">财神灵™</b>即骰子博彩游戏的比特币版，比特币骰子允许您用电子货币比特币下注。这种游戏玩起来既简单又有趣，而且最高可以赢得投注额的64000倍！</p>
+
+  <h3>我们的绝对公平算法将会选择一个1与65536之间的幸运号码</h3>
+  <h3>如果幸运号码小于您所选择的最大值（比如32888），您就能赢！</h3>
+  <br />
+
+  <ol class="padding-left-40">
+    <li class="ng-binding"><b class="ng-binding">登入或注册</b>，或则用您的比特币钱包来进行匿名游戏</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">充值比特币</b>到游戏为您设定的专用比特币存款地址</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">用滑块、余额百分比按钮、增量按钮或在下注框上单击并输入金额</b>，选择下注金额</li>
+    <br>
+    <li class="ng-binding">检查您的进度，用游戏屏幕下方的游戏“高手排名榜”和“近期游戏”标签，可以跟踪全球的玩家</li>
+    <br>
+    <li class="ng-binding">静止 30 分钟后或关闭浏览器后，您的余额会自动返还给您</li>
+    <br>
+  </ol>
+
+  <h4>财神灵™的庄家赢率是多少？
+  </h4>
+  <p>答：庄家优势是 1.838%</p>
+
+  <h4>每次旋转有最低赌注吗？</h4>
+  <p>最少投注 0.000003 个比特币
+  </p>
+
+
+  <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+  <provably-fair></provably-fair>
+
+  <p><a target="_blank" href="./js/app/directives/provably-fair.js">点击显示验证游戏公平性的代码</a></p>
+
+  <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+
+</div>

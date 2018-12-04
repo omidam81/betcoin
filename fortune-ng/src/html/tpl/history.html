@@ -1,0 +1,50 @@
+<div>
+    <ul class="nav nav-pills nav-justified">
+        <li ng-class="getRecentSpinsTabClass('global')"><a href="spins/global"><%= spins.global %></a></li>
+        <li ng-class="getRecentSpinsTabClass('player')"><a href="spins/player"><%= spins.myspins %></a></li>
+    </ul>
+    <table class="table table-bordered gamesTable">
+        <thead>
+            <tr>
+                <th><%= game.details %></th>
+                <th ><%= username %></th>
+                <th ><%= game.luckynumber %></th>
+                <th class="hidden-xs"><%= spins.CircleTh3 %></th>
+                <th class="hidden-xs"><%= spins.CircleTh4 %></th>
+                <th ><%= spins.CircleTh5 %></th>
+                <th ><%= spins.CircleTh7 %></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="game in games | orderBy:orderby:reverse" ng-class="{ 'nonZeroColor': game.payout_multiplier > 0,'zeroColor': game.payout_multiplier == 0 }">
+                <td>
+                    <a href="history/details/{{game.id || game._id}}"
+                        style="font-size:25px;"
+                        class="glyphicon glyphicon-info-sign">
+                    </a>
+                </td>
+                <td class="">
+                    {{ game.player_alias }}
+                </td>
+                <td class="">
+                    {{ game.lucky_number }}
+                </td>
+                <td class="hidden-xs">
+                    {{ game | winnings }}<%= game.x %>
+                </td>
+                <td class="hidden-xs">
+                    {{ game.wager | btc }}
+                </td>
+                <td>
+                    {{ game.winnings | btc }}
+                </td>
+                <td class="">
+                    {{ game.createdAt | date:"MM/dd HH:mm:ss" }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<small><%= spins.initial_hash_explain %></small>
+<br>
+<small><%= spins.final_array_explain %></small>

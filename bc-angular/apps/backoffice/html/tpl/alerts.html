@@ -1,0 +1,54 @@
+<div class="container">
+    <ng-form class="form"
+             ng-repeat="alert in alerts">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text"
+                   ng-model="alert.name"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Condition</label>
+            <select class="form-control"
+                    ng-model="alert.condition"
+                    ng-options="condition for condition in ['is empty', 'has results']"></select>
+        </div>
+        <div class="form-group">
+            <label>Collection</label>
+            <input type="text"
+                   ng-model="alert.collection"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Interval</label>
+            <input type="text"
+                   ng-model="alert.interval"
+                   class="form-control">
+            <span class="help-block">
+                A number and an interval, such as: 30 minutes or 1 day<br>
+                Valid intervals are minute(s), hour(s), and day(s). Only one interval is allowed.
+            </span>
+        </div>
+        <div class="form-group">
+            <label>Query</label>
+            <input type="text"
+                   ng-model="alert.query"
+                   class="form-control">
+        </div>
+        <div class="form-group"
+             ng-repeat="(index, _) in alert.emails track by $index">
+            <label>Email {{index + 1}}</label>
+            <input type="text"
+                   ng-model="alert.emails[index]"
+                   class="form-control">
+        </div>
+        <button class="btn btn-primary"
+                ng-click="updateAlert(alert)">
+            Save Alert
+        </button>
+        <button class="btn btn-primary"
+                ng-click="removeAlert(alert, $index)">
+            Remove Alert
+        </button>
+    </ng-form>
+</div>

@@ -1,0 +1,14 @@
+
+RUN add-apt-repository ppa:bitcoin/bitcoin
+
+RUN apt-get update
+
+RUN apt-get install -y libdb4.8-dev libdb4.8++-dev libboost-all-dev libssl-dev
+
+# install litecoind
+RUN git clone https://github.com/glv2/peerunity && cd peerunity && git checkout v0.1.1
+
+RUN cd peerunity/src && make -f makefile.unix USE_UPNP=- && ls -al && cp peerunityd /usr/bin/ppcoind
+
+RUN mkdir /etc/service/ppcoind
+ADD runit/ppcoind /etc/service/ppcoind/run

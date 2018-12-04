@@ -1,0 +1,34 @@
+{
+    "prod": "videopoker",
+    "meta": {
+        "title": "Betcoin™ Video Poker - Provably Fair - Win Bitcoin!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-videopoker.png"
+    },
+    "home": {
+        "title_image": "img/icons/videopoker280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/videopoker"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/shipin-puke"
+        }
+    },
+    "game": {
+        "dealer": "Dealer",
+        "player": "Player",
+        "SsHeader3": "Set Client Seed",
+        "winmessage": "WINNER",
+        "tiemessage": "PUSH",
+        "holded": "HOLD"
+    },
+    "buttons": {
+        "deal": "Deal"
+    },
+    "text": {
+        "invalid_holds": "Invalid"
+    }
+}

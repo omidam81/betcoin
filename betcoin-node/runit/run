@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+logfile=/var/log/app.log
+
+if [[ -z "$(env | grep MONGO)" ]]
+then
+    echo "NO MONGO ENVIRONMENT VARIABLES" >> $logfile
+    sleep 3
+    exit 1
+fi
+
+echo -e "\n\nStarting server @ $(date -u)\n\n" >> $logfile
+
+cd /app/src && exec /sbin/setuser app /usr/bin/node app --log-level ${LOG_LEVEL:-error} >> $logfile 2>&1

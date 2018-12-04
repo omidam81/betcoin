@@ -1,0 +1,9 @@
+<div id="message">
+      <span><%= game.score %> <span ng-show="dealing == false||alwaysDisplay">{{data.score}}</span></span>
+      <span ng-show="data.isBlackJack==true&&(dealing == false||alwaysDisplay)">
+            <%= game.blackjack %>
+      </span>
+      <span ng-show="data.isWin==true&&dealing == false&&finished == true"><%= game.win %> </span>
+      <span ng-show="data.busted==true&&(dealing == false||alwaysDisplay)"><%= game.busted %> </span>
+      <span ng-show="data.isPush==true&&dealing == false&&finished == true"><%= game.push %></span>
+</div>

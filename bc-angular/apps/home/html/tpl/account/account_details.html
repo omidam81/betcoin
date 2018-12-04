@@ -1,0 +1,162 @@
+
+    <div class='title'><h1><%= accountmenu.account_details %></h1></div>
+    <div class="">
+    <ul class="nav nav-tabs  game-nav-tabs account-details-tab" role="tablist">
+        <li class="{{activemenu=='account_details'?'active':''}}"><a class="game-type" ng-click="setActiveTab('account_details')"><%= accountmenu.account_details %></a></li>
+        <li class="{{activemenu=='vip_status'?'active':''}}"><a ng-click="setActiveTab('vip_status')"><%= buttons.vip_status %></a></li>
+        <li class="{{activemenu=='account_history'?'active':''}}"><a ng-click="setActiveTab('account_history')"><%= buttons.account_history %></a></li>
+         <li class="{{edit_account=='security'?'active':''}}"><a ng-click="setActiveTab('security')"><%= accountmenu.two_factor %></a></li>
+    </ul>
+</div>
+<!--Account Detailes Tab-->
+<div class="" ng-show="activemenu == 'account_details'">
+    <div class="form-group">
+        <h5>{{ user.username }}</h5>
+    </div>
+    <div class="form-group">
+        <h3 class="control-label"><%= text.email_address %></h3>
+        <h5>{{user.email||user.pendingEmail}}</h5>
+    </div>
+    <div class="" ng-repeat="(currency, wallet) in user.wallets">
+        <div class="">
+            <div class="form-group">
+                <h3 class="control-label" ng-if="currency=='bitcoin'"><%= bonus.currency %>: <%= text.bitcoin %></h3>
+                <h3 class="control-label" ng-if="currency=='dogecoin'"><%= bonus.currency %>: <%= text.dogecoin %></h3>
+                <h3 class="control-label" ng-if="currency=='litecoin'"><%= bonus.currency %>: <%= text.litecoin %></h3>
+                <h3 class="control-label" ng-if="currency=='ppcoin'"><%= bonus.currency %>: <%= text.ppcoin %></h3>
+                <h3 class="control-label" ng-if="currency=='namecoin'"><%= bonus.currency %>: <%= text.namecoin %></h3>
+            </div>
+            <div class="form-group">
+                <h3 class="control-label"><%= global.withdrawAddress %></h3>
+                <small ng-show="user.wallets[currency].withdrawAddress">{{user.wallets[currency].withdrawAddress}}</small>
+                <a class="btn btn-default" href="/account/edit" ng-hide="user.wallets[currency].withdrawAddress"><%= buttons.add_withdraw_address %></a>
+            </div>
+            <div>
+                <dl>
+                    <dt><%= text.total_balance %></dt>
+                    <dd>{{ wallet.balance | cryptovalue }} <wallet-currency wallet="wallet"></wallet-currency> ({{ fiatValue(wallet.balance, wallet.currency) |  currency:fiatSymbols[fiat] }})</dd>
+                    <dt><%= text.available_balance %></dt>
+                    <dd>{{ wallet.availableBalance | cryptovalue }} <wallet-currency wallet="wallet"></wallet-currency> ({{ fiatValue(wallet.availableBalance, wallet.currency) |  currency:fiatSymbols[fiat] }})</dd>
+                </dl>
+                <form name="btcForm" class="form-horizontal" novalidate>
+                    <div class="form-group">
+                        <label class="control-label"><%= text.deposit %> <bc-bitcoin-icons data-btc-address="{{wallet.depositAddress}}" data-currency="currency"></bc-bitcoin-icons></label>
+                        <div class="input-group">
+                            <div class="form-control">{{ wallet.depositAddress }}</div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary input-group-custom-btn" ng-click="copyDialog(wallet.depositAddress)"><%= buttons.copy %></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="user.wallets[currency].withdrawAddress">
+                        <div ng-hide="withdrawPending">
+                            <h4 class="color-red" ng-show="errors.server">{{errors.server|error}}</h4>
+                            <label class="control-label"><%= text.withdraw %></label>
+                            <div class="input-group">
+                                <input type="number" name="btcWithdrawAmount" min="0" class="form-control col-xs-6" ng-model="btcWithdrawAmount" required>
+                                <span class="input-group-btn col-xs-6 withdraw-btn">
+                                    <button class="btn btn-primary input-group-custom-btn" ng-click="initiateWithdraw()" ng-disabled="btcForm.$invalid === true"><%=buttons.confirm%></button>
+                                </span>
+                            </div>
+                            <span class="error text-center" ng-show="btcForm.btcWithdrawAmount.$invalid"><%= text.invalid_withdraw_amount%></span>
+                        </div>
+                        <div ng-show="withdrawPending">
+                            <b><%= cashout.cashoutConfirm %> {{ btcWithdrawAmount }} <wallet-currency wallet="wallet"></wallet-currency></b><br>
+                            <button ng-disabled="wheelSpinning" ng-click="withdrawBtc(currency, btcWithdrawAmount)" class="btn btn-default"><%= cashout.cashoutButton %></button>
+                            <button class="btn btn-default" ng-click="withdrawPending = false"><%= cancel %></button>
+                        </div>
+                        <span class="text-center" ng-show="successWithdraw"><%= text.withdraw_success %></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End-->
+<!-- VIP Status Tab-->
+ <div  ng-show="activemenu == 'vip_status'" ng-include="'tpl/account/vip-status-<%= fileSuffix %>.html'" data-ng-controller="VIPStatusController" ng-show=""></div>
+ <!--End -->
+<!--Account History Tab -->
+<div ng-show="activemenu == 'account_history'">
+    <div class="panel" data-ng-controller="TransactionController">
+        <div class=""><h1><%= text.account_history%></h1></div>
+        <div class="">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2 text-center"><%= text.transaction_id%></th>
+                            <th class="col-md-1 text-center"><%= text.transaction_amount%></th>
+                            <th class="col-md-1 text-center"><%= global.currency %></th>
+                            <th class="col-md-2 text-center"><%= text.transaction_datetime%></th>
+                            <th class="col-md-1 text-center"><%= text.withdraw_deposit%></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" ng-repeat="transaction in transactions" ng-show="transaction.type==='withdraw'||transaction.type==='deposit'">
+                            <td>
+                                <div chars="12" blockchain-info="{{transaction.meta.txid}}" currency="{{transaction.currency}}" target="_blank">{{transaction.meta.txid}}
+                                </div>
+                            </td>
+                            <td ng-show="transaction.type==='deposit'">{{transaction.currency|cryptosymbol}}{{transaction.credit|cryptovalue}}</td>
+                            <td ng-show="transaction.type==='withdraw'">{{transaction.currency|cryptosymbol}}{{transaction.debit|cryptovalue}}</td>
+                            <td>{{transaction.currency}}</td>
+                            <td>{{transaction.createdAt|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            <td ng-show="transaction.type == 'withdraw'"><%= text.transaction_withdraw %></td>
+                            <td ng-show="transaction.type == 'deposit'"><%= text.transaction_deposit %></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination total-items="total"
+                            page="page"
+                            items-per-page="50"
+                            max-size="10"
+                            on-select-page="getTransactions(page)"
+                            class="pagination-sm"
+                            boundary-links="true">
+                </pagination>
+            </div>
+        </div>
+    </div>
+</div>
+            
+<!-- End -->
+
+
+<div id="security" data-ng-controller="SecurityController" ng-show="activemenu == 'security'">
+                <div class="">
+                    <div class=""><h2 class=""><%= buttons.security%></h2></div>
+                    <div class="">
+                        <div class="row">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="active-btn" class="col-md-4 control-label"><%= text.google_authenticator %></label>
+                                    <div class="col-md-8">
+                                        <button class="btn btn-default" ng-click="getTotpSecret()" ng-show="!user.totpSecret"><%= buttons.turn_on %></button>
+                                        <button class="btn btn-default" ng-click="deactivateTotp()" ng-show="user.totpSecret"><%= buttons.turn_off %></button>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="user.totpSecret">
+                                    <label for="qr-image" class="col-md-4 control-label">QR Code</label>
+                                    <div class="col-md-8">
+                                        <img ng-src="{{qrcodeUrl}}" id="qr-image">
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-show="user.totpSecret && !user.totp">
+                                    <div class="col-md-8 col-md-offset-4">
+                                        <input class="input" type="text" ng-model="oneTimePass" placeholder="<%= text.one_time_pass %>"/>
+                                        <button class="btn btn-default" ng-click="activateTotp()" bc-popover="{{error!=null}}" ng-disabled="!oneTimePass"><%= buttons.verify %></button>
+                                        <div class="errors hide">
+                                            <span class="error">{{error|error}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div ng-show="user.totp"><%= text.totp_secret_in_used %></div>
+                            <div ng-show="!user.totp && user.totpSecret"><%= text.totp_verify %></div>
+                        </div>
+                    </div>
+                </div>
+</div>
+
+

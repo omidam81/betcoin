@@ -1,0 +1,22 @@
+<form role="form" class="form" name="loginForm">
+    <div class="form-group" ng-show="loginAddress == null">
+        <label for="" class="control-label"><%= text.enterusername %></label>
+        <input type="text" autocorrect="off" autocapitalize="off" class="form-control" ng-model="loginAlias" ng-required="loginAddress==null" />
+    </div>
+    <div class="form-group" ng-show="loginAddress != null">
+        <label for="" class="control-label"><%= text.enteraddress %></label>
+        <input type="text" autocorrect="off" autocapitalize="off" class="form-control" ng-model="loginAddress" ng-required="loginAddress!=null" />
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label"><%= text.enterpassword %></label>
+        <input type="password" class="form-control" ng-model="loginPassword" required />
+    </div>
+    <div class="form-group">
+        <button ng-click="login()" class="btn btn-primary btn-lg btn-block" ng-disabled="loginForm.$invalid" bc-popover="{{error != null}}" bc-popover-direction="top"><%= buttons.login %></button>
+        <div class="errors hide">
+            <span class="error">{{error|error}}</span>
+        </div>
+        <a href="/signup" class="btn btn-primary btn-lg btn-block"><%= buttons.create_new_account%></a>
+        <a href="/password/reset" class="btn btn-primary btn-lg btn-block"><%= buttons.password_reset%></a>
+    </div>
+</form>

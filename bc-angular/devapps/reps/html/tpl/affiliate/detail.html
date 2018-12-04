@@ -1,0 +1,16 @@
+<div class="container">
+<div class="row"
+     ng-controller="AffiliateDetailController">
+    <div class="col-md-6">
+        <h1>Affiliate {{affiliate.affiliateToken}}</h1>
+        <h2>{{affiliate.name}} ({{affiliate.username}})</h2>
+        <h2>{{affiliate.email}}</h2>
+        <p>Created: {{affiliate.createdAt | gmtdatetime}}</p>
+        <p>Last Updated: {{affiliate.updatedAt | gmtdatetime}}</p>
+        <pre>{{affiliate.address}}</pre>
+        <p>{{affiliate.phone}}</p>
+        <pre>{{affiliate.notes}}</pre>
+        <pre>{{affiliate | json}}</pre>
+    </div>
+</div>
+</div>

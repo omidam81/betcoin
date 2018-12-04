@@ -1,0 +1,73 @@
+<div class="tabcontent">
+  <h1>How to Play</h1>
+  <p class="ng-binding"><b class="ng-binding">BetCoin ™ HiLo</b> is a classic card game that allows you to wager with the digital currency Bitcoin. It's an easy and fun way to play with and win more Bitcoins!</p>
+  <br>
+  <ol style="padding-left:40px;">
+    <li class="ng-binding"><b class="ng-binding">Login or Register</b>, or play anonymously with your BTC wallet address</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Fund</b> your playing balance with Bitcoins using the provided personal deposit address</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Select wager</b> amount by using either the slider, percentage of balance buttons, incremental buttons, or by clicking on the wager box.  The maximum wager value is adjusted dynamically.</li>
+    <br>
+    <li class="ng-binding">Check your progress and follow players around the world using the in-game Leaderboard and Recent Plays tabs located below the playing screen.</li>
+    <br>
+    <li class="ng-binding">If you play anonymously, your balance will automatically be returned to you after 30 minutes of inactivity or upon closing your browser.</li>
+    <br>
+  </ol>
+
+<!-- <h4>Pay Table</h4>
+
+<div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+  <h4>Playing Casino HiLo</h4>
+  <ol>
+  <li><p>12 cards are held by the dealer. The card ranks range from '2' to 'A', each rank only occurs one time in each game. Because there are 13 cards shuffled, but 12 of them are held by the dealer, there is a card left out of the game. So there is one rank, from 2 to A, missing from each game. The color of the cards is evenly distributed in each game, so there are 6 red cards and 6 black cards for each game.</p></li>
+  <li><p>The strategy of the game is to guess whether the next card is greater or less than the current card, and/or the color of the next card.</p></li>
+  <li><p>You can determine the wager amount at each stage of the game.</p></li>
+  <li><p>The payout amount is dynamically calculated based on the game options and odds of the next guess being correct.</p></li>
+  <li><p>Tampering and other fraudulent actions void all pays and plays.</p></li>
+  </ol>
+  <h4>Game Options</h4>
+  <ol>
+    <li><p>
+      <b>Higher:</b> Guess the next card is higher than the previous card
+    </p></li>
+    <li><p>
+      <b>Lower:</b> Guess the next card is lower than the previous card
+    </p></li>
+    <li><p>
+      <b>Black:</b> Guess the next card is in Black color
+    </p></li>
+    <li><p>
+      <b>Red:</b> Guess the next card is in Red color
+    </p></li>
+    <li><p>
+      <b>Combination with both Higher/Lower and Black/Red</b>
+    </p></li>
+  </ol>
+  <h4>Payouts</h4>
+  <ol>
+    <li><p>
+      If the player guesses the next card correctly, the payout amount will be transferred to the account balance immediately, even during the game!
+    </p></li>
+    <li><p>
+      The amount of the payout is dynamically calculated for each option. It is based on the amount of the wager, 1.65% house edge, and the odds of each option at every stage during the game. Basically, the lower odds of the option you choose, the higher the payout will be, and selecting a bet with higher odds of winning has a lower payout.
+    </p></li>
+  </ol>
+
+  <h4 class="ng-binding">What is the expected return to player for BetCoin ™ Casino HiLo?</h4>
+  <p class="ng-binding">The expected Return to Player is 98.35%</p>
+
+  <h4 class="ng-binding">Is there a minimum wager per hand?</h4>
+  <p class="ng-binding">The minimum bet is 0.000001 BTC</p><p></p>
+
+  <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+  <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+  <p><a target="_blank" href="./js/app/directives/provably-fair.js">Click here to view the code used to verify each game</a></p>
+  <!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+
+
+  <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

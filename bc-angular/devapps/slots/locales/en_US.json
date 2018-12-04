@@ -1,0 +1,32 @@
+{
+    "prod": "reels",
+    "meta": {
+        "title": "BetCoin ™ Reels Bitcoin Casino - Play Provably fair bitcoin slots and bitcoin jackpot games",
+        "description": "BetCoin ™ Reels is the provably fair slot machine for bitcoin. Take the game for a spin and multiply your bitcoin instantly!"
+    },
+    "minbetMsg": "The minimum bet is 0.000003 BTC",
+    "global": {
+        "logourl": "img/reels-logo.png"
+    },
+    "home": {
+        "title_image": "img/icons/reels.png",
+        "promote_header_a": "Play the best provably fair slot machines<br />Win up to 888x on a single spin!",
+        "promote_header_d": "Provably fair, transparent system - World's highest return to player: 98.35%"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/reels"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/juan"
+        }
+    },
+    "game": {
+        "spinmessage": "Select your Bet Size<br />Spin to Win up to 888x!"
+    },
+    "buttons": {
+        "auto_spin_text_on": "Autobet: OFF",
+        "auto_spin_text_off": "Autobet: ON",
+        "start_spin": "SPIN"
+    }
+}

@@ -1,0 +1,4 @@
+VIRTUAL_HOST=bitlox.betcoin.tm
+PROXY_PORT=443
+API_MOUNT=
+UPSTREAM=bitlox

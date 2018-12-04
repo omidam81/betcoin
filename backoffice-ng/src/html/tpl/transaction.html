@@ -1,0 +1,196 @@
+<ul class="nav nav-pills">
+    <li class="{{type=='monthly'?'active':''}}"><a ng-click="getMonthlyReports()">Monthly Report</a>
+    </li>
+    <li class="{{type=='cashflow'?'active':''}}"><a ng-click="showCashflowView()">Cash Flow</a>
+    </li>
+    <li class="{{type=='affiliates'?'active':''}}"><a ng-click="showAffiliateView()">Affiliates</a>
+    </li>
+</ul>
+<h3 ng-show="loading">Loading...</h3>
+<div ng-switch on="type">
+    <div class="table-responsive" ng-switch-when="monthly">
+        <table class="table">
+            <caption>Monthly Players Bets & Wins</caption>
+            <thead>
+                <tr>
+                    <th>MONTH</th>
+                    <th>CURRENCY</th>
+                    <th>PROFIT</th>
+                    <th>BETS SUM</th>
+                    <th>BETS COUNT</th>
+                    <th>AVERAGE BET</th>
+                    <th>WINS SUM</th>
+                    <th>WINS COUNT</th>
+                    <th>AVERAGE WIN</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="month in monthlyBetsWins">
+                    <td>{{month._id.year}} - {{month._id.month}}</td>
+                    <td>{{month._id.currency}}</td>
+                    <td>{{month.wagerAmountTotal - month.winAmountTotal|btc}}</td>
+                    <td>{{month.wagerAmountTotal|btc}}</td>
+                    <td>{{month.wagerCount}}</td>
+                    <td>{{(month.wagerAmountTotal / month.wagerCount)|btc}}</td>
+                    <td>{{month.winAmountTotal|btc}}</td>
+                    <td>{{month.winCount}}</td>
+                    <td>{{(month.winAmountTotal / month.winCount)|btc}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table">
+            <caption>Monthly Cash Flow</caption>
+            <thead>
+                <tr>
+                    <th>MONTH</th>
+                    <th>CURRENCY</th>
+                    <th>PROFIT</th>
+                    <th>CASHIN SUM</th>
+                    <th>CASHIN COUNT</th>
+                    <th>AVERAGE CASHIN</th>
+                    <th>CASHOUT SUM</th>
+                    <th>CASHOUT COUNT</th>
+                    <th>AVERAGE CASHOUT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="month in monthlyCashings">
+                    <td>{{month._id.year}} - {{month._id.month}}</td>
+                    <td>{{month._id.currency}}</td>
+                    <td>{{month.depositAmountTotal - month.withdrawAmountTotal|btc}}</td>
+                    <td>{{month.depositAmountTotal|btc}}</td>
+                    <td>{{month.depositCount}}</td>
+                    <td>{{(month.depositAmountTotal / month.depositCount)|btc}}</td>
+                    <td>{{month.withdrawAmountTotal|btc}}</td>
+                    <td>{{month.withdrawCount}}</td>
+                    <td>{{(month.withdrawAmountTotal / month.withdrawCount)|btc}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table">
+            <caption>Daily Cash Flow</caption>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Month - Year</th>
+                    <th>CURRENCY</th>
+                    <th>PROFIT</th>
+                    <th>CASHIN SUM</th>
+                    <th>CASHIN COUNT</th>
+                    <th>AVERAGE CASHIN</th>
+                    <th>CASHOUT SUM</th>
+                    <th>CASHOUT COUNT</th>
+                    <th>AVERAGE CASHOUT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="day in dailyCashings|orderBy:['_id.month','_id.day']:true">
+                    <td>{{day._id.day}}</td>
+                    <td>{{day._id.month}} - {{day._id.year}}</td>
+                    <td>{{day._id.currency}}</td>
+                    <td>{{day.depositAmountTotal - day.withdrawAmountTotal|btc}}</td>
+                    <td>{{day.depositAmountTotal|btc}}</td>
+                    <td>{{day.depositCount}}</td>
+                    <td>{{(day.depositAmountTotal / day.depositCount)|btc}}</td>
+                    <td>{{day.withdrawAmountTotal|btc}}</td>
+                    <td>{{day.withdrawCount}}</td>
+                    <td>{{(day.withdrawAmountTotal / day.withdrawCount)|btc}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive" ng-switch-when="cashflow">
+        <filter-table data="data" page="page" total="total" sort='sort' size='500'>
+	        <div class="col-md-9">
+	            <table class="table">
+	                <caption>CASHOUT/CASHIN</caption>
+	                <thead>
+	                    <tr>
+	                        <th>Transaction Id</th>
+	                        <th><a sort-column sort-obj="sort" sort-field="transaction_userid" sort-func="filter()">User Id</a>
+	                        </th>
+	                        <th><a sort-column sort-obj="sort" sort-field="transaction_amount" sort-func="filter()">Amount</a>
+	                        </th>
+	                        <th><a sort-column sort-obj="sort" sort-field="transaction_type" sort-func="filter()">Action</a>
+	                        </th>
+	                        <th>
+	                            <a sort-column sort-obj="sort" sort-field="transaction_date" sort-func="filter()">Datetime</a>
+	                        </th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr ng-repeat="transaction in data.return.results">
+	                        <td>
+	                            <div chars="12" blockchain-info="{{transaction.transaction_meta.txid}}" target="_blank">{{transaction.transaction_meta.txid}}</div>
+	                        </td>
+	                        <td><a data-toggle="modal" data-target="#player-stats" ng-click="getPlayerStats(transaction.transaction_userid)">{{transaction.transaction_userid}}</a>
+	                        </td>
+	                        <td>{{transaction.transaction_amount|btc}}</td>
+	                        <td>{{transaction.transaction_type}}</td>
+	                        <td>{{transaction.transaction_date|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	            <pagination total-items="total" page="page" items-per-page="20" max-size="10" on-select-page="selectPage(page)" class="pagination-sm" boundary-links="true"></pagination>
+	        </div>
+	        <div class="col-md-3">
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    <h2 class="panel-title">Filters</h2>
+	                </div>
+	                <div class="panel-body">
+	                    <div class="form-group">
+	                        <label for="amount-control">Amount BTC</label>
+	                        <div id="amount-control">
+	                            <select class="form-control" name="amount-operator" ng-model="data.datapoints.transaction_amount.lookup.operator" ng-init="data.datapoints.transaction_amount.lookup.operator = 'any'">
+	                                <option value="any">Any</option>
+	                                <option value="eq">Equals</option>
+	                                <option value="gt">Greater than</option>
+	                                <option value="lt">Less than</option>
+	                            </select>
+	                            <input type="number" ng-model="data.datapoints.transaction_amount.lookup.value">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="transaction-type">Action</label>
+	                        <br>
+	                        <select class="form-control" name="transaction-type" id="transaction-type" ng-model="data.datapoints.transaction_type.lookup.value" ng-init="data.datapoints.transaction_type.lookup.value='any'">
+	                            <option value="any">Any</option>
+	                            <option value="deposit">Deposit</option>
+	                            <option value="withdraw">Withdraw</option>
+	                        </select>
+	                    </div>
+	                    <div class="form-group">
+		                    <label for="page-size">Page Size</label>
+                            <input id="page-size" type="number" class="form-control" ng-model="data.size">
+	                        <button class="btn btn-default" ng-click="filter()">Filter</button>
+	                        <button class="btn btn-default" ng-click="clearFilters()">Clear Filters</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+    	</filter-table>
+    </div>
+    <div class="table-responsive" ng-switch-when="affiliates">
+        <range-chooser class="col-md-3" on-submit="showAffiliateView(range)"></range-chooser>
+        <range-display class="col-md-6" since="range.start" until="range.end"></range-display>
+        <table class="table">
+            <caption>AFFILIATES</caption>
+            <thead>
+                <tr>
+                    <th>Affiliate Id</th>
+                    <th># of Associates</th>
+                    <th>Total Earnings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="affiliate in affiliates|orderBy:'earnings':true">
+                    <td><a href="player/{{affiliate._id}}/history/affiliates">{{affiliate._id}}</a></td>
+                    <td>{{affiliate.associatesCount}}</td>
+                    <td>{{affiliate.earnings|btc}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<player-details player-stats="playerStats"/>

@@ -1,0 +1,67 @@
+
+<div class="row">
+    <range-display-back class="col-md-6"
+                        since="range.start"
+                        until="range.end"></range-display-back>
+    <range-chooser-back class="col-md-6"
+                        range="range"
+                        type="date"
+                        on-submit="rangeChanged(range)"></range-chooser-back>
+    <h3>Full Period</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Currency</th>
+                <th>Won</th>
+                <th>Win Count</th>
+                <th>Average Win</th>
+                <th>Wagered</th>
+                <th>Wager Count</th>
+                <th>Average Wager</th>
+                <th>Profit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="(currency, data) in profitHistory">
+                <th>{{ currency }}</th>
+                <td>{{ currency | cryptosymbol }} {{ data.all.won | cryptovalue }}</td>
+                <td>{{ data.all.wins }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.all.averageWon | cryptovalue }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.all.wagered | cryptovalue }}</td>
+                <td>{{ data.all.wagers }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.all.averageWager | cryptovalue }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.all.wagerd - data.all.won | cryptovalue }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Per Month</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Currency</th>
+                <th>Month</th>
+                <th>Won</th>
+                <th>Win Count</th>
+                <th>Average Win</th>
+                <th>Wagered</th>
+                <th>Wager Count</th>
+                <th>Average Wager</th>
+                <th>Profit</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="(currency, data) in profitHistory">
+            <tr ng-repeat="(index, data) in profitHistory[currency].months">
+                <th rowspan="{{profitHistory[currency].months.length}}"
+                    ng-if="index == 0">{{ currency }}</th>
+                <td>{{ data.day | gmtdate:"month" }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.won | cryptovalue }}</td>
+                <td>{{ data.wins }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.averageWon | cryptovalue }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.wagered | cryptovalue }}</td>
+                <td>{{ data.wagers }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.averageWager | cryptovalue }}</td>
+                <td>{{ currency | cryptosymbol }} {{ data.wagered - data.won | cryptovalue }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

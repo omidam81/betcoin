@@ -1,0 +1,215 @@
+.bc-dropdown {
+  padding:5px 0px;
+  div.title {
+    display:inline-block;width:70px;font-size:12px;padding-left:5px;
+  }
+  div.gametitle {
+    display:inline-block;width:80px;
+  }
+  span.odds {
+    font-size:13px;
+  }
+  span.percent {
+    font-size:11px;
+  }
+}
+
+.homeleft
+{
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.btn-proof {
+  width:130px;
+}
+
+#spinmessage {
+ font-size:16pt;
+ min-height:36px;
+ max-height:54px;
+ overflow:hidden;
+}
+
+.proof-body {
+  div.proof-div {
+    clear:both;
+    div {
+      display:inline-block;
+      min-width:90px;
+    }
+  }
+}
+
+percent-slider .sliderContainer {
+  padding: 32px 0px 0px 0px;
+}
+
+.gameTarget {
+  text-align:center;
+  font-size:16pt;
+  min-width:80px!important;
+  width:80px!important;
+  padding-top:1px;
+}
+
+.classic-game-container {
+  text-align:center;
+  padding:0px !important;
+  .dice-container {
+    padding-bottom:15px;
+  }
+  .gameinfo {
+    border-radius:12px;
+    height:95px;
+    overflow:hidden;
+    h1 {
+        margin-top: 11px;
+        padding:0;
+    }
+  }
+
+  .diceanimation {
+    height:116px;
+    position:relative;
+    min-width:320px;
+    overflow:visible;
+  }
+}
+
+// game specific styles extracted from html inline style tags
+
+.title-image {
+  margin-bottom : 15px;
+}
+
+.dice-game-readout-text {
+  font-size : 14pt;
+}
+
+.dice-game-target-text {
+  .dice-game-readout-text;
+  margin-right : 10px;
+}
+
+.dice-game-spins-text {
+  font-size : 25px;
+}
+
+.dice-game-canvas-container {
+  position : relative;
+  z-index : -2;
+}
+
+.dice-game-roll-text {
+  font-size : 30px;
+}
+
+.dice-game-sound-toggle-container {
+  float : left;
+  z-index : 121;
+  position : absolute;
+  right : 5px;
+  top :0px;
+}
+
+#gameCanvasWrapper {
+  min-height:120px;
+  @media (max-width: 1200px) {
+    min-height:120px;
+  }
+  @media (max-width: 991px) {
+    min-height:130px;
+  }
+  @media (max-width: 768px) {
+    min-height:120px;
+  }
+  @media (max-width: 568px) {
+    min-height:100px;
+  }
+  @media (max-width: 480px) {
+    min-height:90px;
+  }
+}
+
+#gameCanvas {
+  position:relative;
+  width: 650px;
+  height: 140px;
+  -ms-transform-origin: 50% 0;
+  -moz-transform-origin: 50% 0;
+  -o-transform-origin: 50% 0;
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+
+  @media (max-width: 9999px) {
+    -ms-transform: scale(0.88);
+    -moz-transform: scale(0.88);
+    -o-transform: scale(0.88);
+    -webkit-transform: scale(0.88);
+    transform: scale(0.88);
+    margin:20px auto -20px auto;
+  }
+  @media (max-width: 1200px) {
+    -ms-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -o-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    margin:20px auto -30px auto;
+
+    left: 50%;
+    position: absolute;
+    margin-left: -320px;
+  }
+  @media (max-width: 991px) {
+    -ms-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    margin:20px auto -30px auto;
+    left: 50%;
+    position: absolute;
+    margin-left: -320px;
+  }
+  @media (max-width: 768px) {
+    -ms-transform: scale(0.77);
+    -moz-transform: scale(0.77);
+    -o-transform: scale(0.77);
+    -webkit-transform: scale(0.77);
+    transform: scale(0.77);
+    margin:20px auto -40px auto;
+
+    left: 50%;
+    position: absolute;
+    margin-left: -320px;
+  }
+  @media (max-width: 568px) {
+    -ms-transform: scale(0.57);
+    -moz-transform: scale(0.57);
+    -o-transform: scale(0.57);
+    -webkit-transform: scale(0.57);
+    transform: scale(0.57);
+    margin:20px auto -60px auto;
+
+    left: 50%;
+    position: absolute;
+    margin-left: -320px;
+  }
+  @media (max-width: 480px) {
+    -ms-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    margin:20px auto -60px auto;
+
+    left: 50%;
+    position: absolute;
+    margin-left: -320px;
+  }
+}

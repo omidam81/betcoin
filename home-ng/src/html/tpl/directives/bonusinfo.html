@@ -1,0 +1,26 @@
+<div class="panel">
+<div class="margin-top-10"><%= bonus.accepted %>: {{bonus.accepted}}</div>
+<div ng-show="bonus.unlocked">
+<%= bonus.unlocked %>: {{ bonus.unlocked | date:'medium' }}
+</div>
+<div ng-show="bonus.exhausted">
+<%= bonus.unlocked %>: {{ bonus.exhausted | date:'medium' }}
+</div>
+<div>
+<%= bonus.expires %>: {{ bonus.expires | date:'medium' }}
+</div>
+<div ng-show="bonus.started && !bonus.unlocked && !bonus.exhausted">
+  <div class="margin-top-10"><%= bonus.amount %>: {{bonus.initial | btc}} BTC</div>
+  <div><%= bonus.unlockamount %>: {{bonus.unlockMultiplier}}x {{bonus.rolloverValue | btc}} BTC = {{bonus.unlockMultiplier*bonus.rolloverValue | btc}} BTC</div>
+  <div><%= bonus.wagered %>: {{bonus.wagered|btc}} BTC</div>
+  <div class="form-control"><%= bonus.unlockpercent %>: {{bonus | bonusUnlockedPercent }}%</div>
+  <!--<percent-slider percent-slider-value="bonus | bonusUnlockedPercent" min="0" max="100" disabled></percent-slider>-->
+</div>
+<div ng-hide="bonus.started && bonus.unlocked && bonus.exhausted">
+  <div class="margin-top-10"><%= bonus.max %>: {{bonus.max | btc}} BTC</div>
+
+  <div class="margin-top-10"><%= bonus.type %>: <span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> <%= bonus.bonus%></div>
+  <div  class="margin-top-10" ng-show="activateMsg"><%= bonus.deposit_to_unlock %></div>
+  <div  class="margin-top-10" ng-hide="activateMsg"><%= bonus.unlock_previous %></div>
+</div>
+</div>

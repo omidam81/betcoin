@@ -1,0 +1,14 @@
+<div class="row"
+     ng-controller="RepListController">
+    <table class="table">
+        <thead>
+            <th>Username</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="rep in repList">
+                <td><a ng-href="reps/detail/{{rep._id}}">{{rep.username}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <pre>{{repList | json}}</pre>
+</div>

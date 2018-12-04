@@ -1,0 +1,52 @@
+<div class="row">
+
+    <div class="col-xs-12 col-sm-4 col-sm-push-4">
+        <img class="center-block home-betcoin-word" src="./img/words/betcoin.png"/>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-sm-pull-4">
+        <h2 class="text-center center-block margin-top-10 padding-0 smallcaps"><%= home.network_battlecry %></h2>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <h2 class="text-center center-block margin-top-10 padding-0 smallcaps"><%= home.network_title %></h2>
+    </div>
+</div>
+<div class="row betcoin-header">
+    <div class="deity"></div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="text-center">
+            <div class="visible-md">
+                <h5><%= text.usps_a %></h5>
+                <h5><%= text.usps_b %></h5>
+                <h5><%= text.usps_c %></h5>
+            </div>
+            <div class="hidden-md">
+                <h4><%= text.usps_a %></h4>
+                <h4><%= text.usps_b %></h4>
+                <h4><%= text.usps_c %></h4>
+            </div>
+            <div class="panel panel-default"><div class="panel-body home-login-pad">
+                <bc-redirect-login data-home-description="true"></bc-redirect-login>
+            </div></div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 pull-right">
+        <div class="text-center">
+            <div class="visible-md">
+                <h5><%= text.usps_d %></h5>
+                <h5><%= text.usps_e %></h5>
+                <h5><%= text.usps_f %></h5>
+            </div>
+            <div class="hidden-md">
+                <h4><%= text.usps_d %></h4>
+                <h4><%= text.usps_e %></h4>
+                <h4><%= text.usps_f %></h4>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body home-counter-pad">
+                    <bc-game-counters api-endpoint="https://{{CacheServer.hostname}}{{CacheServer.endpoint}}" socket-host="https://{{CacheServer.hostname}}:8443/counter" event-name="{{CacheServer.event}}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gameLinks" ng-include src="'tpl/game-links-<%= fileSuffix %>.html'"></div>

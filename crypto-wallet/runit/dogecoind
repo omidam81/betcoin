@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+chown -R app:app /home/app/.dogecoin
+chmod 600 /home/app/.dogecoin/dogecoin.conf
+
+exec /sbin/setuser app dogecoind -datadir=/home/app/.dogecoin >>/var/log/dogecoind.log 2>&1

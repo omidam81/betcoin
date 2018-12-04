@@ -1,0 +1,24 @@
+<table class="table bc-multi-table"
+       ng-init="showDetails = {}"
+       ng-hide="loading">
+    <thead>
+        <th>Level</th>
+        <th>Mesage</th>
+        <th>Time</th>
+    </thead>
+    <tbody ng-repeat="log in listData.result"
+           ng-click="showDetails[log._id]=!showDetails[log._id]"
+           style="cursor: pointer;">
+        <tr ng-class="showUserDetails[log._id]?'highlighted':''">
+            <td>{{ log.level }}</td>
+            <td>{{ log.message }}</td>
+            <td>{{ log.timestamp | gmtdatetime }}</td>
+        </tr>
+        <tr class="bc-sub-table"
+            ng-show="showDetails[log._id]"
+            ng-repeat="(key, value) in log.meta">
+            <td>{{key}}</td>
+            <td colspan="2">{{value}}</td>
+        </tr>
+    </tbody>
+</table>

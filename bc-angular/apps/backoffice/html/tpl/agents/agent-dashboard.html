@@ -1,0 +1,30 @@
+<h1>Agent Dashboard</h1>
+<a href="/backoffice/agents/new" class="btn btn-flashy btn-large">New Agent</a>
+<table ng-repeat="agent in agents">
+    <tr>
+        <td><a href="/backoffice/agents/{{agent._id}}">{{agent._id}}</a></td>
+        <td>{{agent.username}}</td>
+        <td>{{agent.realName}}</td>
+        <td>{{agent.email}}{{agent.pendingEmail}}</td>
+        <td>{{agent.phone}}</td>
+        <td>{{agent.address}}</td>
+        <td>{{agent.notes}}</td>
+        <td><div ng-retdeat="ser in agent.serials">{{ser}}</div></td>
+        <td>{{ agent.commission*100 }} %</td>
+        <td>{{agent.totalEarnings}}</td>
+        <td>{{agent.associates.length}} Associates</td>
+    </tr>
+    <tr>
+        <td colspan="11">
+            <table>
+            <tr>
+                <th>Username</th><th>Email</th><th>Earnings</th><th>Last Earned</th><th>Last Activity</th>
+            </tr>
+            <tr ng-repeat="aff in agent.affiliates">
+                <td><a href="/user/{{aff._id}}/affiliate">{{aff.username}}</a></td><td>{{aff.email}}{{aff.pendingEmail}}</td><td>{{aff.totalEarnings}}</td><td>{{aff.lastEarnings}}</td><td>{{aff.lastLogin}}</td>
+            </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+

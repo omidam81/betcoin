@@ -1,0 +1,55 @@
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="server-seed" class="col-sm-3 control-label">
+            <%=draws.serverSeed %>
+        </label>
+        <div class="col-sm-9">
+            <input id="server-seed" type="text" class="form-control" ng-model="serverSeed">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="init-array" class="col-sm-3 control-label">
+            <%=draws.initialArray %>
+        </label>
+        <div class="col-sm-9">
+            <input id="init-array" type="text" class="form-control" ng-model="initArray">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="init-hash" class="col-sm-3 control-label">
+            <%=draws.initialHash %>
+        </label>
+        <div class="col-sm-9">
+            <div id="init-hash" class="allow-word-wrap-with-break-word padding-top-7">{{testInitialHash}}</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="client-seed" class="col-sm-3 control-label">
+            <%=draws.clientSeed %>
+        </label>
+        <div class="col-sm-9">
+            <input id="client-seed" type="text" class="form-control" ng-model="clientSeed">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="final-array" class="col-sm-3 control-label">
+            <%= draws.finalArray %>
+        </label>
+        <div class="col-sm-9">
+            <div id="final-array" class="allow-word-break-with-break-word padding-top-7">
+                <span ng-repeat="number in testFinalArray | limitTo: 20">{{number}}{{$last ? '' : ', '}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="verify-fair" class="col-sm-3 control-label"></label>
+        <div class="col-sm-9">
+            <button id="verify-fair" class="btn btn-default" ng-click="verifyFair()">
+                <%=buttons.verify %>
+            </button>
+            <span ng-show="testFinalArray==finalArray&&testInitialHash==initialHash">
+                <%=draws.match %>
+            </span>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,31 @@
+<div>
+    <h1 class="text-center">Bankroll</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>Bankroll Balance</dt>
+                <dd>{{ (houseBalance.balance - totalAmount.total) | btc }} BTC</dd>
+                <dt>Dice Balance</dt>
+                <dd>{{addresses['dice'][0].balance | btc}} BTC ({{addresses['dice'][0].address}})</dd>
+                <dt>Prize Balance</dt>
+                <dd>{{addresses['prize'][0].balance | btc}} BTC ({{addresses['prize'][0].address}})</dd>
+                <dt>Global Total</dt>
+                <dd>{{ (houseBalance.balance - totalAmount.total) + diceTotalAmount + prizeTotalAmount | btc }} BTC</dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>House Balance</dt>
+                <dd>{{ houseBalance.balance | btc }} BTC</dd>
+                <dt>Total User Balance</dt>
+                <dd>{{ totalAmount.total | btc }} BTC</dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt># of Players Online</dt>
+                <dd>{{ totalOnline.count }}</dd>
+            </dl>
+        </div>
+    </div>
+</div>

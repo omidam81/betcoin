@@ -1,0 +1,43 @@
+{
+    "prod": "fantan",
+    "meta": {
+        "title": "BetCoin ™ Fan Tan Bitcoin Casino - Win Bitcoins!",
+        "meta_description": "With BetCoin ™ Fan Tan you can bet in bitcoin and play the classic Fan Tan wheel. Try the game today to hit a bitcoin jackpot!",
+        "meta_keywords": "Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Fan Tan, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-fantan.png"
+    },
+    "home": {
+        "title_image": "img/icons/fantan280.png",
+        "promote_header_a": "Play the Provably Fair Classic Fan Tan"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/fantan"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/tan"
+        }
+    },
+    "game": {
+        "CircleDiv3": "My Bets"
+    },
+    "spins": {
+        "myspins": "My Bets",
+        "CircleTh9": "Bets"
+    },
+    "buttons": {
+        "start_roll": "ROLL"
+    },
+    "boards": {
+        "ssh": "SSH",
+        "kwok": "KWOK",
+        "fan": "FAN",
+        "nga": "NGA",
+        "nim": "NIM",
+        "ratestr": "x",
+        "x": "x",
+        "t": "T"
+    }
+}

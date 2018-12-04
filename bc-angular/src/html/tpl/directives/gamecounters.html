@@ -1,0 +1,11 @@
+<h4 class="smallcaps"><%= text.total_payout %></h4>
+<div class="shadow-red amount-numbers">
+    <div>
+        {{ curCode }}
+        <bc-countup value="fiatSum"
+                    symbol="{{curSym}}"
+                    filter="paddednumber"
+                    class="amount-numbers fsz20"
+                    decimals="2"></bc-countup>
+    </div>
+</div>

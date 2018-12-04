@@ -1,0 +1,4 @@
+FROM docker.betcoin.tm/cryptobase
+MAINTAINER atticus
+
+

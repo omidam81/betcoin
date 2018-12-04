@@ -1,0 +1,51 @@
+
+
+<div class="container" ng-controller="HomeController">
+
+    <div ng-show="player._id" class="game-controller" ng-include="'tpl/game-controls.html'"></div>
+    <div ng-hide="player._id">
+        <div class="col-xs-12 col-sm-4 homeleft">
+            <img alt="<%= title %>" src="<%= global.logourl %>" class="center-block" style="width:240px;" />
+            <br />
+            <img src="<%= home.title_image %>" class="center-block img-responsive" style="margin-bottom:15px;" />
+            <div class="panel panel-default game-counters">
+                <div class="panel-body">
+                    <bc-game-counters></bc-game-counters>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-8 homeright">
+            <div class="gameusps">
+                <!-- <div class="gamecta"><%= home.splashHeader1 %></div> -->
+                <div class="gamecta text-center">
+                    <h2 class="promote-header-a"><%= home.promote_header_a %></h2>
+                    <h4><%= home.promote_header_b %></h4>
+                    <h4><%= home.promote_header_c %></h4>
+                    <h5><%= home.promote_header_d %></h5>
+                </div>
+            </div>
+            <!-- @ifndef HIVEAPP -->
+            <div class="panel panel-default game-redirect-login">
+                <div class="panel-body">
+                    <bc-redirect-login redirect-path="<%= baseHref %>" data-inline="true"></bc-redirect-login>
+                </div>
+            </div>
+            <!-- @endif -->
+            <div class="panel panel-default game-anon-login">
+                <div class="panel-body">
+                    <bc-login-anon data-inline="true"></bc-login-anon>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div ng-controller="NavController">
+        <ul class="nav nav-tabs nav-justified game-nav-tabs">
+            <li ng-class="getTabClass('/spins/global')"><a href="spins"><%= nav.spins %></a></li>
+            <li ng-class="getTabClass('/leaderboard')"><a href="leaderboard"><%= nav.leaderboard %></a></li>
+            <li ng-class="getTabClass('/howtoplay')"><a href="howtoplay"><%= nav.howtoplay %></a></li>
+        </ul>
+    </div>
+
+</div>

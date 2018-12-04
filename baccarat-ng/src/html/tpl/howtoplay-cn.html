@@ -1,0 +1,58 @@
+<div class="tabcontent">
+  <h1>如何游戏</h1>
+  <p class="ng-binding"><b class="ng-binding">财神乐™ </b> 是一个经典的扑克游戏，允许您用比特币下注。非常简单、有趣，并能赢更多的比特币！</p>
+  <br>
+  <ol style="padding-left:40px;">
+    <li class="ng-binding"><b class="ng-binding">登入或注册</b>，或则用您的比特币钱包来进行匿名游戏</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">充值比特币</b>到游戏为您设定的专用比特币存款地址</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">用滑块、余额百分比按钮、增量按钮或在下注框上单击并输入金额</b>，选择下注金额</li>
+    <br>
+    <li class="ng-binding">检查您的进度，用游戏屏幕下方的游戏“高手排名榜”和“近期游戏”标签，可以跟踪全球的玩家</li>
+    <br>
+    <li class="ng-binding">静止 30 分钟后或关闭浏览器后，您的余额会自动返还给您</li>
+    <br>
+  </ol>
+<!-- <h4>Pay Table</h4>
+
+<div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+    <h4>财神乐™ 是一个经典的流行扑克游戏。</h4>
+    <ul style="padding-left:40px;">
+        <li>玩家将会用1副52张牌的扑克进行游戏，每局游戏将会对扑克进行洗牌。</li>
+        <li>扑克牌A 代表 1点，2 代表 2 点... 9 代表 9 点，10 和 人面牌代表 0点。</li>
+        <li>在游戏开始前，玩家可以对庄家、玩家和平局进行下注。</li>
+        <li>荷官会各发两张牌给玩家及庄家。是否发第三张牌给庄家或玩家会根据一下规则：</li>
+            <ul style="padding-left:40px;">
+                <li>如果闲家或庄家手上有8点或9点，将不会再发第三张牌，</li>
+                <li>如果闲家有5点或者更少，会发给闲家第三张牌，</li>
+                <li>如果闲家没有拿第三张牌时，庄家在手上的点数不大于5的情况下，可以再给庄家发第三张牌。</li>
+                <li>如果闲家拿了第三张牌，庄家会根据以下规则拿第三张牌。</li>
+            </ul>
+            <h5>庄家规则</h5>
+            <ul>
+                <li>如果闲家的第三张牌是2或3，庄家在点数为0-4的情况下拿第三张牌。</li>
+                <li>如果闲家的第三张牌为4或5，庄家在点数为0-5的情况下拿第三张牌。</li>
+                <li>如果闲家的第三张牌为6或7，庄家在点数为0-6的情况下拿第三张牌。</li>
+                <li>如果闲家的第三张牌为8，庄家在点数为0-2的情况下拿第三张牌。</li>
+                <li>如果闲家的第三张牌为A，9，10或人面牌，庄家在点数为0-3的情况下拿第三张牌。</li>
+            </ul>
+        <li>所有牌的点数去除10位数为最终点数，比如 18=8。点数高者赢。</li>
+        <li>下注庄家的赔率为 19 : 20，下注闲家为 1 : 1，下注平手为 8 : 1。</li>
+    </ul>
+    <h4 class="ng-binding">财神乐™ 的玩家回报率是多少？</h4>
+
+    <p>投注玩家的回报率是98.94%，投注庄家的回报率是98.77%，投注平局的回报率是85.64%。</p>
+    <h4 class="ng-binding">每盘游戏有没有最低赌注限制？</h4>
+    <p class="ng-binding">最低赌注为0.000001 个比特币</p><p></p>
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">点击这里显示用来验证游戏公平性的代码</a></p>
+    <!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

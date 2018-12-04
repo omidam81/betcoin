@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-md-4">
+        <ul class="nav nav-pills nav-stacked"
+            ng-controller="NavController">
+            <li ng-class="getClass('', 'games', 2)"><a href="account">Games</a></li>
+            <li ng-class="getClass('deposit', 2)"><a href="account/deposit">Deposit</a></li>
+            <li ng-class="getClass('withdraw', 2)"><a href="account/withdraw">Withdraw</a></li>
+            <li ng-class="getClass('details', 2)"><a href="account/details">Account Details</a></li>
+            <li ng-class="getClass('edit', 2)"><a href="account/edit">Edit Account Details</a></li>
+            <li ng-class="getClass('bonuses', 2)"><a href="account/bonuses">Bonus Information</a></li>
+            <li ng-class="getClass('aboutbtc', 2)"><a href="account/aboutbtc">About Bitcoin</a></li>
+            <li ng-class="getClass('exchange', 2)"><a href="account/exchange">Buy/Sell Bitcoin</a></li>
+            <li ng-class="getClass('jade', 2)"><a href="account/jade">Jade Emperer Club</a></li>
+            <li ng-class="getClass('messages', 2)"><a href="account/messages">Messages</a></li>
+            <li ng-class="getClass('contact', 2)"><a href="account/contact">Contact Us</a></li>
+            <li ng-class="getClass('affiliate', 2)"><a href="account/affiliate">Referrals</a></li>
+            <li ng-class="getClass('about', 2)"><a href="account/about">About Betcoin</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <h2>{{title}}</h2>
+        <ui-view></ui-view>
+    </div>
+</div>

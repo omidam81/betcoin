@@ -1,0 +1,37 @@
+<div class="tabcontent">
+  <h1>How to Play</h1>
+  <p class="ng-binding"><b class="ng-binding">BetCoin ™ Dice</b> allows you to wager with the digital currency Bitcoin. It is an easy and fun way to play with and win up to 64000x your bet!</p>
+
+  <h3>Our provably fair algorithm will select your <b>Lucky Number</b>, between 1 and 65536</h3>
+  <h3>If the <b>Lucky Number</b> is less than or equal to the target value (Example: 32000) YOU WIN!</h3>
+  <br />
+  <ol class="padding-left-40">
+    <li class="ng-binding"><b class="ng-binding">Login or Register</b>, or play anonymously with your BTC wallet address</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Fund</b> your playing balance with Bitcoins using the provided personal deposit address</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">Select wager</b> amount by using either the slider, percentage of balance buttons, incremental buttons, or by clicking on the wager box.  The maximum wager value is adjusted dynamically.</li>
+    <br>
+    <li class="ng-binding">Check your progress and follow players around the world using the in-game Leaderboard and Recent Spins tabs located below the playing screen.</li>
+    <br>
+    <li class="ng-binding">If you play anonymously, your balance will automatically be returned to you after 30 minutes of inactivity or upon closing your browser.</li>
+    <br>
+  </ol>
+
+
+  <h4 class="ng-binding">What is the house edge for BetCoin ™ Dice?</h4>
+
+  <p class="ng-binding">The house advantage is 1.88% for all games except &lt 1, wherein the house edge is 1.838%.</p>
+
+  <h4 class="ng-binding">Is there a minimum wager per spin?</h4>
+
+  <p class="ng-binding">The minimum bet is 0.00000300 BTC</p><p></p>
+
+  <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+  <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+  <p><a target="_blank" href="./js/app/directives/provably-fair.js">Click here to view the code used to verify each game</a></p>
+
+  <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

@@ -1,0 +1,13 @@
+<div class="container">
+	<div class="row row-offcanvas row-offcanvas-right">
+		<div data-ng-include data-src="'tpl/support-menu.html'"></div>
+		<div ng-switch on="type">
+			<div ng-switch-when="detail">
+				<div ng-include="'tpl/support-detail-ticket.html'" ng-controller="TicketDetailsController"></div>
+			</div>
+			<div ng-switch-default>
+				<div ng-include="'tpl/support-tickets.html'"></div>
+			</div>
+		</div>
+	</div>
+</div>

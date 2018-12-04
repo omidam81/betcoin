@@ -1,0 +1,47 @@
+{
+  "name": "tigerdragon-node",
+  "version": "1.0.1",
+  "description": "Tiger Dragon server app",
+  "main": "make run",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/betcn/tigerdragon-node"
+  },
+  "author": "atticus",
+  "dependencies": {
+    "async": "^0.8.0",
+    "bitcoin-math": "^0.1.2",
+    "body-parser": "^1.0.2",
+    "cors": "^2.2.0",
+    "dependable": "^0.2.5",
+    "express": "^4.0.0",
+    "httperror-npm": "git+ssh://git@bitbucket.org:betcn/httperror-npm",
+    "logger-npm": "git+ssh://git@bitbucket.org:betcn/logger-npm",
+    "modella": "^0.2.8",
+    "modella-filter": "^0.1.0",
+    "modella-mongo": "^0.2.8",
+    "modella-validators": "^0.1.0",
+    "mongoskin": "^1.4.1",
+    "newrelic": "^1.5.1",
+    "player-interface-node": "git+ssh://git@bitbucket.org:betcn/player-interface-node",
+    "provably-fair-npm": "git+ssh://git@bitbucket.org:betcn/provably-fair-npm",
+    "socket-npm": "git+ssh://git@bitbucket.org:betcn/socket-npm",
+    "socket.io": "^0.9.16",
+    "winston": "^0.7.3",
+    "yargs": "^1.2.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "mocha": "^1.17.1",
+    "modella-memory": "^0.2.1",
+    "grunt-simple-mocha": "*"
+  }
+}

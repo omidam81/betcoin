@@ -1,0 +1,37 @@
+{
+    "prod": "fantan",
+    "meta": {
+        "title": "财神摊 ™ 比特币赌场 - 赢比特币!",
+        "meta_description": "在财番摊 ™ 轮盘赌，您可以用比特币玩经典轮盘赌游戏。开始游戏，赢取大量比特币!"
+    },
+    "global": {
+        "logourl": "img/words/cn/fantan.png"
+    },
+    "home": {
+        "title_image": "img/icons/fantan280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/fantan"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/tan"
+        }
+    },
+    "spins": {
+        "CircleTh9": "赌注"
+    },
+    "buttons": {
+        "start_roll": "滚动"
+    },
+    "boards": {
+        "ssh": "三门",
+        "kwok": "角",
+        "fan": "番",
+        "nga": "丫",
+        "nim": "念",
+        "ratestr": "倍",
+        "x": "x",
+        "t": "T"
+    }
+}

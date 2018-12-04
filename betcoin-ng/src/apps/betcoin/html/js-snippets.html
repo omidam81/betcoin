@@ -1,0 +1,53 @@
+<script type="text/javascript">var _kmq = _kmq || [];
+ var _kmk = _kmk || 'c8316d128361a724428c26c13a17a6cf710f68d7';
+ function _kms(u){
+     setTimeout(function(){
+         var d = document, f = d.getElementsByTagName('script')[0],
+             s = d.createElement('script');
+         s.type = 'text/javascript'; s.async = true; s.src = u;
+         f.parentNode.insertBefore(s, f);
+     }, 1);
+ }
+ _kms('//i.kissmetrics.com/i.js');
+ _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+</script>
+<!-- @if LOC="en_US" -->
+<!-- ClickDesk Live Chat Service for websites -->
+<script type='text/javascript'>
+ var _glc =_glc || []; _glc.push('ag9zfmNsaWNrZGVza2NoYXRyEQsSB3dpZGdldHMYova96AcM');
+ var glcpath = (('https:' == document.location.protocol) ? 'https://my.clickdesk.com/clickdesk-ui/browser/' :
+                'http://my.clickdesk.com/clickdesk-ui/browser/');
+ var glcp = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+ var glcspt = document.createElement('script'); glcspt.type = 'text/javascript';
+ glcspt.async = true; glcspt.src = glcpath + 'livechat-new.js';
+ var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glcspt, s);
+</script>
+<!-- End of ClickDesk -->
+<!-- @endif -->
+<!-- @if LOC="zh_CN" -->
+<!-- ClickDesk Live Chat Service for websites -->
+<script type='text/javascript'>
+ var _glc =_glc || []; _glc.push('ag9zfmNsaWNrZGVza2NoYXRyEQsSB3dpZGdldHMYtc2k_wcM');
+ var glcpath = (('https:' == document.location.protocol) ? 'https://my.clickdesk.com/clickdesk-ui/browser/' :
+                'http://my.clickdesk.com/clickdesk-ui/browser/');
+ var glcp = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+ var glcspt = document.createElement('script'); glcspt.type = 'text/javascript';
+ glcspt.async = true; glcspt.src = glcpath + 'livechat-new.js';
+ var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(glcspt, s);
+</script>
+<!-- End of ClickDesk -->
+<!-- @endif -->
+<script type='text/javascript'>
+ window.onbeforeunload = function () {
+     if(window.isGameInProgress === true)
+         return "<%- exitMsg %>";
+     else return;
+ };
+</script>
+
+<!--code for checking if we have any open modal -->
+<script type="text/javascript">
+ $(window).on('popstate', function() {
+     $.each($(".modal"), function(index, modal){  if($(modal).attr("id")) modal.modal('hide');  });
+ });
+</script>

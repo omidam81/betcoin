@@ -1,0 +1,47 @@
+<div>
+    <div id="modal-{{ game.id || game._id }}" class="game-proof">
+        <h3><%= spins.ProofHeader1 %></h3>
+
+        <small><%= game.initial_hash_explain %></small>
+        <br>
+        <small><%= game.final_array_explain %></small>
+
+        <dl class="dl-horizontal">
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh1 %></dt><dd class="margin-left-120 wrap-word">{{ game.id || game._id }}
+            </dd>
+            <dt  class="spins-dt-width">
+            <%= username %></dt><dd class="margin-left-120">{{ game.player_alias }}
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh3 %></dt><dd class="margin-left-120">{{ game | affectedWinnings }}<%= game.x %>
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh4 %></dt><dd class="margin-left-120">{{ game.wager | cryptovalue }}
+            </dd>
+            <dt class="spins-dt-width">
+                <%= spins.CircleTh10 %></dt><dd class="margin-left-120">{{ game.affected_wager | cryptovalue }}
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh5 %></dt><dd class="margin-left-120">{{ game.winnings | cryptovalue }}
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh7 %></dt><dd class="margin-left-120">{{ game.createdAt | date:"MM/dd HH:mm:ss" }}
+            </dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt1 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.server_seed }}</dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt3 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.seed_hash }}</dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt4 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.client_seed }}</dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt5 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.dices }}</dd>
+            <dt class="spins-dt-width"><%= game.luckynumber %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.result }}</dd>
+        </dl>
+
+        <provably-fair init-array="{{game.init_array}}" server-seed="{{game.server_seed}}" client-seed="{{game.client_seed}}"></provably-fair>
+    </div>
+
+    <button class="btn btn-default btn-lg" ng-click="backToList()"><%= gameDetails.returnToList %></button>
+</div>

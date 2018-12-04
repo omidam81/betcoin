@@ -1,0 +1,135 @@
+<div>
+    <div id="modal-{{ game.id || game._id }}" class="game-proof">
+        <h3><%= spins.ProofHeader1 %></h3>
+        <div class="row">
+            <div class="col-xs-12 col-md-8 game col-md-push-2">
+                <!--<div id="g-sicbo-history" class="g-sicbo">
+                    <div id="board" class="board" ng-if="game.bets">
+                        <div class="singleheader">
+                            <label><%= boards.singledicestr1%></label>
+                            <label><%= boards.singledicestr2%></label>
+                            <label><%= boards.singledicestr3%></label>
+                        </div>
+
+                        <div class="doubleheader1"><label>11 : 1</label></div>
+                        <div class="doubleheader2"><label>11 : 1</label></div>
+
+                        <div class="tripleheader1"><label>180 : 1</label></div>
+                        <div class="tripleheader2"><label>180 : 1</label></div>
+
+                        <div class="anytripleheader"><label>30 : 1</label></div>
+
+                        <div class="twodiceheader"><label><%= boards.twodicestr%></label></div>
+
+
+                        <div class="small" class="number"><div class="chips" chips key='["small"]' /><p><%= boards.small%></p><%= boards.smallstr%></div>
+
+                        <div class="large" class="number"><div class="chips" chips key='["big"]' /><p><%= boards.big%></p><%= boards.bigstr%></div>
+
+                        <div class="single_dice_1" class="number"><div class="chips" chips key='["single_dice",1]' /><div class="single-dice-1"></div></div>
+                        <div class="single_dice_2" class="number"><div class="chips" chips key='["single_dice",2]' /><div class="single-dice-2"></div></div>
+                        <div class="single_dice_3" class="number"><div class="chips" chips key='["single_dice",3]' /><div class="single-dice-3"></div></div>
+                        <div class="single_dice_4" class="number"><div class="chips" chips key='["single_dice",4]' /><div class="single-dice-4"></div></div>
+                        <div class="single_dice_5" class="number"><div class="chips" chips key='["single_dice",5]' /><div class="single-dice-5"></div></div>
+                        <div class="single_dice_6" class="number"><div class="chips" chips key='["single_dice",6]' /><div class="single-dice-6"></div></div>
+
+                        <div class="two_dice_1_2" class="number"><div class="chips" chips key='["two_dice",1,2]' /><div class="two-dice-1-2"></div></div>
+                        <div class="two_dice_1_3" class="number"><div class="chips" chips key='["two_dice",1,3]' /><div class="two-dice-1-3"></div></div>
+                        <div class="two_dice_1_4" class="number"><div class="chips" chips key='["two_dice",1,4]' /><div class="two-dice-1-4"></div></div>
+                        <div class="two_dice_1_5" class="number"><div class="chips" chips key='["two_dice",1,5]' /><div class="two-dice-1-5"></div></div>
+                        <div class="two_dice_1_6" class="number"><div class="chips" chips key='["two_dice",1,6]' /><div class="two-dice-1-6"></div></div>
+
+                        <div class="two_dice_2_3" class="number"><div class="chips" chips key='["two_dice",2,3]' /><div class="two-dice-2-3"></div></div>
+                        <div class="two_dice_2_4" class="number"><div class="chips" chips key='["two_dice",2,4]' /><div class="two-dice-2-4"></div></div>
+                        <div class="two_dice_2_5" class="number"><div class="chips" chips key='["two_dice",2,5]' /><div class="two-dice-2-5"></div></div>
+                        <div class="two_dice_2_6" class="number"><div class="chips" chips key='["two_dice",2,6]' /><div class="two-dice-2-6"></div></div>
+
+                        <div class="two_dice_3_4" class="number"><div class="chips" chips key='["two_dice",3,4]' /><div class="two-dice-3-4"></div></div>
+                        <div class="two_dice_3_5" class="number"><div class="chips" chips key='["two_dice",3,5]' /><div class="two-dice-3-5"></div></div>
+                        <div class="two_dice_3_6" class="number"><div class="chips" chips key='["two_dice",3,6]' /><div class="two-dice-3-6"></div></div>
+
+                        <div class="two_dice_4_5" class="number"><div class="chips" chips key='["two_dice",4,5]' /><div class="two-dice-4-5"></div></div>
+                        <div class="two_dice_4_6" class="number"><div class="chips" chips key='["two_dice",4,6]' /><div class="two-dice-4-6"></div></div>
+
+                        <div class="two_dice_5_6" class="number"><div class="chips" chips key='["two_dice",5,6]' /><div class="two-dice-5-6"></div></div>
+
+                        <div class="total_4" class="number"><div class="chips" chips key='["total",4]' /><p>4</p>60:1</div>
+                        <div class="total_5" class="number"><div class="chips" chips key='["total",5]' /><p>5</p>20:1</div>
+                        <div class="total_6" class="number"><div class="chips" chips key='["total",6]' /><p>6</p>18:1</div>
+                        <div class="total_7" class="number"><div class="chips" chips key='["total",7]' /><p>7</p>12:1</div>
+                        <div class="total_8" class="number"><div class="chips" chips key='["total",8]' /><p>8</p>8:1</div>
+                        <div class="total_9" class="number"><div class="chips" chips key='["total",9]' /><p>9</p>6:1</div>
+                        <div class="total_10" class="number"><div class="chips" chips key='["total",10]' /><p>10</p>6:1</div>
+                        <div class="total_11" class="number"><div class="chips" chips key='["total",11]' /><p>11</p>6:1</div>
+                        <div class="total_12" class="number"><div class="chips" chips key='["total",12]' /><p>12</p>6:1</div>
+                        <div class="total_13" class="number"><div class="chips" chips key='["total",13]' /><p>13</p>8:1</div>
+                        <div class="total_14" class="number"><div class="chips" chips key='["total",14]' /><p>14</p>12:1</div>
+                        <div class="total_15" class="number"><div class="chips" chips key='["total",15]' /><p>15</p>18:1</div>
+                        <div class="total_16" class="number"><div class="chips" chips key='["total",16]' /><p>16</p>20:1</div>
+                        <div class="total_17" class="number"><div class="chips" chips key='["total",17]' /><p>17</p>60:1</div>
+
+                        <div class="double_1" class="number"><div class="chips" chips key='["double",1]' /><div class="double-dice-1"></div></div>
+                        <div class="double_2" class="number"><div class="chips" chips key='["double",2]' /><div class="double-dice-2"></div></div>
+                        <div class="double_3" class="number"><div class="chips" chips key='["double",3]' /><div class="double-dice-3"></div></div>
+                        <div class="double_4" class="number"><div class="chips" chips key='["double",4]' /><div class="double-dice-4"></div></div>
+                        <div class="double_5" class="number"><div class="chips" chips key='["double",5]' /><div class="double-dice-5"></div></div>
+                        <div class="double_6" class="number"><div class="chips" chips key='["double",6]' /><div class="double-dice-6"></div></div>
+
+                        <div class="any_triple" class="number"><div class="chips" chips key='["any_triple"]' /><div class="any-triple-dice"></div></div>
+
+                        <div class="triple_1" class="number"><div class="chips" chips key='["triple",1]' /><div class="triple-dice-1"></div></div>
+                        <div class="triple_2" class="number"><div class="chips" chips key='["triple",2]' /><div class="triple-dice-2"></div></div>
+                        <div class="triple_3" class="number"><div class="chips" chips key='["triple",3]' /><div class="triple-dice-3"></div></div>
+                        <div class="triple_4" class="number"><div class="chips" chips key='["triple",4]' /><div class="triple-dice-4"></div></div>
+                        <div class="triple_5" class="number"><div class="chips" chips key='["triple",5]' /><div class="triple-dice-5"></div></div>
+                        <div class="triple_6" class="number"><div class="chips" chips key='["triple",6]' /><div class="triple-dice-6"></div></div>
+                    </div>
+                </div>--><div class="row">
+                    <div class="col-xs-12">
+                        <div id="dices-history">
+                            <img src="./res/dice_num{{dice}}.png" ng-repeat="dice in game.result track by $index" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <dl class="dl-horizontal">
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh1 %></dt><dd class="margin-left-120 wrap-word">{{ game.id || game._id }}
+            </dd>
+            <dt  class="spins-dt-width">
+            <%= username %></dt><dd class="margin-left-120">{{ game.player_alias }}
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh3 %></dt><dd class="margin-left-120">{{ game | winnings }}<%= game.x %>
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh4 %></dt><dd class="margin-left-120">{{ game.wager | btc }}
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh9 %></dt><dd class="margin-left-120">
+            <span ng-repeat="(key, bet) in game.bets">{{key}}:{{ bet | btc }} </span>
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh5 %></dt><dd class="margin-left-120">{{ game.winnings | btc }}
+            </dd>
+            <dt class="spins-dt-width">
+            <%= spins.CircleTh7 %></dt><dd class="margin-left-120">{{ game.createdAt | date:"MM/dd HH:mm:ss" }}
+            </dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt1 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.server_seed }}</dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt3 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.seed_hash }}</dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt4 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.client_seed }}</dd>
+            <dt class="spins-dt-width"><%= spins.ProofDt5 %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.final_array }}</dd>
+            <dt class="spins-dt-width"><%= game.luckynumber %></dt>
+            <dd class="margin-left-120 wrap-word">{{ game.result }}</dd>
+        </dl>
+
+        <provably-fair init-array="{{game.init_array}}" server-seed="{{game.server_seed}}" client-seed="{{game.client_seed}}"></provably-fair>
+    </div>
+
+    <button class="btn btn-default btn-lg" ng-click="backToList()"><%= gameDetails.returnToList %></button>
+</div>

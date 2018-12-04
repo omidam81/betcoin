@@ -1,0 +1,98 @@
+<div class="tabcontent">
+    <h1>如何游戏</h1>
+    <p class="ng-binding"><b class="ng-binding">财神运™</b>是最经典的游戏之一，允许您用比特币下注。非常简单、有趣，并能赢更多的比特币！</p>
+
+    <p>庄家会选中带有六个数字(1, 2, 5, 10, 20, 45)转轮。这些数字以不同的次数分布在转轮上。数字 1 拥有最高的次数，45 拥有最低的次数。游戏的目的在于正确的猜中转轮结束后的数字。同时，玩家可以对不同对数字进行一个以上筹码对下注！</p>
+    <br>
+     <ol class="padding-left-40">
+        <li class="ng-binding"><b class="ng-binding">输入您的取款地址</b>，选择“开始游戏</li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">将比特币充入游戏为您设定的专用比特币存款地址</b>
+        </li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">用滑块、余额百分比按钮、增量按钮或在下注框上单击并输入金额</b>，选择下注金额</li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">单击圆盘中间的比特币以旋转财神轮</b>
+        </li>
+        <br>
+        <li class="ng-binding">结果大于 1.0x 表示旋转赢了，会使您的余额增加，结果小于 1.0x 表示旋转输了，会使您余额减少</li>
+        <br>
+        <li class="ng-binding">检查您的进度，用游戏屏幕下方的游戏“高手排名榜”和“近期游戏”标签，可以跟踪全球的玩家</li>
+        <br>
+        <li class="ng-binding">静止 30 分钟后或关闭浏览器后，您的余额会自动返还给您</li>
+        <br>
+    </ol>
+    <h4>赔率</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>下注</th>
+                <th>赔率</th>
+            </tr>
+            <tr>
+                <td>数字 1</td>
+                <td>1 : 1</td>
+            </tr>
+            <tr>
+                <td>数字 2</td>
+                <td>3 : 1</td>
+            </tr>
+            <tr>
+                <td>数字 5</td>
+                <td>5 : 1</td>
+            </tr>
+            <tr>
+                <td>数字 10</td>
+                <td>10 : 1</td>
+            </tr>
+            <tr>
+                <td>数字 20</td>
+                <td>20 : 1</td>
+            </tr>
+            <tr>
+                <td>数字 45</td>
+                <td>45 : 1</td>
+        </tbody>
+    </table>
+
+    <h4>庄家优势</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>下注类型</th>
+                <th>优势</th>
+            </tr>
+            <tr>
+                <td>数字 1</td>
+                <td>7.69%</td>
+            </tr>
+            <tr>
+                <td>数字 3</td>
+                <td>7.69%</td>
+            </tr>
+            <tr>
+                <td>数字 5</td>
+                <td>7.69%</td>
+            </tr>
+            <tr>
+                <td>数字 10</td>
+                <td>15.38%</td>
+            </tr>
+            <tr>
+                <td>数字 20</td>
+                <td>19.23%</td>
+            </tr>
+            <tr>
+                <td>数字 45</td>
+                <td>11.54%</td>
+        </tbody>
+    </table>
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair></provably-fair>
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">点击显示验证游戏公平性的代码</a></p>
+
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+
+</div>

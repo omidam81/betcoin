@@ -1,0 +1,114 @@
+<div class="tabcontent">
+  <h1>游戏说明</h1>
+  <p class="ng-binding"><b class="ng-binding">财神龙虎斗™ </b> 是一个经典的扑克游戏，允许您用比特币下注。非常简单、有趣，并能赢更多的比特币！</p>
+  <br>
+  <ol style="padding-left:40px;">
+    <li class="ng-binding"><b class="ng-binding">登入或注册</b>，或者用您的比特币钱包来进行匿名游戏</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">充值比特币</b>到游戏为您设定的专用比特币存款地址</li>
+    <br>
+    <li class="ng-binding"><b class="ng-binding">用滑块、余额百分比按钮、增量按钮或在下注框上单击并输入金额</b>，选择下注金额</li>
+    <br>
+    <li class="ng-binding">检查您的进度，用游戏屏幕下方的游戏“高手排名榜”和“近期游戏”标签，可以跟踪全球的玩家</li>
+    <br>
+    <li class="ng-binding">静止 30 分钟后或关闭浏览器后，您的余额会自动返还给您</li>
+    <br>
+  </ol>
+<!-- <h4>Pay Table</h4>
+
+<div data-ng-include data-src="'tpl/paytables.html'"></div> -->
+
+    <h4>玩财神龙虎斗™</h4>
+    <ol style="padding-left:40px;">
+        <li>使用8副扑克牌</li>
+        <li>牌的大小根据常规，除了A为最小。</li>
+        <li>会各给龙和玩家一张牌。</li>
+        <li>主要下注是猜谁有更大的牌。</li>
+        <li>其它下注类别如下。</li>
+    </ol>
+    <h4>下注类型</h4>
+    <ol>
+        <li>
+            <h5>龙/虎</h5>
+            <p>在所选择的一方有相对大的牌，龙和虎的下注赢得赌注。平手输掉一般。</p>
+            <table>
+                <thead>
+                    <tr><th>结果</th><th>陪 vv</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>赢</td><td>1</td>
+                    <tr><td>平手</td><td>-0.5</td>
+                    <tr><td>输</td><td>-1</td>
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <h5>平手</h5>
+            <p>在下注平局的情况下，如果龙和虎的牌成平局，赔率为8比1。</p>
+            <table>
+                <thead>
+                <tr><th>结果</th><th>赔率</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>赢</td><td>8</td>
+                <tr><td>输</td><td>-1</td>
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <h5>同花平局</h5>
+            <p>在下注同花平局的情况下，如果龙和虎的牌成同花平局，赔率为50比1。</p>
+            <table>
+                <thead>
+                <tr><th>结果</th><th>赔率</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>赢</td><td>50</td>
+                <tr><td>输</td><td>-1</td>
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <h5>大/小</h5>
+            <p>玩家可以下注某一张牌是否大于或小于7。如果等于7，那么就输。赔率为1比1。</p>
+            <table>
+                <thead>
+                <tr><th>结果</th><th>赔率</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>赢</td><td>1</td>
+                <tr><td>输</td><td>-1</td>
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <h5>花色</h5>
+            <p>玩家可以下注某一张牌的花色。如果等于7，那么就输。赔率为3比1。</p>
+            <table>
+                <thead>
+                <tr><th>结果</th><th>赔率</th></tr>
+                </thead>
+                <tbody>
+                <tr><td>赢</td><td>3</td>
+                <tr><td>输</td><td>-1</td>
+                </tbody>
+            </table>
+        </li>
+    </ol>
+
+
+    <h4 class="ng-binding">财神龙虎斗™的预期回报率是多少？</h4>
+
+    <p>龙／虎：96.27%，平手：67.23%，同花平局：86.02%，大／小：92.31%，同花：92.31%</p>
+    <h4 class="ng-binding">每盘游戏有没有最低赌注限制？</h4>
+    <p class="ng-binding">最低赌注为0.000001 个比特币</p><p></p>
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair server-seed="serverSeed" client-seed="clientSeed"></provably-fair>
+
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">点击这里显示用来验证游戏公平性的代码</a></p>
+    <!-- <p><a target="_blank" href="./calc-odds.js">Click here to view the full odds and house edge calculations.</a></p> -->
+
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+</div>

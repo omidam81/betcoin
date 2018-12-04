@@ -1,0 +1,33 @@
+<div>
+    <!-- @ifndef HIVEAPP -->
+    <a data-toggle="modal" data-target="#qrModal" class="cursor-pointer padding-5 padding-left-right-0" ng-click="showQR=true">
+        <img src="img/qr-mini.png" />
+    </a>
+    <a target="_blank" ng-href="bitcoin:{{btcAddress}}">
+        <img src="img/multibit-mini.png"/>
+    </a>
+    <!-- @endif -->
+    <!-- @ifdef HIVEAPP -->
+    <a ng-click="sendBitcoins(btcAddress)">
+        <img src="img/multibit-mini.png"/>
+    </a>
+    <!-- @endif -->
+</div>
+<!--   QR Modal-->
+<div id="qrModal" class="qc-modal modal fade">
+    <div class="modal-dialog qr-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <div><small>{{btcAddress}}</small></div>
+            </div>
+            <div class="modal-body">
+                <img ng-show="showQR" src="{{qrcodeUrl}}"/>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal"><%= close %></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end QR Modal -->

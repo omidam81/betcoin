@@ -1,0 +1,36 @@
+{
+    "prod": "circle",
+    "meta": {
+        "title": "BetCoin ™ Circle Bitcoin Casino - Win Bitcoins!",
+        "description": "BetCoin ™ Circle is the provably fair roulette for bitcoin. Take the game for a spin and multiply your bitcoin instantly!",
+        "keywords": "Bitcoin, Casino, Gambling, Dice, Gaming, free bitcoin, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "global": {
+        "logourl": "img/circle.png"
+    },
+    "home": {
+        "title_image": "img/icons/circle.png",
+        "circle_promote_header_a": "Spin the provably fair roulette<br />Win up to 25x on a single spin!",
+        "circle_promote_header_b": "Ultra-secure design - accounts cannot be hacked",
+        "circle_promote_header_c": "Huge INSTANT payouts - Largest in the industry",
+        "circle_promote_header_d": "Provably fair, transparent system - World's lowest house edge: 1.65%"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/circle"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/lun"
+        }
+    },
+    "game": {
+        "spinmessage": "Spin the circle by pressing the Bitcoin in the middle"
+    },
+    "spins": {
+        "details": "Details",
+        "CloseButton": "Close",
+        "ProofButton": "Proof",
+        "match": "Matched",
+        "nomatch": "No Matched"
+    }
+}

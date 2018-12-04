@@ -1,0 +1,2 @@
+RUN cd /app && /sbin/setuser app make CONF=local GRUNT_TASKS=dist && /sbin/setuser app bash dedup.sh
+RUN cd /app && /sbin/setuser app make CONF=local LOC=zh_CN GRUNT_TASKS=dist && /sbin/setuser app bash dedup.sh

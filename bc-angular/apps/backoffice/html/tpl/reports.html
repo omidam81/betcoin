@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-xs-12">
+        <ul ng-controller="NavController" class="nav nav-pills">
+            <li><a href="reports/profit">Profit</a></li>
+            <li><a href="reports/games">Games</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <p>
+        These reports are only generated once per day if requested,
+        then cached. This cache is in memory, so a report will be
+        generated again if the server is restarted and another report
+        is requested for a day that already has a report.
+    </p>
+</div>
+
+<div class="row" ng-show="loading">
+    <h3>Loading</h3>
+    <h4>{{message}}</h4>
+    <div ng-if="toProcess"
+         class="progress">
+        <div class="progress-bar progress-bar-striped active"
+             role="progressbar"
+             aria-valuenow="{{percentCompleted}}"
+             aria-valuemin="0"
+             aria-valuemax="100"
+             ng-style="{'width':percentCompleted+'%'}">
+            {{percentCompleted | number:2}}%
+        </div>
+    </div>
+    <div ng-if="toProcess">
+        <h4>{{processed|number}} of {{toProcess|number}} records processed</h4>
+    </div>
+</div>
+<ng-include ng-if="type"
+            ng-hide="loading"
+            src="'tpl/reports/'+type+'.html'"></ng-include>

@@ -1,0 +1,10 @@
+{
+
+	"node": true,
+	"globals": [
+		"angular",
+		"__import",
+		"__export"
+	]
+
+}

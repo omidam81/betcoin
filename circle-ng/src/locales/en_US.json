@@ -1,0 +1,91 @@
+{
+    "prod": "circle",
+    "meta": {
+        "title": "BetCoin ™ Circle Bitcoin Casino - Win Bitcoins!",
+        "description": "BetCoin ™ Circle is the provably fair roulette for bitcoin. Take the game for a spin and multiply your bitcoin instantly!",
+        "keywords": "Bitcoin, Casino, Gambling, Dice, Gaming, free bitcoin, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair, Bitcoin, Casino, Gambling, Dice, Gaming, Satoshi, Bet, Betting, Wheel, Roulette, Slot Machine, Blockchain, Bet with bitcoins,  Poker, Blackjack, Provably fair"
+    },
+    "isLocalized" : "true",
+    "minbetMsg": "The minimum bet is 0.000001 BTC",
+    "serverMsg": "The game server cannot be reached",
+    "minconfMsg": "At least 1 deposit has not been confirmed",
+    "withdrawErrorMsg": "Withdraw error, please try again",
+    "global": {
+        "logourl": "img/circle.png",
+        "withdrawAddress": "Your Bitcoin Wallet Address"
+    },
+    "nav": {
+        "spins": "Recent Spins",
+        "leaderboard": "Leaderboard",
+        "howtoplay": "How to Play"
+    },
+    "home": {
+        "title_image": "img/icons/circle.png",
+        "circle_promote_header_a": "Spin the Provably Fair Circle<br />Win up to 25x on a single spin!",
+        "circle_promote_header_b": "Ultra-secure design - accounts cannot be hacked",
+        "circle_promote_header_c": "Huge INSTANT payouts - Largest in the industry",
+        "circle_promote_header_d": "Provably fair, transparent system - World's lowest house edge: 1.65%"
+    },
+    "text": {
+        "withdrawAddress": "Enter Your Bitcoin Wallet Address"
+    },
+    "locales" : {
+        "en" : {
+            "url" : "https://www.betcoin.tm/circle"
+        },
+        "zh" : {
+            "url" : "https://www.caishentang.com/lun"
+        }
+    },
+    "game": {
+        "CircleDiv2": "Total Spins",
+        "CircleDiv3": "My Spins",
+        "CircleDiv4": "Bet:",
+        "CircleDiv5": "Credit:",
+        "CircleDiv6": "Deposit Address:",
+        "CircleButtonCashOut": "Cash Out",
+        "cashoutConfirm": "Please confirm that you want to cash out",
+        "returnToGame": "Return to game",
+        "SsHeader1": "Set Seed",
+        "SsHeader2": "Next Game ID:",
+        "SsHeader3": "Set Client Seed",
+        "spinmessage": "Spin the circle by pressing the Bitcoin in the middle",
+        "spinningmessage":"<a href=\"https://www.betcoin.tm/prize\" target=\"_blank\">BetCoin Prize<br>World's Best Bitcoin Lottery</a>",
+        "winmessage": "You won",
+        "autospin_text" : " Autobet",
+        "proof_text" : "Proof"
+    },
+    "leaderboard": {
+        "topPlayers": "Top Players",
+        "bronze": "Bronze",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum",
+        "diamond": "Diamond",
+        "alias": "Username",
+        "btcwagered": "BTC Wagered"
+    },
+    "spins": {
+        "global": "Global",
+        "myspins": "My Spins",
+        "details": "Details",
+        "CircleTh1": "ID",
+        "CircleTh2": "Username",
+        "CircleTh3": "Result",
+        "CircleTh4": "Bet",
+        "CircleTh5": "Return",
+        "CircleTh6": "Proof",
+        "CircleTh7": "Time",
+        "CircleTh8": "Circle",
+        "ProofHeader1": "Proof",
+        "ProofDt1": "Server Seed",
+        "ProofDt2": "Initial Array",
+        "ProofDt3": "Initial Hash",
+        "ProofDt4": "Client Seed",
+        "ProofDt5": "Final Array",
+        "CloseButton": "Close",
+        "ProofButton": "Proof",
+        "match" : "Matched",
+        "nomatch" : "No Matched"
+    }
+}

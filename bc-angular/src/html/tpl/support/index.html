@@ -1,0 +1,25 @@
+<div class="row">
+    <div ng-include src="subtemplate"></div>
+    <div ng-show="userTickets.length" class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default main-container">
+            <div class="panel-heading"><%= ticket_table_header %></div>
+            <div class="panel-footer">
+                <table class="table table-hover">
+                    <tr>
+                        <th><%= text.ticket_subject %></th>
+                        <th><%= text.ticket_status %></th>
+                        <th><%= text.ticket_updated %></th>
+                        <th><%= text.ticket_comments %></th>
+                    </tr>
+                    <tr ng-repeat="ticket in userTickets" class="cursor-pointer" ng-click="viewTicket(ticket._id)">
+                        <td>{{ticket.subject}}</td>
+                        <td>{{ticket.status}}</td>
+                        <td>{{ticket.thread[ticket.thread.length - 1].createdAt | date:'medium'}}</td>
+                        <td>{{ticket.thread.length}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,134 @@
+{
+    "prod": "dice-classic",
+    "meta": {
+        "title": "财神典™比特币骰子博彩游戏－赢大量比特币",
+        "meta_description": "财神典™比特币骰子博彩游戏－瞬间成为千万富翁！全球最高的比特币奖金！"
+    },
+    "win": "赢",
+    "lose": "输",
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/dice-classic"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/ling-jingdian"
+        }
+    },
+    "home": {
+        "logo_title_a": "点击这里玩新的 财神堂™ 典",
+        "logo_title_b": "享受零交易费，赢取奖金回馈",
+        "logo_title_1": "瞬间成为千万富翁！",
+        "logo_title_2": "实时观察投注过程！",
+        "logo_title_3": "真正\"零\"确认！",
+        "column_left_div": "游戏下注总数",
+        "column_right_div": "所赢比特币总额",
+        "betcoin_dice_img_alt": "财神典™比特币骰子博彩游戏",
+        "title_image": "img/words/CN-DICE.png"
+    },
+    "animation": {
+        "idleText": "正在等待投注",
+        "rolling": "正在掷骰子",
+        "forPlayer": "投注 玩家：",
+        "winner": "恭喜您赢了!!!",
+        "enable3d_title": "启用3D动画",
+        "enable3d_content": "三维动画目前无法启用。您可能调整了浏览器窗户尺寸，或者您浏览器的放大显示设置未设置成默认设置。请同时按\"ctrl\"与\"0\"按键或者\"command\"与\"0\"按键，以便重设浏览器放大显示设置。"
+    },
+    "bets": {
+        "game_wrap_th1": "游戏",
+        "game_wrap_th2": "游戏地址",
+        "game_wrap_th3": "赢注概率",
+        "game_wrap_th4": "奖金乘数",
+        "game_wrap_th5": "庄家百分比",
+        "game_wrap_th6": "预期回报",
+        "game_wrap_th7": "最小赌注",
+        "game_wrap_th8": "最大赌注"
+    },
+    "games": {
+        "recent": "近期投注",
+        "tabs_unconfirmed": "未经确认",
+        "tabs_big": "超大赢注",
+        "tabs_rare": "罕见赢注",
+        "games_wrap_th9": "详情",
+        "games_wrap_th10": "我的投注",
+        "games_wrap_th11": "游戏",
+        "games_wrap_th12": "投注交易",
+        "games_wrap_th13": "支付交易",
+        "games_wrap_th14": "地址",
+        "games_wrap_th15": "投注金额",
+        "games_wrap_th16": "投注结果",
+        "games_wrap_th17": "支付金额",
+        "games_wrap_th18": "幸运号码",
+        "games_wrap_div1": "",
+        "game_wrap_button": "详情",
+        "tr_header1": "交易",
+        "tr_li1": "处理时间",
+        "tr_li2": "秘钥日期: ",
+        "tr_li3": "投注: ",
+        "tr_li4": "投注交易: ",
+        "tr_li5": "支付交易: ",
+        "tr_li6": "支付交易状态: ",
+        "tr_li7": "投注金额: ",
+        "tr_li8": "投注结果: ",
+        "tr_li9": "支付交易: ",
+        "tr_li10": "地址: ",
+        "tr_li11": "幸运号码: ",
+        "tr_header2": "秘钥\"哈希\"",
+        "tr_header3": "验证",
+        "tr_p1": "下载及验证",
+        "tr_p2": "要了解更多有关秘钥的细节，请查看 ",
+        "hash_keys": "hashes.keys",
+        "secret_keys": "secret.keys"
+    },
+    "leaderboard": {
+        "top_players": "顶级玩家",
+        "reward_points": "奖励点",
+        "btc_won": "赢得的比特币",
+        "prizes_won": "所赢奖励",
+        "btc_wagered": "历来投注总额",
+        "rewards": "奖励"
+    },
+    "my_games": {
+        "txhash": "交易代码",
+        "title": "我的游戏",
+        "address_displayed": "所显示的钱包地址",
+        "add_address_search": "将此地址添加至我的游戏",
+        "remove_btn": "删除",
+        "loading": "加载中",
+        "table_hd1": "已处理",
+        "table_hd2": "游戏",
+        "table_hd3": "投注交易",
+        "table_hd4": "支付交易",
+        "table_hd5": "地址",
+        "table_hd6": "投注金额",
+        "table_hd7": "结果",
+        "table_hd8": "支付金额",
+        "table_hd9": "幸运号码",
+        "proof": "验证",
+        "add": "添加",
+        "payout": "支付交易",
+        "address_placeholder": "请输入您的比特币钱包地址",
+        "address_tip": "正在显示所有的投注。请添加您的钱包地址以便筛选并观看您的投注！",
+        "lookup_transaction": "以交易哈希查找投注",
+        "search": "搜索",
+        "searching": "搜索中...",
+        "nothing_found": "未查到任何结果. 您输入的",
+        "valid_transaction": " 是否为有效的交易哈希？",
+        "secret_key": "秘钥:",
+        "click_secret_hash": "点击此处以获取秘钥哈希",
+        "bet_address": "将比特币发至以下游戏地址",
+        "minimum_bet": "0.001比特币最小投注",
+        "copy": "复制",
+        "bet": "投注"
+    },
+    "bc_dropdown": {
+        "title": "请选择游戏:",
+        "send_title": "将比特币发至以下游戏地址",
+        "copy": "复制",
+        "click_bet": "投注点击此处"
+    },
+    "detail_modal": {
+        "secret_key": "游戏秘钥:",
+        "click_hash_key": "点击此处以获取秘钥哈希",
+        "loading": "加载中…"
+    }
+}

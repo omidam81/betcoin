@@ -1,0 +1,27 @@
+{
+    "prod": "war",
+    "meta": {
+        "title": "财神九™"
+    },
+    "global": {
+        "logourl": "img/words/cn/paigow.png"
+    },
+    "home": {
+        "title_image": "img/icons/paigow280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/paigow"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/jiu"
+        }
+    },
+    "buttons": {
+        "split": "分牌",
+        "house_way": "自动分牌"
+    },
+    "text": {
+        "invalid_split": "前两张牌不能比后五张牌大"
+    }
+}

@@ -1,0 +1,95 @@
+<div class="tabcontent">
+    <h1>How to Play</h1>
+    <p class="ng-binding"><b class="ng-binding">BetCoin ™ Fortune</b> is one of the oldest and most famous casino games. that allows you to wager with the digital currency Bitcoin. It is an easy and fun way to play with and win more Bitcoins!</p>
+
+    <p>The dealer spins the wheel with 6 numbers (1, 2, 5, 10, 20, 45). These numbers are spreaded in a number of times on the wheel. Number 1 has the highest count of the occurance, while the 45 has the lowest count of the occurance. The object of the game is to guess the final number when the wheel spin is stopped. Also, you can bet on the different numbers and more than one chicks on one number for one spin!</p>
+    <br>
+    <ol class="padding-left-40">
+        <li class="ng-binding"><b class="ng-binding">Login or Register</b>, or play anonymously with your BTC wallet address</li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">Fund</b> your playing balance with Bitcoins using the provided personal deposit address</li>
+        <br>
+        <li class="ng-binding"><b class="ng-binding">Select wager</b> amount by using either the slider, percentage of balance buttons, incremental buttons, or by clicking on the wager box. The maximum wager value is adjusted dynamically.</li>
+        <br>
+        <li class="ng-binding">Check your progress and follow players around the world using the in-game Leaderboard and Recent Spins tabs located below the playing screen.</li>
+        <br>
+        <li class="ng-binding">If you play anonymously, your balance will automatically be returned to you after 30 minutes of inactivity or upon closing your browser.</li>
+        <br>
+    </ol>
+    <h4>Payouts</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Bet</th>
+                <th>Payout Odds</th>
+            </tr>
+            <tr>
+                <td>Number 1</td>
+                <td>1 to 1</td>
+            </tr>
+            <tr>
+                <td>Number 3</td>
+                <td>3 to 1</td>
+            </tr>
+            <tr>
+                <td>Number 5</td>
+                <td>5 to 1</td>
+            </tr>
+            <tr>
+                <td>Number 10</td>
+                <td>10 to 1</td>
+            </tr>
+            <tr>
+                <td>Number 20</td>
+                <td>20 to 1</td>
+            </tr>
+            <tr>
+                <td>Number 45</td>
+                <td>45 to 1</td>
+        </tbody>
+    </table>
+
+    <h4>House Edges</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Bet</th>
+                <th>House Edge</th>
+            </tr>
+            <tr>
+                <td>Number 1</td>
+                <td>7.69%</td>
+            </tr>
+            <tr>
+                <td>Number 3</td>
+                <td>7.69%</td>
+            </tr>
+            <tr>
+                <td>Number 5</td>
+                <td>7.69%</td>
+            </tr>
+            <tr>
+                <td>Number 10</td>
+                <td>15.38%</td>
+            </tr>
+            <tr>
+                <td>Number 20</td>
+                <td>19.23%</td>
+            </tr>
+            <tr>
+                <td>Number 45</td>
+                <td>11.54%</td>
+        </tbody>
+    </table>
+
+    <div data-ng-include data-src="'tpl/fair-intro-<%= fileSuffix %>.html'"></div>
+
+    <provably-fair></provably-fair>
+
+    <p><a target="_blank" href="./js/app/directives/provably-fair.js">Click here to view the source code of the provably fair algorithm.</a>
+    </p>
+
+    <div data-ng-include data-src="'tpl/faq-<%= fileSuffix %>.html'"></div>
+
+
+</div>

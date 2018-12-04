@@ -1,0 +1,24 @@
+<div ng-controller="bcLangCheckController">
+    <div id="modal-language-check" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <p><%= checkSiteLanguage.enIntro %></p>
+                    <br/>
+                    <p><%= checkSiteLanguage.zhIntro %></p>
+                    <br/>
+
+                    <button class="btn btn-default lang-check-button" ng-click="siteSelected()"><%= checkSiteLanguage.enText %></button>
+                    <br/>
+                    <button class="btn btn-default lang-check-button" ng-click="siteSelected()"><%= checkSiteLanguage.zhText %></button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default lang-check-button" ng-click="siteSelectCanceled()"><%= checkSiteLanguage.cancel %></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

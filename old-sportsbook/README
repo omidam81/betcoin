@@ -1,0 +1,4 @@
+1. configure ssl certs
+2. in config.json native needs to be set to true for SSL (heroku)
+3. npm install
+4. node server.js

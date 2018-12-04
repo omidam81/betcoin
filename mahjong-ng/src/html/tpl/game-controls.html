@@ -1,0 +1,188 @@
+<div ng-controller="GameController" class="row noselect mahjong-area" id="gameContainer">
+    <div class="col-xs-12 col-md-4 text-center col-md-push-8">
+
+        <div><img alt="<%= meta.title %>" src="<%= global.logourl %>" class="logo" /></div>
+        <player-info></player-info>
+        <cashout-button player = "player" game="game"></cashout-button>
+        <!--<div>-->
+            <!--<spinmessage></spinmessage>-->
+            <!--<bet-panel player="player" wager="btcWager" currency-abbr="currencyAbbr"></bet-panel>-->
+        <!--</div>-->
+        <div class="clear-both position-relative">
+              <div class="mahjong-game-sound-toggle-container">
+                  <div class="soundToggle"><img  ng-click="soundToggle()" ng-src="{{ soundIcon }}"/></div>
+              </div>
+              <proof-button></proof-button>
+              <small class="display-none">
+                  <dl class="dl-horizontal">
+                      <dt><%= game.SsHeader2 %></dt><dd>{{ nextGameId }}</dd>
+                      <dt>SHA256:</dt><dd class="allow-word-wrap-with-word-break">{{ sha256 }}</dd>
+                  </dl>
+              </small>
+
+              <bc-client-seed class="seed-container" reset="isResetSeed" seed-value="clientSeedValue" init-seed-value="gameData.client_seed"></bc-client-seed>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-8 game col-md-pull-4 padding-0">
+        <!--<div id="g-mahjong" class="g-mahjong">-->
+        <div id="top_place" class="player" style="margin-top:50px">
+            <div id="W">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+              <img src="./res/back.png" class="wplayer">
+            </div>
+        </div>
+        <div id="middle_place" class="player">
+
+            <div id="N" style="width:50px;float:left;margin-top:30px">
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90"><br>
+                <img src="./res/back.png" class="rotate90">
+            </div>
+            <div id="discarded" style="width:550px;height:300px;float:left;margin-left:70px;margin-top:47px">
+                <img src="./res/{{disImage[0]}}.png" class="disFirst" id="0">
+                <img src="./res/{{disImage[1]}}.png" class="disFirst" id="1">
+                <img src="./res/{{disImage[2]}}.png" class="disFirst" id="2">
+                <img src="./res/{{disImage[3]}}.png" class="disFirst" id="3">
+                <img src="./res/{{disImage[4]}}.png" class="disFirst" id="4">
+                <img src="./res/{{disImage[5]}}.png" class="disFirst" id="5">
+                <img src="./res/{{disImage[6]}}.png" class="disFirst" id="6">
+                <img src="./res/{{disImage[7]}}.png" class="disFirst" id="7">
+                <img src="./res/{{disImage[8]}}.png" class="disFirst" id="8">
+                <img src="./res/{{disImage[9]}}.png" class="disFirst" id="9">
+                <img src="./res/{{disImage[10]}}.png" class="disFirst" id="10">
+                <img src="./res/{{disImage[11]}}.png" class="disFirst" id="11">
+                <img src="./res/{{disImage[12]}}.png" class="disFirst" id="12">
+                <img src="./res/{{disImage[13]}}.png" class="disFirst" id="13"><br>
+
+                <img src="./res/{{disImage[14]}}.png" class="disSecond" id="14">
+                <img src="./res/{{disImage[15]}}.png" class="disSecond" id="15">
+                <img src="./res/{{disImage[16]}}.png" class="disSecond" id="16">
+                <img src="./res/{{disImage[17]}}.png" class="disSecond" id="17">
+                <img src="./res/{{disImage[18]}}.png" class="disSecond" id="18">
+                <img src="./res/{{disImage[19]}}.png" class="disSecond" id="19">
+                <img src="./res/{{disImage[20]}}.png" class="disSecond" id="20">
+                <img src="./res/{{disImage[21]}}.png" class="disSecond" id="21">
+                <img src="./res/{{disImage[22]}}.png" class="disSecond" id="22">
+                <img src="./res/{{disImage[23]}}.png" class="disSecond" id="23">
+                <img src="./res/{{disImage[24]}}.png" class="disSecond" id="24">
+                <img src="./res/{{disImage[25]}}.png" class="disSecond" id="25">
+                <img src="./res/{{disImage[26]}}.png" class="disSecond" id="26">
+                <img src="./res/{{disImage[27]}}.png" class="disSecond" id="27"><br>
+
+                <img src="./res/{{disImage[28]}}.png" class="disThird" id="28">
+                <img src="./res/{{disImage[29]}}.png" class="disThird" id="29">
+                <img src="./res/{{disImage[30]}}.png" class="disThird" id="30">
+                <img src="./res/{{disImage[31]}}.png" class="disThird" id="31">
+                <img src="./res/{{disImage[32]}}.png" class="disThird" id="32">
+                <img src="./res/{{disImage[33]}}.png" class="disThird" id="33">
+                <img src="./res/{{disImage[34]}}.png" class="disThird" id="34">
+                <img src="./res/{{disImage[35]}}.png" class="disThird" id="35">
+                <img src="./res/{{disImage[36]}}.png" class="disThird" id="36">
+                <img src="./res/{{disImage[37]}}.png" class="disThird" id="37">
+                <img src="./res/{{disImage[38]}}.png" class="disThird" id="38">
+                <img src="./res/{{disImage[39]}}.png" class="disThird" id="39">
+                <img src="./res/{{disImage[40]}}.png" class="disThird" id="40">
+                <img src="./res/{{disImage[41]}}.png" class="disThird" id="41"><br>
+
+                <img src="./res/{{disImage[42]}}.png" class="disFourth" id="42">
+                <img src="./res/{{disImage[43]}}.png" class="disFourth" id="43">
+                <img src="./res/{{disImage[44]}}.png" class="disFourth" id="44">
+                <img src="./res/{{disImage[45]}}.png" class="disFourth" id="45">
+                <img src="./res/{{disImage[46]}}.png" class="disFourth" id="46">
+                <img src="./res/{{disImage[47]}}.png" class="disFourth" id="47">
+                <img src="./res/{{disImage[48]}}.png" class="disFourth" id="48">
+                <img src="./res/{{disImage[49]}}.png" class="disFourth" id="49">
+                <img src="./res/{{disImage[50]}}.png" class="disFourth" id="50">
+                <img src="./res/{{disImage[51]}}.png" class="disFourth" id="51">
+                <img src="./res/{{disImage[52]}}.png" class="disFourth" id="52">
+                <img src="./res/{{disImage[53]}}.png" class="disFourth" id="53">
+                <img src="./res/{{disImage[54]}}.png" class="disFourth" id="54">
+                <img src="./res/{{disImage[55]}}.png" class="disFourth" id="55"><br>
+
+                <img src="./res/{{disImage[56]}}.png" class="disFifth" id="56">
+                <img src="./res/{{disImage[57]}}.png" class="disFifth" id="57">
+                <img src="./res/{{disImage[58]}}.png" class="disFifth" id="58">
+                <img src="./res/{{disImage[59]}}.png" class="disFifth" id="59">
+                <img src="./res/{{disImage[60]}}.png" class="disFifth" id="60">
+                <img src="./res/{{disImage[61]}}.png" class="disFifth" id="61">
+                <img src="./res/{{disImage[62]}}.png" class="disFifth" id="62">
+                <img src="./res/{{disImage[63]}}.png" class="disFifth" id="63">
+                <img src="./res/{{disImage[64]}}.png" class="disFifth" id="64">
+                <img src="./res/{{disImage[65]}}.png" class="disFifth" id="65">
+                <img src="./res/{{disImage[66]}}.png" class="disFifth" id="66">
+                <img src="./res/{{disImage[67]}}.png" class="disFifth" id="67">
+                <img src="./res/{{disImage[68]}}.png" class="disFifth" id="68">
+                <img src="./res/{{disImage[69]}}.png" class="disFifth" id="69"><br>
+
+                <img src="./res/{{disImage[70]}}.png" class="disSixth" id="70">
+                <img src="./res/{{disImage[71]}}.png" class="disSixth" id="71">
+                <img src="./res/{{disImage[72]}}.png" class="disSixth" id="72">
+                <img src="./res/{{disImage[73]}}.png" class="disSixth" id="73">
+                <img src="./res/{{disImage[74]}}.png" class="disSixth" id="74">
+                <img src="./res/{{disImage[75]}}.png" class="disSixth" id="75">
+                <img src="./res/{{disImage[76]}}.png" class="disSixth" id="76">
+                <img src="./res/{{disImage[77]}}.png" class="disSixth" id="77">
+                <img src="./res/{{disImage[78]}}.png" class="disSixth" id="78">
+                <img src="./res/{{disImage[79]}}.png" class="disSixth" id="79">
+                <img src="./res/{{disImage[80]}}.png" class="disSixth" id="80">
+                <img src="./res/{{disImage[81]}}.png" class="disSixth" id="81">
+                <img src="./res/{{disImage[82]}}.png" class="disSixth" id="82"><br>
+
+            </div>
+            <div id="S" style="width:50px;float:right;margin-top:30px">
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+                <img src="./res/back.png" class="rotate270"><br/>
+            </div>
+        </div>
+
+        <div id="bottom_place" class="player">
+            <div id="E" style="margin-top:420px">
+              <img src="{{nameImage[0]}}" class="wplayer" id="0" ng-dblclick="remove('0')">
+              <img src="{{nameImage[1]}}" class="wplayer" id="1" ng-dblclick="remove('1')">
+              <img src="{{nameImage[2]}}" class="wplayer" id="2" ng-dblclick="remove('2')">
+              <img src="{{nameImage[3]}}" class="wplayer" id="3" ng-dblclick="remove('3')">
+              <img src="{{nameImage[4]}}" class="wplayer" id="4" ng-dblclick="remove('4')">
+              <img src="{{nameImage[5]}}" class="wplayer" id="5" ng-dblclick="remove('5')">
+              <img src="{{nameImage[6]}}" class="wplayer" id="6" ng-dblclick="remove('6')">
+              <img src="{{nameImage[7]}}" class="wplayer" id="7" ng-dblclick="remove('7')">
+              <img src="{{nameImage[8]}}" class="wplayer" id="8" ng-dblclick="remove('8')">
+              <img src="{{nameImage[9]}}" class="wplayer" id="9" ng-dblclick="remove('9')">
+              <img src="{{nameImage[10]}}" class="wplayer" id="10" ng-dblclick="remove('10')">
+              <img src="{{nameImage[11]}}" class="wplayer" id="11" ng-dblclick="remove('11')">
+              <img src="{{nameImage[12]}}" class="wplayer" id="12" ng-dblclick="remove('12')">
+              <img src="{{nameImage[13]}}" class="wplayer" id="13" ng-dblclick="remove('13')" style="margin-left:25px"><br/><br/><br/><br/>
+            </div>
+    </div>
+</div>

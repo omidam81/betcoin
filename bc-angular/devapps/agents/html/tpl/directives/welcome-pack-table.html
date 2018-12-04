@@ -1,0 +1,25 @@
+<table class="table">
+    <thead>
+        <th>Serial Number</th>
+        <th>Bonus Code</th>
+        <th>Rep Id</th>
+        <th>User Id</th>
+        <th>Income</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="welcomePack in welcomePacks">
+            <td>{{welcomePack.serialNumber}}</td>
+            <td>{{welcomePack.bonusCode}}</td>
+            <td>{{welcomePack.repId || "N/A"}}</td>
+            <td>{{welcomePack.userId || "N/A"}}</td>
+            <td>
+                <div ng-if="!welcomePack.income.bitcoin">
+                    {{'bitcoin' | cryptosymbol}}{{0 | cryptovalue}}
+                </div>
+                <div ng-repeat="(currency, income) in welcomePack.income">
+                    {{currency | cryptosymbol}}{{income | cryptovalue}}
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

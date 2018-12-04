@@ -1,0 +1,42 @@
+{
+    "prod": "coinflip",
+    "meta": {
+        "title": "BetCoin ™ CoinFlip Bitcoin Casino - Win Bitcoins!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-flip.png"
+    },
+    "home": {
+        "title_image": "img/icons/flip280.png",
+        "circle_promote_header_b": "Ultra-secure design - accounts cannot be hacked",
+        "circle_promote_header_c": "Huge INSTANT payouts - Largest in the industry",
+        "circle_promote_header_d": "Provably fair, transparent system - World's lowest house edge: 1.65%"
+    },
+    "text": {
+        "start_spin": "Bet"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/coinflip"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/zhi"
+        }
+    },
+    "game": {
+        "target": "Target",
+        "result": "Result",
+        "bet": "Bet",
+        "return": "Return",
+        "time": "Time",
+        "CircleDiv3": "My Bets",
+        "spinmessage": "Select your bet size"
+    },
+    "spins": {
+        "myspins": "My Bets",
+        "onecoin": "One Coin",
+        "twocoin": "Two Coins",
+        "head": "Heads",
+        "tail": "Tails"
+    }
+}

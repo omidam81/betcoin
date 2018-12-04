@@ -1,0 +1,17 @@
+<div class="label label-danger"><%= username %>: {{ player.alias }}</div>
+<div class="panel panel-default player-info-panel">
+    <h4 class="display-inline-block"><%= game.CircleDiv6 %></h4>
+    <bc-bitcoin-icons class="display-inline-block" data-btc-address="{{player.deposit.btc.address}}"></bc-bitcoin-icons>
+    <div class="selectable margin-top-5 margin-bottom-5 margin-right-left-auto">
+        <!-- @ifndef HIVEAPP -->
+        <a class="bitcoin-address" target="_blank" ng-href="bitcoin:{{player.deposit.btc.address}}">
+            {{ player.deposit.btc.address }}
+        </a>
+        <!-- @endif -->
+        <!-- @ifdef HIVEAPP -->
+        <a class="bitcoin-address" ng-click="sendBitcoins(player.deposit.btc.address)">
+            {{ player.deposit.btc.address }}
+        </a>
+        <!-- @endif -->
+    </div>
+</div>

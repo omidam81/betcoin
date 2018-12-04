@@ -1,0 +1,60 @@
+<div class="row">
+    <h3>Range</h3>
+    <range-display-back class="col-md-4" since="range.start" until="range.end"></range-display-back>
+    <range-chooser-back class="col-md-4" on-submit="rangeChanged(range)"></range-chooser-back>
+    <currency-chooser-back class="col-md-4" currencies="currencies"></currency-chooser-back>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel"
+             ng-repeat="(currency, cStats) in stats">
+            <h4>{{currency}}</h4>
+            <dl class="dl-horizontal">
+                <dt ng-repeat-start="(key, val) in cStats">{{key}}</dt>
+                <dd ng-repeat-end>{{val | number}}</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel"
+             ng-repeat="(currency, cTotals) in totals">
+            <h4>{{currency}}</h4>
+            <dl class="dl-horizontal">
+                <dt ng-repeat-start="(key, val) in cTotals">{{key}}</dt>
+                <dd ng-repeat-end>{{currency | cryptosymbol}} {{val | cryptovalue}}</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Type</th>
+                <th>Initial Value</th>
+                <th>Value</th>
+                <th>Unlocked</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="bonus in bonusData.result">
+                <th><a ng-href="user/{{bonus.user._id}}">{{bonus.user.username}}</a></th>
+                <th>{{bonus.type}}</th>
+                <th ng-if="bonus.activatedAt">{{bonus.currency | cryptosymbol}} {{bonus.initialValue | cryptovalue}}</th>
+                <th ng-if="bonus.activatedAt">{{bonus.currency | cryptosymbol}} {{bonus.value | cryptovalue}}</th>
+                <th ng-if="bonus.activatedAt">
+                    {{bonus.currency|cryptosymbol}} {{bonus.rollover*bonus.initialValue|cryptovalue}}
+                    ({{(bonus.wagered/(bonus.rollover*bonus.initialValue))*100|number:2}}%)
+                </th>
+                <th ng-if="!bonus.activatedAt"
+                    colspan="3">N/A</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <pre>{{ stats | json }}</pre>
+    <pre>{{ totals | json }}</pre>
+    <pre>{{ bonusData | json }}</pre>
+</div>

@@ -1,0 +1,33 @@
+{
+    "prod": "oasis",
+    "meta": {
+        "title": "Betcoin™ Oasis Poker - Provably Fair - Win Bitcoin!"
+    },
+    "global": {
+        "logourl": "img/words/betcoin-oasis.png"
+    },
+    "home": {
+        "title_image": "img/icons/oasis280.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/oasis"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/oasis-puke"
+        }
+    },
+    "game": {
+        "holded": "HOLD",
+        "foldedmessage": "FOLDED",
+        "unqualifiedmessage": " - Dealer Doesn't Qualify"
+    },
+    "buttons": {
+        "draw": "Draw",
+        "raise": "Raise",
+        "fold": "Fold"
+    },
+    "text": {
+        "invalid_raise": "Invalid raise"
+    }
+}

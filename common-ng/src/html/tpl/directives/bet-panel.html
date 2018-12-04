@@ -1,0 +1,35 @@
+<div>
+    <div class="clear-both width-90-pcnt margin-right-left-auto margin-top-0 margin-bottom-0">
+        <div class="balance">
+            <div><%=game.CircleDiv4 %></div>
+            <div class="numbers numbersWager">{{ currencyAbbr }}<input btc-wager class="btcWager form-control" ng-model="wager" />
+            </div>
+        </div>
+        <div class="balance">
+            <div><%=game.CircleDiv5 %></div>
+            <div class="numbers numbersBalance">{{ currencyAbbr }} {{ player.balance.btc | btc }}</div>
+        </div>
+    </div>
+    <percent-slider data-bar-el="betBar" data-container-el="betCont" data-button-el="betButt" max="{{player.balance.btc}}" step="1" min="0" percent-slider-value="wager"></percent-slider>
+
+    <div class="wagers">
+        <button class="btn btn-default btn-sm btn-bet" id="bet1p" ng-click="wager=betPercent(.01)">1%</button>
+        <button class="btn btn-default btn-sm btn-bet" id="bet10p" ng-click="wager=betPercent(.1)">10%</button>
+        <button class="btn btn-default btn-sm btn-bet" id="bet25p" ng-click="wager=betPercent(.25)">25%</button>
+        <button class="btn btn-default btn-sm btn-bet" id="bet50p" ng-click="wager=betPercent(.5)">50%</button>
+        <button class="btn btn-default btn-sm btn-bet" id="betmax" ng-click="wager=betPercent(1)">
+            <%=maxbet %>
+        </button>
+        <button class="btn btn-default btn-sm btn-bet" id="betreset" ng-click="wager=0">
+            <%=reset %>
+        </button>
+    </div>
+    <div class="wagers">
+        <button class="btn btn-default btn-sm btn-bet" id="bet.001" ng-click="wager=setBet(.001)">{{ currencyAbbr }} .001</button>
+        <button class="btn btn-default btn-sm btn-bet" id="bet.01" ng-click="wager=setBet(.01)">{{ currencyAbbr }} .01</button>
+        <button class="btn btn-default btn-sm btn-bet" id="bet.1" ng-click="wager=setBet(.1)">{{ currencyAbbr }} .1</button>
+        <button class="btn btn-default btn-sm btn-bet" id="bet1" ng-click="wager=setBet(1)">{{ currencyAbbr }} 1</button>
+        <button class="btn btn-default btn-sm btn-bet" id="bet10" ng-click="wager=setBet(10)">{{ currencyAbbr }} 10</button>
+        <button class="btn btn-default btn-sm btn-bet" id="bet100" ng-click="wager=setBet(100)">{{ currencyAbbr }} 100</button>
+    </div>
+</div>

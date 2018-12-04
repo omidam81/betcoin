@@ -1,0 +1,35 @@
+{
+    "prod": "war",
+    "meta": {
+        "title": "财神战™ 比特币赌场 - 玩绝对公平的比特币战争扑克游戏",
+        "description": "财神战™ 是绝对公平的比特币扑克战争游戏。 马上翻倍您的比特币，或者赢一局批对，赢十倍投注！",
+        "keywords": "比特币, 赌场, 赌博, 骰子, 游戏, Satoshi, 投注, 转轮, 老虎机, Blockchain, 比特币投注,  扑克, 21点, 几率平等"
+    },
+    "global": {
+        "logourl": "img/words/CN-WAR.png"
+    },
+    "home": {
+        "title_image": "img/icons/casino.png"
+    },
+    "locales": {
+        "en": {
+            "url": "https://www.betcoin.tm/war"
+        },
+        "zh": {
+            "url": "https://www.caishentang.com/zhan"
+        }
+    },
+    "game": {
+        "spinmessage": "选择投注大小－批对下注 10倍赔率"
+    },
+    "leaderboard": {
+        "bronze": "tong jiang",
+        "silver": "Silver",
+        "gold": "Gold",
+        "platinum": "Platinum",
+        "diamond": "Diamond"
+    },
+    "buttons": {
+        "tiebet": "批对下注"
+    }
+}

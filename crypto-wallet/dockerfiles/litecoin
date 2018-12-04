@@ -1,0 +1,15 @@
+
+RUN add-apt-repository ppa:bitcoin/bitcoin
+
+RUN apt-get update
+
+RUN apt-get install -y libdb4.8-dev libdb4.8++-dev libboost-all-dev libssl-dev
+
+# install litecoind
+RUN git clone https://github.com/litecoin-project/litecoin && cd litecoin && git checkout v0.8.7.2
+
+RUN cd litecoin/src && make -f makefile.unix USE_UPNP=- && cp litecoind /usr/bin
+
+
+RUN mkdir /etc/service/litecoind
+ADD runit/litecoind /etc/service/litecoind/run

@@ -1,0 +1,1 @@
+//@TODO mock rest endpoint to feed to services/player-server.js

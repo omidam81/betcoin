@@ -1,0 +1,78 @@
+<div ng-controller="BonusConfigurationController">
+	<table class="table">
+		<thead>
+			<th>Level</th>
+			<th>Rollover</th>
+			<th>Amount</th>
+			<th></th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="level in options | orderBy:'_id'">
+				<td>
+					<span ng-show="level._id">
+						{{maps[level.value.level]}}
+					</span>
+					<select ng-model="level.value.level" ng-show="!level._id">
+						<option value="0">NONE</option>
+						<option value="1">BRONZE</option>
+						<option value="2">SILVER</option>
+						<option value="3">GOLD</option>
+						<option value="4">DIAMOND</option>
+						<option value="5">PLATINUM</option>
+					</select>
+				</td>
+				<td>
+					<table class="table">
+						<thead>
+							<tr>
+								<th ng-repeat="type in ['match', 'straight']">
+                                    {{type.toUpperCase()}}
+                                </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td ng-repeat="type in ['match', 'straight']"
+                                    ng-init="currencies = level.value[type]">
+									<div class="row input-group" ng-repeat="(currency, config) in currencies">
+										<label>{{currency}}:</label>
+										<input ng-model="config.rollover" type="text" />
+									</div>
+				                </td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+				<td>
+					<table class="table">
+						<thead>
+							<tr>
+								<th ng-repeat="type in ['match', 'straight']">
+                                    {{type.toUpperCase()}}
+                                </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td ng-repeat="type in ['match', 'straight']"
+                                    ng-init="currencies = level.value[type]">
+									<div class="row input-group" ng-repeat="(currency, config) in currencies">
+										<label>{{currency}}:</label>
+										<crypto-input model="config.amount"
+                                                      currency="currency"
+                                                      class="input-group"></crypto-input>
+									</div>
+				                </td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+				<td>
+					<button class="btn btn-default" ng-click="updateBonusLevel(level)">Update</button>
+					<span>{{level.status}}</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn btn-default" ng-click="addBonusLevel()">Add Bonus Level</button>
+</div>

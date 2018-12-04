@@ -1,0 +1,15 @@
+<a data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}" ng-click="markRead()">
+    {{message.datetime | date:'yyyy-MM-dd HH:mm:ss'}} -
+    <b><span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> 奖励已经被激活!</b>
+</a>
+<div bindonce="message" id="{{message.id}}" class="panel panel-default panel-collapse collapse" bo-class="{'in':!message.hasRead}">
+    <div class="panel-body">
+        <div>
+            <p>恭喜! 您的 <span ng-include="'tpl/bonus-type-<%= fileSuffix %>.html'"></span> 奖励额度 {{message.initial}} 个比特币 已经在您的帐号生效. 一旦您满足解锁要求, 您的奖励额度将可以被提款。</p>
+            <p>您的奖励额度解锁要求是 {{message.unlockMultiplier}} 倍. 那代表您必须下注的总额需要是奖励额度的 {{message.unlockMultiplier}} 倍({{ message.unlockAmount}} 比特币)，从而能够取出奖励的额度。</p>
+        </div>
+        <button class="btn btn-primary btn-block" ng-click="markRead()" data-toggle="collapse" data-parent="#message-accordion" data-target="#{{message.id}}">
+            <%=buttons.dismiss_message %>
+        </button>
+    </div>
+</div>

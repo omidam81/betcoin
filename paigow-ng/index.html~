@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="application">
+    <head>
+        <!-- <base href="/WheelOfFortune/"> -->
+        <title>BetCoin ™ Fortune</title>
+        
+        
+        <meta name="viewport" content="user-scalable=no"/>
+        <meta charset="utf-8" />
+        
+      
+     
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+       
+    </head>
+    <body>
+        <canvas id="gameCanvas" width="1440" height="2280"></canvas>
+        <script src="html/cc/Poker-html5.js"></script>
+    </body>
+
+</html>

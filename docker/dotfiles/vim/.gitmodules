@@ -1,0 +1,6 @@
+[submodule "closetag"]
+	path = closetag
+	url = https://github.com/docunext/closetag.vim.git
+[submodule "bundle/neobundle.vim"]
+	path = bundle/neobundle.vim
+	url = https://github.com/Shougo/neobundle.vim.git
